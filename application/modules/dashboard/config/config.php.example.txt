@@ -1,0 +1,8 @@
+
+<?php
+ $module['module_conf']=array(
+"view_dashboard" => "home"
+ );
+ $module['module_name'] ="Dashboard";
+
+
