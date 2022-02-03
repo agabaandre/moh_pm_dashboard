@@ -1,5 +1,5 @@
 
-<?php  if(settings()->use_category_two == 1): ?>
+<?php  if(settings()=='category_two_menu.php'): ?>
 <form class="row" method="post" id="switchCategoryTwo">
 
   <div class="form-group">

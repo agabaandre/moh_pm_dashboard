@@ -1,13 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-//My constants
-$generalMenuFile  = 'menus/general_kpi_menu.php';
-$categoryMenuFile = 'menus/category_two_menu.php';
-
-defined('GENERAL_MENU') OR define('GENERAL_MENU',$generalMenuFile);
-defined('CATEGORY_MENU') OR define('CATEGORY_MENU',$categoryMenuFile);
-
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace
@@ -54,6 +47,10 @@ defined('FOPEN_WRITE_CREATE')                   OR define('FOPEN_WRITE_CREATE', 
 defined('FOPEN_READ_WRITE_CREATE')              OR define('FOPEN_READ_WRITE_CREATE', 'a+b');
 defined('FOPEN_WRITE_CREATE_STRICT')            OR define('FOPEN_WRITE_CREATE_STRICT', 'xb');
 defined('FOPEN_READ_WRITE_CREATE_STRICT')       OR define('FOPEN_READ_WRITE_CREATE_STRICT', 'x+b');
+//defined('BIO_URL')  OR define('BIO_URL', 'http://172.27.1.101:8095/');
+defined('BIO_URL')  OR define('BIO_URL', 'http://attendance.health.go.ug:8095/');
+defined('iHRIS_URL')  OR define('iHRIS_URL', 'http://154.72.198.134/');
+defined('UCMBiHRIS_URL')  OR define('UCMBiHRIS_URL', 'http://41.173.3.36/');
 
 /*
 |--------------------------------------------------------------------------

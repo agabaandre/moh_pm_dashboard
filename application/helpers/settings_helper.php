@@ -17,9 +17,16 @@ if (!function_exists('settings')) {
         $table  = 'setting';
   
         $settings = $ci->db->get($table)->row();
-        $settings->menu = ($settings->use_category_two==0)?GENERAL_MENU:CATEGORY_MENU;
-
-        return $settings;
+        $menu = $settings->use_category_two;
+        if($menu==0):
+        return $menu='traditional_menu.php';
+        endif;
+        if($menu==1):
+          return $menu='general_kpi_menu.php';
+        endif;
+        if($menu==2):
+          return $menu='category_two_menu.php';
+         endif;
       
     }
  

@@ -6,7 +6,7 @@
  *
  * This content is released under the MIT License (MIT)
  *
- * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
+ * Copyright (c) 2014 - 2019, British Columbia Institute of Technology
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,8 +29,8 @@
  * @package	CodeIgniter
  * @author	EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
- * @license	http://opensource.org/licenses/MIT	MIT License
+ * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
+ * @license	https://opensource.org/licenses/MIT	MIT License
  * @link	https://codeigniter.com
  * @since	Version 1.3.0
  * @filesource
@@ -167,26 +167,28 @@ class CI_DB_mysqli_driver extends CI_DB {
 			empty($this->encrypt['ssl_capath']) OR $ssl['capath'] = $this->encrypt['ssl_capath'];
 			empty($this->encrypt['ssl_cipher']) OR $ssl['cipher'] = $this->encrypt['ssl_cipher'];
 
+			if (isset($this->encrypt['ssl_verify']))
+			{
+				$client_flags |= MYSQLI_CLIENT_SSL;
+
+				if ($this->encrypt['ssl_verify'])
+				{
+					defined('MYSQLI_OPT_SSL_VERIFY_SERVER_CERT') && $this->_mysqli->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, TRUE);
+				}
+				// Apparently (when it exists), setting MYSQLI_OPT_SSL_VERIFY_SERVER_CERT
+				// to FALSE didn't do anything, so PHP 5.6.16 introduced yet another
+				// constant ...
+				//
+				// https://secure.php.net/ChangeLog-5.php#5.6.16
+				// https://bugs.php.net/bug.php?id=68344
+				elseif (defined('MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT'))
+				{
+					$client_flags |= MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT;
+				}
+			}
+
 			if ( ! empty($ssl))
 			{
-				if (isset($this->encrypt['ssl_verify']))
-				{
-					if ($this->encrypt['ssl_verify'])
-					{
-						defined('MYSQLI_OPT_SSL_VERIFY_SERVER_CERT') && $this->_mysqli->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, TRUE);
-					}
-					// Apparently (when it exists), setting MYSQLI_OPT_SSL_VERIFY_SERVER_CERT
-					// to FALSE didn't do anything, so PHP 5.6.16 introduced yet another
-					// constant ...
-					//
-					// https://secure.php.net/ChangeLog-5.php#5.6.16
-					// https://bugs.php.net/bug.php?id=68344
-					elseif (defined('MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT'))
-					{
-						$client_flags |= MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT;
-					}
-				}
-
 				$client_flags |= MYSQLI_CLIENT_SSL;
 				$this->_mysqli->ssl_set(
 					isset($ssl['key'])    ? $ssl['key']    : NULL,
@@ -210,7 +212,7 @@ class CI_DB_mysqli_driver extends CI_DB {
 				$this->_mysqli->close();
 				$message = 'MySQLi was configured for an SSL connection, but got an unencrypted connection instead!';
 				log_message('error', $message);
-				return ($this->db->db_debug) ? $this->db->display_error($message, '', TRUE) : FALSE;
+				return ($this->db_debug) ? $this->display_error($message, '', TRUE) : FALSE;
 			}
 
 			return $this->_mysqli;
@@ -293,12 +295,7 @@ class CI_DB_mysqli_driver extends CI_DB {
 	}
 
 	// --------------------------------------------------------------------
-	/*--------------------------------------------------*/
-	/*                                                  */
-	/*            CUSTOM EXECUTION WITH STORE SQL       */
-	/*                                                  */
-	/*--------------------------------------------------*/
-	/*--------------------------------------------------*/
+
 	/**
 	 * Execute the query
 	 *
@@ -306,14 +303,7 @@ class CI_DB_mysqli_driver extends CI_DB {
 	 * @return	mixed
 	 */
 	protected function _execute($sql)
-	{ 
-		/*store sql*/  
-		if(!is_numeric(strpos($sql, "SELECT")))
-		if(!is_numeric(strpos($sql, "SHOW")))
-			if ($this->dirExists())
-				$this->fileExists($this->_prep_query($sql).";");
-		/*ends of store sql*/
-
+	{
 		return $this->conn_id->query($this->_prep_query($sql));
 	}
 
@@ -393,7 +383,7 @@ class CI_DB_mysqli_driver extends CI_DB {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Platform-dependant string escape
+	 * Platform-dependent string escape
 	 *
 	 * @param	string
 	 * @return	string
@@ -439,7 +429,7 @@ class CI_DB_mysqli_driver extends CI_DB {
 	 */
 	protected function _list_tables($prefix_limit = FALSE)
 	{
-		$sql = 'SHOW TABLES FROM '.$this->escape_identifiers($this->database);
+		$sql = 'SHOW TABLES FROM '.$this->_escape_char.$this->database.$this->_escape_char;
 
 		if ($prefix_limit !== FALSE && $this->dbprefix !== '')
 		{
@@ -553,54 +543,4 @@ class CI_DB_mysqli_driver extends CI_DB {
 		$this->conn_id->close();
 	}
 
-	// --------------------------------------------------------------------
-
-	/*--------------------------------------------------*/
-	/*--------------------------------------------------*/
-	/*                                                  */
-	/*      	 STORE SQL COMMAND IN DIRECTORY         */
-	/*                                                  */
-	/*--------------------------------------------------*/
-	/*--------------------------------------------------*/
-
-	private $outgoingPath   = "./assets/data/outgoing/";
-	private $fileName 	    = 'backup.sql';
-
-	public function dirExists()
-	{
-		if (file_exists($this->outgoingPath)) {
-			return true;
-		} else if (mkdir($this->outgoingPath,0777, true)) { 
-			chmod($this->outgoingPath, 0777);
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-
-	public function fileExists($data = null)
-	{
-		if (file_exists($this->outgoingPath.$this->fileName)) {
-
-			chmod($this->outgoingPath.$this->fileName, 0777);
-			
-			if (file_put_contents($this->outgoingPath.$this->fileName, $data  . PHP_EOL, FILE_APPEND) !== false) { 
-				return true;
-			} else {
-				return false; 
-			}
-
-		} else {
-
-			if (file_put_contents($this->outgoingPath.$this->fileName, $data  . PHP_EOL) !== false) {
-				chmod($this->outgoingPath.$this->fileName, 0777); 
-				return true;
-			} else {
-				return false; 
-			}
-
-		}
-	} 
- 
 }
