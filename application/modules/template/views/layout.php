@@ -30,7 +30,7 @@
                     <div class="header-title">
                            <h3> </small> <?php  if(!empty($uptitle)) { echo urldecode( $uptitle); } ?> </h3>
                         
-                       
+                      <?php print_r(settings()); ?>
                         <button type="button" class="btn btn-success" style="float:right; margin-right:5px; margin-top:-40px; <?php if ($this->uri->segment(2)=="summary"){?> display:none;<?php }?>" data-toggle="modal" data-target="#definition">
                         <?php echo display("definition"); ?>
                         </button>
