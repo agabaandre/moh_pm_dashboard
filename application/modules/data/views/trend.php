@@ -70,7 +70,7 @@ else{
   
    <div class="<?php echo $col ?>" style="text-align:center; background-color:#feffff;">
    
-        <div id="line<?php echo $chartkpi; ?>"> 
+        <div id="line<?php echo @$chartkpi; ?>"> 
          </div>
 
 
