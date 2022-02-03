@@ -17,7 +17,7 @@
 
  
             <!-- Left side column. contains the sidebar -->
-            <aside class="main-sidebar" style="overflow-x:hidden !important;">
+            <aside class="main-sidebar" style="">
                 <!-- sidebar -->
                 <?php $this->load->view('includes/sidebar.php') ?>
             </aside>
