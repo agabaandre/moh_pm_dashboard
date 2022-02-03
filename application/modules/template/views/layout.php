@@ -6,7 +6,7 @@
         <?php require('includes/head.php'); ?>
     </head>
 
-    <body class="hold-transition hold-transition sidebar-mini" style="font-size:11px !important;">
+    <body class="hold-transition sidebar-mini">
       
         <!-- Site wrapper -->
         <div class="wrapper">
@@ -17,7 +17,7 @@
 
  
             <!-- Left side column. contains the sidebar -->
-            <aside class="main-sidebar" style="overflow-x:hidden !important;">
+            <aside class="main-sidebar" style="">
                 <!-- sidebar -->
                 <?php $this->load->view('includes/sidebar.php') ?>
             </aside>
@@ -30,7 +30,7 @@
                     <div class="header-title">
                            <h3> </small> <?php  if(!empty($uptitle)) { echo urldecode( $uptitle); } ?> </h3>
                         
-                       
+                      <?php //print_r(settings()); ?>
                         <button type="button" class="btn btn-success" style="float:right; margin-right:5px; margin-top:-40px; <?php if ($this->uri->segment(2)=="summary"){?> display:none;<?php }?>" data-toggle="modal" data-target="#definition">
                         <?php echo display("definition"); ?>
                         </button>

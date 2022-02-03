@@ -25,7 +25,7 @@
           ?>
            
         <ul class="treeview-menu">
-        <li class="treeview <?php echo ($outComeActive)?'active':''; ?>">
+        <li class="treeview <?php echo (@$outComeActive)?'active':''; ?>">
              <a  href="#" 
                 target="_self">
                 <span><?php echo $sub2->cat_name; ?></span>

@@ -11,7 +11,7 @@
 <div class="se-pre-con"></div>
 <!-- Header Navbar -->
 <nav class="navbar navbar-static-top">
-    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="position:fixed; border: #fff 0px; margin-right:3px;z-index:100; background:#fff;"> <!-- Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button" style="border: #fff 0px; margin-right:3px;z-index:100; background:#fff;"> <!-- Sidebar toggle button-->
         <span class="sr-only">Toggle navigation</span>
         <span class="fa fa-th"></span>
     </a>
