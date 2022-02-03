@@ -6,7 +6,7 @@
         <?php require('includes/head.php'); ?>
     </head>
 
-    <body class="hold-transition sidebar-mini">style="font-size:11px !important;">
+    <body class="hold-transition sidebar-mini">
       
         <!-- Site wrapper -->
         <div class="wrapper">
