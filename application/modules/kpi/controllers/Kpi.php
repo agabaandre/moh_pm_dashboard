@@ -27,9 +27,9 @@ class Kpi extends MX_Controller {
 
 	public function kpiData(){
 
-      return   $this->kpi_mdl->kpiData();
+      return   $this->kpi_mdl->kpiDakpiDatata();
 	}
-
+    
 	public function dashKpi($id = FALSE){
 		
 		$kpis = $this->kpi_mdl->navkpi($id);
@@ -111,6 +111,18 @@ class Kpi extends MX_Controller {
 
 	  echo Modules::run('template/layout', $data); 
 	}
+	public function addKpiData(){
+
+		$insert = $this->input->post();
+		$data['message'] = $this->kpi_mdl->addKpi($insert);
+  
+		$this->session->set_flashdata('message','Added');
+		$data['title']   = 'Key Performance Indicator Data';
+		$data['page']    = 'add_data';
+		$data['module']  = $this->module;
+  
+		echo Modules::run('template/layout', $data); 
+	  }
 
 	public function updateKpi(){
 

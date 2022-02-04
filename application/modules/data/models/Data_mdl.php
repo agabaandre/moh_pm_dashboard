@@ -38,7 +38,8 @@ public function financialYear($financial_year=FALSE){
 public function period(){
   //sum
 	$this->db->select_max('period');
-	$this->db->where("financial_year","$this->financial_year");
+	//$this->db->where("financial_year","$this->financial_year");
+	$this->db->limit(12);
 	$query = $this->db->get("new_data");
 	$data=$query->result();
 
@@ -77,7 +78,7 @@ public function generateperiods(){
 
 public function getallperiods($kpi){
     
-    $queryp=$this->db->query("SELECT DISTINCT period from new_data where trim(financial_year)='$this->financial_year' and kpi_id='$kpi' order by period ASC");
+    $queryp=$this->db->query("SELECT DISTINCT period from new_data where kpi_id='$kpi' order by period ASC LIMIT 12");
 	
 	return $resps=$queryp->result();
 
