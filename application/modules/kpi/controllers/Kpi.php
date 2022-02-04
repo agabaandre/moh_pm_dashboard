@@ -116,7 +116,7 @@ class Kpi extends MX_Controller {
 		$insert = $this->input->post();
 		$data['message'] = $this->kpi_mdl->addKpi($insert);
   
-		$this->session->set_flashdata('message','Added');
+		$this->session->set_flashdata('message','Saved');
 		$data['title']   = 'Key Performance Indicator Data';
 		$data['page']    = 'add_data';
 		$data['module']  = $this->module;
