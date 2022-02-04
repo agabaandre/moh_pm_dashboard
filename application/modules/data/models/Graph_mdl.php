@@ -19,7 +19,7 @@ public function gaugeData($kpi){
      //$kpi=str_replace(" ",'',$kpi);
     $details=$this->gaugeDetails($kpi);
     $config=$this->gaugeConfig($kpi);
-    $query= $this->db->query("SELECT MAX(period), CONCAT(period,'/',period_year) as cp, CONCAT(previous_period,'/',previousperiod_year) as pp, t.* from report_kpi_summary t WHERE trim(kpi_id)='$kpi' LIMIT 12");
+    $query= $this->db->query("SELECT MAX(period), CONCAT(period,'/',period_year) as cp, CONCAT(previous_period,'/',previousperiod_year) as pp, t.* from report_kpi_summary t WHERE trim(kpi_id)='$kpi'");
 
 $return= array("data"=>$query->result(),"config"=>$config,"details"=>$details);
 
@@ -47,7 +47,7 @@ public function gaugeConfig($kpi){
 //KPI 0 TREND GRAPH DATA
 public function dim0quaters($kpi){
     $quaters=array();
-   $query = $this->db->query("SELECT  CONCAT( period,'-',period_year) as period,current_value FROM `report_kpi_trend` WHERE  kpi_id='$kpi' order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC LIMIT 12")->result();
+   $query = $this->db->query("SELECT  CONCAT( period,'-',period_year) as period,current_value FROM `report_kpi_trend` WHERE  kpi_id='$kpi' order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
 
  foreach ($query as $periods){
      array_push($quaters,$periods->period);
@@ -58,7 +58,7 @@ public function dim0quaters($kpi){
 public function dim0data($kpi) {
         $datas=array();
 
-       $query = $this->db->query("SELECT  current_value FROM `report_kpi_trend` WHERE  kpi_id='$kpi' order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC LIMIT 12")->result();
+       $query = $this->db->query("SELECT  current_value FROM `report_kpi_trend` WHERE  kpi_id='$kpi' order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC ")->result();
 
  foreach ($query as $data){
      array_push($datas,$data->current_value);
@@ -67,7 +67,7 @@ public function dim0data($kpi) {
 }
 public function dim0targets($kpi) {
        $datas = array();
-       $query = $this->db->query("SELECT  target_value FROM `report_kpi_trend` WHERE  kpi_id='$kpi' order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC LIMIT 12")->result();
+       $query = $this->db->query("SELECT  target_value FROM `report_kpi_trend` WHERE  kpi_id='$kpi' order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
      foreach ($query as $data){
      array_push($datas,$data->target_value);
       }
@@ -78,7 +78,7 @@ public function dim0Graph($kpi) {
        $datas = array();
        $target = array();
        $periods = array();
-       $query = $this->db->query("SELECT  target_value,period,current_value FROM `report_kpi_trend` WHERE  kpi_id='$kpi' order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC LIMIT 12")->result();
+       $query = $this->db->query("SELECT  target_value,period,current_value FROM `report_kpi_trend` WHERE  kpi_id='$kpi' order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
        $row_data = [];
      
 foreach($query as $row):
@@ -101,7 +101,7 @@ public function dim1Graph($kpi) {
        $datas = array();
        $dimesnions = array();
        $periods = array();
-       $query = $this->db->query("SELECT  target_value, CONCAT( period,'-',period_year) as period,cal_value,dimension1,dimension1_key FROM `report_trend_dimension1` WHERE  kpi_id='$kpi' order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC LIMIT 12")->result();
+       $query = $this->db->query("SELECT  target_value, CONCAT( period,'-',period_year) as period,cal_value,dimension1,dimension1_key FROM `report_trend_dimension1` WHERE  kpi_id='$kpi' order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
        $row_data = [];
      
 foreach($query as $row):
@@ -138,7 +138,7 @@ public function dim2Graph($kpi,$dimension1) {
        else{
         $filter="";     
        }
-       $query = $this->db->query("SELECT  target_value,CONCAT( period,'-',period_year) as period,cal_value,dimension1,dimension2,dimension2_key FROM `report_trend_dimension2` WHERE kpi_id='$kpi' $filter order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC LIMIT 12")->result();
+       $query = $this->db->query("SELECT  target_value,CONCAT( period,'-',period_year) as period,cal_value,dimension1,dimension2,dimension2_key FROM `report_trend_dimension2` WHERE kpi_id='$kpi' $filter order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
        $row_data = [];
      
 foreach($query as $row):
@@ -177,7 +177,7 @@ public function dim3Graph($kpi,$dimension2) {
               else{
                $filter="";     
        }
-       $query = $this->db->query("SELECT  target_value,CONCAT( period,'-',period_year) as period,cal_value,dimension2,dimension2_key,dimension3,dimension3_key FROM `report_trend_dimension3` WHERE trim(financial_year)='$this->financial_year' and kpi_id='$kpi' $filter order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC LIMIT 12")->result();
+       $query = $this->db->query("SELECT  target_value,CONCAT( period,'-',period_year) as period,cal_value,dimension2,dimension2_key,dimension3,dimension3_key FROM `report_trend_dimension3` WHERE kpi_id='$kpi' $filter order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
        $row_data = [];
      
 foreach($query as $row):
