@@ -122,8 +122,8 @@ return $this->db->affected_rows();
 }
 
 //all periods
-public function getallperiods($kpi){
-    $queryp=$this->db->query("SELECT DISTINCT period from new_data where trim(financial_year)='$this->financial_year' and kpi_id='$kpi' order by period ASC");
+public function getallperiods($kpi,$fy){
+    $queryp=$this->db->query("SELECT DISTINCT period from new_data where trim(financial_year)='$fy' and kpi_id='$kpi' order by period ASC");
 	
 	return $resps=$queryp->result();
 
@@ -132,7 +132,7 @@ public function getallperiods($kpi){
 public function dimension0Data($kpi,$fy){
 	//get available financial years from the datasets
     $computation="ROUND((SUM(numerator) / SUM(denominator)*100),0)";
-	$allps=$this->getallperiods($kpi);
+	$allps=$this->getallperiods($kpi,$fy);
 	$barperiodTotals = array();
 	foreach ($allps as $resp):
 		$value=str_replace(" ","",$resp->period);
@@ -146,7 +146,7 @@ public function dimension0Data($kpi,$fy){
 	//  $this->truncateTable('report_kpi_trend');
 	 $this->db->insert_batch("report_kpi_trend",$barperiodTotals);
 	//fix for empty columns
-	$this->db->query("DELETE from report_kpi_trend where kpi_id is NULL''");
+	$this->db->query("DELETE from report_kpi_trend where kpi_id IS NULL");
 	return $this->db->affected_rows(). 'Records - Dimension0 Data entered for'. $kpi;
 }
 public function truncateTable($table){
@@ -156,8 +156,8 @@ public function truncateTable($table){
 //dimension 1
 public function dimension1Data($kpi,$fy){
 	//$kpi='KPI-11';
-	$dim1  = $this->dimension1($kpi);
-	$allps = $this->getallperiods($kpi);
+	$dim1  = $this->dimension1($kpi,$fy);
+	$allps = $this->getallperiods($kpi,$fy);
 	$allDimesiondata = array(); // data for all period, all dimensions
 	$insertable = array(); 
 	$sereis_data= array();
@@ -194,16 +194,16 @@ public function dimension1Data($kpi,$fy){
 	// print_r($period_data);
 	//$this->truncateTable('report_trend_dimension1');
 	 $this->db->insert_batch('report_trend_dimension1',$insertable);
-	 $this->db->query("DELETE from report_trend_dimension1 where kpi_id=''");
+	 $this->db->query("DELETE from report_trend_dimension1 where kpi_id IS NULL");
 	return  $this->db->affected_rows(). 'Records - Dimension 1 data inserted for'. $kpi;
 }
 
 //dimension2
 public function dimension2Data($kpi,$fy){
 
-	$dim1  = $this->dimension1($kpi);
-	$dim2  = $this->dimension2($kpi);
-	$allps = $this->getallperiods($kpi);
+	$dim1  = $this->dimension1($kpi,$fy);
+	$dim2  = $this->dimension2($kpi,$fy);
+	$allps = $this->getallperiods($kpi,$fy);
 	$allDimesiondata = array(); // data for all period, all dimensions
 	$insertable = array();
 	$computation="ROUND((SUM(numerator) / SUM(denominator)*100),0)";
@@ -233,15 +233,15 @@ public function dimension2Data($kpi,$fy){
 	$table='report_trend_dimension2';
 	// $this->truncateTable($table);
 	 $this->db->insert_batch('report_trend_dimension2',$insertable);
-	$this->db->query("DELETE from report_trend_dimension2 where kpi_id=''");
+	$this->db->query("DELETE from report_trend_dimension2 where kpi_id IS NULL");
 	return $this->db->affected_rows(). 'Records - Dimension 2 data inserted for'. $kpi;
 }
 //dimension3
 public function dimension3Data($kpi,$fy){
-	$dim1  = $this->dimension1($kpi);
-	$dim2  = $this->dimension2($kpi);
-	$dim3  = $this->dimension3($kpi);
-	$allps = $this->getallperiods($kpi);
+	$dim1  = $this->dimension1($kpi,$fy);
+	$dim2  = $this->dimension2($kpi,$fy);
+	$dim3  = $this->dimension3($kpi,$fy);
+	$allps = $this->getallperiods($kpi,$fy);
 	$computation="ROUND((SUM(numerator) / SUM(denominator)*100),0)";
 	$periodsdata = array(); // data for all period, all dimensions
 	$insertable = array();
@@ -270,22 +270,22 @@ public function dimension3Data($kpi,$fy){
 	 if(!empty($insertable))
 	//  $this->truncateTable('report_trend_dimension3');
 	 $this->db->insert_batch('report_trend_dimension3',$insertable);
-	 $this->db->query("DELETE from report_trend_dimension3 where kpi_id=''");
+	 $this->db->query("DELETE from report_trend_dimension3 where kpi_id IS NULL");
 	return $this->db->affected_rows(). 'Records - Dimension 3 data inserted for'. $kpi;
 }
  //get dimension1
-public function  dimension1($kpi){
-	$query=$this->db->query("SELECT distinct kpi_id,dimension1,dimension1_key from new_data where kpi_id='$kpi' and trim(financial_year) = '$this->financial_year'");
+public function  dimension1($kpi,$fy){
+	$query=$this->db->query("SELECT distinct kpi_id,dimension1,dimension1_key from new_data where kpi_id='$kpi' and trim(financial_year) = '$fy'");
 return $query->result(); 
 }
  //get dimension2
-public function  dimension2($kpi){
-	$query=$this->db->query("SELECT distinct kpi_id,dimension2,dimension2_key from new_data where kpi_id='$kpi' and trim(financial_year) = '$this->financial_year'");
+public function  dimension2($kpi,$fy){
+	$query=$this->db->query("SELECT distinct kpi_id,dimension2,dimension2_key from new_data where kpi_id='$kpi' and trim(financial_year) = '$fy'");
     return $query->result(); 
 }
  //get dimension3
-public function  dimension3($kpi){
-	$query=$this->db->query("SELECT distinct kpi_id,dimension3,dimension3_key from new_data where kpi_id='$kpi' and trim(financial_year) = '$this->financial_year'");
+public function  dimension3($kpi,$fy){
+	$query=$this->db->query("SELECT distinct kpi_id,dimension3,dimension3_key from new_data where kpi_id='$kpi' and trim(financial_year) = '$fy'");
 return $query->result(); 
 }
 public function kpi_name($kpi){  

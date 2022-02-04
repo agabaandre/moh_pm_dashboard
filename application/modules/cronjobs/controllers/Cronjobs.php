@@ -46,7 +46,7 @@ class Cronjobs extends MX_Controller {
             $years = $this->fyears($kpi->kpi_id);
             foreach($years as $year):
                 $fy=$year->financial_year;
-	            $data=$this->cjobs_ml->previousgaugeData($kpi->kpi_id,$fy);
+	           // $data=$this->cjobs_ml->previousgaugeData($kpi->kpi_id,$fy);
             echo $data.'<br>';
             endforeach;
         endforeach;
