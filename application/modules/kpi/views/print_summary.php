@@ -1,28 +1,4 @@
 
-        <div class="panel panel-bd lobidrag">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    <h4><?php echo (!empty($title)?$title:null) ?></h4>
-                </div>
-            </div> 
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                        <!-- Button trigger modal -->
-                       
-                    <div class="card-content">
-                      
-                        <div class="col-md-6">    
-                        <button class="btn btn-success" onclick="printTable('kpitable')"><i class="fa fa-print"  ></i>Print</button>
-                        </div>
-                        <div class="col-md-6">
-                        <button type="button" class="btn btn-success" style="float:right;" data-toggle="modal" data-target="#definition">
-                        <?php echo display("definition"); ?>
-                        </button>
-                        
-                        </div>
-
                         <div id="kpitable">
 
                                     <table id="kpi"  class="table table-responsive table-striped table-bordered print table">
@@ -81,28 +57,4 @@
                                         </tbody>
                                     </table>
                                     </div>
-                               </div>
-                           </div> 
-                        </div>
-                    </div>
-                </div>
-            </div> 
-    
-
-
-
-    <script>
-		function printTable(divName){
-			var printContents = document.getElementById(divName).innerHTML;
-			var originalContents = document.body.innerHTML;
-
-			document.body.innerHTML = printContents;
-
-			window.print();
-
-			document.body.innerHTML = originalContents;
-
-		}
-	</script>
-
-
+                             

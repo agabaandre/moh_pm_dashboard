@@ -12,6 +12,7 @@ class Kpi extends MX_Controller {
 		$this->load->model('graph_mdl');
 		$this->module = "kpi";
 		$this->load->library('form_validation');
+		$this->watermark=FCPATH."assets/images/moh.png";
 
 	}
 
@@ -290,6 +291,23 @@ class Kpi extends MX_Controller {
 
 	    return $data;
 	}
+
+	
+	public function printsummary($view){
+		  $data['print']="print";
+		  $html=$this->load->view($view,$data,true);   
+		  $PDFContent = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
+		  $this->m_pdf->pdf->SetWatermarkImage($this->watermark);
+		  $this->m_pdf->pdf->showWatermarkImage = true;
+		  date_default_timezone_set("Africa/Kampala"); 
+		  $this->m_pdf->pdf->SetHTMLFooter("Printed/ Accessed on: <b>".date('d F,Y h:i A')."</b><br style='font-size: 9px !imporntant;'>"." Source: iHRIS - HRM Attend " .base_url());
+		  $this->m_pdf->pdf->SetWatermarkImage($this->watermark);
+		  $this->m_pdf->showWatermarkImage = true;
+		  ini_set('max_execution_time',0);
+		  $this->m_pdf->pdf->WriteHTML($PDFContent); //ml_pdf because we loaded the library ml_pdf for landscape format not m_pdf
+		  //download it D save F.
+		  $this->m_pdf->pdf->Output($filename,'I');
+		  }
 
 	
 
