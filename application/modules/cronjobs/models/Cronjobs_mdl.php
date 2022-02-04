@@ -146,7 +146,7 @@ public function dimension0Data($kpi,$fy){
 	//  $this->truncateTable('report_kpi_trend');
 	 $this->db->insert_batch("report_kpi_trend",$barperiodTotals);
 	//fix for empty columns
-	$this->db->query("DELETE from report_kpi_trend where kpi_id=NULL''");
+	$this->db->query("DELETE from report_kpi_trend where kpi_id is NULL''");
 	return $this->db->affected_rows(). 'Records - Dimension0 Data entered for'. $kpi;
 }
 public function truncateTable($table){
