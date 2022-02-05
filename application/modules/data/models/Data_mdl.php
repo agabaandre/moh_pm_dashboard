@@ -38,7 +38,8 @@ public function financialYear($financial_year=FALSE){
 public function period(){
   //sum
 	$this->db->select_max('period');
-	$this->db->where("financial_year","$this->financial_year");
+	//$this->db->where("financial_year","$this->financial_year");
+	$this->db->limit(12);
 	$query = $this->db->get("new_data");
 	$data=$query->result();
 
@@ -77,7 +78,7 @@ public function generateperiods(){
 
 public function getallperiods($kpi){
     
-    $queryp=$this->db->query("SELECT DISTINCT period from new_data where trim(financial_year)='$this->financial_year' and kpi_id='$kpi' order by period ASC");
+    $queryp=$this->db->query("SELECT DISTINCT period from new_data where kpi_id='$kpi' order by period ASC");
 	
 	return $resps=$queryp->result();
 
@@ -277,7 +278,7 @@ public function dimension3Data($kpi){
  //get dimension1
 public function  dimension1($kpi){
 
-	$query=$this->db->query("SELECT distinct kpi_id,dimension1,dimension1_key from new_data where kpi_id='$kpi' and trim(financial_year) = '$this->financial_year'");
+	$query=$this->db->query("SELECT distinct kpi_id,dimension1,dimension1_key from new_data where kpi_id='$kpi' ");
 	return $query->result(); 
 }
 
@@ -285,7 +286,7 @@ public function  dimension1($kpi){
  //get dimension2
 public function  dimension2($kpi){
 
-	$query=$this->db->query("SELECT distinct kpi_id,dimension2,dimension2_key from new_data where kpi_id='$kpi' and trim(financial_year) = '$this->financial_year'");
+	$query=$this->db->query("SELECT distinct kpi_id,dimension2,dimension2_key from new_data where kpi_id='$kpi'");
     return $query->result(); 
 }
 
@@ -293,7 +294,7 @@ public function  dimension2($kpi){
  //get dimension3
 public function  dimension3($kpi){
 
-	$query=$this->db->query("SELECT distinct kpi_id,dimension3,dimension3_key from new_data where kpi_id='$kpi' and trim(financial_year) = '$this->financial_year'");
+	$query=$this->db->query("SELECT distinct kpi_id,dimension3,dimension3_key from new_data where kpi_id='$kpi'");
 	return $query->result(); 
 }
 
@@ -317,28 +318,28 @@ public function subject_name($kpi){
 
 public function  dimalldisplay($kpi){
 
-	$query=$this->db->query("SELECT distinct dimension1_key,dimension2_key,dimension3_key,kpi_id from new_data where kpi_id='$kpi' and trim(financial_year) = '$this->financial_year'");
+	$query=$this->db->query("SELECT distinct dimension1_key,dimension2_key,dimension3_key,kpi_id from new_data where kpi_id='$kpi'");
 	return $query->result(); 
 }
 
 
 public function  dim1display($kpi){
 
-	$query=$this->db->query("SELECT distinct dimension1_key,kpi_id from new_data where kpi_id='$kpi' and trim(financial_year) = '$this->financial_year'");
+	$query=$this->db->query("SELECT distinct dimension1_key,kpi_id from new_data where kpi_id='$kpi'");
 	return $query->result(); 
 }
 
 
 public function  dim2display($kpi){
 
-	$query=$this->db->query("SELECT distinct dimension2_key,kpi_id from new_data where kpi_id='$kpi' and trim(financial_year) = '$this->financial_year'");
+	$query=$this->db->query("SELECT distinct dimension2_key,kpi_id from new_data where kpi_id='$kpi'");
 	return $query->result(); 
 }
 
 
 public function  dim3display($kpi){
 
-	$query=$this->db->query("SELECT distinct dimension3_key,kpi_id from new_data where kpi_id='$kpi' and trim(financial_year) = '$this->financial_year'");
+	$query=$this->db->query("SELECT distinct dimension3_key,kpi_id from new_data where kpi_id='$kpi'");
 	return $query->result(); 
 }
 

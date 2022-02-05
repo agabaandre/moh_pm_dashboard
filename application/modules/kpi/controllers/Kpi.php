@@ -12,6 +12,8 @@ class Kpi extends MX_Controller {
 		$this->load->model('graph_mdl');
 		$this->module = "kpi";
 		$this->load->library('form_validation');
+		$this->load->library('M_pdf');
+		$this->watermark=FCPATH."assets/images/moh.png";
 
 	}
 
@@ -27,9 +29,9 @@ class Kpi extends MX_Controller {
 
 	public function kpiData(){
 
-      return   $this->kpi_mdl->kpiData();
+      return   $this->kpi_mdl->kpiDakpiDatata();
 	}
-
+    
 	public function dashKpi($id = FALSE){
 		
 		$kpis = $this->kpi_mdl->navkpi($id);
@@ -111,6 +113,18 @@ class Kpi extends MX_Controller {
 
 	  echo Modules::run('template/layout', $data); 
 	}
+	public function addKpiData(){
+
+		$insert = $this->input->post();
+		$data['message'] = $this->kpi_mdl->addKpi($insert);
+  
+		$this->session->set_flashdata('message','Saved');
+		$data['title']   = 'Key Performance Indicator Data';
+		$data['page']    = 'add_data';
+		$data['module']  = $this->module;
+  
+		echo Modules::run('template/layout', $data); 
+	  }
 
 	public function updateKpi(){
 
@@ -278,6 +292,23 @@ class Kpi extends MX_Controller {
 
 	    return $data;
 	}
+
+	
+	public function printsummary($view){
+		  
+		  $html=$this->load->view($view,$data='',true);   
+		  $PDFContent = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
+		  $this->m_pdf->pdf->SetWatermarkImage($this->watermark);
+		  $this->m_pdf->pdf->showWatermarkImage = true;
+		  date_default_timezone_set("Africa/Kampala"); 
+		  $this->m_pdf->pdf->SetHTMLFooter("Printed/ Accessed on: <b>".date('d F,Y h:i A')."</b><br style='font-size: 9px !imporntant;'>"." Source: MoH PM Dashboard " .base_url());
+		  $this->m_pdf->pdf->SetWatermarkImage($this->watermark);
+		  $this->m_pdf->showWatermarkImage = true;
+		  ini_set('max_execution_time',0);
+		  $this->m_pdf->pdf->WriteHTML($PDFContent); //ml_pdf because we loaded the library ml_pdf for landscape format not m_pdf
+		  //download it D save F.
+		  $this->m_pdf->pdf->Output($filename,'I');
+		  }
 
 	
 

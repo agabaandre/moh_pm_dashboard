@@ -79,7 +79,7 @@ if (!function_exists('kpiTrend')) {
          $gaugeValue          = round($gauge_value);
          $previousPeriodValue = round($previousgauge_value);
 
-         return  '<i class="fa '.$arrow.' style="color:'.$color.';margin-bottom:10px;"></i> '.$gaugeValue.'% for  '.$current_period.'  compared to '.$previousPeriodValue .'% '.$previous_period=FALSE.'';
+         return  '<i class="fa '.$arrow.'" style="color:'.$color.';margin-bottom:10px;"></i> '.$gaugeValue.'% for  '.$current_period.'  compared to '.$previousPeriodValue .'% '.$previous_period=FALSE.'';
  
     }
  

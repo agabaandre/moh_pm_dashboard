@@ -13,7 +13,7 @@ $this->financial_year=$this->financialYear();
 //add another period if it exits in KPIS and handle it.
 
 }
-public function financialYear($financial_year=FALSE){
+public function sessfinancialYear($financial_year=FALSE){
 	 $query=$this->db->get('setting');
 	 $result=$query->row();
 if(empty($financial_year)){
@@ -24,12 +24,20 @@ else{
 	//  unset($_SESSION['financial_year']);
 return $_SESSION['financial_year']=str_replace(" ","",$this->input->post('financial_year'));
 }
-
 }
+public function financialYear($financial_year=FALSE){
+	$query=$this->db->get('setting');
+	$result=$query->row();
+return $result->financial_year;
+}
+
+
+
+
 
 public function period($kpi){
 
-	$query=$this->db->query("SELECT MAX(CONCAT(period_year,'-',period)) as period from new_data WHERE trim(kpi_id)='$kpi' and financial_year='$this->financial_year' ");
+	$query=$this->db->query("SELECT MAX(CONCAT(period_year,'-',period)) as period from new_data WHERE trim(kpi_id)='$kpi'");
     
 $data=$query->result();
 $mperiod = substr($data[0]->period, '5');
@@ -58,7 +66,7 @@ return $this->preperiod=@str_replace(" ","", "Q".($this->period($kpi)-1));
 }
 elseif ($this->getkpiType($kpi)=="Annual"){
 $this->period=str_replace(" ","",$this->period($kpi));
-return $this->preperiod=@str_replace(" ","", $this->period($kpi)-1);
+return $this->preperiod=str_replace(" ","", $this->period($kpi)-1);
 }
 elseif ($this->getkpiType($kpi)=="Monthly"){
 $this->period=str_replace(" ","",$this->period($kpi));
@@ -73,30 +81,30 @@ $newdate = date("F", strtotime ( '-1 month' , strtotime ( $monthName) )) ;
 }
 
 //data for the gauge recent period
-public function gaugeData($kpi){
+public function gaugeData($kpi,$financial_year){
 
 	 $period=str_replace(" ","",$this->periodlimits($kpi));
 
 	 $computation="ROUND((SUM(numerator) / SUM(denominator)*100),0)";
 
-	$query = $this->db->query("SELECT $computation  as current_value, replace(CONCAT(kpi_id,period,financial_year),' ','') as entry_id, kpi_id,period_year, financial_year,data_target as current_target, period from new_data WHERE kpi_id='$kpi' and trim(financial_year)='$this->financial_year' and trim(period)='$period' and replace(CONCAT(kpi_id,period,financial_year),' ','') not in (SELECT entry_id from report_kpi_summary)");
+	$query = $this->db->query("SELECT $computation  as current_value, replace(CONCAT(kpi_id,period,financial_year),' ','') as entry_id, kpi_id,period_year, financial_year,data_target as current_target, period from new_data WHERE kpi_id='$kpi' and trim(financial_year)='$financial_year' and trim(period)='$period' and replace(CONCAT(kpi_id,period,financial_year),' ','') not in (SELECT entry_id from report_kpi_summary)");
 	$gauge_value=$query->row();
     
-   if (!empty($query->result()))
+   if (!empty($query))
    $this->db->replace('report_kpi_summary',$gauge_value); 
-
+  //$this->log_message($query);
 return $this->db->affected_rows(). "Records - Current  & previous Gauge Details" . $kpi;;
   
 }
 
 //data for the gauge previous period
-public function previousgaugeData($kpi){
+public function previousgaugeData($kpi,$fy){
 
     $period=str_replace(" ","",$this->periodlimits($kpi));
 	$preperiod = str_replace(" ","",$this->preperiodlimits($kpi));
 	$computation="ROUND((SUM(numerator) / SUM(denominator)*100),0)";
   //sum
-	$query = $this->db->query("SELECT $computation as previous_value, replace(CONCAT(kpi_id,'$period',financial_year),' ','') as entry_id,period_year as previousperiod_year, financial_year as previous_financial_year, data_target as previous_target, period as previous_period from new_data WHERE trim(kpi_id)='$kpi' and trim(financial_year)='$this->financial_year' and trim(period)='$preperiod'");
+	$query = $this->db->query("SELECT $computation as previous_value, replace(CONCAT(kpi_id,'$period',financial_year),' ','') as entry_id,period_year as previousperiod_year, financial_year as previous_financial_year, data_target as previous_target, period as previous_period from new_data WHERE trim(kpi_id)='$kpi' and trim(financial_year)='$fy' and trim(period)='$preperiod'");
 	$prev_gaugeData=$query->row();
            
 	$this->updateGauge($prev_gaugeData,$prev_gaugeData->entry_id);
@@ -114,21 +122,21 @@ return $this->db->affected_rows();
 }
 
 //all periods
-public function getallperiods($kpi){
-    $queryp=$this->db->query("SELECT DISTINCT period from new_data where trim(financial_year)='$this->financial_year' and kpi_id='$kpi' order by period ASC");
+public function getallperiods($kpi,$fy){
+    $queryp=$this->db->query("SELECT DISTINCT period from new_data where trim(financial_year)='$fy' and kpi_id='$kpi' order by period ASC");
 	
 	return $resps=$queryp->result();
 
 }
 //dimension 0
-public function dimension0Data($kpi){
+public function dimension0Data($kpi,$fy){
 	//get available financial years from the datasets
     $computation="ROUND((SUM(numerator) / SUM(denominator)*100),0)";
-	$allps=$this->getallperiods($kpi);
+	$allps=$this->getallperiods($kpi,$fy);
 	$barperiodTotals = array();
 	foreach ($allps as $resp):
 		$value=str_replace(" ","",$resp->period);
-		$query1 = $this->db->query("SELECT $computation as current_value,period_year,kpi_id ,replace(CONCAT(kpi_id,period,financial_year),' ','') as entry_id, MAX(data_target) as target_value, financial_year, period from new_data WHERE kpi_id='$kpi' and trim(financial_year) = '$this->financial_year' and trim(period) = '$value' and replace(CONCAT(kpi_id,period,financial_year),' ','') not in (SELECT entry_id from report_kpi_trend)");
+		$query1 = $this->db->query("SELECT $computation as current_value,period_year,kpi_id ,replace(CONCAT(kpi_id,period,financial_year),' ','') as entry_id, MAX(data_target) as target_value, financial_year, period from new_data WHERE kpi_id='$kpi' and trim(financial_year) = '$fy' and trim(period) = '$value' and replace(CONCAT(kpi_id,period,financial_year),' ','') not in (SELECT entry_id from report_kpi_trend)");
 		$result1=$query1->row();
 	    if(!empty($result1))
 		array_push($barperiodTotals,$result1);  
@@ -138,7 +146,7 @@ public function dimension0Data($kpi){
 	//  $this->truncateTable('report_kpi_trend');
 	 $this->db->insert_batch("report_kpi_trend",$barperiodTotals);
 	//fix for empty columns
-	$this->db->query("DELETE from report_kpi_trend where kpi_id=''");
+	$this->db->query("DELETE from report_kpi_trend where kpi_id IS NULL");
 	return $this->db->affected_rows(). 'Records - Dimension0 Data entered for'. $kpi;
 }
 public function truncateTable($table){
@@ -146,10 +154,10 @@ public function truncateTable($table){
  return 1;
 }
 //dimension 1
-public function dimension1Data($kpi){
+public function dimension1Data($kpi,$fy){
 	//$kpi='KPI-11';
-	$dim1  = $this->dimension1($kpi);
-	$allps = $this->getallperiods($kpi);
+	$dim1  = $this->dimension1($kpi,$fy);
+	$allps = $this->getallperiods($kpi,$fy);
 	$allDimesiondata = array(); // data for all period, all dimensions
 	$insertable = array(); 
 	$sereis_data= array();
@@ -169,7 +177,7 @@ public function dimension1Data($kpi){
 				 dimension1_key, kpi_id, period_year, replace(CONCAT(kpi_id,period,financial_year,dimension1),' ','') as entry_id, dimension1, financial_year, 
 				 period from new_data 
 				 WHERE trim(kpi_id) = trim('$kpi') 
-				 and trim(financial_year) = trim('$this->financial_year')
+				 and trim(financial_year) = trim('$fy')
 				 and trim(period) = trim('$period')
 				 and replace(CONCAT(kpi_id,period,financial_year,dimension1),' ','') not in (SELECT entry_id from report_trend_dimension1)
 				 and replace(dimension1,' ','') = '$dms1'
@@ -186,16 +194,16 @@ public function dimension1Data($kpi){
 	// print_r($period_data);
 	//$this->truncateTable('report_trend_dimension1');
 	 $this->db->insert_batch('report_trend_dimension1',$insertable);
-	 $this->db->query("DELETE from report_trend_dimension1 where kpi_id=''");
+	 $this->db->query("DELETE from report_trend_dimension1 where kpi_id IS NULL");
 	return  $this->db->affected_rows(). 'Records - Dimension 1 data inserted for'. $kpi;
 }
 
 //dimension2
-public function dimension2Data($kpi){
+public function dimension2Data($kpi,$fy){
 
-	$dim1  = $this->dimension1($kpi);
-	$dim2  = $this->dimension2($kpi);
-	$allps = $this->getallperiods($kpi);
+	$dim1  = $this->dimension1($kpi,$fy);
+	$dim2  = $this->dimension2($kpi,$fy);
+	$allps = $this->getallperiods($kpi,$fy);
 	$allDimesiondata = array(); // data for all period, all dimensions
 	$insertable = array();
 	$computation="ROUND((SUM(numerator) / SUM(denominator)*100),0)";
@@ -211,7 +219,7 @@ public function dimension2Data($kpi){
 					dimension2_key, dimension2,dimension1_key, dimension1, financial_year, 
 					period from new_data 
 					WHERE kpi_id = '$kpi' 
-					and trim(financial_year) = '$this->financial_year'
+					and trim(financial_year) = '$fy'
 					and trim(period) = '$period' and replace(CONCAT(kpi_id,period,financial_year,dimension2),' ','') not in (SELECT replace(CONCAT(kpi_id,period,financial_year,dimension2),' ','') from report_trend_dimension2)
 					and replace(dimension2,' ','') ='$dms2'")->row(); 
 					if(!empty($query1)):
@@ -225,15 +233,15 @@ public function dimension2Data($kpi){
 	$table='report_trend_dimension2';
 	// $this->truncateTable($table);
 	 $this->db->insert_batch('report_trend_dimension2',$insertable);
-	$this->db->query("DELETE from report_trend_dimension2 where kpi_id=''");
+	$this->db->query("DELETE from report_trend_dimension2 where kpi_id IS NULL");
 	return $this->db->affected_rows(). 'Records - Dimension 2 data inserted for'. $kpi;
 }
 //dimension3
-public function dimension3Data($kpi){
-	$dim1  = $this->dimension1($kpi);
-	$dim2  = $this->dimension2($kpi);
-	$dim3  = $this->dimension3($kpi);
-	$allps = $this->getallperiods($kpi);
+public function dimension3Data($kpi,$fy){
+	$dim1  = $this->dimension1($kpi,$fy);
+	$dim2  = $this->dimension2($kpi,$fy);
+	$dim3  = $this->dimension3($kpi,$fy);
+	$allps = $this->getallperiods($kpi,$fy);
 	$computation="ROUND((SUM(numerator) / SUM(denominator)*100),0)";
 	$periodsdata = array(); // data for all period, all dimensions
 	$insertable = array();
@@ -250,7 +258,7 @@ public function dimension3Data($kpi){
 					dimension3_key, dimension3,dimension2_key, replace(CONCAT(kpi_id,period,financial_year,dimension3),' ','') as entry_id, dimension2,dimension1_key, dimension1, financial_year, 
 					period from new_data 
 					WHERE kpi_id = '$kpi'
-					and trim(financial_year) = '$this->financial_year'
+					and trim(financial_year) = '$fy'
 					and trim(period) = '$period' and replace(CONCAT(kpi_id,period,financial_year,dimension3),' ','') not in (SELECT entry_id from report_trend_dimension3)
 					and replace(dimension3,' ','') ='$dms3'")->row();
 					if(!empty($query1)): 
@@ -262,22 +270,22 @@ public function dimension3Data($kpi){
 	 if(!empty($insertable))
 	//  $this->truncateTable('report_trend_dimension3');
 	 $this->db->insert_batch('report_trend_dimension3',$insertable);
-	 $this->db->query("DELETE from report_trend_dimension3 where kpi_id=''");
+	 $this->db->query("DELETE from report_trend_dimension3 where kpi_id IS NULL");
 	return $this->db->affected_rows(). 'Records - Dimension 3 data inserted for'. $kpi;
 }
  //get dimension1
-public function  dimension1($kpi){
-	$query=$this->db->query("SELECT distinct kpi_id,dimension1,dimension1_key from new_data where kpi_id='$kpi' and trim(financial_year) = '$this->financial_year'");
+public function  dimension1($kpi,$fy){
+	$query=$this->db->query("SELECT distinct kpi_id,dimension1,dimension1_key from new_data where kpi_id='$kpi' and trim(financial_year) = '$fy'");
 return $query->result(); 
 }
  //get dimension2
-public function  dimension2($kpi){
-	$query=$this->db->query("SELECT distinct kpi_id,dimension2,dimension2_key from new_data where kpi_id='$kpi' and trim(financial_year) = '$this->financial_year'");
+public function  dimension2($kpi,$fy){
+	$query=$this->db->query("SELECT distinct kpi_id,dimension2,dimension2_key from new_data where kpi_id='$kpi' and trim(financial_year) = '$fy'");
     return $query->result(); 
 }
  //get dimension3
-public function  dimension3($kpi){
-	$query=$this->db->query("SELECT distinct kpi_id,dimension3,dimension3_key from new_data where kpi_id='$kpi' and trim(financial_year) = '$this->financial_year'");
+public function  dimension3($kpi,$fy){
+	$query=$this->db->query("SELECT distinct kpi_id,dimension3,dimension3_key from new_data where kpi_id='$kpi' and trim(financial_year) = '$fy'");
 return $query->result(); 
 }
 public function kpi_name($kpi){  
