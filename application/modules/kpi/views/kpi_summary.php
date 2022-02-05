@@ -14,7 +14,7 @@
                     <div class="card-content">
                       
                         <div class="col-md-6">    
-                        <button class="btn btn-success" onclick="printTable('kpitable')"><i class="fa fa-print"  ></i>Print</button>
+                        <a href="<?php echo base_url()?>kpi/printsummary/print_summary" class="btn btn-success"><i class="fa fa-print"  ></i>Print</a>
                         </div>
                         <div class="col-md-6">
                         <button type="button" class="btn btn-success" style="float:right;" data-toggle="modal" data-target="#definition">

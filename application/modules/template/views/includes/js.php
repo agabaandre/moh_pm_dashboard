@@ -26,7 +26,7 @@
         <!-- Custom Theme JavaScript -->
         <script src="<?php echo base_url() ?>assets/js/custom.js" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/js/datetimepicker.js') ?>" type="text/javascript"></script>
-         <script src="<?php echo base_url('assets/js/waypoints.js') ?>" type="text/javascript"></script>
+    
       
 <!-- End Core Plugins -->
  <!-- Start Page Lavel Plugins

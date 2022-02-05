@@ -14,6 +14,15 @@
               
             </a>
         </li>
+        <li
+            class="treeview <?php echo (($this->uri->segment(2) == "addKpiData" ) ? "active" : null) ?>">
+            <a href="<?php echo base_url();?>kpi/addKpiData">
+
+                <i class="fa fa-plus"></i><span><?php echo "Add KPI Data" ?></span>
+               
+              
+            </a>
+        </li>
 
 
         <li

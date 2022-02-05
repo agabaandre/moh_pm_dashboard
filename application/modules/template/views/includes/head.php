@@ -30,8 +30,7 @@
         <!-- slider  -->
         <link href="<?php echo base_url(); ?>assets/css/select2.min.css" rel="stylesheet" type="text/css"/> 
         <!-- DataTables CSS -->
-        <link href="<?php echo base_url('assets/datatables/css/dataTables.min.css') ?>" rel="stylesheet" type="text/css"/> 
-          <!-- pe-icon-7-stroke -->
+           <!-- pe-icon-7-stroke -->
         <link href="<?php echo base_url('assets/css/pe-icon-7-stroke.css') ?>" rel="stylesheet" type="text/css"/> 
         <!-- themify icon css -->
         <link href="<?php echo base_url('assets/css/themify-icons.css') ?>" rel="stylesheet" type="text/css"/> 

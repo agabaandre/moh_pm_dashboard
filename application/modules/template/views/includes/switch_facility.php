@@ -15,13 +15,13 @@
       
          
                     <div class="form-group">
-                        <?php  $years = ['2020','2021']; ?>
+                        <?php  $years = $this->db->query("SELECT distinct financial_year from new_data")->result(); ?>
                           <label for="cumulative" class="col-form-label">Choose Year</label>
                       
                            <select name="category_two_id" class="form-control codeigniterselect">
-                            <?php foreach($years as $key => $value): ?>
-                             <option value="<?php echo $value; ?>">
-                                <?php echo $value; ?>
+                            <?php foreach($years as $value): ?>
+                             <option value="<?php echo $value->financial_year; ?>">
+                                <?php echo $value->financial_year; ?>
                              </option>
                             <?php endforeach; ?>
                             </select>  
