@@ -48,7 +48,18 @@
             <link href="<?php echo base_url('assets/css/custom-rtl.css') ?>" rel="stylesheet" type="text/css"/>
         <?php } ?>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/DataTables/datatables.min.css') ?>"/>
-
+        <style>
+        @media screen and (max-width: 600px) {
+        .title-phone {
+            visibility: hidden;
+            clear: both;
+            float: left;
+            margin: 10px auto 5px 20px;
+            width: 28%;
+            display: none;
+         }
+         }
+        </style>
         <!-- jQuery  -->
          <!-- jQuery  -->
         <script src="<?php echo base_url('assets/js/jquery-3.4.1.min.js?v=3.4.1') ?>" type="text/javascript"></script>
