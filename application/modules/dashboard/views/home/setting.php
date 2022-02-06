@@ -168,11 +168,12 @@
                     </div> 
 
                      <div class="form-group row">
-                        <label for="footer_text" class="col-xs-3 col-form-label"><?php echo display('use_categories') ?></label>
+                        <label for="footer_text" class="col-xs-3 col-form-label"><?php echo display('menu_type') ?></label>
                         <div class="col-xs-9">
                             <select class="form-control" name="use_category_two">
-                               <option <?php echo ($setting->use_category_two==0)?'selected':'' ?> value="0">No Categorization</option>
-                               <option <?php echo ($setting->use_category_two==1)?'selected':'' ?> value="1">Use Categorization</option>
+                               <option <?php echo ($setting->use_category_two==0)?'selected':'' ?> value="0">Subject Area>>Indictors (MOH)</option>
+                               <option <?php echo ($setting->use_category_two==1)?'selected':'' ?> value="1">Department>>Subject Area>>Indictors(MOH)</option>
+                               <option <?php echo ($setting->use_category_two==2)?'selected':'' ?> value="1">Inicator Type>>Subject Area>>Indictors(CPHL)</option>
                             </select>
                         </div>
                     </div> 
