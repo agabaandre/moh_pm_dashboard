@@ -5,7 +5,7 @@ class Cronjobs extends MX_Controller {
 
 	
 	public function __Construct(){
-        $this->load->model("Cronjobs_mdl","cjobs_ml");
+        $this->load->model("cronjobs_mdl","cjobs_ml");
 
        
 	}
@@ -26,10 +26,10 @@ class Cronjobs extends MX_Controller {
 
    public function gaugeData(){
 
-        $kpis=$this->getKpi();
+           @$kpis=$this->getKpi();
         
             foreach ($kpis as $kpi):
-                $years = $this->fyears($kpi->kpi_id);
+               @$years = $this->fyears($kpi->kpi_id);
                 foreach($years as $year):
                 $data=$this->cjobs_ml->gaugeData($kpi->kpi_id,$year->financial_year);
                 echo $data.'<br>';
