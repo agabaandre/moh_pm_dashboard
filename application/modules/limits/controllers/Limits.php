@@ -5,7 +5,7 @@ class Limits extends MX_Controller {
 
 	
 	public function __Construct(){
-        $this->load->model("Limits_mdl","l_mdl");
+        // $this->load->model("Limits_mdl","l_mdl");
 
        
 	}
@@ -13,6 +13,8 @@ class Limits extends MX_Controller {
         $_SESSION['fy']=$this->input->post('financial_year');
      redirect('dashboard/home');
     }
+  
+  
   
     
 	
