@@ -65,7 +65,7 @@ table.minimalistBlack tfoot td {
                                                     <td style="width:20%;"><?php echo $element->name; ?></td>
                                                     <td><?php 
                                                     $gauge=Modules::run('Kpi/gaugeData',$element->kpi_id); ?>
-                                                    <a href="<?php echo base_url().'data/kpidata/'.$gauge['gauge']['details'][0]->kpi_id.'/'.$gauge['gauge']['details'][0]->subject_area; ?>" target="_self"><p class=""  style=" color:green; font-size:12px;" ><?php echo $gauge['gauge']['details'][0]->short_name; ?></p></a></td>
+                                                    <a href="<?php echo base_url().'data/kpidata/'.$gauge['gauge']['details'][0]->kpi_id.'/'.$gauge['gauge']['details'][0]->subject_area; ?>" target="_self"><p class=""  style=" color:#072b41; font-size:12px; text-decoration:none;" ><?php echo $gauge['gauge']['details'][0]->short_name; ?></p></a></td>
                                                     
                                                     <td><?php echo $gauge['gauge']['data'][0]->current_target; ?></td>
                                                     <td><?php echo $gauge['gauge']['data'][0]->financial_year; ?></td>
