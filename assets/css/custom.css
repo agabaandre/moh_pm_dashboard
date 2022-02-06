@@ -6858,7 +6858,7 @@ div.orgChart div.node {
 }
 
 @-webkit-keyframes condemned_blink_effect {
-    // for android
+   
     0% {
         visibility: hidden;
     }
