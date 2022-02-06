@@ -10,7 +10,7 @@ public function __Construct(){
 
 //financial_year is from settings financial Year/ allows 1 2 for current and previous year respectively
 
-	$this->financial_year=$this->financialYear();
+
 	$this->fyperiods=$this->generatePeriods(); //not used anywhere though
 
 	//need to cater for different period types like annual, bi-annual, depending on the KPI. Best done in the cron job
@@ -20,18 +20,7 @@ public function __Construct(){
 }
 
 
-public function financialYear($financial_year=FALSE){
-	$query=$this->db->get('setting');
-	$result=$query->row();
 
-	if(empty($financial_year)){
-		return $_SESSION['financial_year']=str_replace(" ","",$result->financial_year);
-	}
-	else{
-		return $_SESSION['financial_year']=str_replace(" ","",$this->input->post('financial_year'));
-	}
-
-}
 
 
 //get the most recent period

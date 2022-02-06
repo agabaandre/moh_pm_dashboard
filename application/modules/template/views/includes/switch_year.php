@@ -19,6 +19,7 @@
                           <label for="cumulative" class="col-form-label">Choose Year</label>
                       
                            <select name="financial_year" class="form-control codeigniterselect">
+                             <option value="">ALL</option>
                             <?php foreach($years as $value): ?>
                              <option value="<?php echo $value->financial_year; ?>">
                                 <?php echo $value->financial_year; ?>

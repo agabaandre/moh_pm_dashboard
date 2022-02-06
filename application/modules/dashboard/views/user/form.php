@@ -56,7 +56,7 @@
                         <?php  $years = array('department'=>"Department","data"=>"Data Clerk","admin"=>"Admistrator"); ?>
                           <label for="cumulative" class="col-sm-3 col-form-label">User Type</label>
                           <div class="col-sm-9">
-                           <select name="subject_area" class="form-control codeigniterselect">
+                           <select name="user_type" class="form-control codeigniterselect">
                             
                             <?php foreach($years as $key=>$value): ?>
                              <option value="<?php echo $key; ?>">

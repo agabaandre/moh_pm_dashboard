@@ -5846,11 +5846,13 @@ pre .arg {
 .modal-header {
     padding: 15px;
     border-bottom: 1px solid #e1e6ef;
-    background-color: #f7f9fa;
+    background-color: #062e46;
+    color: #FFF;
 }
 
 .modal-title {
     text-align: center;
+    font-size: 14px;
 }
 
 .modal-success .modal-header {
