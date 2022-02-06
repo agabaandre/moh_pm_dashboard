@@ -26,7 +26,7 @@ if(($this->uri->segment(1)=="dashboard")||($this->uri->segment(1)=="")){
    
     <div id="gauge<?php echo $chartkpi; ?>">
     </div>
-    <div class="" style="background:#FEFFFF;"> 
+    <div class="" style="background:#FEFFFF;font-size:12px;"> 
    <?php 
    
   
