@@ -25,6 +25,7 @@ class Auth extends MX_Controller {
 		#-------------------------------------#
 		$this->form_validation->set_rules('email', display('email'), 'required|valid_email|max_length[100]|trim');
 		$this->form_validation->set_rules('password', display('password'), 'required|max_length[32]|md5|trim');
+		
 		$this->form_validation->set_rules(
 		    'captcha', display('captcha'),
 		    array(
@@ -38,6 +39,7 @@ class Auth extends MX_Controller {
 		        }
 		    )
 		);
+
 
 		#-------------------------------------#
 		$data['user'] = (object)$userData = array(
@@ -53,10 +55,6 @@ class Auth extends MX_Controller {
 			$user = $this->auth_model->checkUser($userData);
 
 		if($user->num_rows() > 0) {
-
-			
-
-
 
 			if($user->row()->is_admin == 2){
 				$row = $this->db->select('client_id,client_email')->where('client_email',$user->row()->email)->get('setup_client_tbl')->row();

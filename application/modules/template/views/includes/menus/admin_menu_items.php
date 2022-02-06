@@ -1,34 +1,19 @@
-
-
-        
-        <?php if ($this->session->userdata('isAdmin')) { ?>
-
-
-
-        <li
-            class="treeview <?php echo (($this->uri->segment(2) == "user" ) ? "active" : null) ?>">
+<?php 
+    if ($this->session->userdata('isAdmin')) {
+ ?>
+        <li class="treeview <?php echo (($this->uri->segment(2) == "user" ) ? "active" : null) ?>">
             <a href="<?php echo base_url();?>files/file">
-
                 <i class="fa fa-upload"></i><span><?php echo "Upload KPI Data" ?></span>
-               
-              
             </a>
         </li>
         <li
             class="treeview <?php echo (($this->uri->segment(2) == "addKpiData" ) ? "active" : null) ?>">
-            <a href="<?php echo base_url();?>kpi/addKpiData">
-
+            <a href="<?php echo base_url();?>kpi/data_entry">
                 <i class="fa fa-plus"></i><span><?php echo "Add KPI Data" ?></span>
-               
-              
             </a>
         </li>
-
-
-        <li
-            class="treeview <?php echo (($this->uri->segment(2) == "user" ||  $this->uri->segment(2) == "language" || $this->uri->segment(2) == "backup_restore" || $this->uri->segment(2) == "setting" ) ? "active" : null) ?>">
+        <li class="treeview <?php echo (($this->uri->segment(2) == "user" ||  $this->uri->segment(2) == "language" || $this->uri->segment(2) == "backup_restore" || $this->uri->segment(2) == "setting" ) ? "active" : null) ?>">
             <a href="#">
-
                 <i class="ti-settings"></i><span><?php echo display('setting') ?></span>
                 <span class="pull-right-container">
                     <i class="fa fa-angle-left pull-right"></i>
@@ -94,9 +79,6 @@
                         <span><?php echo display('backup_and_restore') ?></span>
                     </a>
                 </li>
-
-
-
             </ul>
 
         </li>

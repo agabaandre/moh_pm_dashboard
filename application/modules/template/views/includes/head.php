@@ -60,6 +60,8 @@
         <script src="https://code.highcharts.com/modules/export-data.js"></script>
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
+        <script src="<?php echo base_url('assets/js/jquery.blockUI.js') ?>" type="text/javascript"></script>
+
 
 <?php
       $dimsub=Modules::run("Data/getSubject",$this->uri->segment(3));

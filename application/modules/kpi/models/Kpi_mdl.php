@@ -21,6 +21,7 @@ class Kpi_mdl extends CI_Model {
 		$query = $this->db->get('kpi');
 		return $query->result();
 	}
+	
 	public function general_menukpi($id){
 
 		$this->db->where('category_two_id', $id);
@@ -46,7 +47,9 @@ class Kpi_mdl extends CI_Model {
 	}
 
 	public function addKpi($data){
+
 		$query = $this->db->insert('kpi',$data);
+
 		if ($query){
 			$message ="Succesful";
 		} else{
@@ -55,6 +58,7 @@ class Kpi_mdl extends CI_Model {
 		return $data;
 		}
 	}
+
 
 	public function addSubject($data){
 
@@ -68,6 +72,7 @@ class Kpi_mdl extends CI_Model {
 		return $data;
 		}
 	}
+
 
 	public function kpiDisplayData(){
 
@@ -88,10 +93,9 @@ class Kpi_mdl extends CI_Model {
 		
 		if ($query){
 			$message ="Succesful";
-		} else{
+		}else{
 			$message = "Failed";
-
-		return $data;
+			return $data;
 		}
 
 	}
@@ -108,23 +112,28 @@ class Kpi_mdl extends CI_Model {
 		return $data;
 		}
 	}
-	public function catgoryTwoMenu($subject){
 
-		   $this->db->where("subject_area_id","$subject");
-	return $this->db->get('category_two')->result();
+	public function catgoryTwoMenu($subject)
+	{
+	 $this->db->where("subject_area_id","$subject");
+	 return $this->db->get('category_two')->result();
 	}
 
-	public function getCategoryTwo($subject = false){
+
+	public function getCategoryTwo($subject = false)
+	{
 
 		$this->db->select("category_two.*");
+		
 		if($subject){
 			$this->db->join('subject_areas','category_two.subject_area_id=subject_areas.id');
 		}
-
 		return $this->db->get('category_two')->result();
 	}
 
-	public function saveCategoryTwo($data){
+
+	public function saveCategoryTwo($data)
+	{
 
 		$insert_data   = array(
 			"cat_name" => $data['name'],
@@ -144,5 +153,20 @@ class Kpi_mdl extends CI_Model {
 		return $message;
 		
 	}
+
+	public function fetchKpi($id)
+	{
+		$this->db->where('kpi_id',$id);
+		$query = $this->db->get('kpi');
+		return $query->row();
+	}
+
+	public function kpiRecordsData($kpiId)
+	{
+		$this->db->where('kpi_id',$kpiId);
+		$query = $this->db->get('new_data');
+		return $query->row();
+	}
+
 
 }

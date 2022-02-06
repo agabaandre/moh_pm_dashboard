@@ -107,24 +107,29 @@ class Kpi extends MX_Controller {
 	  $data['message'] = $this->kpi_mdl->addKpi($insert);
 
 	  $this->session->set_flashdata('message','Added');
+
 	  $data['title']   = 'Key Performance Indicators';
 	  $data['page']    = 'kpi';
 	  $data['module']  = $this->module;
 
 	  echo Modules::run('template/layout', $data); 
 	}
-	public function addKpiData(){
+
+
+	public function data_entry()
+	{
 
 		$insert = $this->input->post();
-		$data['message'] = $this->kpi_mdl->addKpi($insert);
-  
-		$this->session->set_flashdata('message','Saved');
+		$data['kpis'] = $this->kpi_mdl->kpiData();
+
+		//$this->session->set_flashdata('message','Saved');
 		$data['title']   = 'Key Performance Indicator Data';
-		$data['page']    = 'add_data';
+		$data['page']    = 'data_entry';
 		$data['module']  = $this->module;
   
 		echo Modules::run('template/layout', $data); 
 	  }
+
 
 	public function updateKpi(){
 
@@ -232,6 +237,7 @@ class Kpi extends MX_Controller {
 
 		echo Modules::run('template/layout', $data); 
 	}
+
 	public function summaryData(){
 
 		return   $this->kpi_mdl->kpiSummaryData();
@@ -282,7 +288,8 @@ class Kpi extends MX_Controller {
    
 	}
 
-	public function gaugeData($kpi){
+	public function gaugeData($kpi)
+	{
 
 		$data['chartkpi'] = $kpi;
 		//gauge data
@@ -294,21 +301,31 @@ class Kpi extends MX_Controller {
 	}
 
 	
-	public function printsummary($view){
+	public function printsummary($view)
+	{
 		  
-		  $html=$this->load->view($view,$data='',true);   
-		  $PDFContent = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
-		  $this->m_pdf->pdf->SetWatermarkImage($this->watermark);
-		  $this->m_pdf->pdf->showWatermarkImage = true;
-		  date_default_timezone_set("Africa/Kampala"); 
-		  $this->m_pdf->pdf->SetHTMLFooter("Printed/ Accessed on: <b>".date('d F,Y h:i A')."</b><br style='font-size: 9px !imporntant;'>"." Source: MoH PM Dashboard " .base_url());
-		  $this->m_pdf->pdf->SetWatermarkImage($this->watermark);
-		  $this->m_pdf->showWatermarkImage = true;
-		  ini_set('max_execution_time',0);
-		  $this->m_pdf->pdf->WriteHTML($PDFContent); //ml_pdf because we loaded the library ml_pdf for landscape format not m_pdf
-		  //download it D save F.
-		  $this->m_pdf->pdf->Output($filename,'I');
-		  }
+		$html=$this->load->view($view,$data='',true);   
+		$PDFContent = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
+		$this->m_pdf->pdf->SetWatermarkImage($this->watermark);
+		$this->m_pdf->pdf->showWatermarkImage = true;
+		date_default_timezone_set("Africa/Kampala"); 
+		$this->m_pdf->pdf->SetHTMLFooter("Printed/ Accessed on: <b>".date('d F,Y h:i A')."</b><br style='font-size: 9px !imporntant;'>"." Source: MoH PM Dashboard " .base_url());
+		$this->m_pdf->pdf->SetWatermarkImage($this->watermark);
+		$this->m_pdf->showWatermarkImage = true;
+		ini_set('max_execution_time',0);
+		$this->m_pdf->pdf->WriteHTML($PDFContent); //ml_pdf because we loaded the library ml_pdf for landscape format not m_pdf
+		//download it D save F.
+		$this->m_pdf->pdf->Output($filename,'I');
+	}
+
+	public function fetch_kpi($id){
+
+		$kpi = $this->kpi_mdl->fetchKpi($id);
+		$data['data'] = $this->kpi_mdl->kpiRecordsData($kpi->kpi_id);
+		$data['kpi']  = $kpi;
+
+		echo json_encode($data);
+	}
 
 	
 
