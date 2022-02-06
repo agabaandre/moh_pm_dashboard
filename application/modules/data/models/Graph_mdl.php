@@ -8,7 +8,7 @@ public function __Construct(){
 
 		parent::__Construct();
 
-$this->financial_year=str_replace(" ","",$_SESSION['financial_year']);
+
 //create a period  to use to graph gauge data
 
 }
@@ -19,6 +19,7 @@ public function gaugeData($kpi){
      //$kpi=str_replace(" ",'',$kpi);
     $details=$this->gaugeDetails($kpi);
     $config=$this->gaugeConfig($kpi);
+    
     $query= $this->db->query("SELECT MAX(period), CONCAT(period,'/',period_year) as cp, CONCAT(previous_period,'/',previousperiod_year) as pp, t.* from report_kpi_summary t WHERE trim(kpi_id)='$kpi'");
 
 $return= array("data"=>$query->result(),"config"=>$config,"details"=>$details);

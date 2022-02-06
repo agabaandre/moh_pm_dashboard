@@ -4,9 +4,7 @@
 
 <?php //menu tiltle ?>
 <p style="margin:10px; font-size:15px; font-weight:bold;"><?php echo "MoH PM DASHBOARD" ?></p>
-    <!-- <span class="logo-lg">
-        <img src="<?php //echo base_url((!empty($setting->logo)?$setting->logo:'assets/img/icons/mini-logo.png')) ?>" alt="">
-    </span> -->
+  
 </a>
 <div class="se-pre-con"></div>
 <!-- Header Navbar -->

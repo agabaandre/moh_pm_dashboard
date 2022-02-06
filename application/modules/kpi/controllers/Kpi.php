@@ -14,6 +14,7 @@ class Kpi extends MX_Controller {
 		$this->load->library('form_validation');
 		$this->load->library('M_pdf');
 		$this->watermark=FCPATH."assets/images/moh.png";
+		
 
 	}
 

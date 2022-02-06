@@ -40,8 +40,8 @@
                                 <i class="pe-7s-unlock"></i>
                             </div>
                              <div class="header-title">
-                                <h3><?php echo (!empty($setting->title)?$setting->title:null) ?></h3><br>
-                                <small><h3><?php echo display('login') ?></h3></small>
+                                
+                                <small><h3>Admin <?php echo display('login') ?></h3></small>
                             </div>
                         </div>
                        <div class="row">
