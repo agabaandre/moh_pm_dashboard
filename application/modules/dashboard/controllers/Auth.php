@@ -109,8 +109,8 @@ class Auth extends MX_Controller {
 			    'colors'        => array(
 			            'background' => array(255, 255, 255),
 			            'border'     => array(228, 229, 231),
-			            'text'       => array(49, 141, 1),
-			            'grid'       => array(241, 243, 246)
+			            'text'       => array(13,94,132),
+			            'grid'       => array(199, 222, 255)
 			    )
 			));
 			$data['captcha_word'] = $captcha['word'];

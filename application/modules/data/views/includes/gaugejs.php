@@ -1,4 +1,6 @@
+<style>
 
+</style>
 <script>
 Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
 
@@ -34,11 +36,11 @@ Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
     
 
     subtitle: {
-      text: '<a href="<?php echo base_url().'data/kpidetails/'.$gauge['details'][0]->kpi_id.'/'.$gauge['details'][0]->subject_area; ?>"><button class="btn"  style="word-wrap:normal; color:#2286c3; font-size:12px;" "><?php echo "KPI Info"; ?> <button/> </a>'
+      text: '<a href="<?php echo base_url().'data/kpidetails/'.$gauge['details'][0]->kpi_id.'/'.$gauge['details'][0]->subject_area; ?>"><button class="btn"  style="word-wrap:normal; color:#2286c3; font-size:11px;" ><?php echo "KPI Info"; ?> <button/> </a>'
     },
 
     title: {
-      text: '<a href="<?php echo base_url().'data/kpidata/'.$gauge['details'][0]->kpi_id.'/'.$gauge['details'][0]->subject_area; ?>"><button class="btn"  style="word-wrap:normal; color:green; font-size:14px;" "><?php echo $gauge['details'][0]->short_name; ?><button/> </a>'
+      text: '<a href="<?php echo base_url().'data/kpidata/'.$gauge['details'][0]->kpi_id.'/'.$gauge['details'][0]->subject_area; ?>"><button class="btn"  style="word-wrap:normal; color:#3f424a; font-size:12.5px; " ><?php echo $gauge['details'][0]->short_name; ?><button/> </a>'
     },
 
     pane: {
