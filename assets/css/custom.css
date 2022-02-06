@@ -3538,12 +3538,12 @@ pre .arg {
 .btn-success:hover,
 .btn-success:focus,
 .btn-success:active {
-    background-color: #0d5e8e;
-    border-color: #0984b5;
+    background-color: #0d5e8e !important;
+    border-color: #0984b5 !important;
 }
 
 .btn-success.btn-transparent {
-    color: rgb(55, 160, 0);
+    color: #0d5e8e;
     background-color: rgba(55, 160, 0, 0.2);
     border-color: rgba(55, 160, 0, 0.3);
 }
@@ -3551,7 +3551,7 @@ pre .arg {
 .btn-success.btn-transparent:hover,
 .btn-success.btn-transparent:focus,
 .btn-success.btn-transparent:active {
-    color: rgb(55, 160, 0);
+    color: #0e7fc0;
     background-color: rgba(55, 160, 0, 0.2);
     border-color: rgba(55, 160, 0, 0.3);
 }
@@ -5846,11 +5846,13 @@ pre .arg {
 .modal-header {
     padding: 15px;
     border-bottom: 1px solid #e1e6ef;
-    background-color: #f7f9fa;
+    background-color: #062e46;
+    color: #FFF;
 }
 
 .modal-title {
     text-align: center;
+    font-size: 14px;
 }
 
 .modal-success .modal-header {
@@ -5994,7 +5996,7 @@ pre .arg {
     width: 100%;
     height: 100%;
     z-index: 9999;
-    background: #2C3136;
+    background: #0d5e8e;
     opacity: 0.6;
 }
 
@@ -6034,7 +6036,7 @@ if it's not present, don't show loader */
     padding: 24px 24px 24px 80px;
     position: relative;
     clear: both;
-    color: #004085;
+    color: #0d5e8e;
 }
 
 .note::before {
@@ -6056,7 +6058,7 @@ if it's not present, don't show loader */
 }
 
 .note strong {
-    color: #0389ff;
+    color: #0d5e8e;
     text-transform: uppercase;
 }
 
@@ -7029,7 +7031,7 @@ table.dataTable.no-footer {
 ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 0px;
     border-radius: 0px;
-    background: #27AE60;
+    background: #0d5e8e;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 

@@ -74,6 +74,8 @@ class Auth extends MX_Controller {
 					'last_login'  => $user->row()->last_login,
 					'last_logout' => $user->row()->last_logout,
 					'ip_address'  => $user->row()->ip_address,
+					'user_type'  => $user->row()->user_type,
+					'subject_area'  => $user->row()->subject_area,
 					'permission'  => json_encode(@$permission), 
 					'label_permission'  => json_encode(@$permission1) 
 					);	

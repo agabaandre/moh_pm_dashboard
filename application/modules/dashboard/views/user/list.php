@@ -17,8 +17,9 @@
                                 <th><?php echo display('username') ?></th>
                                 <th><?php echo display('email') ?></th>
                                
+                               
                                 <th><?php echo display('last_login') ?></th>
-                                <th><?php echo display('last_logout') ?></th>
+                                <th>User type</th>
                                 <th><?php echo display('ip_address') ?></th>
                                 <th><?php echo display('status') ?></th>
                                 <th><?php echo display('action') ?></th> 
@@ -34,7 +35,7 @@
                                 <td><?php echo $value->fullname; ?></td>
                                 <td><?php echo $value->email; ?></td>
                                 <td><?php echo $value->last_login; ?></td>
-                                <td><?php echo $value->last_logout; ?></td>
+                                <td><?php echo $value->user_type; ?></td>
                                 <td><?php echo $value->ip_address; ?></td>
                                 <td><?php echo (($value->status==1)?display('active'):display('inactive')); ?></td>
                                 <td>

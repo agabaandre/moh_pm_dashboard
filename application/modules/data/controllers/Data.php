@@ -13,6 +13,7 @@ class Data extends MX_Controller {
 		$this->load->model('kpi/kpi_mdl','kpi_mdl');
 
 		$this->kpi=$this->uri->segment(3);
+		$this->financial_year=Modules::run('limits/yearLimit');
 
 
 	}
@@ -34,7 +35,7 @@ class Data extends MX_Controller {
 
 		//gauge data
 	  $data['gauge']    = $this->graph_mdl->gaugeData(str_replace(" ",'',$kpi));
-		$data['financial_year'] = $_SESSION['financial_year'];
+		$data['financial_year'] = $_SESSION['fy'];
 		$data['title']    = str_replace("_"," ",urldecode($this->uri->segment(4)));
 		$data['page']     = 'dash_chart';
 		$data['module']   = "data";

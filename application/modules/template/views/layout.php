@@ -6,7 +6,7 @@
         <?php require('includes/head.php'); ?>
     </head>
 
-    <body class="hold-transition sidebar-mini">
+    <body class="hold-transition fixed sidebar-mini">
       
         <!-- Site wrapper -->
         <div class="wrapper">
@@ -31,7 +31,7 @@
                            <h3>  <?php  if(!empty($uptitle)) { echo urldecode( $uptitle); } ?> </h3>
                         
                       <?php //print_r(settings()); ?>
-                        <button type="button" class="btn btn-success" style="float:right; margin-right:5px; margin-top:-40px; <?php if ($this->uri->segment(2)=="summary"){?> display:none;<?php }?>" data-toggle="modal" data-target="#definition">
+                        <button type="button" class="btn btn-success btn-outline" style="float:right; margin-right:5px; margin-top:-40px; <?php if ($this->uri->segment(2)=="summary"){?> display:none;<?php }?>" data-toggle="modal" data-target="#definition">
                         <?php echo display("definition"); ?>
                         </button>
                       
@@ -63,6 +63,9 @@
            
             <footer class="main-footer">
                 <input type="hidden" name="" id="base_url" value="<?php echo base_url();?>">
+                <span class="pull-right">
+                    <img src="<?php echo base_url((!empty($setting->logo)?$setting->logo:'assets/img/icons/mini-logo.png')) ?>" alt="">
+                </span>
                 <div class="pull-right hidden-xs">
                     <?php echo (!empty($setting->address)?$setting->address:null) ?> 
                 </div>
