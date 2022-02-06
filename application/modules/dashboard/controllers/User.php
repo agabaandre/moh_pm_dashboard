@@ -78,6 +78,8 @@ class User extends MX_Controller {
 			'last_logout' => null,
 			'ip_address'  => null,
 			'status'      => $this->input->post('status'),
+			'subject_area'      => $this->input->post('subject_area'),
+			'user_type'      => $this->input->post('user_type'),
 			'is_admin'    => 0
 		);
 

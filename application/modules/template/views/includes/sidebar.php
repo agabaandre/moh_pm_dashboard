@@ -7,11 +7,7 @@
             <img src="<?php //echo base_url((!empty($image) ? $image : 'assets/img/icons/default.jpg')) ?>"
                 class="img-circle" alt="User Image">
         </div> -->
-        <!-- <div class="info">
-            <p><?php //echo $this->session->userdata('fullname') ?></p>
-            <a href="#"><i class="fa fa-circle text-success"></i>
-                <?php //echo $this->session->userdata('user_level') ?></a>
-        </div> -->
+       
     </div>
     <?php } ?>
 
@@ -48,7 +44,7 @@
 </div> 
 
 
-<?php require_once 'switch_facility.php'; ?>
+<?php require_once 'switch_year.php'; ?>
 
 
 <!-- /.sidebar -->

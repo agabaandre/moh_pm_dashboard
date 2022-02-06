@@ -38,6 +38,34 @@
                             <input name="oldpassword" class="form-control" type="hidden" value="<?php echo $user->password ?>">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <?php  $years = $this->db->query("SELECT * FROM `subject_areas`")->result(); ?>
+                          <label for="cumulative" class="col-sm-3 col-form-label">Department</label>
+                          <div class="col-sm-9">
+                           <select name="subject_area" class="form-control codeigniterselect">
+                            <option value="" selected>ALL</option>
+                            <?php foreach($years as $value): ?>
+                             <option value="<?php echo $value->id; ?>">
+                                <?php echo $value->name; ?>
+                             </option>
+                            <?php endforeach; ?>
+                            </select> 
+                            </div> 
+                        </div>
+                        <div class="form-group row">
+                        <?php  $years = array('department'=>"Department","data"=>"Data Clerk","admin"=>"Admistrator"); ?>
+                          <label for="cumulative" class="col-sm-3 col-form-label">User Type</label>
+                          <div class="col-sm-9">
+                           <select name="subject_area" class="form-control codeigniterselect">
+                            
+                            <?php foreach($years as $key=>$value): ?>
+                             <option value="<?php echo $key; ?>">
+                                <?php echo $value; ?>
+                             </option>
+                            <?php endforeach; ?>
+                            </select> 
+                            </div> 
+                        </div>
 
                 
 

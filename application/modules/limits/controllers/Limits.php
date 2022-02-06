@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Cronjobs extends MX_Controller {
+class Limits extends MX_Controller {
 
 	
 	public function __Construct(){
@@ -13,8 +13,7 @@ class Cronjobs extends MX_Controller {
         $_SESSION['fy']=$this->input->post('financial_year');
      redirect('dashboard/home');
     }
-    public function limitdepartment(){
-   }
+  
     
 	
 
