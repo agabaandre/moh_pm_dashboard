@@ -1,3 +1,4 @@
+
 <?php 
 
 ?>
@@ -11,7 +12,7 @@
             text: '<?php echo $title; ?>'
         },
          chart: {
-        height: 700,
+        height: 800,
         
         },
 
