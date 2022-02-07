@@ -9,8 +9,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-  
-            
+
                 <?php echo form_open_multipart('dashboard/setting/create','class="form-inner"') ?>
                     <?php echo form_hidden('id',$setting->id) ?>
 
@@ -122,30 +121,7 @@
                         <div class="col-xs-9">
                         <select class="form-control" name="financial_year">
 
-                            <?php 
-                              
-                              $startdate="2020";
-                              $enddate=intval(date('Y')+1);
-                              $years = range($startdate, $enddate);
-                              //print years
-                                 //print years
-                                foreach ($years as $year) {
-                                    if ((substr($year, 0) + 1) <= substr($enddate, 0)) {?>
-
-
-
-                                       <?php  $fy=$year . ' - ' . (substr($year, 0) + 1); ?>
-                                        <option value="<?php echo $fy ?>" <?php if ($setting->financial_year==$fy){ echo "selected"; } ?>><?php echo $fy; ?></option>
-                                 
-                                <?php
-                                    }
-                                }
-
-                                
-                            ?>
-                                   
-                                    
-                                   
+                            <?php  echo financial_years(); ?>
                         
                         </select>
         

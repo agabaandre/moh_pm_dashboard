@@ -7,17 +7,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 *
 */
 
+if(!function_exists('app_settings')){
+
+  function app_settings(){
+
+    $ci =& get_instance();
+    $table  = 'setting';
+    return $ci->db->get($table)->row();
+  }
+}
+
 
 if (!function_exists('settings')) {
 
     function settings($text = null)
     {
-        $ci =& get_instance();
-        $ci->load->database();
-        $table  = 'setting';
-  
-        $settings = $ci->db->get($table)->row();
-        $menu = $settings->use_category_two;
+        $settings = app_settings();
+        $menu     = $settings->use_category_two;
         if($menu==0):
         return $menu='traditional_menu.php';
         endif;
@@ -32,3 +38,28 @@ if (!function_exists('settings')) {
  
 }
 
+if(!function_exists('financial_years')){
+
+    function financial_years(){
+
+      $startdate="2020";
+      $enddate=intval(date('Y')+1);
+      $years = range($startdate, $enddate);
+      
+      $settings = app_settings();
+
+      $yearsHtml ="";
+      //print years
+          //print years
+        foreach ($years as $year) {
+          if ((substr($year, 0) + 1) <= substr($enddate, 0)) {
+          $fy = $year . ' - ' . (substr($year, 0) + 1);
+          $yearsOptions .= '<option value="'.$fy.'"'.(($settings->financial_year==$fy)?"selected":"").'>'.$fy.'</option>';
+      
+        }
+    }
+
+    return $yearsOptions;
+
+  }
+}
