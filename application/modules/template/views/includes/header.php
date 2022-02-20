@@ -32,7 +32,7 @@
         </ul>
         
     </div>
-    <span class="dropdown messages-menu" style="font-size:21px; text-align:center; font-weight:bold; float:left; margin-left:19%; margin-top:15px;">
+    <span class="title-phone" style="font-size:21px; text-align:center; font-weight:bold; float:left; margin-left:19%; margin-top:15px;">
            
            <span ><?php  echo $setting->title ?></span>
    </span>

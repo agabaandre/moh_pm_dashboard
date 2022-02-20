@@ -10,6 +10,10 @@
         title: {
             text: '<?php echo $title ?>'
         },
+        chart: {
+        height: 800,
+        
+        },
 
         subtitle: {
             text: ''
@@ -27,11 +31,11 @@
             },
         
 
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
-        },
+        // legend: {
+        //     layout: 'vertical',
+        //     align: 'right',
+        //     verticalAlign: 'middle'
+        // },
 
         plotOptions: {
             series: {

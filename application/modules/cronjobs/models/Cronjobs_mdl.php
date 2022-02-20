@@ -87,10 +87,10 @@ public function gaugeData($kpi,$financial_year){
 
 	 $computation="ROUND((SUM(numerator) / SUM(denominator)*100),0)";
 
-	$query = $this->db->query("SELECT $computation  as current_value, replace(CONCAT(kpi_id,period,financial_year),' ','') as entry_id, kpi_id,period_year, financial_year,data_target as current_target, period from new_data WHERE kpi_id='$kpi' and trim(financial_year)='$financial_year' and trim(period)='$period' and replace(CONCAT(kpi_id,period,financial_year),' ','') not in (SELECT entry_id from report_kpi_summary)");
+	$query = $this->db->query("SELECT $computation  as current_value, replace(CONCAT(kpi_id,period,financial_year),' ','') as entry_id, kpi_id,period_year, financial_year,data_target as current_target, period from new_data WHERE kpi_id='$kpi' and financial_year='$financial_year' and trim(period)='$period' and replace(CONCAT(kpi_id,period,financial_year),' ','') not in (SELECT entry_id from report_kpi_summary)");
 	$gauge_value=$query->row();
     
-   if (!empty($query))
+   if (!empty($gauge_value->current_value))
    $this->db->replace('report_kpi_summary',$gauge_value); 
   //$this->log_message($query);
 return $this->db->affected_rows(). "Records - Current  & previous Gauge Details" . $kpi;;

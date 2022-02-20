@@ -5,8 +5,10 @@
 <script>
 Highcharts.chart('line<?php echo $chartkpi; ?>', {
     chart: {
-        type: 'line'
+        height: 500,
+        
     },
+
      title: {
         text: '<?php echo $title; ?>'
     },
