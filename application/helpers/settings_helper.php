@@ -7,10 +7,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 *
 */
 
+//settings
 
 if (!function_exists('settings')) {
 
-    function settings($text = null)
+  function settings()
+  {
+    $ci =& get_instance();
+    $ci->load->database();
+    $table  = 'setting';
+    return $ci->db->get($table)->row();
+  }
+
+}
+
+//menu
+
+if (!function_exists('menu')) {
+
+    function menu()
     {
         $ci =& get_instance();
         $ci->load->database();
@@ -18,6 +33,7 @@ if (!function_exists('settings')) {
   
         $settings = $ci->db->get($table)->row();
         $menu = $settings->use_category_two;
+
         if($menu==0):
         return $menu='traditional_menu.php';
         endif;
@@ -27,8 +43,15 @@ if (!function_exists('settings')) {
         if($menu==2):
           return $menu='category_two_menu.php';
          endif;
-      
     }
  
+}
+
+if (!function_exists('uses_category')) {
+
+  function uses_category(){
+    return (settings()->use_category_two == 2)?true:false;
+  }
+
 }
 

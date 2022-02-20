@@ -43,10 +43,12 @@
         <!-- summernote css -->
         <link href="<?php echo base_url('assets/plugins/summernote/summernote.css'); ?>" rel="stylesheet" type="text/css"/>
         <link href="<?php echo base_url('assets/css/datetimepicker.css') ?>" rel="stylesheet" type="text/css"/>
+        
         <?php if (!empty($setting->site_align) && $setting->site_align == "RTL") {  ?>
             <!-- THEME RTL -->
             <link href="<?php echo base_url('assets/css/custom-rtl.css') ?>" rel="stylesheet" type="text/css"/>
         <?php } ?>
+
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/DataTables/datatables.min.css') ?>"/>
 
         <!-- jQuery  -->
@@ -62,6 +64,12 @@
 
         <script src="<?php echo base_url('assets/js/jquery.blockUI.js') ?>" type="text/javascript"></script>
 
+        <style>
+                .modal-full{
+                    width:100%;
+                    padding:50px!important;
+                }
+        </style>
 
 <?php
       $dimsub=Modules::run("Data/getSubject",$this->uri->segment(3));

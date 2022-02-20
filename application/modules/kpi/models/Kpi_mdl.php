@@ -49,7 +49,13 @@ class Kpi_mdl extends CI_Model {
 
 	public function addKpi($data){
 
+		if(empty($data['kpi_id'])){
+			$data['kpi_id'] = generate_kpi_id();
+		}
+
 		$query = $this->db->insert('kpi',$data);
+
+
 
 		if ($query){
 			$message ="Succesful";

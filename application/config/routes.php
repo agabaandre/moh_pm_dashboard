@@ -66,6 +66,7 @@ $modules = scandir($modules_path);
 foreach($modules as $module)
 {
     if($module === '.' || $module === '..') continue;
+    
     if(is_dir($modules_path) . '/' . $module)
     {
         $routes_path = $modules_path . $module . '/config/routes.php';

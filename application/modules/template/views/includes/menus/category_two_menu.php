@@ -31,7 +31,7 @@ foreach ($subjects as $subject):
       $outComeUrl =  base_url()."data/subject/".$subject->id."/".str_replace("+","_",urlencode($subject->name))."_Outcome_KPIs/1";  
       $outPutUrl =  base_url()."data/subject/".$subject->id."/".str_replace("+","_",urlencode($subject->name))."_Output_KPIs/2"; 
 
-       $outComeActive = (($subject->id == $this->uri->segment(3)||$subject->id == $this->uri->segment(4)) && $this->uri->segment(5)==1)?true:false;
+        $outComeActive = (($subject->id == $this->uri->segment(3)||$subject->id == $this->uri->segment(4)) && $this->uri->segment(5)==1)?true:false;
 
        $outPutActive = (($subject->id == $this->uri->segment(3)||$subject->id == $this->uri->segment(4)) && $this->uri->segment(5)==2)?true:false;
     ?>

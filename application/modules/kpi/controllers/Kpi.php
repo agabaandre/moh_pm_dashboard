@@ -15,7 +15,6 @@ class Kpi extends MX_Controller {
 		$this->load->library('M_pdf');
 		$this->watermark=FCPATH."assets/images/moh.png";
 		
-
 	}
 
 	public function Kpis(){
@@ -30,7 +29,7 @@ class Kpi extends MX_Controller {
 
 	public function kpiData(){
 
-      return   $this->kpi_mdl->kpiDakpiDatata();
+      return   $this->kpi_mdl->kpiData();
 	}
     
 	public function dashKpi($id = FALSE){
@@ -79,6 +78,7 @@ class Kpi extends MX_Controller {
 	//objectives for cphl
 	public function categoryTwo(){
 
+
 		if( $this->input->post() ):
 
 			$insert_data = $this->input->post();
@@ -107,13 +107,8 @@ class Kpi extends MX_Controller {
 	  $insert = $this->input->post();
 	  $data['message'] = $this->kpi_mdl->addKpi($insert);
 
-	  $this->session->set_flashdata('message','Added');
-
-	  $data['title']   = 'Key Performance Indicators';
-	  $data['page']    = 'kpi';
-	  $data['module']  = $this->module;
-
-	  echo Modules::run('template/layout', $data); 
+	  $this->session->set_flashdata('message','KPI Added Successfully');
+	  redirect('/kpi/kpis');
 	}
 
 
@@ -134,16 +129,16 @@ class Kpi extends MX_Controller {
 
 	public function updateKpi(){
 
-	    $kpi  = $this->input->post('kpi_id');
-		$is   = $this->input->post('indicator_statement');
-		$sn   = $this->input->post('short_name');
-		$des  = $this->input->post('description');
-		$ds   = $this->input->post('data_sources');
-		$freq = $this->input->post('frequency');
-		$target = $this->input->post('current_target');
-		$comp   = $this->input->post('computation');
-		$sa     = $this->input->post('subject_area');
-		$ic     = $this->input->post('is_cumulative');
+	    $kpi     = $this->input->post('kpi_id');
+		$is      = $this->input->post('indicator_statement');
+		$sn      = $this->input->post('short_name');
+		$des     = $this->input->post('description');
+		$ds      = $this->input->post('data_sources');
+		$freq    = $this->input->post('frequency');
+		$target  = $this->input->post('current_target');
+		$comp    = $this->input->post('computation');
+		$sa      = $this->input->post('subject_area');
+		$ic      = $this->input->post('is_cumulative');
 		$kpiType = $this->input->post('kpi_type');
 
 		$count = count($kpi);
@@ -151,32 +146,26 @@ class Kpi extends MX_Controller {
 
 		for($i=0;$i<$count; $i++){
 		//build and insert array
-		$insert = array(
-			'kpi_id'			  => $kpi[$i],
-			'indicator_statement' => $is[$i],
-			'description'		=> $des[$i],
-		    'frequency'			=> $freq[$i],
-		    'data_sources'		=> $ds[$i],
-		    'current_target'	=> $target[$i],
-		    'computation'		=> $comp[$i],
-		    'subject_area'		=> $sa[$i],
-		    'is_cumulative'		=> $ic[$i],
-		    'indicator_type_id' => $kpiType[$i],
-		    'short_name'        => $sn[$i]
-		);
+			$insert = array(
+				'kpi_id'			  => $kpi[$i],
+				'indicator_statement' => $is[$i],
+				'description'		=> $des[$i],
+				'frequency'			=> $freq[$i],
+				'data_sources'		=> $ds[$i],
+				'current_target'	=> $target[$i],
+				'computation'		=> $comp[$i],
+				'subject_area'		=> $sa[$i],
+				'is_cumulative'		=> $ic[$i],
+				'indicator_type_id' => $kpiType[$i],
+				'short_name'        => $sn[$i]
+			);
 	
 		 $data['message'] = $this->kpi_mdl->updatekpiData($insert);
-		// print_r($insert);
-		
 		} 
 	
 		$this->session->set_flashdata('message','Saved');
 
-		$data['title']  = 'Key Performance Indicators';
-		$data['page']   = 'kpi';
-		$data['module'] = $this->module;
-
-		echo Modules::run('template/layout', $data); 
+		redirect('/kpi/kpis');
 	  }
 
 	public function addSubject(){
@@ -187,10 +176,7 @@ class Kpi extends MX_Controller {
 
 	  $this->session->set_flashdata('message',$data['message']);
 
-      $data['title']  = 'Subject Areas';
-	  $data['page']   = 'subject';
-	  $data['module'] = $this->module;
-	 // echo Modules::run('template/layout', $data);
+	  redirect('/kpi/subject');
 
 	}
 

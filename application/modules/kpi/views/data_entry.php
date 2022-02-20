@@ -59,49 +59,49 @@ label{
 
                                         <div class="form-group col-md-4">
                                         <label>Dimension One</label>
-                                        <input type="text" placeholder="Dimension One" value="" class="form-control dimension1">
+                                        <input onblur="validateInput($(this))" type="text" placeholder="Dimension One" value="" class="form-control dimension1">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                         <label>Dimension One Key</label>
-                                        <input type="text" placeholder="Dimension One Key" value="" class="form-control dimension1_key">
+                                        <input onblur="validateInput($(this))" type="text" placeholder="Dimension One Key" value="" class="form-control dimension1_key">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                         <label>Dimension Two</label>
-                                        <input type="text" placeholder="Dimension Two" value="" class="form-control dimension2">
+                                        <input onblur="validateInput($(this))" type="text" placeholder="Dimension Two" value="" class="form-control dimension2">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                         <label>Dimension Two Key</label>
-                                        <input type="text" placeholder="Dimension Two Key" value="" class="form-control dimension2_key">
+                                        <input onblur="validateInput($(this))" type="text" placeholder="Dimension Two Key" value="" class="form-control dimension2_key">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                         <label>Dimension Three</label>
-                                        <input type="text" placeholder="Dimension Three" value="" class="form-control dimension3">
+                                        <input onblur="validateInput($(this))" type="text" placeholder="Dimension Three" value="" class="form-control dimension3">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                         <label>Dimension Three Key</label>
-                                        <input type="text" placeholder="Dimension Three Key" value="" class="form-control dimension3_key">
+                                        <input onblur="validateInput($(this))" type="text" placeholder="Dimension Three Key" value="" class="form-control dimension3_key">
                                         </div>
 
 
 
                                         <div class="form-group col-md-4">
                                         <label>Target</label>
-                                        <input type="text" placeholder="Target" value="" class="form-control current_target">
+                                        <input onblur="validateInput($(this))" type="text" placeholder="Target" value="" class="form-control current_target">
                                         </div>
 
                                          <div class="form-group col-md-4">
                                         <label>Denominator</label>
-                                        <input type="text" placeholder="Denominator" value="" class="form-control denominator">
+                                        <input onblur="validateInput($(this))" type="text" placeholder="Denominator" value="" class="form-control denominator">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                         <label>Numerator</label>
-                                        <input type="text" placeholder="Numerator" value="" class="form-control">
+                                        <input  type="text" placeholder="Numerator" value="" class="form-control">
                                         </div>
                                     </div>
 
@@ -126,7 +126,38 @@ label{
 
 $(document).ready(function() {
 
+
    // $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+
+   function populateInputs(data){
+
+    
+    if(data.data){
+         $('.dimension1').val(data.data.dimension1).attr('data',data.data.dimension1);
+        $('.dimension1_key').val(data.data.dimension1).attr('data',data.data.dimension1);
+        $('.dimension2').val(data.data.dimension1).attr('data',data.data.dimension1);
+        $('.dimension2_key').val(data.data.dimension1).attr('data',data.data.dimension1);
+        $('.dimension3').val(data.data.dimension1).attr('data',data.data.dimension1);
+        $('.dimension3_key').val(data.data.dimension1).attr('data',data.data.dimension1);
+        $('.denominator').val(data.data.denominator).attr('data',data.data.dimension1);
+        $('.current_target').val(data.kpi.current_target).attr('data',data.data.dimension1);
+    }
+    if(data.kpi){
+      $('.description').html(`<h4>${data.kpi.kpi_id} - ${data.kpi.short_name}</h4>${data.kpi.description}`).show();
+    }
+
+   }
+
+   function validateInput(input){
+
+     let referenceData  = $(input).attr('data');
+     let currentValue   = $(input).val();
+
+     if(referenceData && referenceData !== currentValue){
+        $(input).append(`<p> Invalid value for field, expected ${referenceData}.</p>`);
+     }
+
+   }
 
     $(".kpi").change( function(){
 
@@ -140,19 +171,9 @@ $(document).ready(function() {
       .then((data)=>{
 
             console.log(data);
+            populateInputs(data);
 
             $.unblockUI();
-
-            $('.dimension1').val(data.data.dimension1);
-            $('.dimension1_key').val(data.data.dimension1);
-            $('.dimension2').val(data.data.dimension1);
-            $('.dimension2_key').val(data.data.dimension1);
-            $('.dimension3').val(data.data.dimension1);
-            $('.dimension3_key').val(data.data.dimension1);
-            $('.denominator').val(data.data.denominator);
-            $('.current_target').val(data.kpi.current_target);
-            $('.description').html(`<h4>${data.kpi.kpi_id} - ${data.kpi.short_name}</h4>${data.kpi.description}`).show();
-            
 
        });
        

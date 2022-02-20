@@ -56,12 +56,6 @@
                                                     <td><?php echo $element->indicator_statement; ?></td>
                                                      <td style="width:20%;"> <input type="tel" style="width:40%;"class="form-control" value="<?php echo $element->dashboard_index; ?> " name="dashboard_index[]"></td>
                                                      <td style="width:20%;"> <input type="tel" style="width:40%;"class="form-control" value="<?php echo $element->subject_index; ?> " name="subject_index[]"></td>
-                                                   
-
-
-                                                
-    
-                                                    
                                                 </tr>
                                                     <?php 
                                                         $i++;
