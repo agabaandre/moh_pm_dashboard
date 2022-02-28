@@ -30,7 +30,7 @@ class Kpi extends MX_Controller {
 
 	public function kpiData(){
 
-      return   $this->kpi_mdl->kpiDakpiDatata();
+      return   $this->kpi_mdl->kpiData();
 	}
     
 	public function dashKpi($id = FALSE){
