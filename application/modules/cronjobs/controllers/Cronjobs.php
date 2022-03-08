@@ -17,7 +17,7 @@ class Cronjobs extends MX_Controller {
   }
   public function maxyears($kpi){
 
-    $query=$this->db->query("SELECT  max(financial_year) as max_year FROM new_data where kpi_id='$kpi' ")->result();
+    $query=$this->db->query("SELECT  max(financial_year) as financial_year FROM new_data where kpi_id='$kpi' ")->result();
 
 return $query;
 }
