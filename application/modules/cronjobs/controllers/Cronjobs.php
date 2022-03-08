@@ -15,6 +15,12 @@ class Cronjobs extends MX_Controller {
 
     return $query;
   }
+  public function maxyears($kpi){
+
+    $query=$this->db->query("SELECT  max(financial_year) as max_year FROM new_data where kpi_id='$kpi' ")->result();
+
+return $query;
+}
 
    //GAUGE
    public function getKpi(){
@@ -29,7 +35,7 @@ class Cronjobs extends MX_Controller {
            @$kpis=$this->getKpi();
         
             foreach ($kpis as $kpi):
-               @$years = $this->fyears($kpi->kpi_id);
+               @$years = $this->maxyears($kpi->kpi_id);
                 foreach($years as $year):
                 $data=$this->cjobs_ml->gaugeData($kpi->kpi_id,$year->financial_year);
                 echo $data.'<br>';
@@ -43,7 +49,7 @@ class Cronjobs extends MX_Controller {
 
         $kpis=$this->getKpi();
         foreach ($kpis as $kpi):
-            $years = $this->fyears($kpi->kpi_id);
+            $years = $this->maxyears($kpi->kpi_id);
             foreach($years as $year):
                 $fy=$year->financial_year;
 	            $data=$this->cjobs_ml->previousgaugeData($kpi->kpi_id,$fy);
