@@ -123,7 +123,7 @@ return $this->db->affected_rows();
 
 //all periods
 public function getallperiods($kpi,$fy){
-    $queryp=$this->db->query("SELECT DISTINCT period from new_data where trim(financial_year)='$fy' and kpi_id='$kpi' order by period ASC");
+    $queryp=$this->db->query("SELECT DISTINCT period from new_data where trim(financial_year)='".$fy."' and kpi_id='".$kpi."' order by period ASC");
 	
 	return $resps=$queryp->result();
 
@@ -136,7 +136,7 @@ public function dimension0Data($kpi,$fy){
 	$barperiodTotals = array();
 	foreach ($allps as $resp):
 		$value=str_replace(" ","",$resp->period);
-		$query1 = $this->db->query("SELECT $computation as current_value,period_year,kpi_id ,replace(CONCAT(kpi_id,period,financial_year),' ','') as entry_id, MAX(data_target) as target_value, financial_year, period from new_data WHERE kpi_id='$kpi' and trim(financial_year) = '$fy' and trim(period) = '$value' and replace(CONCAT(kpi_id,period,financial_year),' ','') not in (SELECT entry_id from report_kpi_trend)");
+		$query1 = $this->db->query("SELECT $computation as current_value,period_year,kpi_id ,replace(CONCAT(kpi_id,period,financial_year),' ','') as entry_id, MAX(data_target) as target_value, financial_year, period from new_data WHERE kpi_id='".$kpi."' and trim(financial_year) = '".$fy."' and trim(period) = '".$value."' and replace(CONCAT(kpi_id,period,financial_year),' ','') not in (SELECT entry_id from report_kpi_trend)");
 		$result1=$query1->row();
 	    if(!empty($result1))
 		array_push($barperiodTotals,$result1);  
@@ -176,11 +176,11 @@ public function dimension1Data($kpi,$fy){
 			    data_target as target_value,
 				 dimension1_key, kpi_id, period_year, replace(CONCAT(kpi_id,period,financial_year,dimension1),' ','') as entry_id, dimension1, financial_year, 
 				 period from new_data 
-				 WHERE trim(kpi_id) = trim('$kpi') 
-				 and trim(financial_year) = trim('$fy')
-				 and trim(period) = trim('$period')
+				 WHERE trim(kpi_id) = trim('".$kpi."') 
+				 and trim(financial_year) = trim('".$fy."')
+				 and trim(period) = trim('".$period."')
 				 and replace(CONCAT(kpi_id,period,financial_year,dimension1),' ','') not in (SELECT entry_id from report_trend_dimension1)
-				 and replace(dimension1,' ','') = '$dms1'
+				 and replace(dimension1,' ','') = '".$dms1."'
 				 ") ->row(); 
 				 array_push($period_data,$query1);
 				 if(!empty($query1->dimension1))
@@ -218,10 +218,10 @@ public function dimension2Data($kpi,$fy){
 					MAX(data_target) as target_value,
 					dimension2_key, dimension2,dimension1_key, dimension1, financial_year, 
 					period from new_data 
-					WHERE kpi_id = '$kpi' 
-					and trim(financial_year) = '$fy'
-					and trim(period) = '$period' and replace(CONCAT(kpi_id,period,financial_year,dimension2),' ','') not in (SELECT replace(CONCAT(kpi_id,period,financial_year,dimension2),' ','') from report_trend_dimension2)
-					and replace(dimension2,' ','') ='$dms2'")->row(); 
+					WHERE kpi_id = '".$kpi."' 
+					and trim(financial_year) = '".$fy."'
+					and trim(period) = '".$period."' and replace(CONCAT(kpi_id,period,financial_year,dimension2),' ','') not in (SELECT replace(CONCAT(kpi_id,period,financial_year,dimension2),' ','') from report_trend_dimension2)
+					and replace(dimension2,' ','') ='".$dms2."'")->row(); 
 					if(!empty($query1)):
 					 array_push($period_data,$query1);
 					 array_push($insertable ,$query1);
@@ -257,10 +257,10 @@ public function dimension3Data($kpi,$fy){
 					MAX(data_target) as target_value,
 					dimension3_key, dimension3,dimension2_key, replace(CONCAT(kpi_id,period,financial_year,dimension3),' ','') as entry_id, dimension2,dimension1_key, dimension1, financial_year, 
 					period from new_data 
-					WHERE kpi_id = '$kpi'
-					and trim(financial_year) = '$fy'
-					and trim(period) = '$period' and replace(CONCAT(kpi_id,period,financial_year,dimension3),' ','') not in (SELECT entry_id from report_trend_dimension3)
-					and replace(dimension3,' ','') ='$dms3'")->row();
+					WHERE kpi_id = '".$kpi."'
+					and trim(financial_year) = '".$fy."'
+					and trim(period) = '".$period."' and replace(CONCAT(kpi_id,period,financial_year,dimension3),' ','') not in (SELECT entry_id from report_trend_dimension3)
+					and replace(dimension3,' ','') ='".$dms3."'")->row();
 					if(!empty($query1)): 
 					 array_push($period_data,$query1);
 					 array_push($insertable ,$query1);
