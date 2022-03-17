@@ -64,11 +64,11 @@ class Files extends MX_Controller {
                     }
 
                    $data = array('kpi_id'  =>  str_replace(" ", "",$sale->getCellByColumnAndRow(0, $row)->getValue()), 
-                        'dimension1' => $dim1, 
+                        'dimension1' => preg_replace('/[0-9\@\.\;\" "]+/', ' ',$dim1), 
                         'dimension1_key'    =>  $dim1k, 	
-                        'dimension2'  =>  $dim2, 	
+                        'dimension2'  =>  preg_replace('/[0-9\@\.\;\" "]+/', ' ',$dim2), 	
                         'dimension2_key'  =>  $dim2k, 	
-                        'dimension3'  =>  $dim3, 	
+                        'dimension3'  =>  preg_replace('/[0-9\@\.\;\" "]+/', ' ',$dim3), 	
                         'dimension3_key'  =>  $dim3k, 
                         'financial_year'  =>  str_replace(" ", "",$sale->getCellByColumnAndRow(7, $row)->getValue()),
                         'period_year'  =>  str_replace(" ", "",$sale->getCellByColumnAndRow(8, $row)->getValue()),  
