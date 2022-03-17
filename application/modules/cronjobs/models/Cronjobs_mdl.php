@@ -157,45 +157,46 @@ public function truncateTable($table){
 public function dimension1Data($kpi,$fy){
 	//$kpi='KPI-11';
 	$dim1  = $this->dimension1($kpi,$fy);
-	$allps = $this->getallperiods($kpi,$fy);
-	$allDimesiondata = array(); // data for all period, all dimensions
-	$insertable = array(); 
-	$sereis_data= array();
-	$row_data=array();
-	$graphData = array();
-	@$computation="ROUND((SUM(numerator) / SUM(denominator)*100),0)";
-	$count=0;
-	foreach ($allps as $resp):
-		$period_data = array(); //for each period
-		$period = str_replace(" ","",$resp->period);
-		foreach($dim1 as $dm):
-			$count++;
-			$dms1   = str_replace(" ","",$dm->dimension1);
-		    $query1 = $this->db->query(
-				"SELECT $computation as cal_value, 
-			    data_target as target_value,
-				 dimension1_key, kpi_id, period_year, replace(CONCAT(kpi_id,period,financial_year,dimension1),' ','') as entry_id, dimension1, financial_year, 
-				 period from new_data 
-				 WHERE trim(kpi_id) = trim('$kpi') 
-				 and trim(financial_year) = trim('$fy')
-				 and trim(period) = trim('$period')
-				 and replace(CONCAT(kpi_id,period,financial_year,dimension1),' ','') not in (SELECT entry_id from report_trend_dimension1)
-				 and replace(dimension1,' ','') = '$dms1'
-				 ") ->row(); 
-				 array_push($period_data,$query1);
-				 if(!empty($query1->dimension1))
-				 array_push($insertable ,$query1);
+	print_r($dim1);
+	// $allps = $this->getallperiods($kpi,$fy);
+	// $allDimesiondata = array(); // data for all period, all dimensions
+	// $insertable = array(); 
+	// $sereis_data= array();
+	// $row_data=array();
+	// $graphData = array();
+	// $computation="ROUND((SUM(numerator) / SUM(denominator)*100),0)";
+	// $count=0;
+	// foreach ($allps as $resp):
+	// 	$period_data = array(); //for each period
+	// 	$period = str_replace(" ","",$resp->period);
+	// 	foreach($dim1 as $dm):
+	// 		$count++;
+	// 		$dms1   = str_replace(" ","",$dm->dimension1);
+	// 	    $query1 = $this->db->query(
+	// 			"SELECT $computation as cal_value, 
+	// 		    data_target as target_value,
+	// 			 dimension1_key, kpi_id, period_year, replace(CONCAT(kpi_id,period,financial_year,dimension1),' ','') as entry_id, dimension1, financial_year, 
+	// 			 period from new_data 
+	// 			 WHERE trim(kpi_id) = trim('$kpi') 
+	// 			 and trim(financial_year) = trim('$fy')
+	// 			 and trim(period) = trim('$period')
+	// 			 and replace(CONCAT(kpi_id,period,financial_year,dimension1),' ','') not in (SELECT entry_id from report_trend_dimension1)
+	// 			 and replace(dimension1,' ','') = '$dms1'
+	// 			 ") ->row(); 
+	// 			 array_push($period_data,$query1);
+	// 			 if(!empty($query1->dimension1))
+	// 			 array_push($insertable ,$query1);
 			
-		endforeach;
+	// 	endforeach;
 		
-    endforeach;
-	 if(!empty($insertable))
-	//print_r($insertable);
-	// print_r($period_data);
-	//$this->truncateTable('report_trend_dimension1');
-	 $this->db->insert_batch('report_trend_dimension1',$insertable);
-	 $this->db->query("DELETE from report_trend_dimension1 where kpi_id IS NULL");
-	return  $this->db->affected_rows(). 'Records - Dimension 1 data inserted for'. $kpi;
+    // endforeach;
+	//  if(!empty($insertable))
+	// //print_r($insertable);
+	// // print_r($period_data);
+	// //$this->truncateTable('report_trend_dimension1');
+	//  $this->db->insert_batch('report_trend_dimension1',$insertable);
+	//  $this->db->query("DELETE from report_trend_dimension1 where kpi_id IS NULL");
+	// return  $this->db->affected_rows(). 'Records - Dimension 1 data inserted for'. $kpi;
 }
 
 //dimension2
