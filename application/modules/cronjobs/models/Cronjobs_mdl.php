@@ -157,8 +157,11 @@ public function truncateTable($table){
 public function dimension1Data($kpi,$fy){
 	//$kpi='KPI-11';
 	$dim1  = $this->dimension1($kpi,$fy);
-	print_r($dim1);
-	// $allps = $this->getallperiods($kpi,$fy);
+	//print_r($dim1);
+	$allps = $this->getallperiods($kpi,$fy);
+
+	print_r($allps);
+
 	// $allDimesiondata = array(); // data for all period, all dimensions
 	// $insertable = array(); 
 	// $sereis_data= array();
