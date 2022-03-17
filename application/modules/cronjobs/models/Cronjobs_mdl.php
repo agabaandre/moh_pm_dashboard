@@ -163,7 +163,7 @@ public function dimension1Data($kpi,$fy){
 	$sereis_data= array();
 	$row_data=array();
 	$graphData = array();
-	$computation="ROUND((SUM(numerator) / SUM(denominator)*100),0)";
+	@$computation="ROUND((SUM(numerator) / SUM(denominator)*100),0)";
 	$count=0;
 	foreach ($allps as $resp):
 		$period_data = array(); //for each period
