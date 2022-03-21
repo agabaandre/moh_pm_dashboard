@@ -6,6 +6,7 @@ class Kpi_mdl extends CI_Model {
 		
 	public function __Construct(){
 			parent::__Construct();
+			$this->db->query('SET SESSION sql_mode = ""');
 	}
 
 	public function kpiData(){

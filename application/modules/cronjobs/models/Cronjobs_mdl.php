@@ -7,6 +7,7 @@ class Cronjobs_mdl extends CI_Model {
 public function __Construct(){
 
 		parent::__Construct();
+		$this->db->query('SET SESSION sql_mode = ""');
 //financial_year is from settings financial Year/ allows 1 2 for current and previous year respectively
 $this->financial_year=$this->financialYear();
 

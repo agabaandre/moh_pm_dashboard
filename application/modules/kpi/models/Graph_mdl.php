@@ -7,6 +7,7 @@ class Graph_mdl extends CI_Model {
 public function __Construct(){
 
 		parent::__Construct();
+              $this->db->query('SET SESSION sql_mode = ""');
 
 $this->financial_year=str_replace(" ","",$_SESSION['financial_year']);
 //create a period  to use to graph gauge data

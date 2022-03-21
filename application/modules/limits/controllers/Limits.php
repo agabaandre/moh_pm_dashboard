@@ -6,6 +6,7 @@ class Limits extends MX_Controller {
 	
 	public function __Construct(){
         // $this->load->model("Limits_mdl","l_mdl");
+        $this->db->query('SET SESSION sql_mode = ""');
 
        
 	}
