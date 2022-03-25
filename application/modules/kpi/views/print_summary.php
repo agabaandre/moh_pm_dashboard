@@ -48,6 +48,7 @@ table.minimalistBlack tfoot td {
                                                 <th>Indicator Statement</th>
                                                 <th>Target</th>
                                                 <th>Financial Year</th>
+                                                <th>Frequency</th>
                                                 <th style="width:13%;">Current Performance</th>
                     
                                             </tr>
@@ -69,6 +70,7 @@ table.minimalistBlack tfoot td {
                                                     
                                                     <td><?php echo $gauge['gauge']['data'][0]->current_target; ?></td>
                                                     <td><?php echo $gauge['gauge']['data'][0]->financial_year; ?></td>
+                                                    <td><?php echo $element->frequency; ?></td>
                                                     <td  <?php 
                                                     
                                                     echo Modules::run("kpi/kpiTrendcolors",$gauge['gauge']['data'][0]->current_target,$gauge['gauge']['data'][0]->current_value,$gauge['gauge']['data'][0]->previous_value,$gauge['gauge']['data'][0]->cp,$gauge['gauge']['data'][0]->pp);
