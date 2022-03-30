@@ -130,6 +130,7 @@
 
         <!-- Start Core Plugins-->
         <?php require('includes/js.php'); ?>
+        <?php require('includes/switch_department.php'); ?>
         
        
     </body>
