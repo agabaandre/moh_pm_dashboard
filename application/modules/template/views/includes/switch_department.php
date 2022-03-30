@@ -1,7 +1,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="swicthYear" data-backdrop="false" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="swicthdepartment" data-backdrop="false" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm" style="margin-top: 50px;">
     <div class="modal-content">
 
