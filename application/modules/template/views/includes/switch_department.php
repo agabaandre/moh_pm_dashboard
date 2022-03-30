@@ -17,12 +17,13 @@
                     <div class="form-group">
                         <?php  $years = $this->db->query("SELECT distinct financial_year from new_data")->result(); ?>
                           <label for="cumulative" class="col-form-label">Choose Department</label>
-                      
+                         
                            <select name="financial_year" class="form-control codeigniterselect">
+                           <?php $deps=Modules::run('kpi/subjectData'); ?>
                              <option value="">ALL</option>
-                            <?php foreach($years as $value): ?>
-                             <option value="<?php echo $value->financial_year; ?>">
-                                <?php echo $value->financial_year; ?>
+                            <?php foreach ($deps as $dep): ?>
+                             <option value="<?php echo $dep->subject_id; ?>">
+                                <?php echo $dep->name; ?>
                              </option>
                             <?php endforeach; ?>
                             </select>  
