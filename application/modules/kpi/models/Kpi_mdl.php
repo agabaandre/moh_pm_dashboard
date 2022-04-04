@@ -170,5 +170,68 @@ class Kpi_mdl extends CI_Model {
 		return $query->row();
 	}
 
+	public function kpiAutoComplete($dim,$term){
+	     $data = [];
+
+		if($dim==1){
+			$this->db->select('DISTINCT(dimension1) as col');
+			$this->db->where("dimension1 like '$term%'");
+		}
+		else if($dim==11){
+			$this->db->select('DISTINCT(dimension1_key) as col');
+			$this->db->where("dimension1_key like '$term%'");
+		}
+		else if($dim==2){
+			$this->db->select('DISTINCT(dimension2) as col');
+			$this->db->where("dimension2 like '$term%'");
+		}
+		else if($dim==22){
+			$this->db->select('DISTINCT(dimension2_key) as col');
+			$this->db->where("dimension2_key like '$term%'");
+		}
+		else if($dim==3){
+			$this->db->select('DISTINCT(dimension3) as col');
+			$this->db->where("dimension3 like '$term%'");
+		}
+		else if($dim==33){
+			$this->db->select('DISTINCT(dimension3_key) as col');
+			$this->db->where("dimension3_key like '$term%'");
+		}
+
+		$result = $this->db->get('new_data')->result();
+
+		foreach($result as $row){
+
+			if($row->col !== null)
+			$data[] = $row->col;
+		}
+
+		return $data;
+	}
+
+
+	public function saveKpiData($data){
+
+		$row = array(
+			'kpi_id'        => $data->kpi,
+			'dimension1'    => $data->dim1,
+			'dimension1_key'=> $data->dim1key,
+			'dimension2'    => $data->dim2,
+			'dimension2_key'=> $data->dim2key,
+			'dimension3'    => $data->dim3,
+			'dimension3_key'=> $data->dim3key,
+			'financial_year'=> $data->financial_year,
+			'data_target'   => $data->target,
+			'denominator'   => $data->denominator,
+			'numerator'     => $data->numerator,
+			'period_year'   => $data->year,
+			'period'        => $data->period
+		);
+
+		return $this->db->insert('new_data',$row);
+
+	}
+
+
 
 }

@@ -328,6 +328,27 @@ class Kpi extends MX_Controller {
 		echo json_encode($data);
 	}
 
+
+	public function kpi_autocomplete($columId){
+		$term = $_GET['term'];
+		$data = $this->kpi_mdl->kpiAutoComplete($columId,$term);
+		echo json_encode($data);
+	}
+
+	public function save_kpi_data(){
+
+		$data = (Object) $this->input->post();
+		$saved = $this->kpi_mdl->saveKpiData($data);
+
+		if($saved):
+			$this->session->set_flashdata('message','Saved Successfully');
+		else:
+			$this->session->set_flashdata('message','Operation failed, an error occured');
+		endif;
+
+		redirect('kpi/data_entry');
+
+	}
 	
 
 	

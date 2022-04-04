@@ -13,6 +13,7 @@ label{
     padding: 5px;
 }
 </style>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 <div class="row">
     <div class="col-sm-12 col-md-12">
         <div class="panel panel-bd lobidrag">
@@ -26,7 +27,7 @@ label{
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-content">
-                                <form class="form" action="<?php echo base_url(); ?>kpi/skpidata" method="post">
+                                <form class="form" action="<?php echo base_url(); ?>kpi/save_kpi_data" method="post">
 
                                     <div class="row">
                                         <div class="form-group col-md-12">
@@ -43,65 +44,63 @@ label{
 
                                         <div class="form-group col-md-4">
                                             <label>Financial Year</label>
-                                            <input type="text" placeholder="Financial Year" value="" class="form-control">
+                                            <input type="text" placeholder="Financial Year" name="financial_year" value="" class="form-control">
                                         </div>
 
                                         <div class="form-group col-md-4">
-                                            <label>Frequency</label>
-                                            <input type="text" placeholder="Frequency" value="" class="form-control">
+                                            <label>Year</label>
+                                            <input type="number" placeholder="Year" name="year" value="" class="form-control">
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label>Period</label>
-                                            <input type="text" placeholder="Period" value="" class="form-control">
+                                            <input type="number" placeholder="Period e.g 2 for FEB" name="period" value="" class="form-control">
                                         </div>
-
-
 
                                         <div class="form-group col-md-4">
                                         <label>Dimension One</label>
-                                        <input type="text" placeholder="Dimension One" value="" class="form-control dimension1">
+                                        <input type="text" placeholder="Dimension One" name="dim1" value="" class="form-control dimension1 kpi-dim" dim="1">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                         <label>Dimension One Key</label>
-                                        <input type="text" placeholder="Dimension One Key" value="" class="form-control dimension1_key">
+                                        <input type="text" placeholder="Dimension One Key" name="dim1key" value="" class="form-control dimension1_key kpi-dim" dim="11">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                         <label>Dimension Two</label>
-                                        <input type="text" placeholder="Dimension Two" value="" class="form-control dimension2">
+                                        <input type="text" placeholder="Dimension Two" name="dim2" value="" class="form-control dimension2 kpi-dim" dim="2">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                         <label>Dimension Two Key</label>
-                                        <input type="text" placeholder="Dimension Two Key" value="" class="form-control dimension2_key">
+                                        <input type="text" placeholder="Dimension Two Key" name="dim2key" value="" class="form-control dimension2_key kpi-dim" dim="22">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                         <label>Dimension Three</label>
-                                        <input type="text" placeholder="Dimension Three" value="" class="form-control dimension3">
+                                        <input type="text" placeholder="Dimension Three"  name="dim3" value="" class="form-control dimension3 kpi-dim" dim="3">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                         <label>Dimension Three Key</label>
-                                        <input type="text" placeholder="Dimension Three Key" value="" class="form-control dimension3_key">
+                                        <input type="text" placeholder="Dimension Three Key" name="dim3key" value="" class="form-control dimension3_key kpi-dim" dim="33">
                                         </div>
 
 
 
                                         <div class="form-group col-md-4">
                                         <label>Target</label>
-                                        <input type="text" placeholder="Target" value="" class="form-control current_target">
+                                        <input type="text" placeholder="Target" name="target" value="" class="form-control current_target">
                                         </div>
 
                                          <div class="form-group col-md-4">
                                         <label>Denominator</label>
-                                        <input type="text" placeholder="Denominator" value="" class="form-control denominator">
+                                        <input type="text" placeholder="Denominator" name="denominator" value="" class="form-control denominator">
                                         </div>
 
                                         <div class="form-group col-md-4">
                                         <label>Numerator</label>
-                                        <input type="text" placeholder="Numerator" value="" class="form-control">
+                                        <input type="text" placeholder="Numerator" name="numerator" value="" class="form-control">
                                         </div>
                                     </div>
 
@@ -122,9 +121,29 @@ label{
     </div>
 </div>
 
+
+
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
 <script>
 
 $(document).ready(function() {
+
+    let inputs = $( ".kpi-dim" );
+
+for(var i=0;i<inputs.length;i++){
+
+    var columnId = $(inputs[i]).attr('dim');
+
+     $(inputs[i]).autocomplete({
+      source: '<?=base_url()?>kpi/kpi_autocomplete/'+columnId,
+      minLength: 2,
+      select: function( event, ui ) {
+        console.log(  ui.item );
+      }
+    });
+
+};
 
    // $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
 
