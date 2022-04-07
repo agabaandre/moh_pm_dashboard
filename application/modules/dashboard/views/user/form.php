@@ -42,8 +42,9 @@
                         <?php  $years = $this->db->query("SELECT * FROM `subject_areas`")->result(); ?>
                           <label for="cumulative" class="col-sm-3 col-form-label">Department</label>
                           <div class="col-sm-9">
-                           <select name="subject_area" class="form-control codeigniterselect">
-                            <option value="" selected>ALL</option>
+                          <select class="js-example-basic-multiple" name="subject_area[]" class="form-control" multiple="multiple">
+                         
+                           
                             <?php foreach($years as $value): ?>
                              <option value="<?php echo $value->id; ?>">
                                 <?php echo $value->name; ?>

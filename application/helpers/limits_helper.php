@@ -58,10 +58,11 @@ function whereyearlimit(){
   function wheresubjectlimit(){
         if($_SESSION['subject_area']!=""){
             $id=$_SESSION['subject_area'];
-     return   "where subject_areas.id='$id'";   
+     return   "where subject_areas.id in ('$id')";   
         }
         else{
    return "";        
         }
     
     }
+    
