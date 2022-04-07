@@ -13,7 +13,7 @@ class Auth extends MX_Controller {
  			'auth_model'
  		));
 
-		$this->load->helper('captcha');
+		//$this->load->helper('captcha');
  	}
 
 	public function index()
@@ -25,19 +25,19 @@ class Auth extends MX_Controller {
 		#-------------------------------------#
 		$this->form_validation->set_rules('email', display('email'), 'required|valid_email|max_length[100]|trim');
 		$this->form_validation->set_rules('password', display('password'), 'required|max_length[32]|md5|trim');
-		$this->form_validation->set_rules(
-		    'captcha', display('captcha'),
-		    array(
-		        'matches[captcha]', 
-		        function($captcha)
-		        { 
-		        	$oldCaptcha = $this->session->userdata('captcha');
-		        	if ($captcha == $oldCaptcha) {
-		        		return true;
-		        	}
-		        }
-		    )
-		);
+		// $this->form_validation->set_rules(
+		//     'captcha', display('captcha'),
+		//     array(
+		//         'matches[captcha]', 
+		//         function($captcha)
+		//         { 
+		//         	$oldCaptcha = $this->session->userdata('captcha');
+		//         	if ($captcha == $oldCaptcha) {
+		//         		return true;
+		//         	}
+		//         }
+		//     )
+		// );
 
 		#-------------------------------------#
 		$data['user'] = (object)$userData = array(
@@ -48,7 +48,7 @@ class Auth extends MX_Controller {
 		if ( $this->form_validation->run())
 		{
 			
-			$this->session->unset_userdata('captcha');
+			//$this->session->unset_userdata('captcha');
 
 			$user = $this->auth_model->checkUser($userData);
 
@@ -95,29 +95,29 @@ class Auth extends MX_Controller {
 
 		} else {
 
-			$captcha = create_captcha(array(
-			    'img_path'      => './assets/img/captcha/',
-			    'img_url'       => base_url('assets/img/captcha/'),
-			    'font_path'     => './assets/fonts/captcha.ttf',
-			    'img_width'     => '300',
-			    'img_height'    => 64,
-			    'expiration'    => 600, //5 min
-			    'word_length'   => 4,
-			    'font_size'     => 26,
-			    'img_id'        => 'Imageid',
-			    'pool'          => '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+			// $captcha = create_captcha(array(
+			//     'img_path'      => './assets/img/captcha/',
+			//     'img_url'       => base_url('assets/img/captcha/'),
+			//     'font_path'     => './assets/fonts/captcha.ttf',
+			//     'img_width'     => '300',
+			//     'img_height'    => 64,
+			//     'expiration'    => 600, //5 min
+			//     'word_length'   => 4,
+			//     'font_size'     => 26,
+			//     'img_id'        => 'Imageid',
+			//     'pool'          => '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 
-			    // White background and border, black text and red grid
-			    'colors'        => array(
-			            'background' => array(255, 255, 255),
-			            'border'     => array(228, 229, 231),
-			            'text'       => array(13,94,132),
-			            'grid'       => array(199, 222, 255)
-			    )
-			));
-			$data['captcha_word'] = $captcha['word'];
-			$data['captcha_image'] = $captcha['image'];
-			$this->session->set_userdata('captcha', $captcha['word']);
+			//     // White background and border, black text and red grid
+			//     'colors'        => array(
+			//             'background' => array(255, 255, 255),
+			//             'border'     => array(228, 229, 231),
+			//             'text'       => array(13,94,132),
+			//             'grid'       => array(199, 222, 255)
+			//     )
+			// ));
+			// $data['captcha_word'] = $captcha['word'];
+			// $data['captcha_image'] = $captcha['image'];
+			// $this->session->set_userdata('captcha', $captcha['word']);
 
 			echo Modules::run('template/login', $data);
 		}

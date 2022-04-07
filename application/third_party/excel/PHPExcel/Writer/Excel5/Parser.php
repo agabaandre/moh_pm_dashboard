@@ -541,7 +541,7 @@ class PHPExcel_Writer_Excel5_Parser
             return pack("C", $this->ptg[$token]);
 
         // match error codes
-        } elseif (preg_match("/^#[A-Z0\/]{3,5}[!?]{1}$/", $token) or $token == '#N/A') {
+        } elseif (preg_match("/^#[A-Z0\/]{3,5}[!?][1]$/", $token) or $token == '#N/A') {
             return $this->convertError($token);
 
         // commented so argument number can be processed correctly. See toReversePolish().
@@ -1145,7 +1145,7 @@ class PHPExcel_Writer_Excel5_Parser
                 } elseif (preg_match("/\"([^\"]|\"\"){0,255}\"/", $token) and $this->lookAhead != '"' and (substr_count($token, '"')%2 == 0)) {
                     // If it's a string (of maximum 255 characters)
                     return $token;
-                } elseif (preg_match("/^#[A-Z0\/]{3,5}[!?]{1}$/", $token) or $token == '#N/A') {
+                } elseif (preg_match("/^#[A-Z0\/]{3,5}[!?][1]$/", $token) or $token == '#N/A') {
                     // If it's an error code
                     return $token;
                 } elseif (preg_match("/^[A-Z0-9\xc0-\xdc\.]+$/i", $token) and ($this->lookAhead == "(")) {
@@ -1172,7 +1172,7 @@ class PHPExcel_Writer_Excel5_Parser
     {
         $this->currentCharacter = 0;
         $this->formula      = $formula;
-        $this->lookAhead    = isset($formula{1}) ? $formula{1} : '';
+        $this->lookAhead    = isset($formula[1]) ? $formula[1] : '';
         $this->advance();
         $this->parseTree   = $this->condition();
         return true;
@@ -1244,7 +1244,7 @@ class PHPExcel_Writer_Excel5_Parser
             $this->advance();
             return $result;
         // If it's an error code
-        } elseif (preg_match("/^#[A-Z0\/]{3,5}[!?]{1}$/", $this->currentToken) or $this->currentToken == '#N/A') {
+        } elseif (preg_match("/^#[A-Z0\/]{3,5}[!?][1]$/", $this->currentToken) or $this->currentToken == '#N/A') {
             $result = $this->createTree($this->currentToken, 'ptgErr', '');
             $this->advance();
             return $result;
