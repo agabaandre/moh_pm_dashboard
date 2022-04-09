@@ -66,7 +66,7 @@ class User extends MX_Controller {
         $config['allowed_types']        = 'gif|jpg|png'; 
          $image = $this->input->post('image');
 		/*-----------------------------------*/
-		@$subjectarea = implode(',',$this->input->post('subject_area'));
+		@$subjectarea = json_encode($this->input->post('subject_area'));
 		$data['user'] = (object)$userLevelData = array(
 			'id' 		  => $this->input->post('id'),
 			'firstname'   => $this->input->post('firstname'),
@@ -79,7 +79,7 @@ class User extends MX_Controller {
 			'last_logout' => null,
 			'ip_address'  => null,
 			'status'      => $this->input->post('status'),
-			'subject_area'    => "$subjectarea",
+			'subject_area'    => $subjectarea,
 			'user_type'      => $this->input->post('user_type'),
 			'is_admin'    => 0
 		);

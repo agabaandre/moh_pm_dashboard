@@ -47,8 +47,8 @@ function whereyearlimit(){
    //subject area and
   function andsubjectlimit(){
         if($_SESSION['subject_area']!=""){
-            $id=$_SESSION['subject_area'];
-  return "and subject_areas.id='$id'";   
+            @$id=implode(",",json_decode($_SESSION['subject_area']));
+  return "and subject_areas.id in ('$id')";   
         }
         else{
     return   "";        
@@ -56,8 +56,9 @@ function whereyearlimit(){
     
     }
   function wheresubjectlimit(){
+          
         if($_SESSION['subject_area']!=""){
-            $id=$_SESSION['subject_area'];
+           @$id=implode(",",json_decode($_SESSION['subject_area']));
      return   "where subject_areas.id in ('$id')";   
         }
         else{

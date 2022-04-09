@@ -16,7 +16,7 @@
                             <input name="firstname" class="form-control" type="text" placeholder="<?php echo display('firstname') ?>" id="lastname" value="<?php echo $user->firstname ?>">
                         </div>
                     </div>
-
+<?php echo $id=implode(",",json_decode($_SESSION['subject_area'])); ?>
                     <div class="form-group row">
                         <label for="lastname" class="col-sm-3 col-form-label"><?php echo display('lastname') ?> *</label>
                         <div class="col-sm-9">
@@ -32,21 +32,26 @@
                     </div> 
 
                     <div class="form-group row">
-                        <label for="password" class="col-sm-3 col-form-label"><?php echo display('password') ?> *</label>
+                        <label for="password" class="col-sm-3 col-form-label"><?php echo display('password') ?> : Resets to default</label>
                         <div class="col-sm-9">
-                            <input name="password" class="form-control" type="password" placeholder="<?php echo display('password') ?>" id="password">
-                            <input name="oldpassword" class="form-control" type="hidden" value="<?php echo $user->password ?>">
+                            <input name="password" class="form-control" type="text" value="<?php echo $setting->default_password; ?>" placeholder="<?php echo display('password') ?>" id="password" readonly>
+                            <input name="oldpassword" class="form-control" type="hidden" value="<?php echo $setting->default_password; ?>">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <?php  $years = $this->db->query("SELECT * FROM `subject_areas`")->result(); ?>
+                        <?php
+                        $years = $this->db->query("SELECT * FROM `subject_areas`")->result(); ?>
                           <label for="cumulative" class="col-sm-3 col-form-label">Department</label>
                           <div class="col-sm-9">
                           <select class="js-example-basic-multiple" name="subject_area[]" class="form-control" multiple="multiple">
-                         
+                            
                            
-                            <?php foreach($years as $value): ?>
-                             <option value="<?php echo $value->id; ?>">
+                            <?php 
+                             $ids=json_decode($user->subject_area);
+                             foreach($years as $value): 
+                                
+                                ?>
+                             <option value="<?php echo $value->id;?>" <?php if (in_array($value->id, $ids)) {echo "selected";} ?>>
                                 <?php echo $value->name; ?>
                              </option>
                             <?php endforeach; ?>
@@ -59,8 +64,11 @@
                           <div class="col-sm-9">
                            <select name="user_type" class="form-control codeigniterselect">
                             
-                            <?php foreach($years as $key=>$value): ?>
-                             <option value="<?php echo $key; ?>">
+                            <?php $usertype=$user->user_type;
+                            
+                            
+                            foreach($years as $key=>$value): ?>
+                             <option value="<?php echo $key; ?>" <?php if ($usertype==$key) {echo "selected";}?>>
                                 <?php echo $value; ?>
                              </option>
                             <?php endforeach; ?>
