@@ -75,7 +75,8 @@ class Files extends MX_Controller {
                         'period'  =>  str_replace(" ", "",$sale->getCellByColumnAndRow(9, $row)->getValue()), 
                         'denominator'  =>  str_replace(" ", "",$sale->getCellByColumnAndRow(10, $row)->getValue()), 
                         'numerator'  =>  str_replace(" ", "",$sale->getCellByColumnAndRow(11, $row)->getValue()), 	
-                        'data_target'  =>  str_replace(" ", "",$sale->getCellByColumnAndRow(12, $row)->getValue())
+                        'data_target'  =>  str_replace(" ", "",$sale->getCellByColumnAndRow(12, $row)->getValue()),
+                        'comment'  =>  $sale->getCellByColumnAndRow(13, $row)->getValue()
                         );
 
                  // print_r($data);

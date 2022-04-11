@@ -78,7 +78,7 @@ class Kpi_mdl extends CI_Model {
 
 
 	public function kpiSummaryData(){
-		$limit=dashlimits('andsubjectlimit');
+		$limit=dashlimits('andsubject');
 		$query = $this->db->query("SELECT kpi.kpi_id, report_kpi_summary.kpi_id, short_name, subject_areas.name FROM kpi,report_kpi_summary,subject_areas WHERE kpi.kpi_id=report_kpi_summary.kpi_id AND subject_areas.id=kpi.subject_area $limit order by subject_areas.name ASC, short_name ASC ");
 		return $query->result();
 	}

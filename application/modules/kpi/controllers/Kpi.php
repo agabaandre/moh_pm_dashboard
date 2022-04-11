@@ -234,8 +234,10 @@ class Kpi extends MX_Controller {
 		echo Modules::run('template/layout', $data); 
 	}
 	public function summaryData(){
+		//$limit=dashlimits('andsubject');
+		//print_r($limit);
 
-		return   $this->kpi_mdl->kpiSummaryData();
+	 return   $this->kpi_mdl->kpiSummaryData();
 	}
 
 	public function kpiTrendcolors(
@@ -311,6 +313,14 @@ class Kpi extends MX_Controller {
 		  $this->m_pdf->pdf->Output($filename,'I');
 		  }
 
+		public function kpi_session(){
+			if($_SESSION['subject_area']!=""){
+				@$id=implode(",",json_decode($_SESSION['subject_area']));
+			}
+
+				
+		 print_r("where subject_areas.id in ('$id')"); 
+		}
 	
 
 	

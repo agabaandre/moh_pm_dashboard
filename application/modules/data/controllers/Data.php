@@ -217,7 +217,12 @@ class Data extends MX_Controller {
 		//kpiTrend is in a kpiTrend helper
 		return kpiTrend($params);
 	}
+    public function dim0s($kpi_id){
 
+		$query = $this->db->query("SELECT distinct dimension0 from report_kpi_trend where kpi_id='$kpi_id'");
+		return $query->result();
+
+	}
 
 	public function dim1s($kpi_id){
 
