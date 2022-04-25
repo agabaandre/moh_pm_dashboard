@@ -57,7 +57,7 @@ table.minimalistBlack tfoot td {
                                                     $i=1;
                                                 
                                                 //print_r($gauge['gauge']['data'][0]->current_target);
-                                                $elements=Modules::run('Kpi/summaryData');
+                                                $elements=Modules::run('Kpi/summaryData',$json);
                                                     foreach($elements as $element):?>
 
                                                 <tr class="table-row tbrow content strow">

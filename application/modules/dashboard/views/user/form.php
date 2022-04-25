@@ -16,7 +16,7 @@
                             <input name="firstname" class="form-control" type="text" placeholder="<?php echo display('firstname') ?>" id="lastname" value="<?php echo $user->firstname ?>">
                         </div>
                     </div>
-<?php echo $id=implode(",",json_decode($_SESSION['subject_area'])); ?>
+<?php echo @$id=implode(",",json_decode($_SESSION['subject_area'])); ?>
                     <div class="form-group row">
                         <label for="lastname" class="col-sm-3 col-form-label"><?php echo display('lastname') ?> *</label>
                         <div class="col-sm-9">

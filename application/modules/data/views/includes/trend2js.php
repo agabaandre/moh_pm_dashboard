@@ -68,7 +68,7 @@
 $(document).ready(function(){
 
     $.ajax({
-        url:'<?php echo  base_url()."data/dim2data/".$this->uri->segment(3).'/'.urlencode(str_replace(" ","_",$this->input->post('dimension1'))); ?>',
+        url:'<?php echo  base_url()."data/dim2data/".$this->uri->segment(3); ?>',
         success:function(response){
             
             console.log(response);
@@ -77,4 +77,28 @@ $(document).ready(function(){
      });
 
 });
+</script>
+
+
+<script>
+$("#trend2").submit(function(e) {
+
+e.preventDefault(); // avoid to execute the actual submit of the form.
+
+var form = $(this);
+var actionUrl = form.attr('action');
+
+$.ajax({
+    type: "POST",
+    url: '<?php echo  base_url()."data/dim2data/".$this->uri->segment(3);?>',
+    data: form.serialize(), // serializes the form's elements.
+    success: function(data)
+    {
+      renderGraph(JSON.parse(data));
+      console.log(data); // show response from the php script.
+    }
+});
+
+});
+
 </script>

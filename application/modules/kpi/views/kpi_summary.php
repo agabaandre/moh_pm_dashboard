@@ -10,11 +10,47 @@
                     <div class="col-sm-12">
                         <div class="card">
                         <!-- Button trigger modal -->
-                       
+    <form method="post"  class="form-horizontal" action="" style="width:50%; margin:10px;">
+        <label>Subject Areas </label>
+                        <?php
+                           //print_r($this->input->post());
+                        @$id=implode(",",json_decode($_SESSION['subject_area'])); 
+                        if(!empty($id)){
+                        $years = $this->db->query("SELECT * FROM `subject_areas` where id in ($id)")->result(); 
+                        }
+                        else
+                        {
+                         $years = $this->db->query("SELECT * FROM `subject_areas`")->result(); 
+                        }
+                        ?>
+                          <label for="cumulative" class="">Department</label>
+                          <select class="js-example-basic-multiple" name="subject_area[]" class="form-control" multiple="multiple">
+                            
+                           
+                           <?php
+                          
+                             $ids=json_decode($_SESSION['subject_area']);
+                             foreach($years as $value): 
+                                
+                                ?>
+                             <option value="<?php echo $value->id;?>" <?php if (in_array($value->id, $ids)) {echo "selected";} ?>>
+                                <?php echo $value->name; ?>
+                             </option>
+                            <?php endforeach; ?>
+                            </select> 
+                        
+                   
+       <br>
+       <br>
+   
+       <button type="submit" class="btn btn-success">Apply</button>
+       <a href="<?php echo base_url('data/dimension3/').$this->uri->segment(3).'/'.$dimsub; ?>" class="btn btn-success">Rest</a>
+
+        </form>
                     <div class="card-content">
                       
                         <div class="col-md-6">    
-                        <a href="<?php echo base_url()?>kpi/printsummary/print_summary" class="btn btn-success"><i class="fa fa-print"  ></i>Print</a>
+                        <a href="<?php echo base_url()?>kpi/printsummary/print_summary/<?php echo urlencode(json_encode($this->input->post('subject_area'))); ?>" class="btn btn-success"><i class="fa fa-print"  ></i>Print</a>
                         </div>
                         <div class="col-md-6">
                         <button type="button" class="btn btn-success" style="float:right;" data-toggle="modal" data-target="#definition">
@@ -44,7 +80,7 @@
                                                     $i=1;
                                                 
                                                 //print_r($gauge['gauge']['data'][0]->current_target);
-                                                $elements=Modules::run('Kpi/summaryData');
+                                                $elements=Modules::run('Kpi/summaryData',json_encode($this->input->post('subject_area')));
                                                     foreach($elements as $element):?>
 
                                                 <tr class="table-row tbrow content strow">

@@ -118,8 +118,10 @@ class Data extends MX_Controller {
 	
 
   public function dimension1($kpi){
-
-		$data['module']  = "data";
+   //print_r(implode(",",$this->input->post('dimension1')));
+       
+	//print_r($dimension1);
+			$data['module']  = "data";
 	 	$data['page']    = 'trend1';
 		$data['uptitle'] = $this->data_mdl->subject_name($kpi);
 		$data['title']   = $this->data_mdl->kpi_name($kpi);
@@ -164,24 +166,30 @@ class Data extends MX_Controller {
   //Dimensions Graphs
 	//Gauge 1 Data
 	public function dim1data($kpi){
-
-		$data = $this->graph_mdl->dim1Graph($kpi);
+		$dimension1 = $this->input->post('dimension1');
+        $dim1=str_replace('""','"',str_replace("_"," ",str_replace("]","",str_replace("[","",json_encode($dimension1)))));
+		$data = $this->graph_mdl->dim1Graph($kpi,$dim1);
 	  //print_r($data);
+	
 	  echo json_encode($data,JSON_NUMERIC_CHECK);
 	}
 
-	public function dim2data($kpi,$dimension1=FALSE){
-		
-		$data = $this->graph_mdl->dim2Graph($kpi,urldecode(str_replace("_"," ",$dimension1)));
+	public function dim2data($kpi){
+		$dimension2 = $this->input->post('dimension1');
+        $dim2=str_replace('""','"',str_replace("_"," ",str_replace("]","",str_replace("[","",json_encode($dimension2)))));
+
+		$data = $this->graph_mdl->dim2Graph($kpi,$dim2);
 	  // print_r($data);
 	  echo json_encode($data,JSON_NUMERIC_CHECK);
 	
 	}
 
 
-	public function dim3data($kpi,$dimension2=FALSE){
-	
-		$data = $this->graph_mdl->dim3Graph($kpi,urldecode(str_replace("_"," ",$dimension2)));
+	public function dim3data($kpi){
+	    $dimension2 = $this->input->post('dimension2');
+        $dim2=str_replace('""','"',str_replace("_"," ",str_replace("]","",str_replace("[","",json_encode($dimension2)))));
+
+		$data = $this->graph_mdl->dim3Graph($kpi,$dim2);
 	  // print_r($data);
 		echo  json_encode($data,JSON_NUMERIC_CHECK);
 	}
@@ -217,12 +225,7 @@ class Data extends MX_Controller {
 		//kpiTrend is in a kpiTrend helper
 		return kpiTrend($params);
 	}
-    public function dim0s($kpi_id){
 
-		$query = $this->db->query("SELECT distinct dimension0 from report_kpi_trend where kpi_id='$kpi_id'");
-		return $query->result();
-
-	}
 
 	public function dim1s($kpi_id){
 

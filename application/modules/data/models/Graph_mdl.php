@@ -98,11 +98,17 @@ return array("quaters"=>$periods,"data"=>$datas,"target"=>$target);
 //KPI TREND DIM1 GRAPH DATA
 
 
-public function dim1Graph($kpi) {
+public function dim1Graph($kpi,$dimension1) {
        $datas = array();
        $dimesnions = array();
        $periods = array();
-       $query = $this->db->query("SELECT  target_value, CONCAT( period,'-',period_year) as period,cal_value,dimension1,dimension1_key FROM `report_trend_dimension1` WHERE  kpi_id='$kpi' order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
+       if($dimension1!='null'){
+              $filter= "and dimension1 in($dimension1)";
+              }
+              else{
+               $filter="";     
+              }
+       $query = $this->db->query("SELECT  target_value, CONCAT( period,'-',period_year) as period,cal_value,dimension1,dimension1_key FROM `report_trend_dimension1` WHERE  kpi_id='$kpi' $filter order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
        $row_data = [];
      
 foreach($query as $row):
@@ -125,16 +131,16 @@ foreach($dimesnions as $dim):
        endforeach;
       array_push($datas,$row_data);
 endforeach;
-
-return array("quaters"=>$periods,"data"=>$datas);
+//return $filter;
+ return array("quaters"=>$periods,"data"=>$datas);
 }
 
 public function dim2Graph($kpi,$dimension1) {
        $datas = array();
        $dimesnions = array();
        $periods = array();
-       if(!empty($dimension1)){
-       $filter= "and dimension1='$dimension1'";
+       if($dimension1!='null'){
+       $filter= "and dimension1 in($dimension1)";
        }
        else{
         $filter="";     
@@ -172,8 +178,8 @@ public function dim3Graph($kpi,$dimension2) {
        $dimesnions = array();
        $periods = array();
 
-       if(!empty($dimension2)){
-              $filter= "AND dimension2='$dimension2'";
+       if($dimension2!='null'){
+              $filter= "and dimension2 in($dimension2)";
               }
               else{
                $filter="";     

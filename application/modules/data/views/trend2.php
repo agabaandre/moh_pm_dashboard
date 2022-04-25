@@ -18,11 +18,7 @@ else{
     $col="col-md-12 offset-2";
 }
 
-foreach($tests as $test){
 
-   foreach($test as $ftest){
-   }
-}
                             
 ?>
 <div class="col-md-12">
@@ -48,9 +44,9 @@ foreach($tests as $test){
 </div>
 
 <div class="row" >
-        <form method="post" class="form-horizontal" action="<?php echo base_url('data/dimension2/').$this->uri->segment(3).'/'.$dimsub; ?>" style="width:50%; margin:10px;">
+        <form method="post" id="trend2" class="form-horizontal" action="<?php echo base_url('data/dimension2/').$this->uri->segment(3).'/'.$dimsub; ?>" style="width:50%; margin:10px;">
         <label>Select Limit </label>
-        <select class="js-example-basic-single" name="dimension1">
+        <select class="js-example-basic-multiple" name="dimension1[]" multiple="multiple">
         <?php 
          $dim1vals=Modules::run('data/dim1s',$this->uri->segment(3));
         foreach ($dim1vals as $dim1val): ?>
@@ -62,8 +58,6 @@ foreach($tests as $test){
          endforeach;
        ?>
        </select>
-
-       <p>Showing Data: <?php echo $this->input->post('dimension1'); ?></p>
 
        <button type="submit" class="btn btn-success">Apply</button>
        <a href="<?php echo base_url('data/dimension2/').$this->uri->segment(3).'/'.$dimsub; ?>" class="btn btn-success">Reset</a>

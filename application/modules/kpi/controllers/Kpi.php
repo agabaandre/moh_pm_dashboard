@@ -233,11 +233,10 @@ class Kpi extends MX_Controller {
 
 		echo Modules::run('template/layout', $data); 
 	}
-	public function summaryData(){
-		//$limit=dashlimits('andsubject');
-		//print_r($limit);
+	public function summaryData($ffilter=FALSE){
+	
 
-	 return   $this->kpi_mdl->kpiSummaryData();
+	 return   $this->kpi_mdl->kpiSummaryData($ffilter);
 	}
 
 	public function kpiTrendcolors(
@@ -297,9 +296,9 @@ class Kpi extends MX_Controller {
 	}
 
 	
-	public function printsummary($view){
-		  
-		  $html=$this->load->view($view,$data='',true);   
+	public function printsummary($view,$json){
+		  $data['json']=$json;
+		  $html=$this->load->view($view,$data,true);   
 		  $PDFContent = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
 		  $this->m_pdf->pdf->SetWatermarkImage($this->watermark);
 		  $this->m_pdf->pdf->showWatermarkImage = true;

@@ -48,27 +48,26 @@ $dimsub=Modules::run("data/getdimSubject",$this->uri->segment(3));
 
 </div>
 <?php   $dim1vals=Modules::run('data/dim1s',$this->uri->segment(3));
-if count($dim1vals>8):
+if (count($dim1vals)>8):
 ?>
 <div class="row" >
 
-        <form method="post" class="form-horizontal" action="<?php echo base_url('data/dimension1/').$this->uri->segment(3).'/'.$dimsub; ?>" style="width:50%; margin:10px;">
+        <form method="post" id="trend1" class="form-horizontal" action="<?php echo base_url('data/dimension1/').$this->uri->segment(3).'/'.$dimsub; ?>" style="width:50%; margin:10px;">
         <label>Select Limit </label>
-        <select class="js-example-basic-single" name="dimension1">
+        <select class="js-example-basic-multiple" name="dimension1[]" multiple="multiple">
         <?php 
         
         foreach ($dim1vals as $dim1val): ?>
 
           <option value="<?php echo  $dim1val->dimension1;?>"><?php echo $dim1val->dimension1;?></option>
 
-        <?php
+         <?php
 
          endforeach;
        ?>
        </select>
 
-       <p>Showing Data: <?php echo $this->input->post('dimension1'); ?></p>
-
+      
        <button type="submit" class="btn btn-success">Apply</button>
        <a href="<?php echo base_url('data/dimension1/').$this->uri->segment(3).'/'.$dimsub; ?>" class="btn btn-success">Reset</a>
 
@@ -89,7 +88,13 @@ if count($dim1vals>8):
 
 </div>
        
-    
+<script type="text/javascript">
+    $(document).ready(function() {
+     $('.js-example-basic-multiple').select2();
+
+    });
+
+</script>  
    
 
 
