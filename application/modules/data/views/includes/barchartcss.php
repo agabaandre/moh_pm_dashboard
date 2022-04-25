@@ -8,6 +8,7 @@
 
 #barcontainer {
     height: 400px;
+    width:;
 }
 
 .highcharts-data-table table {
