@@ -10,6 +10,10 @@ Highcharts.chart('line<?php echo $chartkpi; ?>', {
      title: {
         text: '<?php echo $title; ?>'
     },
+    chart: {
+        height: 500,
+        
+    },
     subtitle: {
         text: ''
     },
