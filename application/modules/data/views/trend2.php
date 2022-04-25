@@ -58,7 +58,7 @@ else{
          endforeach;
        ?>
        </select>
-
+       <br><br>
        <button type="submit" class="btn btn-success">Apply</button>
        <a href="<?php echo base_url('data/dimension2/').$this->uri->segment(3).'/'.$dimsub; ?>" class="btn btn-success">Reset</a>
 

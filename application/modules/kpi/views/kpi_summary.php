@@ -70,6 +70,7 @@
                                                 <th>Subject Area</th>
                                                 <th>Indicator Statement</th>
                                                 <th>Target</th>
+                                                <th>Comments</th>
                                                 <th>Financial Year</th>
                                                 <th style="width:13%;">Current Performance</th>
                     
@@ -91,7 +92,9 @@
                                                     <a href="<?php echo base_url().'data/kpidata/'.$gauge['gauge']['details'][0]->kpi_id.'/'.$gauge['gauge']['details'][0]->subject_area; ?>" target="_self"><p class=""  style=" color:#072b41; font-size:12px;" ><?php echo $gauge['gauge']['details'][0]->short_name; ?></p></a></td>
                                                     
                                                     <td><?php echo $gauge['gauge']['data'][0]->current_target; ?></td>
+                                                    <td><?php echo $gauge['gauge']['data'][0]->comments; ?></td>
                                                     <td><?php echo $gauge['gauge']['data'][0]->financial_year; ?></td>
+                                                   
                                                     <td  <?php 
                                                     
                                                     echo Modules::run("kpi/kpiTrendcolors",$gauge['gauge']['data'][0]->current_target,$gauge['gauge']['data'][0]->current_value,$gauge['gauge']['data'][0]->previous_value,$gauge['gauge']['data'][0]->cp,$gauge['gauge']['data'][0]->pp);
