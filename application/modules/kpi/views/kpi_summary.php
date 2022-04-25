@@ -44,7 +44,7 @@
        <br>
    
        <button type="submit" class="btn btn-success">Apply</button>
-       <a href="<?php echo base_url('data/dimension3/').$this->uri->segment(3).'/'.$dimsub; ?>" class="btn btn-success">Rest</a>
+
 
         </form>
                     <div class="card-content">

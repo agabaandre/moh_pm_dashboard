@@ -66,7 +66,7 @@ if (count($dim1vals)>8):
          endforeach;
        ?>
        </select>
-
+<br><br>
       
        <button type="submit" class="btn btn-success">Apply</button>
        <a href="<?php echo base_url('data/dimension1/').$this->uri->segment(3).'/'.$dimsub; ?>" class="btn btn-success">Reset</a>
