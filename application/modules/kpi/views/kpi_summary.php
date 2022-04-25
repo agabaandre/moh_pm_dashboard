@@ -92,7 +92,8 @@
                                                     <a href="<?php echo base_url().'data/kpidata/'.$gauge['gauge']['details'][0]->kpi_id.'/'.$gauge['gauge']['details'][0]->subject_area; ?>" target="_self"><p class=""  style=" color:#072b41; font-size:12px;" ><?php echo $gauge['gauge']['details'][0]->short_name; ?></p></a></td>
                                                     
                                                     <td><?php echo $gauge['gauge']['data'][0]->current_target; ?></td>
-                                                    <td><?php echo $gauge['gauge']['data'][0]->comments; ?></td>
+                                                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-info"></i>                                                      
+                                                    </button></td>
                                                     <td><?php echo $gauge['gauge']['data'][0]->financial_year; ?></td>
                                                    
                                                     <td  <?php 
@@ -101,7 +102,25 @@
                                                      ?>>
                                                      <?php echo  $gauge['gauge']['data'][0]->current_value.'%'; ?>
                                                      </td>
-                     
+                                                  <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel"><?php echo $element->name; ?> Comments</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ...
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                </div>
                                                     
                                                 </tr>
                                                     <?php 
