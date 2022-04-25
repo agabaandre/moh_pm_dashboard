@@ -3,70 +3,69 @@
 ?>
 <script>
 
-    function renderGraph(data){
+function renderGraph(data){
 
-        Highcharts.chart('line<?php echo $chartkpi; ?>', {
+Highcharts.chart('line<?php echo $chartkpi; ?>', {
 
-        title: {
-            text: '<?php echo $title; ?>'
+title: {
+    text: '<?php echo $title; ?>'
+},
+ chart: {
+height: 700,
+
+},
+subtitle: {
+    text: ''
+},
+
+yAxis: {
+    title: {
+        text: 'Score (%)'
+    }
+},
+
+xAxis: {
+    
+    categories:data.quaters
+    },
+
+
+// legend: {
+//     layout: 'vertical',
+//     align: 'right',
+//     verticalAlign: 'middle'
+// },
+
+plotOptions: {
+    series: {
+        label: {
+            connectorAllowed: false
         },
-         chart: {
-        height: 700,
-        
-        },
+            enableMouseTracking: true
 
-        subtitle: {
-            text: ''
-        },
+    }
+},
+credits: {
+        enabled: false
+},
 
-        yAxis: {
-            title: {
-                text: 'Score (%)'
+series: data.data,
+responsive: {
+    rules: [{
+        condition: {
+            maxWidth: 500
+        },
+        chartOptions: {
+            legend: {
+                layout: 'horizontal',
+                align: 'center',
+                verticalAlign: 'bottom'
             }
-        },
-
-        xAxis: {
-            
-            categories:data.quaters
-            },
-        
-
-        // legend: {
-        //     layout: 'vertical',
-        //     align: 'right',
-        //     verticalAlign: 'middle'
-        // },
-
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
-                },
-                    enableMouseTracking: true
-
-            }
-        },
-        credits: {
-                enabled: false
-        },
-
-        series: data.data,
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
         }
+    }]
+}
 
-    });
+});
 };
 
 $(document).ready(function(){
