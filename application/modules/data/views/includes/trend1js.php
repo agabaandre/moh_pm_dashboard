@@ -11,6 +11,10 @@
         title: {
             text: '<?php echo $title ?>'
         },
+        chart: {
+        height: 700,
+        
+        },
 
         subtitle: {
             text: ''
