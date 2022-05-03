@@ -30,7 +30,7 @@ class Kpi extends MX_Controller {
 
 	public function kpiData(){
 
-      return   $this->kpi_mdl->kpiDakpiDatata();
+      return   $this->kpi_mdl->kpiData();
 	}
     
 	public function dashKpi($id = FALSE){
@@ -302,6 +302,7 @@ class Kpi extends MX_Controller {
 		  $PDFContent = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
 		  $this->m_pdf->pdf->SetWatermarkImage($this->watermark);
 		  $this->m_pdf->pdf->showWatermarkImage = true;
+		  $filename ="KPI_Summary Data".date('Y-m-d');
 		  date_default_timezone_set("Africa/Kampala"); 
 		  $this->m_pdf->pdf->SetHTMLFooter("Printed/ Accessed on: <b>".date('d F,Y h:i A')."</b><br style='font-size: 9px !imporntant;'>"." Source: MoH PM Dashboard " .base_url());
 		  $this->m_pdf->pdf->SetWatermarkImage($this->watermark);
