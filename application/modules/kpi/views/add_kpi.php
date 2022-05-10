@@ -59,7 +59,7 @@
                            
                         </div>
 
-                        <?php  if(settings()->use_category_two == 1): ?>
+                        <?php  if(settings()=='category_two_menu.php'): ?>
                         <div class="form-group row">
                            
                           <label for="cumulative" class="col-sm-3 col-form-label">
