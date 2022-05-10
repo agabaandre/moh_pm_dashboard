@@ -39,7 +39,7 @@
                             <div class="header-icon">
                                 <i class="pe-7s-unlock"></i>
                             </div>
-                             <div class="header-title">
+                             <div class="header-title text-center">
                                 
                                 <small><h4>MoH PM Dashboard</h4></small>
                                 <small><h5>Login</h5></small>
