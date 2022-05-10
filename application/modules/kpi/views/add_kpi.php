@@ -179,7 +179,7 @@
                             <select name="category_two_id" class="form-control codeigniterselect">
                               <?php    $elements=Modules::run('Kpi/getCategoryTwos');
                                        foreach($elements as $element):?>
-                                        <option value="<?php echo $element->id ?>" selected="selected"><?php echo $element->name ?></option>
+                                        <option value="<?php echo $element->id ?>" selected="selected"><?php echo $element->cat_name ?></option>
                                        <?php endforeach; ?>
              
                              </select>  
