@@ -41,7 +41,8 @@
                             </div>
                              <div class="header-title">
                                 
-                                <small><h3>Admin <?php echo display('login') ?></h3></small>
+                                <small><h4>MoH PM Dashboard</h4></small>
+                                <small><h5>Login</h5></small>
                             </div>
                         </div>
                        <div class="row">
