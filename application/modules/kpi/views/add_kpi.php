@@ -158,10 +158,10 @@
                              <div class="form-group row">
                            
                           <label for="subject" class="col-sm-3 col-form-label">
-                            Subject Area</label>
+                           Category</label>
                             <div class="col-sm-9">
                            <select name="subject_area" class="form-control codeigniterselect">
-                             <?php    $elements=Modules::run('Kpi/subjectData');
+                             <?php    $elements=Modules::run('Kpi/getCategoryTwos');
                                       foreach($elements as $element):?>
                                        <option value="<?php echo $element->id ?>" selected="selected"><?php echo $element->name ?></option>
                                       <?php endforeach; ?>
