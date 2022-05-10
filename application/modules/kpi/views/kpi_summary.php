@@ -161,7 +161,7 @@ body {
 
                         <div id="kpitable">
 
-                                    <table id="kpi"  class="table table-responsive table-striped table-bordered print table">
+                                    <table id="subject" class="table table-responsive table-striped table-bordered">
                                     
                             
                                             <thead>
