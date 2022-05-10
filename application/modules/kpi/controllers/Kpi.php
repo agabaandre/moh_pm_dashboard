@@ -185,7 +185,7 @@ class Kpi extends MX_Controller {
       $data['title']  = 'Subject Areas';
 	  $data['page']   = 'subject';
 	  $data['module'] = $this->module;
-	 // echo Modules::run('template/layout', $data);
+	 echo Modules::run('template/layout', $data);
 
 	}
 
