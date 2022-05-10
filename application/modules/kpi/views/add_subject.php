@@ -78,14 +78,10 @@
                             Font awesome Icon</label>
                             <div class="col-sm-9">
                            <select name="icon" class="form-control codeigniterselect">
-                           <option value="" selected="selected">Select One...</option>
-                           <?php $fas=json_decode($setting->font_awesome);
-                            foreach ($fas as $fa) {
-                              for ($i=0; $i<=441; $i++){ ?>
+                    
                           
-                            <option value="<?php echo $fa[$i]; ?>"><?php echo $fa[$i]; ?></option>
-                            <?php
-                            }} ?>
+                            <option value="circle" selected>Circle</option>
+                         
                             </select>  
                             </div>
                            
