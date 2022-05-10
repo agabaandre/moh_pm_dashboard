@@ -158,18 +158,34 @@
                              <div class="form-group row">
                            
                           <label for="subject" class="col-sm-3 col-form-label">
-                           Category</label>
+                            Subject Area</label>
                             <div class="col-sm-9">
                            <select name="subject_area" class="form-control codeigniterselect">
-                             <?php    $elements=Modules::run('Kpi/getCategoryTwos');
+                             <?php    $elements=Modules::run('Kpi/subjectData');
                                       foreach($elements as $element):?>
                                        <option value="<?php echo $element->id ?>" selected="selected"><?php echo $element->name ?></option>
                                       <?php endforeach; ?>
             
                             </select>  
                             </div>
+                          
                            
                         </div>
+                        <div class="form-group row">
+                           
+                           <label for="subject" class="col-sm-3 col-form-label">
+                            Category</label>
+                             <div class="col-sm-9">
+                            <select name="category_two_id" class="form-control codeigniterselect">
+                              <?php    $elements=Modules::run('Kpi/getCategoryTwos');
+                                       foreach($elements as $element):?>
+                                        <option value="<?php echo $element->id ?>" selected="selected"><?php echo $element->name ?></option>
+                                       <?php endforeach; ?>
+             
+                             </select>  
+                             </div>
+                            
+                         </div>
                        
                     </div>
                   <!---End sub2-->
