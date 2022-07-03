@@ -9,6 +9,7 @@ class Template extends MX_Controller {
 		$this->load->model(array(
 			'template_model'
 		));
+		$this->db->query('SET SESSION sql_mode = ""');
 	}
  
 	public function layout($data)

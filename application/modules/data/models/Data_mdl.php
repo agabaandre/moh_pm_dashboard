@@ -5,6 +5,7 @@ class Data_mdl extends CI_Model {
 
 	
 public function __Construct(){
+	$this->db->query('SET SESSION sql_mode = ""');
 
 	parent::__Construct();
 

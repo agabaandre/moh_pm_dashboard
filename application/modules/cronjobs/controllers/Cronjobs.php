@@ -6,6 +6,7 @@ class Cronjobs extends MX_Controller {
 	
 	public function __Construct(){
         $this->load->model("Cronjobs_mdl","cjobs_ml");
+        $this->db->query('SET SESSION sql_mode = ""');
 
        
 	}

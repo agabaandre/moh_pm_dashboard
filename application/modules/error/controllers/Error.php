@@ -7,7 +7,7 @@ class Error extends MX_Controller {
 	public function __Construct(){
 
 	
-
+		$this->db->query('SET SESSION sql_mode = ""');
 	
 
 	}
