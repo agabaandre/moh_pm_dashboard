@@ -79,7 +79,6 @@
                             <div class="col-sm-9">
                            <select name="icon" class="form-control codeigniterselect">
                     
-                          
                             <option value="circle" selected>Circle</option>
                          
                             </select>  

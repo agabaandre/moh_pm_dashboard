@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 if (!function_exists('settings')) {
 
-    function settings($text = null)
+    function settings($text = FALSE)
     {
         $ci =& get_instance();
         $ci->load->database();
