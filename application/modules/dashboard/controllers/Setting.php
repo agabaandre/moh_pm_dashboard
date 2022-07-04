@@ -182,13 +182,13 @@ class Setting extends MX_Controller {
 			'favicon'
 		);
 		// if favicon is uploaded then resize the favicon
-		if ($favicon !== false && $favicon != null) {
-			$this->fileupload->do_resize(
-				$favicon, 
-				32,
-				32
-			);
-		}
+		// if ($favicon !== false && $favicon != null) {
+		// 	$this->fileupload->do_resize(
+		// 		$favicon, 
+		// 		32,
+		// 		32
+		// 	);
+		// }
 		//if favicon is not uploaded
 		if ($favicon === false) {
 			$this->session->set_flashdata('exception',  display('invalid_favicon'));
