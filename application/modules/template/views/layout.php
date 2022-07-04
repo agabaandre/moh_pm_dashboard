@@ -64,7 +64,7 @@
             <footer class="main-footer">
                 <input type="hidden" name="" id="base_url" value="<?php echo base_url();?>">
                 <span class="pull-right">
-                    <img src="<?php echo base_url((!empty($setting->logo)?$setting->logo:'assets/img/icons/mini-logo.png')) ?>" style="width:5%" alt="">
+                    <img src="<?php echo base_url((!empty($setting->logo)?$setting->logo:'assets/img/icons/mini-logo.png')) ?>" style="width:5%; float:right;" alt="">
                 </span>
                 <div class="pull-right hidden-xs">
                     <?php echo (!empty($setting->address)?$setting->address:null) ?> 
