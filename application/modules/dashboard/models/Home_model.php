@@ -83,9 +83,9 @@ class Home_model extends CI_Model {
     public function dashData(){
 		@$subject_area_equals=dashlimits('andsubject');
           //$query = $this->db->get("kpi_displays");
-		 // $query=$this->db->query("SELECT subject_areas.id,kpi.subject_area,kpi_displays.kpi_id,kpi.kpi_id,dashboard_index,subject_index,subject_areas.module FROM kpi right join subject_areas on subject_areas.id=kpi.subject_area $subject_area_equals right join kpi_displays on kpi_displays.kpi_id =kpi.kpi_id where kpi.kpi_id in (SELECT DISTINCT trim(kpi_id) from new_data) and dashboard_index!='0'  order by dashboard_index ");
+		  $query=$this->db->query("SELECT subject_areas.id,kpi.subject_area,kpi_displays.kpi_id,kpi.kpi_id,dashboard_index,subject_index,subject_areas.module FROM kpi right join subject_areas on subject_areas.id=kpi.subject_area $subject_area_equals right join kpi_displays on kpi_displays.kpi_id =kpi.kpi_id where kpi.kpi_id in (SELECT DISTINCT trim(kpi_id) from new_data) and dashboard_index!='0'  order by dashboard_index ");
 
-		  $query=$this->db->query("SELECT subject_areas.id,kpi.kpi_id FROM kpi right join subject_areas on subject_areas.id=kpi.subject_area ");
+		//  $query=$this->db->query("SELECT subject_areas.id,kpi.kpi_id FROM kpi right join subject_areas on subject_areas.id=kpi.subject_area ");
 
 			return $query->result();
 	}
