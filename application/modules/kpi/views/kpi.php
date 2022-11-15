@@ -46,13 +46,13 @@
 
                                                 <tr class="table-row tbrow content strow">
                                                     <td><?php echo $i ?></td>
-                                                    <td style="width:10%;"><input type="text" class="form-control" name="kpi_id[]" value="<?php echo $element->kpi_id; ?>" style="border:#000 none; width:70%;" readonly></td>
+                                                    <td style="width:15%;"><input type="text" class="form-control" name="kpi_id[]" value="<?php echo $element->kpi_id; ?>" style="border:#000 none; width:70%;" readonly></td>
                                                     <td><?php echo  $element->name; ?></td>
                                                     <input type="hidden" name="subject_area[]" value="<?php echo $element->sid; ?>">
                                                     <input type="hidden" name="is_cumulative[]" value="<?php echo $element->is_cumulative; ?>">
                                                     <td style="width:20%;"><textarea name="short_name[]" rows=4 class="form-control" style="border:#000  none; width:90%;"><?php echo $element->short_name; ?></textarea></td>
                                                     <td style="width:20%;"><textarea name="indicator_statement[]" rows=4 class="form-control" style="border:#000  none; width:90%;"><?php echo $element->indicator_statement; ?></textarea></td>
-                                                    <td style="width:40%;"><textarea name="description[]" rows=4 class="form-control" style="border:#000  none; width:95%;"><?php echo $element->description; ?></textarea></td>
+                                                    <td style="width:35%;"><textarea name="description[]" rows=4 class="form-control" style="border:#000  none; width:95%;"><?php echo $element->description; ?></textarea></td>
                                                     <td style="width:15%;"><textarea name="data_sources[]" rows=4 class="form-control" style="border:#000  none; width:80%;"><?php echo $element->data_sources; ?></textarea></td>
                                                     <td style="width:25%;"><textarea name="computation[]" rows=5 class="form-control" style="border:#000  none; width:82%;"><?php echo $element->computation; ?></textarea></td>
                             
