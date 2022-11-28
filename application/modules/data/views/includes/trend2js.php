@@ -29,7 +29,7 @@ function renderGraph(data) {
         legend: {
             layout: 'vertical',
             align: 'bottom',
-            verticalAlign: 'middle'
+            verticalAlign: 'bottom'
         },
 
         plotOptions: {
