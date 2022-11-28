@@ -29,13 +29,27 @@
             <section class="content-header">
                 <!-- <div class="header-icon"><i class="pe-7s-home"></i></div> -->
                 <div class="header-title">
-                    <h3> <?php if (!empty($uptitle)) {
-                                echo urldecode($uptitle);
-                            } ?> </h3>
+                    <h3>
+                        <?php if (!empty($uptitle)) {
+                        echo urldecode($uptitle);
+                    } ?>
+                    </h3>
 
                     <?php //print_r(settings()); 
                     ?>
-                    <button type="button" class="btn btn-success btn-outline" style="float:right; margin-right:5px; margin-top:-40px; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>" data-toggle="modal" data-target="#definition">
+                    <button type="button" class="btn btn-success btn-outline"
+                        style="float:right; margin-right:5px; margin-top:-40px; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>"
+                        data-toggle="modal" data-target="#definition">
+                        <?php echo display("definition"); ?>
+                    </button>
+                    <button type="button" class="btn btn-success btn-outline"
+                        style="float:right; margin-right:5px; margin-top:-40px; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>"
+                        data-toggle="modal" data-target="#definition">
+                        <?php echo display("definition"); ?>
+                    </button>
+                    <button type="button" class="btn btn-success btn-outline"
+                        style="float:right; margin-right:5px; margin-top:-40px; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>"
+                        data-toggle="modal" data-target="#definition">
                         <?php echo display("definition"); ?>
                     </button>
 
@@ -66,7 +80,8 @@
 
         <footer class="main-footer">
             <span class="pull-right">
-                <img src="<?php echo base_url((!empty($setting->logo) ? $setting->logo : 'assets/img/icons/mini-logo.png')) ?>" style="width:5%; float:right;" alt="">
+                <img src="<?php echo base_url((!empty($setting->logo) ? $setting->logo : 'assets/img/icons/mini-logo.png')) ?>"
+                    style="width:5%; float:right;" alt="">
             </span>
             <div class="pull-right hidden-xs">
                 <?php echo (!empty($setting->address) ? $setting->address : null) ?>
@@ -76,7 +91,8 @@
                 <?php echo (!empty($setting->footer_text) ? $setting->footer_text : null) ?>
             </strong>
             <a href="<?php echo current_url() ?>">
-                <?php echo (!empty($setting->title) ? $setting->title : null) ?></a>
+                <?php echo (!empty($setting->title) ? $setting->title : null) ?>
+            </a>
         </footer>
 
 
@@ -120,9 +136,12 @@
                     </table>
                     <div class="col-md-6"></div>
                     <h3>Arrows</h3>
-                    <p><i class="fa fa-arrow-down" style="color:red;"></i> A decline in the current period value compared to the previous period value </p>
-                    <p><i class="fa fa-arrow-up" style="color:green;"></i> A improvement in the current period value compared to the previous period value </p>
-                    <p><i class="fa fa-arrow-right" style="color:orange;"></i> No change in the current period value compared to the previous period value </p>
+                    <p><i class="fa fa-arrow-down" style="color:red;"></i> A decline in the current period value
+                        compared to the previous period value </p>
+                    <p><i class="fa fa-arrow-up" style="color:green;"></i> A improvement in the current period value
+                        compared to the previous period value </p>
+                    <p><i class="fa fa-arrow-right" style="color:orange;"></i> No change in the current period value
+                        compared to the previous period value </p>
                 </div>
 
                 <div class="modal-footer">

@@ -14,20 +14,10 @@
         <span class="sr-only">Toggle navigation</span>
         <span class="fa fa-th"></span>
     </a>
+
     <div class="navbar-custom-menu">
         <ul class="nav navbar-nav" style="margin:0 auto;">
-            <?php if ($this->session->userdata('isAdmin')) { ?>
-            <li class="dropdown dropdown-user">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> KPI DATA</a>
-                <ul class="dropdown-menu">
-                    <li><a href="<?php echo base_url(); ?>files/file">Upload KPI DATA</a>
-                    </li>
 
-                </ul>
-            </li>
-            <?php } ?>
-
-            <?php if ($this->session->userdata('isAdmin')) { ?>
             <li class="dropdown open">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                     KPIs
