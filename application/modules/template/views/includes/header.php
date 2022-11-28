@@ -28,10 +28,9 @@
             <?php } ?>
 
             <?php if ($this->session->userdata('isAdmin')) { ?>
-            <li class="dropdown notifications-menu open">
+            <li class="dropdown open">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                     KPIs
-
                 </a>
                 <ul class="dropdown-menu">
 
