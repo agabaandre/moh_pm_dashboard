@@ -44,10 +44,10 @@
                             <?php echo display("definition"); ?>
                         </button>
 
-                        <button href="<?php echo base_url(); ?>files/file" class="btn btn-success btn-outline"
+                        <a href="<?php echo base_url(); ?>files/file" class="btn btn-success btn-outline"
                             style="margin-right:5px; margin-top:-40px position: relative; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>">
                             Upload Data
-                        </button>
+                        </a>
                         <button type="button" class="btn btn-success btn-outline"
                             style="margin-right:5px; margin-top:-40px position: relative; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>"
                             data-toggle="modal" data-target="#definition">
