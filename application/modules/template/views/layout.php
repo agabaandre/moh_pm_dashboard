@@ -38,12 +38,17 @@
                     <?php //print_r(settings()); 
                     ?>
                     <div class="row" style="display:flex; float:right; margin-right:5px; margin-top:-40px;">
-                        <a href="<?php echo base_url(); ?>files/file" class="link btn btn-success btn-outline"
-                            style="margin-right:5px; margin-top:-40px; position: relative;">Upload
-                        </a>
-                        <a href="<?php echo base_url(); ?>files/file" class="link btn btn-success btn-outline"
-                            style="margin-right:5px; margin-top:-40px; position: relative;">Upload
-                        </a>
+                        <button href="<?php echo base_url(); ?>files/file" class="btn btn-success btn-outline"
+                            style="margin-right:5px; margin-top:-40px position: relative; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>"
+                            data-toggle="modal" data-target="#definition">
+                            <?php echo display("definition"); ?>
+                        </button>
+
+                        <button href="<?php echo base_url(); ?>files/file" class="btn btn-success btn-outline"
+                            style="margin-right:5px; margin-top:-40px position: relative; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>"
+                            data-toggle="modal" data-target="#definition">
+                            Upload Data
+                        </button>
                         <button type="button" class="btn btn-success btn-outline"
                             style="margin-right:5px; margin-top:-40px position: relative; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>"
                             data-toggle="modal" data-target="#definition">
