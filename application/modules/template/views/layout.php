@@ -30,9 +30,15 @@
                 <!-- <div class="header-icon"><i class="pe-7s-home"></i></div> -->
                 <div class="header-title">
                     <h3>
-                        <?php if (!empty($uptitle)) {
-                            echo urldecode($uptitle);
-                        } ?>
+
+                        <ol class="breadcrumb">
+                            <li><a href="#"><i class="pe-7s-home"></i> Dashboard</a></li>
+                            <li class="active">
+                                <?php if (!empty($uptitle)) {
+                                    echo urldecode($uptitle);
+                                } ?>
+                            </li>
+                        </ol>
                     </h3>
 
                     <?php //print_r(settings()); 
