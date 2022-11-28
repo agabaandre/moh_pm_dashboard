@@ -29,19 +29,19 @@
             <section class="content-header">
                 <!-- <div class="header-icon"><i class="pe-7s-home"></i></div> -->
                 <div class="header-title">
-                    <h3>
+                    <h4>
 
 
-                        <p><a href=" #"><i class="pe-7s-home"></i> Dashboard</a>/
+                        <p><a href=" #"><i class="pe-7s-home"></i> Dashboard</a> -
                             <?php if (!empty($uptitle)) {
                                 echo urldecode($uptitle);
                             } ?>
                         </p>
 
-                    </h3>
+                    </h4>
 
                     <?php //print_r(settings()); 
-                    ?>
+                        ?>
                     <div class="row" style="display:flex; float:right; margin-right:5px; margin-top:-40px;">
                         <button href="<?php echo base_url(); ?>files/file" class="btn btn-success btn-outline"
                             style="margin-right:5px; margin-top:-40px position: relative; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>"
