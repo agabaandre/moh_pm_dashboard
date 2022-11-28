@@ -38,10 +38,10 @@
                     <?php //print_r(settings()); 
                     ?>
                     <div class="row" style="display:flex; float:right; margin-right:5px; margin-top:-40px;">
-                        <a href="<?php echo base_url(); ?>files/file" class="btn btn-success btn-outline"
+                        <a href="<?php echo base_url(); ?>files/file" class="link btn btn-success btn-outline"
                             style="margin-right:5px; margin-top:-40px; position: relative;">Upload
                         </a>
-                        <a href="<?php echo base_url(); ?>files/file" class="btn btn-success btn-outline"
+                        <a href="<?php echo base_url(); ?>files/file" class="link btn btn-success btn-outline"
                             style="margin-right:5px; margin-top:-40px; position: relative;">Upload
                         </a>
                         <button type="button" class="btn btn-success btn-outline"
