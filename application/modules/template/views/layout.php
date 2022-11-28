@@ -45,8 +45,7 @@
                         </button>
 
                         <button href="<?php echo base_url(); ?>files/file" class="btn btn-success btn-outline"
-                            style="margin-right:5px; margin-top:-40px position: relative; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>"
-                            data-toggle="modal">
+                            style="margin-right:5px; margin-top:-40px position: relative; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>">
                             Upload Data
                         </button>
                         <button type="button" class="btn btn-success btn-outline"
