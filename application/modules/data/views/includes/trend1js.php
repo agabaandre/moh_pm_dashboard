@@ -11,7 +11,7 @@ function renderGraph(data) {
             text: '<?php echo $title ?>'
         },
         chart: {
-            height: 700,
+            height: 580,
 
         },
 
