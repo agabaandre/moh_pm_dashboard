@@ -26,10 +26,12 @@ function renderGraph(data) {
         },
 
 
+
         legend: {
-            layout: 'vertical',
-            align: 'bottom',
-            verticalAlign: 'bottom'
+            align: 'center',
+            verticalAlign: 'bottom',
+            x: 0,
+            y: 0
         },
 
         plotOptions: {
