@@ -18,10 +18,9 @@
         <ul class="nav navbar-nav" style="margin:0 auto;">
             <?php if ($this->session->userdata('isAdmin')) { ?>
             <li class="dropdown dropdown-user">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <i
-                        class="pe-7s-settings"></i>KPI DATA</a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> KPI DATA</a>
                 <ul class="dropdown-menu">
-                    <li><a href="<?php echo base_url(); ?>files/file"><i class="pe-7s-users"></i> Upload KPI DATA</a>
+                    <li><a href="<?php echo base_url(); ?>files/file">Upload KPI DATA</a>
                     </li>
 
                 </ul>
