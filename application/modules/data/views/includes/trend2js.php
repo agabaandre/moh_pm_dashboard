@@ -28,7 +28,7 @@ function renderGraph(data) {
 
         legend: {
             layout: 'vertical',
-            align: 'right',
+            align: 'bottom',
             verticalAlign: 'middle'
         },
 
@@ -45,21 +45,8 @@ function renderGraph(data) {
             enabled: false
         },
 
-        series: data.data,
-        responsive: {
-            // rules: [{
-            //     condition: {
-            //         maxWidth: 500
-            //     },
-            //     chartOptions: {
-            //         legend: {
-            //             layout: 'horizontal',
-            //             align: 'center',
-            //             verticalAlign: 'bottom'
-            //         }
-            //     }
-            // }]
-        }
+        series: data.data
+
 
     });
 };

@@ -7,63 +7,50 @@ function renderGraph(data) {
 
     Highcharts.chart('line<?php echo $chartkpi; ?>', {
 
-        title: {
-            text: '<?php echo $title ?>'
-        },
-        chart: {
-            height: 700,
-
-        },
-
-        subtitle: {
-            text: ''
-        },
-
-        yAxis: {
             title: {
-                text: 'Score (%)'
-            }
-        },
+                text: '<?php echo $title ?>'
+            },
+            chart: {
+                height: 700,
 
-        xAxis: {
+            },
 
-            categories: data.quaters
-        },
+            subtitle: {
+                text: ''
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Score (%)'
+                }
+            },
+
+            xAxis: {
+
+                categories: data.quaters
+            },
 
 
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
-        },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
 
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
-                },
-                enableMouseTracking: true
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    enableMouseTracking: true
 
-            }
-        },
-        credits: {
-            enabled: false
-        },
+                }
+            },
+            credits: {
+                enabled: false
+            },
 
-        series: data.data,
-        responsive: {
-            // rules: [{
-            //     condition: {
-            //         maxWidth: 500
-            //     },
-            //     chartOptions: {
-            //         legend: {
-            //             layout: 'horizontal',
-            //             align: 'center',
-            //             verticalAlign: 'bottom'
-            //         }
-            //     }
-            // }]
+            series: data.data
         }
 
     });
