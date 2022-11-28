@@ -7,51 +7,52 @@ function renderGraph(data) {
 
     Highcharts.chart('line<?php echo $chartkpi; ?>', {
 
+        title: {
+            text: '<?php echo $title ?>'
+        },
+        chart: {
+            height: 700,
+
+        },
+
+        subtitle: {
+            text: ''
+        },
+
+        yAxis: {
             title: {
-                text: '<?php echo $title ?>'
-            },
-            chart: {
-                height: 700,
+                text: 'Score (%)'
+            }
+        },
 
-            },
+        xAxis: {
 
-            subtitle: {
-                text: ''
-            },
-
-            yAxis: {
-                title: {
-                    text: 'Score (%)'
-                }
-            },
-
-            xAxis: {
-
-                categories: data.quaters
-            },
+            categories: data.quaters
+        },
 
 
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle'
-            },
+        legend: {
+            align: 'center',
+            verticalAlign: 'bottom',
+            x: 0,
+            y: 0
+        },
 
-            plotOptions: {
-                series: {
-                    label: {
-                        connectorAllowed: false
-                    },
-                    enableMouseTracking: true
+        plotOptions: {
+            series: {
+                label: {
+                    connectorAllowed: false
+                },
+                enableMouseTracking: true
 
-                }
-            },
-            credits: {
-                enabled: false
-            },
+            }
+        },
+        credits: {
+            enabled: false
+        },
 
-            series: data.data
-        }
+        series: data.data
+
 
     });
 };
