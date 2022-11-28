@@ -37,21 +37,25 @@
 
                     <?php //print_r(settings()); 
                     ?>
-                    <button type="button" class="btn btn-success btn-outline"
-                        style="float:right; margin-right:5px; margin-top:-40px; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>"
-                        data-toggle="modal" data-target="#definition">
-                        <?php echo display("definition"); ?>
-                    </button>
-                    <a href=" <?php echo base_url(); ?>files/file" type=" button" class="btn btn-success btn-outline"
-                        style="float:right; margin-right:5px; margin-top:-40px;"> </a>
-                    <button type=" button" class="btn btn-success btn-outline"
-                        style="float:right; margin-right:5px; margin-top:-40px; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>"
-                        data-toggle="modal" data-target="#definition">
-                        <?php echo display("definition"); ?>
-                    </button>
+                    <div class="row" style="display:flex;">
+                        <button type=" button" class="btn btn-success btn-outline" style="float:right; position: absolute; margin-right:5px; margin-top:-40px; <?php if
+                        ($this->uri->segment(2) == "summary") { ?> display:none; <?php } ?>" data-toggle="modal"
+                            data-target="#definition">
+                            <?php echo display("definition"); ?>
+                        </button>
+                        <a href=" <?php echo base_url(); ?>files/file" type=" button"
+                            class="btn btn-success btn-outline"
+                            style="float:right; margin-right:5px; margin-top:-40px; position: absolute;">Upload Data
+                        </a>
+                        <button type=" button" class="btn btn-success btn-outline"
+                            style="float:right; margin-right:5px; margin-top:-40px position: absolute; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>"
+                            data-toggle="modal" data-target="#definition">
+                            <?php echo display("definition"); ?>
+                        </button>
+                        <div>
 
 
-                </div>
+                        </div>
             </section>
 
 
