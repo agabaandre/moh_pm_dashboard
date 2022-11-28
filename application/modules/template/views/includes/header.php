@@ -30,10 +30,8 @@
             <?php if ($this->session->userdata('isAdmin')) { ?>
             <li class="dropdown notifications-menu open">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                    <i class="pe-7s-speaker"></i> KPIs
-                    <span class="label label-warning">
-                        <?php echo $this->db->get('kpi')->num_rows(); ?>
-                    </span>
+                    KPIs
+
                 </a>
                 <ul class="dropdown-menu">
 
