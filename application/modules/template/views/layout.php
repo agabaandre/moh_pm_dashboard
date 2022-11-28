@@ -43,7 +43,7 @@
                     <?php //print_r(settings()); 
                     ?>
                     <div class="row" style="display:flex; float:right; margin-right:5px; margin-top:-40px;">
-                        <div class="dropdown open">
+                        <div class="dropdown">
                             <a href="<?php echo base_url(); ?>files/file"
                                 class="btn btn-success btn-outline dropdown-toggle" data-toggle="dropdown"
                                 aria-expanded="true"
