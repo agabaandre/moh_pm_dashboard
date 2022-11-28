@@ -31,8 +31,8 @@
                 <div class="header-title">
                     <h3>
 
-                        <ol class="breadcrumb">
-                            <li><a href="#"><i class="pe-7s-home"></i> Dashboard</a></li>
+                        <ol class="breadcrumb" style="float:left !important; margin-left:4px;">
+                            <li><a href=" #"><i class="pe-7s-home"></i> Dashboard</a></li>
                             <li class="active">
                                 <?php if (!empty($uptitle)) {
                                     echo urldecode($uptitle);
