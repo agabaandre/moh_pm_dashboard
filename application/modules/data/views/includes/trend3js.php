@@ -10,7 +10,7 @@ function renderGraph(data) {
             text: '<?php echo $title; ?>'
         },
         chart: {
-            height: 600,
+            height: 900,
 
         },
         subtitle: {
