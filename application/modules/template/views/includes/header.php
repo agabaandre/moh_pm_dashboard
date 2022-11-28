@@ -82,7 +82,7 @@
 
                 </ul>
             </li> <!-- settings -->
-            <?php } ?>
+
             <li class="dropdown dropdown-user">
                 <a href="#" class="dropdown-toggle btn btn-sm btn-default" data-toggle="dropdown" style="border:0px;">
                     <?php echo $this->session->userdata('fullname') ?> <i class="fa fa-user"></i>
