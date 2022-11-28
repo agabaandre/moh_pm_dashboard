@@ -37,18 +37,18 @@
 
                     <?php //print_r(settings()); 
                     ?>
-                    <div class="row" style="display:flex;">
-                        <button type=" button" class="btn btn-success btn-outline" style="float:right; position: relative; margin-right:5px; margin-top:-40px; <?php if
+                    <div class="row" style="display:flex; float:right; margin-right:5px; margin-top:-40px;">
+                        <button type=" button" class="btn btn-success btn-outline" style=" position: relative; margin-right:5px; margin-top:-40px; <?php if
                         ($this->uri->segment(2) == "summary") { ?> display:none; <?php } ?>" data-toggle="modal"
                             data-target="#definition">
                             <?php echo display("definition"); ?>
                         </button>
                         <a href=" <?php echo base_url(); ?>files/file" type=" button"
                             class="btn btn-success btn-outline"
-                            style="float:right; margin-right:5px; margin-top:-40px; position: relative;">Upload Data
+                            style="margin-right:5px; margin-top:-40px; position: relative;">Upload Data
                         </a>
                         <button type=" button" class="btn btn-success btn-outline"
-                            style="float:right; margin-right:5px; margin-top:-40px position: relative; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>"
+                            style="margin-right:5px; margin-top:-40px position: relative; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>"
                             data-toggle="modal" data-target="#definition">
                             <?php echo display("definition"); ?>
                         </button>
