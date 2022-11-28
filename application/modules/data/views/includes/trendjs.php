@@ -10,8 +10,15 @@ Highcharts.chart('line<?php echo $chartkpi; ?>', {
         text: '<?php echo $title; ?>'
     },
     chart: {
-        height: 700,
+        height: 400,
 
+    },
+
+    legend: {
+        align: 'center',
+        verticalAlign: 'bottom',
+        x: 0,
+        y: 0
     },
     subtitle: {
         text: ''
@@ -37,10 +44,10 @@ Highcharts.chart('line<?php echo $chartkpi; ?>', {
     },
     series: [{
         name: 'Period',
-        data: <?php echo json_encode($graph['data'],  JSON_NUMERIC_CHECK); ?>
+        data: <?php echo json_encode($graph['data'],JSON_NUMERIC_CHECK); ?>
     }, {
         name: 'Target',
-        data: <?php echo json_encode($graph[' target '],  JSON_NUMERIC_CHECK); ?>
+        data: <?php echo json_encode($graph[' target '],JSON_NUMERIC_CHECK); ?>
     }]
 });
 </script>

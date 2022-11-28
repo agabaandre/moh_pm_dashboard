@@ -10,7 +10,7 @@ function renderGraph(data) {
             text: '<?php echo $title; ?>'
         },
         chart: {
-            height: 700,
+            height: 600,
 
         },
         subtitle: {
@@ -29,11 +29,12 @@ function renderGraph(data) {
         },
 
 
-        // legend: {
-        //     layout: 'vertical',
-        //     align: 'right',
-        //     verticalAlign: 'middle'
-        // },
+        legend: {
+            align: 'center',
+            verticalAlign: 'bottom',
+            x: 0,
+            y: 0
+        },
 
         plotOptions: {
             series: {
@@ -48,21 +49,8 @@ function renderGraph(data) {
             enabled: false
         },
 
-        series: data.data,
-        responsive: {
-            // rules: [{
-            //     condition: {
-            //         maxWidth: 500
-            //     },
-            //     chartOptions: {
-            //         legend: {
-            //             layout: 'horizontal',
-            //             align: 'center',
-            //             verticalAlign: 'bottom'
-            //         }
-            //     }
-            // }]
-        }
+        series: data.data
+
 
     });
 };
