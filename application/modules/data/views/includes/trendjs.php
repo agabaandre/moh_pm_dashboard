@@ -1,18 +1,17 @@
+<?php $graph = Modules::run("data/dimension0", $this->uri->segment(3));
 
-<?php $graph=Modules::run("data/dimension0",$this->uri->segment(3)); 
-
- ?> 
+?>
 <script>
 Highcharts.chart('line<?php echo $chartkpi; ?>', {
     chart: {
         type: 'line'
     },
-     title: {
+    title: {
         text: '<?php echo $title; ?>'
     },
     chart: {
-        height: 500,
-        
+        height: 700,
+
     },
     subtitle: {
         text: ''
@@ -34,15 +33,14 @@ Highcharts.chart('line<?php echo $chartkpi; ?>', {
         }
     },
     credits: {
-            enabled: false
+        enabled: false
     },
     series: [{
         name: 'Period',
-        data: <?php echo json_encode($graph['data'],JSON_NUMERIC_CHECK); ?>
+        data: <?php echo json_encode($graph['data'],  JSON_NUMERIC_CHECK); ?>
     }, {
         name: 'Target',
-        data: <?php echo json_encode($graph['target'],JSON_NUMERIC_CHECK); ?>
+        data: <?php echo json_encode($graph[' target '],  JSON_NUMERIC_CHECK); ?>
     }]
 });
-
 </script>

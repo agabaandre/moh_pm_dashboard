@@ -1,19 +1,18 @@
-<?php 
+<?php
 
 
 ?>
 <script>
+function renderGraph(data) {
 
-    function renderGraph(data){
-
-        Highcharts.chart('line<?php echo $chartkpi; ?>', {
+    Highcharts.chart('line<?php echo $chartkpi; ?>', {
 
         title: {
             text: '<?php echo $title ?>'
         },
         chart: {
-        height: 700,
-        
+            height: 700,
+
         },
 
         subtitle: {
@@ -27,10 +26,10 @@
         },
 
         xAxis: {
-            
-            categories:data.quaters
-            },
-        
+
+            categories: data.quaters
+        },
+
 
         legend: {
             layout: 'vertical',
@@ -43,42 +42,42 @@
                 label: {
                     connectorAllowed: false
                 },
-                    enableMouseTracking: true
+                enableMouseTracking: true
 
             }
         },
         credits: {
-                enabled: false
+            enabled: false
         },
 
         series: data.data,
         responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
+            // rules: [{
+            //     condition: {
+            //         maxWidth: 500
+            //     },
+            //     chartOptions: {
+            //         legend: {
+            //             layout: 'horizontal',
+            //             align: 'center',
+            //             verticalAlign: 'bottom'
+            //         }
+            //     }
+            // }]
         }
 
     });
 };
 
-$(document).ready(function(){
+$(document).ready(function() {
 
     $.ajax({
-        url:'<?php echo  base_url()."data/dim1data/".$this->uri->segment(3);?>',
-        success:function(response){
+        url: '<?php echo base_url() . "data/dim1data/" . $this->uri->segment(3); ?>',
+        success: function(response) {
             //console.log(response);
             renderGraph(JSON.parse(response));
         }
-     });
+    });
 
 });
 </script>
@@ -86,22 +85,20 @@ $(document).ready(function(){
 <script>
 $("#trend1").submit(function(e) {
 
-e.preventDefault(); // avoid to execute the actual submit of the form.
+    e.preventDefault(); // avoid to execute the actual submit of the form.
 
-var form = $(this);
-var actionUrl = form.attr('action');
+    var form = $(this);
+    var actionUrl = form.attr('action');
 
-$.ajax({
-    type: "POST",
-    url: '<?php echo  base_url()."data/dim1data/".$this->uri->segment(3);?>',
-    data: form.serialize(), // serializes the form's elements.
-    success: function(data)
-    {
-      renderGraph(JSON.parse(data));
-      console.log(data); // show response from the php script.
-    }
+    $.ajax({
+        type: "POST",
+        url: '<?php echo base_url() . "data/dim1data/" . $this->uri->segment(3); ?>',
+        data: form.serialize(), // serializes the form's elements.
+        success: function(data) {
+            renderGraph(JSON.parse(data));
+            console.log(data); // show response from the php script.
+        }
+    });
+
 });
-
-});
-
 </script>
