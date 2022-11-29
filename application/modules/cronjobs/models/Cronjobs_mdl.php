@@ -74,7 +74,7 @@ class Cronjobs_mdl extends CI_Model
 		} elseif ($this->getkpiType($kpi) == "Monthly") {
 			$this->period = str_replace(" ", "", $this->period($kpi));
 			$dateObj = DateTime::createFromFormat('!m', $this->period);
-			if ($dateObj) {
+			if ($dateObj>0) {
 				$monthName = $dateObj->format('F');
 				$newdate = date("F", strtotime('-1 month', strtotime($monthName)));
 				$value = date('m', strtotime($newdate));
