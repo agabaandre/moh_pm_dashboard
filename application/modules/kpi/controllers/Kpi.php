@@ -51,7 +51,7 @@ class Kpi extends MX_Controller
 		return $kpis;
 	}
 
-	public function categoryKpi($id = FALSE, $kpiType)
+	public function categoryKpi($id, $kpiType)
 	{
 
 		$kpis = $this->kpi_mdl->categoryKpi($id, $kpiType);
