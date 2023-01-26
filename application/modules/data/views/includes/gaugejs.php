@@ -107,14 +107,14 @@ Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
             rotation: 'auto'
         },
       title: {
-        text: 'Target <?php echo $current_target=$gauge['data'][0]->current_target; ?> %'
+        text: 'Target <?php echo $current_target=$gauge['data']->current_target; ?> %'
       },
       plotBands: [<?php echo $gauge['config'][0]->config_json; ?> ]
     },
 
     series: [{
       name: '<?php echo $gauge['details'][0]->indicator_statement; ?> ',
-      data: [<?php echo $current_value=round($gauge['data'][0]->current_value); ?>],
+      data: [<?php echo $current_value=round($gauge['data']->current_value); ?>],
       tooltip: {
         valueSuffix: ' %'
       }

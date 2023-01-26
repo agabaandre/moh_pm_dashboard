@@ -30,7 +30,7 @@ if(($this->uri->segment(1)=="dashboard")||($this->uri->segment(1)=="")){
    <?php 
    
   
-   echo $kstatus=Modules::run("data/kpiTrend",$gauge['data'][0]->current_target,$gauge['data'][0]->current_value,$gauge['data'][0]->previous_value,$gauge['data'][0]->cp,$gauge['data'][0]->pp);
+   echo $kstatus=Modules::run("data/kpiTrend",$gauge['data']->current_target,$gauge['data']->current_value,$gauge['data']->previous_value,$gauge['data']->cp,$gauge['data']->pp);
    
    ?>
    <br>

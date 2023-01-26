@@ -24,7 +24,7 @@
  endif; // for category two check
 
 foreach ($subdash as $subd) {       
-       echo Modules::run('data/kpi',$subd->kpi_id,'on');             
+       echo @Modules::run('data/kpi',$subd->kpi_id,'on');             
  }
 
  if(count($subdash) == 0):

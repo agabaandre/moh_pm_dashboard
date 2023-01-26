@@ -83,7 +83,7 @@ class Data extends MX_Controller {
 
 		$data['module']  = "data";
 	 	$data['page']    = 'trend';
-		$data['chartkpi'] = $kpi;
+		$data['chartkpi']=$kpi;
 		$data['uptitle'] = $this->data_mdl->subject_name($kpi);
 		$data['title']   = $this->data_mdl->kpi_name($kpi);
 	
