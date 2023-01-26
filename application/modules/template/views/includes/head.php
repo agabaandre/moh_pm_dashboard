@@ -39,6 +39,7 @@
         <link href="<?php echo base_url('assets/css/bootstrap-toggle.min.css') ?>" rel="stylesheet" type="text/css"/>
         <!-- Theme style -->
         <link href="<?php echo base_url('assets/css/custom.css') ?>" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo base_url('assets/css/lobipanel.css') ?>" rel="stylesheet" type="text/css"/>
         <link href="<?php echo base_url('assets/js/sweetalert/sweetalert.css') ?>" rel="stylesheet" type="text/css"/>
         <!-- summernote css -->
         <link href="<?php echo base_url('assets/plugins/summernote/summernote.css'); ?>" rel="stylesheet" type="text/css"/>

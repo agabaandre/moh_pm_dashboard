@@ -38,7 +38,7 @@
                     <div class="col-sm-6">
                         <div class="card">
                 
-                               <div class="card-content">
+                               <div class="card-content" style="display:none;">
                                     <div class="col-lg-6" >
                                         <h4  style="text-align:center; padding-bottom:1em; text-weight:bold;">Data Management</h4>
                                         <h5> KPI Data</h5>

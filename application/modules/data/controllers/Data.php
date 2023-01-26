@@ -35,11 +35,13 @@ class Data extends MX_Controller {
 		$data['chartkpi'] = $kpi;
 
 		//gauge data
-	  $data['gauge']    = $this->graph_mdl->gaugeData(str_replace(" ",'',$kpi));
-		$data['financial_year'] = $_SESSION['fy'];
-		$data['title']    = str_replace("_"," ",urldecode($this->uri->segment(4)));
+	    $data['gauge']    = $this->graph_mdl->gaugeData(str_replace(" ",'',$kpi));
+		$data['financial_year'] = $_SESSION['financial_year'];
+		$data['title']    = @str_replace("_"," ",urldecode($this->uri->segment(4)));
 		$data['page']     = 'dash_chart';
 		$data['module']   = "data";
+
+		
 
 		if(!empty($dashdis === 'on')){
 		 	$this->load->view('dash_chart',$data);
@@ -81,6 +83,7 @@ class Data extends MX_Controller {
 
 		$data['module']  = "data";
 	 	$data['page']    = 'trend';
+		$data['chartkpi'] = $kpi;
 		$data['uptitle'] = $this->data_mdl->subject_name($kpi);
 		$data['title']   = $this->data_mdl->kpi_name($kpi);
 	
@@ -109,7 +112,7 @@ class Data extends MX_Controller {
 
 	//BAR GRAPH
 	public function dimension0($kpi){
-
+		$data['chartkpi'] = $kpi;
 		$data['quaters'] = $this->graph_mdl->dim0quaters($kpi);
 		$data['data']    = $this->graph_mdl->dim0data($kpi);
 		$data['target']  = $this->graph_mdl->dim0targets($kpi);
@@ -119,10 +122,8 @@ class Data extends MX_Controller {
 	
 
   public function dimension1($kpi){
-   //print_r(implode(",",$this->input->post('dimension1')));
-       
-	//print_r($dimension1);
-			$data['module']  = "data";
+		$data['chartkpi'] = $kpi;
+		$data['module']  = "data";
 	 	$data['page']    = 'trend1';
 		$data['uptitle'] = $this->data_mdl->subject_name($kpi);
 		$data['title']   = $this->data_mdl->kpi_name($kpi);
@@ -133,6 +134,7 @@ class Data extends MX_Controller {
 
 
 	public function dimension2($kpi){
+		$data['chartkpi'] = $kpi;
 		
 		$data['module']  = "data";
 	 	$data['page']    = 'trend2';
@@ -145,7 +147,8 @@ class Data extends MX_Controller {
 
 
 	public function dimension3($kpi){
-		
+
+		$data['chartkpi'] = $kpi;
 		$data['module']  = "data";
 	 	$data['page']    = 'trend3';
 		$data['uptitle'] = $this->data_mdl->subject_name($kpi);

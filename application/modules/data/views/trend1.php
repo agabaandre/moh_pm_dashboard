@@ -83,7 +83,7 @@ if (count($dim1vals)>8):
    <div class="<?php echo $col ?>" style="text-align:center; background-color:#feffff;">
    
         <div id="line<?php echo $chartkpi; ?>"> 
-         </div>
+        </div>
 
 
 </div>

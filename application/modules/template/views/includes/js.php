@@ -1,6 +1,9 @@
 <script src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>" type="text/javascript"></script> 
         <!-- bootstrap js -->
+
         <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>" type="text/javascript"></script>  
+        <script type="text/javascript" src="<?php echo base_url('assets/js/lobipanel.js'); ?>"></script>
+       
         <!-- pace js -->
         <script src="<?php echo base_url('assets/js/pace.min.js') ?>" type="text/javascript"></script>  
         <!-- SlimScroll -->
@@ -17,6 +20,7 @@
         <!-- DataTables JavaScript -->
 
         <script type="text/javascript" src="<?php echo base_url('assets/css/DataTables/datatables.min.js'); ?>"></script>
+        
         <!-- Table Head Fixer -->
         <script src="<?php echo base_url() ?>assets/js/tableHeadFixer.js" type="text/javascript"></script> 
         <!-- Admin Script -->

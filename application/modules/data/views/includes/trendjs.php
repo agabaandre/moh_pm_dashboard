@@ -47,7 +47,7 @@ Highcharts.chart('line<?php echo $chartkpi; ?>', {
         data: <?php echo json_encode($graph['data'],JSON_NUMERIC_CHECK); ?>
     }, {
         name: 'Target',
-        data: <?php echo json_encode($graph[' target '],JSON_NUMERIC_CHECK); ?>
+        data: <?php echo json_encode($graph['target'], JSON_NUMERIC_CHECK); ?>
     }]
 });
 </script>

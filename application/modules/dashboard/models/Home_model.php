@@ -87,7 +87,7 @@ class Home_model extends CI_Model {
 
 		//  $query=$this->db->query("SELECT subject_areas.id,kpi.kpi_id FROM kpi right join subject_areas on subject_areas.id=kpi.subject_area ");
 
-			return $query->result();
+		return $query->result();
 	}
 
 
