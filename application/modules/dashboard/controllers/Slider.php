@@ -16,12 +16,24 @@ class Slider extends MX_Controller
 
     function index()
     {
-        $data['sliders'] = $this->slider_model->slider_data();
         $data['module'] = "dashboard";
         $data['page'] = "home/Slider";
         $data['uptitle'] = "Performance Over View";
         $data['title'] = "Perfomance";
         echo Modules::run('template/layout', $data);
+    }
+
+    public function getsummaries($kpi){
+
+        return $this->slider_model->slider_data($kpi);
+    }
+    public function getsubjects()
+    {
+        return $this->slider_model->get_subjects();
+    }
+    public function getkpi($subject)
+    {
+        return $this->slider_model->getkpis($subject);
     }
 
 

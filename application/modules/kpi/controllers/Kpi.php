@@ -279,33 +279,39 @@ class Kpi extends MX_Controller
 		$previous_period = FALSE
 	)
 	{
+		if ($gauge_value) {
 
-		if ($previous_period != 0) {
-			$previous_period = 'for ' . $previous_period;
-		} else {
-			$previous_period = '';
-		}
-
-		if (($current_target) > 40) {
-			if ($gauge_value >= $current_target) {
-				return 'style="background-color:green; color:white;"';
-			} elseif (($gauge_value < $current_target) && ($gauge_value >= 50)) {
-				return 'style="background-color:orange; color:white;"';
+			if ($previous_period != 0) {
+				$previous_period = 'for ' . $previous_period;
 			} else {
-				return 'style="background-color:red; color:white;"';
+				$previous_period = '';
+			}
+
+			if (($current_target) > 40) {
+				if ($gauge_value >= $current_target) {
+					return 'style="background-color:green; color:white;"';
+				} elseif (($gauge_value < $current_target) && ($gauge_value >= 50)) {
+					return 'style="background-color:orange; color:white;"';
+				} else {
+					return 'style="background-color:red; color:white;"';
+				}
+			}
+
+			//reducing
+			if (($current_target) < 40) {
+
+				if ($gauge_value <= $current_target) {
+					return 'style="background-color:green; color:white;"';
+				} elseif (($gauge_value < $current_target) && ($gauge_value >= 50)) {
+					return 'style="background-color:orange; color:white;"';
+				} else {
+					return 'style="background-color:red; color:white;"';
+				}
 			}
 		}
+		else{
+			return 'style="background-color:red; color:white;"';
 
-		//reducing
-		if (($current_target) < 40) {
-
-			if ($gauge_value <= $current_target) {
-				return 'style="background-color:green; color:white;"';
-			} elseif (($gauge_value < $current_target) && ($gauge_value >= 50)) {
-				return 'style="background-color:orange; color:white;"';
-			} else {
-				return 'style="background-color:red; color:white;"';
-			}
 		}
 
 	}

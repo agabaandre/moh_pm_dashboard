@@ -31,7 +31,13 @@
         <script src="<?php echo base_url() ?>assets/js/custom.js" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/js/datetimepicker.js') ?>" type="text/javascript"></script>
     
-      
+      <script>
+
+    $('.carousel').carousel({
+    interval: 2000
+    })
+
+      </script>
 <!-- End Core Plugins -->
  <!-- Start Page Lavel Plugins
         =====================================================================-->
@@ -55,6 +61,7 @@ $(document).ready(function() {
 
     });
 
+ 
 </script>
 
 
@@ -72,3 +79,4 @@ $(document).ready(function() {
         }   
     }   
 ?>
+
