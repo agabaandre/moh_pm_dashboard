@@ -9,7 +9,10 @@
                         </div>
                     </div>
                     <div class="panel-body">
+                          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
+                                 <div class="carousel-inner">
+  
 
 
                                  <?php   
@@ -18,14 +21,13 @@
                                  $i = 1;
                                  foreach($subs as $sub):
                                 ?>
-                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-
-                                 <div class="carousel-inner">
+                              
                                  <div class="item<?php if ($sub->id == 1) {
-                                     echo "active";
+                                     echo " active";
                                  } else {
                                      echo "";
-                                 }?>">          
+                                 }?>"> 
+                                         
                                     <table id="subject" class="table table-responsive table-striped table-bordered" style="width:100%;">
                                     
                             <h2 class="text-muted green"><?php echo $i++; ?>: <?php echo $sub->name;?></h2>
@@ -66,7 +68,7 @@
                                                         echo Modules::run("kpi/kpiTrendcolors", @$data->current_target, @$data->current_value, @$data->previous_value, @$data->cp, @$data->pp);
                                                         ?>><?php echo @$data->current_value;
                                                 if (@$data->current_value) {
-                                                   } ?></td>
+                                                  } ?></td>
                                                 <td style="width:13%;"><?php echo @$data->previous_value; ?></td>
                     
                                             </tr>
@@ -78,16 +80,20 @@
                                            </tbody>
                                            <tfoot>
                                             <tr>
-                                                <td colspan="4">Reported on</td>
-                                                <td colspan="3"><?php echo $kpi_ids; ?></td>
+                                                <td colspan="4">Reporting Rate</td>
+                                                <td colspan="3"><?php count((array)$data); ?></td>
                                             <tr>
                                             <tfoot>
                                     </table>
                                      </div>
+
+            
+                                  
                                       
-                                      </div>
-                                      </div>
+                                    
                                     <?php endforeach;?>
+                                      </div>
+                                      </div>
                                     
 
                    
