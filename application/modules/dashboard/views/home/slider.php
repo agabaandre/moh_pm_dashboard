@@ -1,4 +1,11 @@
+<style>
+ .carousel-control.left, .carousel-control.right{ 
+    background: none !important;
+    filter: none !important;
+    progid:none !important;
+}
 
+</style>
 <div class="content">
         <div class="row">
             <div class="col-sm-12 col-md-12">
@@ -9,7 +16,7 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000" >
 
                                  <div class="carousel-inner">
   
@@ -26,7 +33,7 @@
                                      echo " active";
                                  } else {
                                      echo "";
-                                 }?>"> 
+                                 }?>" style="min-height:700px;"> 
                                          
                                     <table id="subject" class="table table-responsive table-striped table-bordered" style="width:100%;">
                                     
