@@ -7,7 +7,7 @@ Highcharts.chart('line<?php echo $chartkpi; ?>', {
         type: 'line'
     },
     title: {
-        text: '<?php echo $title; ?>'
+        text: '<?php echo preg_replace('/[^A-Za-z0-9\-]/', '', $title); ?>'
     },
     chart: {
         height: 400,
