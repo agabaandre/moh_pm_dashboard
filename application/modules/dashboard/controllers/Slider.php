@@ -36,6 +36,13 @@ class Slider extends MX_Controller
         return $this->slider_model->getkpis($subject);
     }
 
+    public function reporting_rate($subject)
+    {
+        $query = $this->db->query("SELECT distinct new_data.kpi_id from new_data join kpi on kpi.kpi_id=new_data.kpi_id WHERE kpi.subject_area='$subject'")->num_rows();
+        return $query;
+    }
+
+
 
 
 }

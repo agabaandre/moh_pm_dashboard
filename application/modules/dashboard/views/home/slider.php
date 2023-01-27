@@ -88,7 +88,7 @@
                                            <tfoot>
                                             <tr>
                                                 <td colspan="4">Reporting Rate</td>
-                                                <td colspan="3"><?php count((array)$data); ?></td>
+                                                <td colspan="3"><?php echo Modules::run('dashboard/slider/reporting_rate', $sub->id); ?> out of <?php echo $i; ?></td>
                                             <tr>
                                             <tfoot>
                                     </table>
