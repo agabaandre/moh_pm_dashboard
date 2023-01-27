@@ -34,7 +34,7 @@
       <script>
 
     $('.carousel').carousel({
-    interval: 2000
+    interval: 4000
     })
 
       </script>
