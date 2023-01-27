@@ -8,7 +8,7 @@ function renderGraph(data) {
     Highcharts.chart('line<?php echo $chartkpi; ?>', {
 
         title: {
-            text: '<?php echo preg_replace('/[^A-Za-z0-9\-]/', '', $title); ?>'
+            text: '<?php echo $title ?>'
         },
         chart: {
             height: 580,
