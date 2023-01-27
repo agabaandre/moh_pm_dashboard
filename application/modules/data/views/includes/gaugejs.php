@@ -1,7 +1,10 @@
+
 <script>
 Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
+
     chart: {
       type: 'gauge',
+
         events: {
             load: function () {
                 var label = this.renderer.label('')
@@ -9,6 +12,7 @@ Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
                     width: '500px',
             
                     fontSize: '8px'
+                  
                 })
                 .add();
                 
@@ -30,11 +34,11 @@ Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
     
 
     subtitle: {
-      text: '<a href="<?php echo base_url().'data/kpidetails/'.$gauge['details'][0]->kpi_id.'/'.$gauge['details'][0]->subject_area; ?>" class="kpi-info"><?php echo "KPI Info"; ?></a>'
+      text: '<a href="<?php echo base_url().'data/kpidetails/'.$gauge['details'][0]->kpi_id.'/'.$gauge['details'][0]->subject_area; ?>"><button class="btn"  style="word-wrap:normal; color:#2286c3; font-size:11px;" ><?php echo "KPI Info"; ?> <button/> </a>'
     },
 
     title: {
-      text: '<a href="<?php echo base_url().'data/kpidata/'.$gauge['details'][0]->kpi_id.'/'.$gauge['details'][0]->subject_area; ?>" class="kpi-label"><?php echo trim($gauge['details'][0]->short_name); ?> </a>'
+      text: '<a href="<?php echo base_url().'data/kpidata/'.$gauge['details'][0]->kpi_id.'/'.$gauge['details'][0]->subject_area; ?>"><button class="btn"  style="word-wrap:normal; color:#3f424a; font-size:12.5px; " ><?php echo trim($gauge['details'][0]->short_name); ?><button/> </a>'
     },
 
     pane: {
@@ -107,8 +111,8 @@ Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
     },
 
     series: [{
-      name: '<?php echo $gauge['details'][0]->indicator_statement; ?> ',
-      data: [<?php echo $current_value=round($gauge['data']->current_value); ?>],
+      name: '<?php echo trim($gauge['details'][0]->indicator_statement); ?> ',
+      data: [<?php echo trim($current_value=round($gauge['data']->current_value)); ?>],
       tooltip: {
         valueSuffix: ' %'
       }

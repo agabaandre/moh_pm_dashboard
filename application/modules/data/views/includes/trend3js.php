@@ -7,7 +7,7 @@ function renderGraph(data) {
     Highcharts.chart('line<?php echo $chartkpi; ?>', {
 
         title: {
-            text: '<?php echo $title; ?>'
+            text: '<?php echo trim($title); ?>'
         },
         chart: {
             height: 900,
