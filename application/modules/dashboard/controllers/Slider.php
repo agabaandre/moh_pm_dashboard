@@ -17,7 +17,7 @@ class Slider extends MX_Controller
     function index()
     {
         $data['module'] = "dashboard";
-        $data['page'] = "home/Slider";
+        $data['page'] = "home/slider";
         $data['uptitle'] = "Performance Over View";
         $data['title'] = "Perfomance";
         echo Modules::run('template/layout', $data);
