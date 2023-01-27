@@ -50,33 +50,45 @@ class Slider extends MX_Controller
         $data['title'] = "Reporting by Departement";
         echo Modules::run('template/layout', $data);
     }
-    public function get_reporting_rate($sub,$qtr,$fy){
-        $kpis_with_data = $this->db->query("SELECT distinct new_data.kpi_id as kpis_with_data from new_data join kpi on kpi.kpi_id=new_data.kpi_id WHERE kpi.subject_area='$sub' and new_data.period='$qtr' and new_data.financial_year='$fy' and new_data.period in(SELECT distinct period from new_data)")->num_rows();
-        $total_kpis = $this->db->query("SELECT kpi_id as total_kpis from kpi WHERE subject_area='$sub'")->num_rows();
-        $qtrs = $this->db->query("SELECT distinct period from new_data where financial_year='$fy' and period='$qtr'")->num_rows();
-        if((0 > (($kpis_with_data / $total_kpis) * 50) < 90) && ($qtrs>0)) {
-            $color = "style='background-color:red; color:#FFF;'";
-        }
-        else if ((50> (($kpis_with_data / $total_kpis) * 100)<90) && ($qtrs>0)){
-            $color = "style='background-color:yellow; color:#FFF;'";
+    public function get_reporting_rate($sub, $qtr, $fy)
+    {
+        // Get the number of distinct KPIs with data that match the subject area, quarter, and financial year
+        $kpis_with_data = $this->db->query("SELECT COUNT(DISTINCT new_data.kpi_id) as kpis_with_data FROM new_data JOIN kpi ON kpi.kpi_id = new_data.kpi_id WHERE kpi.subject_area = '$sub' AND new_data.period = '$qtr' AND new_data.financial_year = '$fy'")->row()->kpis_with_data;
 
-        }
-       else if ((90 > (($kpis_with_data / $total_kpis)*100) <= 100) && ($qtrs>0)){
-            $color = "style='background-color:green; color:#FFF;'";
-            
-        }
-        else if ($qtrs<=0){
+        // Get the total number of KPIs that match the subject area
+        $total_kpis = $this->db->query("SELECT COUNT(kpi_id) as total_kpis FROM kpi WHERE subject_area = '$sub'")->row()->total_kpis;
+
+        // Get the number of distinct quarters that match the financial year and quarter
+        $qtrs = $this->db->query("SELECT COUNT(DISTINCT period) as total_qtrs FROM new_data WHERE financial_year = '$fy' AND period = '$qtr'")->row()->total_qtrs;
+
+        // Initialize the color variable
+        $color = "";
+
+        // Calculate the reporting rate as a percentage
+        $reporting_rate = ($kpis_with_data / $total_kpis) * 100;
+
+        // Set the color based on the reporting rate
+        if ($qtrs > 0) {
+            if ($reporting_rate < 50) {
+                $color = "style='background-color:red; color:#FFF;'";
+            } elseif ($reporting_rate >= 50 && $reporting_rate < 90) {
+                $color = "style='background-color:yellow; color:#FFF;'";
+            } elseif ($reporting_rate >= 90) {
+                $color = "style='background-color:green; color:#FFF;'";
+            }
+        } else {
             $color = "style='background-color:grey; color:grey;'";
         }
-        $status = $kpis_with_data .'/'.$total_kpis;
-    return (object)['report_status' => "$status",'color'=>"$color"];
+        $status = $kpis_with_data . '/' . $total_kpis;
+        return (object) ['report_status' => "$status", 'color' => "$color"];
     }
 
-    
 
 
 
-    
+
+
+
 
 
 
