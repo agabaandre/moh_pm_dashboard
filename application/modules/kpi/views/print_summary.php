@@ -67,13 +67,13 @@ table.minimalistBlack tfoot td {
                                                     $gauge=Modules::run('Kpi/gaugeData',$element->kpi_id); ?>
                                                     <a href="<?php echo base_url().'data/kpidata/'.$gauge['gauge']['details'][0]->kpi_id.'/'.$gauge['gauge']['details'][0]->subject_area; ?>" target="_self"><p class=""  style=" color:#072b41; font-size:12px; text-decoration:none;" ><?php echo $gauge['gauge']['details'][0]->short_name; ?></p></a></td>
                                                     
-                                                    <td><?php echo $gauge['gauge']['data'][0]->current_target; ?></td>
-                                                    <td><?php echo $gauge['gauge']['data'][0]->financial_year; ?></td>
+                                                    <td><?php echo $gauge['gauge']['data']->current_target; ?></td>
+                                                    <td><?php echo $gauge['gauge']['data']->financial_year; ?></td>
                                                     <td  <?php 
                                                     
-                                                    echo Modules::run("kpi/kpiTrendcolors",$gauge['gauge']['data'][0]->current_target,$gauge['gauge']['data'][0]->current_value,$gauge['gauge']['data'][0]->previous_value,$gauge['gauge']['data'][0]->cp,$gauge['gauge']['data'][0]->pp);
+                                                    echo Modules::run("kpi/kpiTrendcolors",$gauge['gauge']['data']->current_target,$gauge['gauge']['data']->current_value,$gauge['gauge']['data']->previous_value,$gauge['gauge']['data']->cp,$gauge['gauge']['data']->pp);
                                                      ?>>
-                                                     <?php echo  $gauge['gauge']['data'][0]->current_value.'%'; ?>
+                                                     <?php echo  $gauge['gauge']['data']->current_value.'%'; ?>
                                                      </td>
                      
                                                     
