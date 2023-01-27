@@ -30,11 +30,11 @@ Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
     
 
     subtitle: {
-        text: '<a href="https://pmd.health.go.ug/data/kpidetails/KPI-500/19"><button class="btn" style="word-wrap:normal; color:#2286c3; font-size:11px;">KPI Info</button> </a>'
+      text: '<a href="<?php echo base_url().'data/kpidetails/'.$gauge['details'][0]->kpi_id.'/'.$gauge['details'][0]->subject_area; ?>" class="kpi-info"><?php echo "KPI Info"; ?></a>'
     },
 
     title: {
-      text: '<a href="<?php echo base_url().'data/kpidata/'.$gauge['details'][0]->kpi_id.'/'.$gauge['details'][0]->subject_area; ?>"><button class="btn"  style="word-wrap:normal; color:#3f424a; font-size:12.5px; " ><?php echo $gauge['details'][0]->short_name; ?><button/> </a>'
+      text: '<a href="<?php echo base_url().'data/kpidata/'.$gauge['details'][0]->kpi_id.'/'.$gauge['details'][0]->subject_area; ?>" class="kpi-label"><?php echo $gauge['details'][0]->short_name; ?> </a>'
     },
 
     pane: {
