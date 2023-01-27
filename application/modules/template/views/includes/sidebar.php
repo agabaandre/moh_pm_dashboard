@@ -32,6 +32,14 @@
                         <span>Performance Summary</span>
                     </a>
         </li>
+    
+
+          <li class="treeview <?php echo (($this->uri->segment(3) == "department_reporting") ? "active" : null) ?>">
+                    <a href="<?php echo base_url(); ?>dashboard/slider/department_reporting">
+                    <i class="fa fa-list"></i>
+                        <span>Reporting Rates</span>
+                    </a>
+        </li>
 
 <?php
 

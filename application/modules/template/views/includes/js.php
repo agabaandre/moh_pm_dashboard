@@ -54,7 +54,20 @@ $(document).ready(function() {
      $('.js-example-basic-multiple').select2();
 
     });
-
+$(document).ready(function() {
+    $("#fullscreen-btn").click(function() {
+        var el = document.getElementById("fill-screen");
+        if (el.requestFullscreen) {
+            el.requestFullscreen();
+        } else if (el.mozRequestFullScreen) {
+            el.mozRequestFullScreen();
+        } else if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen();
+        } else if (el.msRequestFullscreen) {
+            el.msRequestFullscreen();
+        }
+    });
+});
 </script>
 
 
