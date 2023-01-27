@@ -8,25 +8,15 @@
                             <h2>KPI Reporting Rates by Department</h2>
                         </div>
                     </div>
-                    <div class="panel-body">
-                    
-
-                             <?php   
-                                            
-                                $subs=Modules::run('dashboard/slider/getsubjects');
-                                 $i = 1;
-                                 foreach($subs as $sub):
-                                ?>
-                              
-                          
-                                         
+                    <div class="col-md-12 text-align-center"><h4>Financial Year: <?php echo $this->session->userdata('financial_year'); ?></h4>   </div>
+                    <div class="panel-body">   
+                               
                                 <table id="subject" class="table table-responsive table-striped table-bordered" style="width:100%;">
                                 
-
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Indicator Statement</th>
+                                                <th>Department</th>
                                                 <th>Quater 1</th>
                                                 <th>Quater 2</th>
                                                 <th>Quater 3</th>
@@ -35,48 +25,36 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                                <?php 
-                                                $kpis=Modules::run('dashboard/slider/getkpi',$sub->id);
-                                                        $i = 1;
-                                              
-                                                        foreach($kpis as $kpi):
-                                                        $kpi_ids = $kpi->kpi_id;
-                                                        $data = Modules::run('dashboard/slider/getsummaries', $kpi->kpi_id);
-
-                                                  //  echo sizeof((array)$data);
-                                                        ?>
+                                              <?php   
+                                            
+                                                $subs=Modules::run('dashboard/slider/getsubjects');
+                                                $i = 1;
+                                              foreach ($subs as $sub):
+                                                  $fy = $this->session->userdata('financial_year');
+                                                  $q1_val = Modules::run('dashboard/slider/get_reporting_rate',$sub->id,'Q1',$fy);
+                                                  $q2_val = Modules::run('dashboard/slider/get_reporting_rate',$sub->id, 'Q2',$fy);
+                                                  $q3_val = Modules::run('dashboard/slider/get_reporting_rate', $sub->id, 'Q3',$fy);
+                                                  $q4_val = Modules::run('dashboard/slider/get_reporting_rate', $sub->id, 'Q4',$fy);
+                                                  ?>
+                                            
                                             <tr>
                                                 
                                                 <td><?php echo $i++;?></td>
-                                                <td><?php echo $kpi->indicator_statement;?></td>
-                                                <td><?php echo @$data->financial_year; ?></td>
-                                                <td><?php echo @$data->cp; ?></td>
-                                                <td ><?php echo @$data->current_target;  ?></td>
-                                                <td  <?php
-
-                                                        echo Modules::run("kpi/kpiTrendcolors", @$data->current_target, @$data->current_value, @$data->previous_value, @$data->cp, @$data->pp);
-                                                        ?>><?php echo @$data->current_value;
-                                                if (@$data->current_value) {
-                                                  } ?></td>
-                                                <td style="width:13%;"><?php echo @$data->previous_value; ?></td>
-                    
-                                            </tr>
+                                                <td><?php echo $sub->name;?></td>
+                                                
+                                                <td <?php echo $q1_val->color; ?>><?php echo $q1_val->report_status; ?></td>
+                                                <td <?php echo $q2_val->color; ?>><?php echo $q2_val->report_status; ?></td>
+                                                <td <?php echo $q3_val->color; ?>><?php echo $q3_val->report_status;  ?></td>
+                                                <td <?php echo $q4_val->color; ?>><?php echo $q4_val->report_status; ?></td>
 
 
                                             <?php endforeach;?>
 
                                                     
                                            </tbody>
-                                           <tfoot>
-                                            <tfoot>
+                                       
                                     </table>
                         </div>
-
-            
-                                  
-                                      
-                                    
-                                    <?php endforeach;?>
                     </div>
                     <div class="panel-footer">
                      

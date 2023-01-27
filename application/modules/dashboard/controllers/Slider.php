@@ -50,6 +50,32 @@ class Slider extends MX_Controller
         $data['title'] = "Reporting by Departement";
         echo Modules::run('template/layout', $data);
     }
+    public function get_reporting_rate($sub,$qtr,$fy){
+        $kpis_with_data = $this->db->query("SELECT distinct new_data.kpi_id as kpis_with_data from new_data join kpi on kpi.kpi_id=new_data.kpi_id WHERE kpi.subject_area='$sub' and new_data.period='$qtr' and new_data.financial_year='$fy' and new_data.period in(SELECT distinct period from new_data)")->num_rows();
+        $total_kpis = $this->db->query("SELECT kpi_id as total_kpis from kpi WHERE subject_area='$sub'")->num_rows();
+        $qtrs = $this->db->query("SELECT distinct period from new_data where financial_year='$fy' and period='$qtr'")->num_rows();
+        if(($kpis_with_data/$total_kpis)<=50){
+            $color = "style='background-color:red; color:#FFF;'";
+        }
+        else if ((50>$kpis_with_data / $total_kpis)){
+            $color = "style='background-color:yellow; color:#FFF;'";
+
+        }
+       else if ((90 > $kpis_with_data / $total_kpis) <= 100){
+            $color = "style='background-color:green; color:#FFF;'";
+            
+        }
+        else if ($qtrs<=0){
+            $color = "style='background-color:grey; color:#FFF;'";
+        }
+        else{
+            $color = "style='background-color:grey; color:#FFF;'";
+        }
+        $status = $kpis_with_data .'/'.$total_kpis;
+    return (object)['report_status' => "$status",'color'=>"$color"];
+    }
+
+    
 
 
 

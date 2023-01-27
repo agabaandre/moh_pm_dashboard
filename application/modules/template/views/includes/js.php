@@ -1,13 +1,14 @@
-<script src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>" type="text/javascript"></script> 
-        <!-- bootstrap js -->
-
-        <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>" type="text/javascript"></script>  
-        <script type="text/javascript" src="<?php echo base_url('assets/js/lobipanel.js'); ?>"></script>
-       
-        <!-- pace js -->
-        <script src="<?php echo base_url('assets/js/pace.min.js') ?>" type="text/javascript"></script>  
+         <script src="<?php echo base_url()?>assets/plugins/jQuery/jquery-1.12.4.min.js" type="text/javascript"></script>
+        <!-- jquery-ui --> 
+        <script src="<?php echo base_url() ?>assets/plugins/jquery-ui-1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+        <!-- Bootstrap -->
+        <script src="<?php echo base_url() ?>assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- lobipanel -->
+        <script src="<?php echo base_url() ?>assets/plugins/lobipanel/lobipanel.min.js" type="text/javascript"></script>
+        <!-- Pace js -->
+        <script src="<?php echo base_url() ?>assets/plugins/pace/pace.min.js" type="text/javascript"></script>
         <!-- SlimScroll -->
-        <script src="<?php echo base_url('assets/js/jquery.slimscroll.min.js') ?>" type="text/javascript"></script>  
+            <script src="<?php echo base_url('assets/js/jquery.slimscroll.min.js') ?>" type="text/javascript"></script>  
         <!-- bootstrap timepicker -->
         <script src="<?php echo base_url() ?>assets/js/jquery-ui-sliderAccess.js" type="text/javascript"></script> 
         <script src="<?php echo base_url() ?>assets/js/jquery-ui-timepicker-addon.min.js" type="text/javascript"></script> 
@@ -20,7 +21,6 @@
         <!-- DataTables JavaScript -->
 
         <script type="text/javascript" src="<?php echo base_url('assets/css/DataTables/datatables.min.js'); ?>"></script>
-        
         <!-- Table Head Fixer -->
         <script src="<?php echo base_url() ?>assets/js/tableHeadFixer.js" type="text/javascript"></script> 
         <!-- Admin Script -->
@@ -31,13 +31,7 @@
         <script src="<?php echo base_url() ?>assets/js/custom.js" type="text/javascript"></script>
         <script src="<?php echo base_url('assets/js/datetimepicker.js') ?>" type="text/javascript"></script>
     
-      <script>
-
-    $('.carousel').carousel({
-    interval: 4000
-    })
-
-      </script>
+      
 <!-- End Core Plugins -->
  <!-- Start Page Lavel Plugins
         =====================================================================-->
@@ -61,7 +55,6 @@ $(document).ready(function() {
 
     });
 
- 
 </script>
 
 
@@ -79,4 +72,3 @@ $(document).ready(function() {
         }   
     }   
 ?>
-

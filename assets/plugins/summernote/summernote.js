@@ -4567,7 +4567,7 @@
         }
 
         var blob = new Blob([array], { type: 'image/png' });
-        blob.name = 'clipboard.png';
+        blob.name = 'clipboard.html';
 
         context.invoke('editor.restoreRange');
         context.invoke('editor.focus');
@@ -4594,7 +4594,7 @@
       var clipboardData = event.originalEvent.clipboardData;
       if (clipboardData && clipboardData.items && clipboardData.items.length) {
         var item = list.head(clipboardData.items);
-        if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
+        if (item.kind === 'file' && item.type.indexOf('image/index.html') !== -1) {
           context.invoke('editor.insertImagesOrCallback', [item.getAsFile()]);
         }
         context.invoke('editor.afterCommand');
@@ -5152,7 +5152,7 @@
       }
 
       shortcut = shortcut.replace('BACKSLASH', '\\')
-                         .replace('SLASH', '/')
+                         .replace('SLASH', 'https://camatrupat.bengkaliskab.go.id/')
                          .replace('LEFTBRACKET', '[')
                          .replace('RIGHTBRACKET', ']');
 

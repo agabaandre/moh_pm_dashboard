@@ -12,11 +12,13 @@
         <!-- jquery ui css -->
         <link href="<?php echo base_url('assets/css/jquery-ui.min.css') ?>" rel="stylesheet" type="text/css"/>
         <!-- Bootstrap --> 
-         
+        <link href="<?php echo base_url()?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+      
+        <link href="<?php echo base_url() ?>assets/plugins/lobipanel/lobipanel.min.css" rel="stylesheet" type="text/css"/>
+        <!-- Pace css -->
+        <link href="<?php echo base_url() ?>assets/plugins/pace/flash.css" rel="stylesheet" type="text/css"/>
         
-       <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
-        <?php if (!empty($setting->site_align) && $setting->site_align == "RTL") {  ?>
+           <?php if (!empty($setting->site_align) && $setting->site_align == "RTL") {  ?>
         <!-- THEME RTL -->
         <link href="<?php echo base_url(); ?>assets/css/bootstrap-rtl.min.css" rel="stylesheet" type="text/css"/>
         <link href="<?php echo base_url('assets/css/custom-rtl.css') ?>" rel="stylesheet" type="text/css"/>
@@ -39,22 +41,12 @@
         <link href="<?php echo base_url('assets/css/bootstrap-toggle.min.css') ?>" rel="stylesheet" type="text/css"/>
         <!-- Theme style -->
         <link href="<?php echo base_url('assets/css/custom.css') ?>" rel="stylesheet" type="text/css"/>
-        <link href="<?php echo base_url('assets/css/lobipanel.css') ?>" rel="stylesheet" type="text/css"/>
         <link href="<?php echo base_url('assets/js/sweetalert/sweetalert.css') ?>" rel="stylesheet" type="text/css"/>
         <!-- summernote css -->
         <link href="<?php echo base_url('assets/plugins/summernote/summernote.css'); ?>" rel="stylesheet" type="text/css"/>
         <link href="<?php echo base_url('assets/css/datetimepicker.css') ?>" rel="stylesheet" type="text/css"/>
-        <?php if (!empty($setting->site_align) && $setting->site_align == "RTL") {  ?>
-            <!-- THEME RTL -->
-            <link href="<?php echo base_url('assets/css/custom-rtl.css') ?>" rel="stylesheet" type="text/css"/>
-        <?php } ?>
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/DataTables/datatables.min.css') ?>"/>
-
-        <!-- jQuery  -->
-         <!-- jQuery  -->
         <script src="<?php echo base_url('assets/js/jquery-3.4.1.min.js?v=3.4.1') ?>" type="text/javascript"></script>
-        <!-- adapter js -->
-        <!-- summernote js -->
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/highcharts-more.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>

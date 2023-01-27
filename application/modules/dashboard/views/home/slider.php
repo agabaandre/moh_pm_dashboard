@@ -6,7 +6,7 @@
 }
 
 </style>
-<div class="content">
+
         <div class="row">
             <div class="col-sm-12 col-md-12">
                 <div class="panel panel-bd lobidrag">
@@ -16,6 +16,7 @@
                         </div>
                     </div>
                     <div class="panel-body">
+                        
                           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000" >
 
                                  <div class="carousel-inner">
@@ -104,8 +105,6 @@
     
   
 
-
-  </div>
   <a class="left carousel-control" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left"></span>
     <span class="sr-only">Previous</span>
