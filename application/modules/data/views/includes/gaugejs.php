@@ -1,12 +1,7 @@
-<style>
-
-</style>
 <script>
 Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
-
     chart: {
       type: 'gauge',
-
         events: {
             load: function () {
                 var label = this.renderer.label('')
@@ -14,7 +9,6 @@ Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
                     width: '500px',
             
                     fontSize: '8px'
-                  
                 })
                 .add();
                 
@@ -36,7 +30,7 @@ Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
     
 
     subtitle: {
-      text: '<a href="<?php echo base_url().'data/kpidetails/'.$gauge['details'][0]->kpi_id.'/'.$gauge['details'][0]->subject_area; ?>"><button class="btn"  style="word-wrap:normal; color:#2286c3; font-size:11px;" ><?php echo "KPI Info"; ?> <button/> </a>'
+        text: '<a href="https://pmd.health.go.ug/data/kpidetails/KPI-500/19"><button class="btn" style="word-wrap:normal; color:#2286c3; font-size:11px;">KPI Info</button> </a>'
     },
 
     title: {
