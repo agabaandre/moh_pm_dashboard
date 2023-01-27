@@ -42,6 +42,21 @@ class Slider extends MX_Controller
         return $query;
     }
 
+    function department_reporting()
+    {
+        $data['module'] = "dashboard";
+        $data['page'] = "home/reporting_rates";
+        $data['uptitle'] = "KPI Reporting Rates by Department";
+        $data['title'] = "Reporting by Departement";
+        echo Modules::run('template/layout', $data);
+    }
+
+
+
+    
+
+
+
 
 
 

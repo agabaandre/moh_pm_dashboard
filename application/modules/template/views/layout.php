@@ -42,8 +42,8 @@
 
                     <?php if ($this->session->userdata('isAdmin')) { ?>
                     <div class="row" style="display:flex; float:right; margin-right:5px; margin-top:-40px;">
-                        <a href="<?php echo base_url(); ?>kpi/reporting_rates" class="btn btn-success btn-outline"
-                            style="margin-right:5px; margin-top:-40px position: relative; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>">
+                        <a href="<?php echo base_url(); ?>dashboard/slider/department_reporting" class="btn btn-success btn-outline"
+                                style="margin-right:5px; margin-top:-40px position: relative; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>">
                              Reporting Rates
                         </a>
                         <div class="dropdown">
