@@ -23,13 +23,13 @@
         </li>
          <li class="treeview <?php echo (($this->uri->segment(2) == "slider") ? "active" : null) ?>">
             <a href="<?php echo base_url('dashboard/slider') ?>"> <i class="ti-dashboard"></i>
-                <span>Performance Summary</span>
+                <span>Performance Slider</span>
             </a>
         </li>
         <li class="treeview <?php echo (($this->uri->segment(2) == "summary") ? "active" : null) ?>">
                     <a href="<?php echo base_url(); ?>kpi/summary">
                     <i class="fa fa-list"></i>
-                        <span><?php echo display("kpi_summary"); ?></span>
+                        <span>Performance Summary</span>
                     </a>
         </li>
 
