@@ -65,11 +65,17 @@ class Slider extends MX_Controller
         $color = "";
 
         // Calculate the reporting rate as a percentage
-        $reporting_rate = ($kpis_with_data / $total_kpis) * 100;
+        if ($total_kpis > 0) {
+            $reporting_rate = ($kpis_with_data / $total_kpis) * 100;
+        } else {
+            $reporting_rate = null;
+        }
 
         // Set the color based on the reporting rate
         if ($qtrs > 0) {
-            if ($reporting_rate < 50) {
+            if ($reporting_rate === null) {
+                $color = "style='background-color:gray; color:gray;'";
+            } elseif ($reporting_rate < 50) {
                 $color = "style='background-color:red; color:#FFF;'";
             } elseif ($reporting_rate >= 50 && $reporting_rate < 90) {
                 $color = "style='background-color:yellow; color:#FFF;'";
