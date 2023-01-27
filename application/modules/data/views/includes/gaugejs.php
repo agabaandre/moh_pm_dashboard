@@ -34,7 +34,7 @@ Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
     },
 
     title: {
-      text: '<a href="<?php echo base_url().'data/kpidata/'.$gauge['details'][0]->kpi_id.'/'.$gauge['details'][0]->subject_area; ?>" class="kpi-label"><?php echo $gauge['details'][0]->short_name; ?> </a>'
+      text: '<a href="<?php echo base_url().'data/kpidata/'.$gauge['details'][0]->kpi_id.'/'.$gauge['details'][0]->subject_area; ?>" class="kpi-label"><?php echo trim($gauge['details'][0]->short_name); ?> </a>'
     },
 
     pane: {
