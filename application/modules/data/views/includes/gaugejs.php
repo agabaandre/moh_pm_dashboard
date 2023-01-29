@@ -87,7 +87,11 @@ Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
     // the value axis
     yAxis: {
       min: 0,
-      max: 100,
+      max: <?php if (($gauge['data']->current_value) > 100) {
+        echo $gauge['data']->current_value;
+      } else {
+        echo 100;
+      }?>,
 
         minorTickInterval: 'auto',
         minorTickWidth: 1,
