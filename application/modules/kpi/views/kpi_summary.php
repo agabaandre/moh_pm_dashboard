@@ -119,12 +119,12 @@
                                                                     <h4 class="card-title">Latest Performance Comment</h4>
                                                                 </div>
                                                                 <?php 
-                                                                $this->db->query("SELECT comments from new_data where kpi_id='$id' LIMIT 10 order by ");
+                                                                $this->db->query("SELECT comment from new_data where kpi_id='$id' LIMIT 10 order by ");
                                                                 foreach ($comments as $comment): ?>
                                                                 
                                                                     <!-- Comment Row -->
                                                                     <div class="d-flex flex-row comment-row m-t-0">
-                                                                        <div class="p-2"><?php echo $element->kpi_id ?></div>
+                                                                        <div class="p-2"><?php echo $comment->comment ?></div>
                                                                         <div class="comment-text w-100">
                                                                             <h6 class="font-medium"><?php ?></h6> <span class="m-b-15 d-block"><?php  ?></span>
                                                                         </div>

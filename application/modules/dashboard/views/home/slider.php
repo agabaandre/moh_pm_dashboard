@@ -5,17 +5,10 @@
 
     
 }
-.fullscreendiv:-ms-fullscreen p {
-  visibility: visible;
-}
-.fullscreendiv:fullscreen {
-  background-color: #e4708a;
-  width: 100vw;
-  height: 100vh;
-}
+
 </style>
 
-        <div class="row fullscreendiv">
+        <div class="row" id="fullscreendiv">
             <div class="col-sm-12 col-md-12">
                 <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
