@@ -22,24 +22,24 @@ $this->financial_year=str_replace(" ","",$_SESSION['financial_year']);
               //$kpi=str_replace(" ",'',$kpi);
               $details = $this->gaugeDetails($kpi);
               $rconfig = $this->gaugeConfig($kpi);
-              if (!empty($rconfig->config_json)) {
+              if ($rconfig) {
                      $config = $this->gaugeConfig($kpi);
               } else {
                      $config = "
-                     {
-                     from: 0,
-                     to: 50,
-                     color: '#DC3545' //danger
-              }, {
-                     from: 50,
-                     to: 80,
-                     color: '#FFC107' // amber
-              }, {
-                     from: 80,
-                     to: 100,
-                     color: '#28A745' // green
-                     }
-                     ";
+       {
+        from: 0,
+        to: 50,
+        color: '#DC3545' //danger
+      }, {
+        from: 50,
+        to: 80,
+        color: '#FFC107' // amber
+      }, {
+        from: 80,
+        to: 100,
+        color: '#28A745' // green
+       }
+       ";
               }
 
               //$query= $this->db->query("SELECT MAX(period), CONCAT(period,'/',period_year) as cp, CONCAT(previous_period,'/',previousperiod_year) as pp, t.* from report_kpi_summary t WHERE trim(kpi_id)='$kpi'");
@@ -56,6 +56,7 @@ $this->financial_year=str_replace(" ","",$_SESSION['financial_year']);
 
               return $return;
        }
+
        public function gaugeDetails($kpi){
 
 	$query = $this->db->query("SELECT  * from kpi WHERE kpi.kpi_id='$kpi'");
@@ -67,7 +68,7 @@ $this->financial_year=str_replace(" ","",$_SESSION['financial_year']);
 public function gaugeConfig($kpi){
     $this->db->where("kpi", "$kpi");
 	$query = $this->db->get("gauge_config");
-	return $query->row();
+	return $query->row()->config_json;
 }
 
 //END GAUGE

@@ -107,7 +107,7 @@ Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
       title: {
         text: 'Target <?php echo $current_target=$gauge['data']->current_target; ?> %'
       },
-      plotBands: [<?php echo $gauge['config']->config_json; ?> ]
+      plotBands: [<?php echo $gauge['config']; ?> ]
     },
 
     series: [{

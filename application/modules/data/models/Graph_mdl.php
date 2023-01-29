@@ -20,7 +20,7 @@ public function gaugeData($kpi){
      //$kpi=str_replace(" ",'',$kpi);
     $details=$this->gaugeDetails($kpi);
     $rconfig=$this->gaugeConfig($kpi);
-    if($rconfig->config_json){
+    if($rconfig){
     $config=$this->gaugeConfig($kpi);
     }
     else{
@@ -66,11 +66,12 @@ public function gaugeDetails($kpi){
 //neeed fixing
 
 
-public function gaugeConfig($kpi){
-    $this->db->where("kpi", "$kpi");
-	$query = $this->db->get("gauge_config");
-	return $query->row();
-}
+       public function gaugeConfig($kpi)
+       {
+              $this->db->where("kpi", "$kpi");
+              $query = $this->db->get("gauge_config");
+              return $query->row()->config_json;
+       }
 
 //END GAUGE
 
