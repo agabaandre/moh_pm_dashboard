@@ -34,7 +34,7 @@
                                      echo "";
                                  }?>" style="min-height:700px;"> 
                                          <div class="col-md-12">
-                                            <h2 class="text-muted green"><?php echo $i++; ?>: <?php echo $sub->name;?></h2>
+                                            <h2 class="text-muted green"> <?php echo $sub->name;?></h2>
                                               <hr>
                                               </div>
                                     <table id="subject" class="table table-responsive table-striped table-bordered" style="width:100%;">
