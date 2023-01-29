@@ -40,7 +40,7 @@
 
                     </h4>
 
-                    <?php if ($session=$this->session->userdata('isAdmin')) { ?>
+                    <?php if (($this->session->userdata('isAdmin'))||($this->session->userdata('user_type')=='admin')) { ?>
                     <div class="row" style="display:flex; float:right; margin-right:5px; margin-top:-40px;"> 
                         <div class="dropdown">
                             <a href="<?php echo base_url(); ?>files/file"
