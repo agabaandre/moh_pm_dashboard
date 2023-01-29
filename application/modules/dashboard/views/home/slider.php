@@ -6,7 +6,7 @@
 
 </style>
 
-        <div class="row">
+        <div class="row fullscreen">
             <div class="col-sm-12 col-md-12">
                 <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
