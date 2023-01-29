@@ -22,12 +22,14 @@
                     </li>
              <li><a href="#swicthYear" data-toggle="modal"><i class="pe-7s-shuffle"></i> Switch Year</a>
                     </li>
-                    <?php if (($this->session->userdata('user_type')=='admin')||($this->session->userdata('isAdmin'))) { ?>
+
             <li class="dropdown dropdown-user">
                 <a href="#" class="dropdown-toggle btn btn-sm btn-default" data-toggle="dropdown" style="border:0px;">
                     <?php echo $this->session->userdata('fullname') ?> <i class="fa fa-user"></i>
                 </a>
                 <ul class="dropdown-menu">
+
+                <?php if (($this->session->userdata('user_type') == 'admin') || ($this->session->userdata('isAdmin'))) { ?>
                     <li><a href="<?php echo base_url('dashboard/user/form') ?>">
                             <?php echo display('add_user') ?>
                         </a>
@@ -37,6 +39,7 @@
                         </a>
                     </li>
                     <hr>
+                    <?php }?>
                    
                     <li><a href="<?php echo base_url('dashboard/home/profile') ?>"><i class="pe-7s-users"></i>
                             <?php echo display('profile') ?>
@@ -54,7 +57,7 @@
                     </li>
                 </ul>
             </li>
-            <?php }?>
+         
 
             <!-- Messages -->
 
