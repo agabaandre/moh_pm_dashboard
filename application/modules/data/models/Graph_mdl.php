@@ -19,7 +19,27 @@ public function gaugeData($kpi){
 
      //$kpi=str_replace(" ",'',$kpi);
     $details=$this->gaugeDetails($kpi);
+    $rconfig=$this->gaugeConfig($kpi);
+    if($rconfig->config_json){
     $config=$this->gaugeConfig($kpi);
+    }
+    else{
+ $config = "
+       {
+        from: 0,
+        to: 50,
+        color: '#DC3545' //danger
+      }, {
+        from: 50,
+        to: 80,
+        color: '#FFC107' // amber
+      }, {
+        from: 80,
+        to: 100,
+        color: '#28A745' // green
+       }
+       ";
+    }
     
     //$query= $this->db->query("SELECT MAX(period), CONCAT(period,'/',period_year) as cp, CONCAT(previous_period,'/',previousperiod_year) as pp, t.* from report_kpi_summary t WHERE trim(kpi_id)='$kpi'");
              $query = $this->db->query("SELECT  CONCAT(period,'/',period_year) as cp,kpi_id,period,financial_year,target_value as current_target,current_value from report_kpi_trend t WHERE trim(kpi_id)='$kpi' and period = (SELECT max(period) from  report_kpi_trend WHERE kpi_id='$kpi') and financial_year = (SELECT MAX(financial_year) from report_kpi_trend WHERE kpi_id='$kpi')");
@@ -49,7 +69,7 @@ public function gaugeDetails($kpi){
 public function gaugeConfig($kpi){
     $this->db->where("kpi", "$kpi");
 	$query = $this->db->get("gauge_config");
-	return $query->result();
+	return $query->row();
 }
 
 //END GAUGE
