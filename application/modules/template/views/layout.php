@@ -43,7 +43,7 @@
                     <?php if ($this->session->userdata('isAdmin')) { ?>
                     <div class="row" style="display:flex; float:right; margin-right:5px; margin-top:-40px;">
                         
-                    <button id="fullscreen-btn" onclick="var el = document.getElementById('fullscreen'); el.requestFullscreen();" class="btn btn-success btn-outline">Fullscreen</button>
+                    <button id="fullscreen-btn" onclick="var el = document.getElementById('fullscreendiv'); el.requestFullscreen();" class="btn btn-success btn-outline">Fullscreen</button>
 
                         <div class="dropdown">
                             <a href="<?php echo base_url(); ?>files/file"
