@@ -8,22 +8,10 @@ class Home_model extends CI_Model {
 				$this->db->query('SET SESSION sql_mode = ""');
 
 		//financial_year is from settings financial Year/ allows 1 2 for current and previous year respectively
-		$this->financial_year=$this->financialYear();
+		$this->financial_year=$this->session->userdata('financial_year');
 
 		}
-		public function financialYear($financial_year=FALSE){
-			$query=$this->db->get('setting');
-			$result=$query->row();
-		if(empty($financial_year)){
-			// unset($_SESSION['financial_year']);
-		return $_SESSION['financial_year']=str_replace(" ","",$result->financial_year);
-			}
-		else{
-			//  unset($_SESSION['financial_year']);
-		return $_SESSION['financial_year']=str_replace(" ","",$this->input->post('financial_year'));
-		}
-
-	}
+	
 
 	public function checkUser($data = array())
 	{

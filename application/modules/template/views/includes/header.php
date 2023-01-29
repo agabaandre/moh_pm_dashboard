@@ -17,7 +17,12 @@
 
     <div class="navbar-custom-menu">
         <ul class="nav navbar-nav" style="margin:0 auto;">
-
+    
+              <li><a href="#"  onclick="toggleFullScreen('fullscreendiv')" ><i class="pe-7s-expand1"></i>Full Screen</a>
+                    </li>
+             <li><a href="#swicthYear" data-toggle="modal"><i class="pe-7s-shuffle"></i> Switch Year</a>
+                    </li>
+                    <?php if (($this->session->userdata('user_type')=='admin')||($this->session->userdata('isAdmin'))) { ?>
             <li class="dropdown dropdown-user">
                 <a href="#" class="dropdown-toggle btn btn-sm btn-default" data-toggle="dropdown" style="border:0px;">
                     <?php echo $this->session->userdata('fullname') ?> <i class="fa fa-user"></i>
@@ -32,8 +37,7 @@
                         </a>
                     </li>
                     <hr>
-                    <li><a href="#swicthYear" data-toggle="modal"><i class="pe-7s-shuffle"></i> Switch Year</a>
-                    </li>
+                   
                     <li><a href="<?php echo base_url('dashboard/home/profile') ?>"><i class="pe-7s-users"></i>
                             <?php echo display('profile') ?>
                         </a></li>
@@ -50,6 +54,7 @@
                     </li>
                 </ul>
             </li>
+            <?php }?>
 
             <!-- Messages -->
 
@@ -57,10 +62,10 @@
 
     </div>
     <span class="dropdown messages-menu"
-        style="font-size:21px; text-align:center; font-weight:bold; float:left; margin-left:19%; margin-top:15px;">
+        style="font-size:15px; text-align:center; font-weight:bold; float:left; margin-left:19%; margin-top:15px;">
 
         <span>
-            <?php echo $setting->title ?>
+            <?php echo'FY: '. $_SESSION['financial_year'];?>
         </span>
     </span>
 </nav>

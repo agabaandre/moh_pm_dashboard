@@ -77,7 +77,8 @@ class Auth extends MX_Controller {
 					'user_type'  => $user->row()->user_type,
 					'subject_area'  => $user->row()->subject_area,
 					'permission'  => json_encode(@$permission), 
-					'label_permission'  => json_encode(@$permission1) 
+					'label_permission'  => json_encode(@$permission1),
+					'financial_year' => $this->current_financial_year() 
 					);	
 
 					//store date to session 
@@ -122,6 +123,27 @@ class Auth extends MX_Controller {
 			echo Modules::run('template/login', $data);
 		}
 	}
+
+	public function financialYear()
+	{
+	
+	$_SESSION['financial_year'] = str_replace(" ", "", $this->input->post('financial_year'));
+
+	redirect('dashboard/home');
+	
+
+	}
+
+	public function current_financial_year()
+	{
+		$current_year = date("Y");
+		$current_month = date("m");
+		if ($current_month > 6) {
+			return ($current_year . "-" . ($current_year + 1));
+		} else {
+			return (($current_year - 1) . "-" . $current_year);
+		}
+	}
   
 	public function logout()
 	{ 
@@ -141,26 +163,4 @@ class Auth extends MX_Controller {
  }
 }
 
-function getCurrentFinancialYear() {
-    // Get the current date
-    $currentDate = new DateTime();
-    // Get the current month
-    $currentMonth = $currentDate->format('n');
-    // Get the current year
-    $currentYear = $currentDate->format('Y');
 
-    // Check if the current month is June or earlier
-    if ($currentMonth <= 6) {
-        // If it is, the financial year starts on the 1st of July of the current year
-        $financialYearStart = $currentYear;
-        // And ends on the 30th of June of the following year
-        $financialYearEnd = $currentYear + 1;
-    } else {
-        // If it's not, the financial year starts on the 1st of July of the next year
-        $financialYearStart = $currentYear + 1;
-        // And ends on the 30th of June of the year after that
-        $financialYearEnd = $currentYear + 2;
-    }
-
-    return $financialYearStart . "-" . $financialYearEnd;
-}

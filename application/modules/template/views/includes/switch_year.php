@@ -5,7 +5,7 @@
   <div class="modal-dialog modal-sm" style="margin-top: 50px;">
     <div class="modal-content">
 
-    <form action="<?php echo base_url(); ?>limits/setYear" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+    <form action="<?php echo base_url(); ?>dashboard/auth/financialYear" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                
       <div class="modal-header">
         <h4>Swicth Financial Year</h4>
@@ -19,7 +19,7 @@
                           <label for="cumulative" class="col-form-label">Choose Year</label>
                       
                            <select name="financial_year" class="form-control codeigniterselect">
-                             <option value="">ALL</option>
+                             <option value="" disabled>ALL</option>
                             <?php foreach($years as $value): ?>
                              <option value="<?php echo $value->financial_year; ?>">
                                 <?php echo $value->financial_year; ?>

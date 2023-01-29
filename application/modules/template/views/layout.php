@@ -41,10 +41,7 @@
                     </h4>
 
                     <?php if ($session=$this->session->userdata('isAdmin')) { ?>
-                    <div class="row" style="display:flex; float:right; margin-right:5px; margin-top:-40px;">
-                        
-                    <button id="fullscreen-btn" onclick="toggleFullScreen('fullscreendiv')" class="btn btn-success btn-outline">Fullscreen</button>
-
+                    <div class="row" style="display:flex; float:right; margin-right:5px; margin-top:-40px;"> 
                         <div class="dropdown">
                             <a href="<?php echo base_url(); ?>files/file"
                                 class="btn btn-success btn-outline dropdown-toggle" data-toggle="dropdown"
@@ -129,10 +126,10 @@
                         </div>
             </section>
 
-
+            <?php //print_r($this->session->userdata());?>
             <!-- Main content -->
             <div class="content row">
-                <?php print_r($session); ?>
+        
 
                 <!-- load messages -->
                 <?php include('includes/messages.php'); ?>
@@ -193,7 +190,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td style=" background-color:green;"></td>
+                                <td style=" background-color:;"></td>
                                 <td>Above Performance</td>
                             </tr>
                             <tr>

@@ -8,7 +8,7 @@ public function __Construct(){
 
 		parent::__Construct();
 
-$this->financial_year=str_replace(" ","",$_SESSION['financial_year']);
+$this->financial_year=$_SESSION['financial_year'];
 //create a period  to use to graph gauge data
 
 }
