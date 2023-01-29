@@ -298,7 +298,7 @@ class Kpi extends MX_Controller
 			}
 
 			//reducing
-			if (($current_target) < 40) {
+			if (($current_target) <= 40) {
 
 				if ($gauge_value <= $current_target) {
 					return 'style="background-color:green; color:white;"';

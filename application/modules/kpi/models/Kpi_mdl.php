@@ -94,8 +94,8 @@ class Kpi_mdl extends CI_Model {
 	}
 
 	public function insertDisplayData($data){
-
-		$query = $this->db->replace('kpi_displays',$data);
+		$this->db->truncate("kpi_displays");
+		$query = $this->db->insert('kpi_displays',$data);
 		
 		if ($query){
 			$message ="Succesful";
