@@ -20,7 +20,7 @@
                             <label for="kpiid" class="col-sm-3 col-form-label">
                             Indicator Identifier(KPI ID)</label>
                           <div class="col-sm-9">
-                           <input type="text" name="kpi_id" placeholder="KPI-0" class=" form-control">
+                           <input type="text" name="kpi_id" placeholder="KPI-0" class=" form-control" required>
                           </div>
                            
                         </div>
@@ -29,7 +29,7 @@
                             <label for="shortname" class="col-sm-3 col-form-label">
                             Short Name</label>
                             <div class="col-sm-9">
-                           <input type="text"  name="short_name" placeholder="KPI Short Name" class=" form-control">
+                           <input type="text"  name="short_name" placeholder="KPI Short Name" class=" form-control" required>
                                
                             </div>
                            
@@ -39,7 +39,7 @@
                             <label for="indiactor_statement" class="col-sm-3 col-form-label">
                             Indicator Statement</label>
                             <div class="col-sm-9">
-                           <textarea name="indicator_statement" class="form-control" id=""></textarea>   
+                           <textarea name="indicator_statement" class="form-control" id=""></textarea required>   
                             </div>
                            
                         </div>
@@ -49,10 +49,11 @@
                             Frequency</label>
                             <div class="col-sm-9">
                            <select name="frequency" class="form-control codeigniterselect">
-                           <option value="Annualy" selected="selected">Annualy</option>
-                           <option value="Monthly" selected="selected">Monthly</option>
+                            <option value="Quarterly" selected>Quarterly</option>
+                           <option value="Annualy">Annualy</option>
+                           <option value="Monthly">Monthly</option>
 
-                          <option value="Quarterly" selected="selected">Quarterly</option>
+                          
             
                             </select>  
                             </div>
@@ -97,9 +98,9 @@
                             Is Cumulative</label>
                             <div class="col-sm-9">
                            <select name="is_cumulative" class="form-control codeigniterselect">
-                           <option value="0" selected="selected">No</option>
+                           <option value="0" selected>No</option>
 
-                          <option value="1" selected="selected">Yes</option>
+                          <option value="1" >Yes</option>
             
                             </select>  
                             </div>
@@ -110,7 +111,7 @@
                            <label for="description" class="col-sm-3 col-form-label">
                            Computation  Method</label>
                            <div class="col-sm-9">
-                          <textarea name="computation" col="6" rows="3" class="form-control" id=""></textarea>
+                          <textarea name="computation" col="6" rows="3" class="form-control" id="" required></textarea>
                               
                            </div>
                           
@@ -125,7 +126,7 @@
                             <label for="description" class="col-sm-3 col-form-label">
                             Current Target</label>
                             <div class="col-sm-9">
-                           <input type="number" name="current_target"  class="form-control" id="">
+                           <input type="number" name="current_target"  class="form-control" id="" required>
                                
                             </div>
                            
@@ -138,7 +139,7 @@
                             <label for="description" class="col-sm-3 col-form-label">
                             Indicator description</label>
                             <div class="col-sm-9">
-                           <textarea name="description" col="10" rows="5" class="form-control" id=""></textarea>
+                           <textarea name="description" col="10" rows="5" class="form-control" id="" required></textarea>
                                
                             </div>
                            
@@ -149,7 +150,7 @@
                             <label for="description" class="col-sm-3 col-form-label">
                             Data Sources</label>
                             <div class="col-sm-9">
-                           <textarea name="data_sources" class="form-control" id=""></textarea>
+                           <textarea name="data_sources" class="form-control" id="" required></textarea>
                                
                             </div>
 
@@ -163,7 +164,7 @@
                            <select name="subject_area" class="form-control codeigniterselect">
                              <?php    $elements=Modules::run('Kpi/subjectData');
                                       foreach($elements as $element):?>
-                                       <option value="<?php echo $element->id ?>" selected="selected"><?php echo $element->name ?></option>
+                                       <option value="<?php echo $element->id ?>" ><?php echo $element->name ?></option>
                                       <?php endforeach; ?>
             
                             </select>  
@@ -171,6 +172,7 @@
                           
                            
                         </div>
+                          <?php  if(settings()=='category_two_menu.php'): ?>
                         <div class="form-group row">
                            
                            <label for="subject" class="col-sm-3 col-form-label">
@@ -179,13 +181,15 @@
                             <select name="category_two_id" class="form-control codeigniterselect">
                               <?php    $elements=Modules::run('Kpi/getCategoryTwos');
                                        foreach($elements as $element):?>
-                                        <option value="<?php echo $element->id ?>" selected="selected"><?php echo $element->cat_name ?></option>
+                                        <option value="<?php echo $element->id ?>"><?php echo $element->cat_name ?></option>
                                        <?php endforeach; ?>
              
                              </select>  
                              </div>
                             
                          </div>
+
+                         <?php endif;?>
                        
                     </div>
                   <!---End sub2-->

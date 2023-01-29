@@ -47,6 +47,7 @@ class Kpi_mdl extends CI_Model {
 	}
 
 	public function addKpi($data){
+	
 		$query = $this->db->insert('kpi',$data);
 		if ($query){
 			$message ="Succesful";
