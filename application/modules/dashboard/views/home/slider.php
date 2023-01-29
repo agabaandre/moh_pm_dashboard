@@ -2,7 +2,6 @@
  .carousel-control.left, .carousel-control.right{ 
     background: none !important;
     filter: none !important;
-    progid:none !important;
 }
 
 </style>
