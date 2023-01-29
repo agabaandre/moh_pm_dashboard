@@ -40,7 +40,7 @@
 
                     </h4>
 
-                    <?php if ($this->session->userdata('isAdmin')) { ?>
+                    <?php if ($session=$this->session->userdata('isAdmin')) { ?>
                     <div class="row" style="display:flex; float:right; margin-right:5px; margin-top:-40px;">
                         
                     <button id="fullscreen-btn" onclick="toggleFullScreen('fullscreendiv')" class="btn btn-success btn-outline">Fullscreen</button>
@@ -132,6 +132,7 @@
 
             <!-- Main content -->
             <div class="content row">
+                <?php print_r($session); ?>
 
                 <!-- load messages -->
                 <?php include('includes/messages.php'); ?>
@@ -193,6 +194,10 @@
                         <tbody>
                             <tr>
                                 <td style=" background-color:green;"></td>
+                                <td>Above Performance</td>
+                            </tr>
+                            <tr>
+                                <td style=" background-color:green;"></td>
                                 <td>Good Performance</td>
                             </tr>
                             <tr>
@@ -203,6 +208,7 @@
                                 <td style=" background-color:red;"></td>
                                 <td>Bad Performance</td>
                             </tr>
+                            
 
                         </tbody>
                     </table>
