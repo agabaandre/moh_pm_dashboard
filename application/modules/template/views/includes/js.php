@@ -72,7 +72,6 @@ $(document).ready(function() {
 
 
 
-
 <!-- Include module Script -->
 <?php
     $path = 'application/modules/';

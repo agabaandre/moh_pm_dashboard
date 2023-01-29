@@ -140,3 +140,27 @@ class Auth extends MX_Controller {
     return $this->db->select('*')->from('deviceinfo')->get()->row();
  }
 }
+
+function getCurrentFinancialYear() {
+    // Get the current date
+    $currentDate = new DateTime();
+    // Get the current month
+    $currentMonth = $currentDate->format('n');
+    // Get the current year
+    $currentYear = $currentDate->format('Y');
+
+    // Check if the current month is June or earlier
+    if ($currentMonth <= 6) {
+        // If it is, the financial year starts on the 1st of July of the current year
+        $financialYearStart = $currentYear;
+        // And ends on the 30th of June of the following year
+        $financialYearEnd = $currentYear + 1;
+    } else {
+        // If it's not, the financial year starts on the 1st of July of the next year
+        $financialYearStart = $currentYear + 1;
+        // And ends on the 30th of June of the year after that
+        $financialYearEnd = $currentYear + 2;
+    }
+
+    return $financialYearStart . "-" . $financialYearEnd;
+}

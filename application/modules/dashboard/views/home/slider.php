@@ -3,10 +3,12 @@
     background: none !important;
     filter: none !important;
     progid:none !important;
+
 }
 
+
 </style>
-<div id="fill-screen">
+
         <div class="row">
             <div class="col-sm-12 col-md-12">
                 <div class="panel panel-bd lobidrag">
@@ -126,7 +128,7 @@
                     </div>
                     <div class="panel-footer">
                      
-                    </div>
+                  
                 </div>
             </div>
         </div>
