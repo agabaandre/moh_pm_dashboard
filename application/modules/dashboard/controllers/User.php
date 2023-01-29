@@ -66,7 +66,13 @@ class User extends MX_Controller {
         $config['allowed_types']        = 'gif|jpg|png'; 
          $image = $this->input->post('image');
 		/*-----------------------------------*/
-		@$subjectarea = json_encode($this->input->post('subject_area'));
+		if (!empty($this->input->post('subject_area'))) {
+			@$subjectarea = json_encode($this->input->post('subject_area'));
+		}
+		else{
+			@$subjectarea = '';
+		}
+
 		$data['user'] = (object)$userLevelData = array(
 			'id' 		  => $this->input->post('id'),
 			'firstname'   => $this->input->post('firstname'),
