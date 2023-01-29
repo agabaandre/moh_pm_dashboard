@@ -24,7 +24,7 @@ public function gaugeData($kpi){
     $config=$this->gaugeConfig($kpi);
     }
     else{
- $config = "
+   $config = "
        {
         from: 0,
         to: 50,
