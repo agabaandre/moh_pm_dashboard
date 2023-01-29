@@ -68,7 +68,7 @@ $this->financial_year=str_replace(" ","",$_SESSION['financial_year']);
 public function gaugeConfig($kpi){
     $this->db->where("kpi", "$kpi");
 	$query = $this->db->get("gauge_config");
-	return $query->result();
+	return $query->row();
 }
 
 //END GAUGE
