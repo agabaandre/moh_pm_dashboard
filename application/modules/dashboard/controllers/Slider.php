@@ -78,7 +78,7 @@ class Slider extends MX_Controller
             } elseif ($reporting_rate < 50) {
                 $color = "style='background-color:red; color:#FFF;'";
             } elseif ($reporting_rate >= 50 && $reporting_rate < 90) {
-                $color = "style='background-color:yellow; color:#FFF;'";
+                $color = "style='background-color:orange; color:#FFF;'";
             } elseif ($reporting_rate >= 90) {
                 $color = "style='background-color:green; color:#FFF;'";
             }
