@@ -72,7 +72,7 @@
 <script type='text/javascript'>
     $(document).ready(function() {
          $('.carousel').carousel({
-             interval: 3500
+             interval: 4000
          })
     });    
 </script>
