@@ -89,10 +89,7 @@
                                                     
                                            </tbody>
                                            <tfoot>
-                                            <tr>
-                                                <td colspan="4">Reporting Rate</td>
-                                                <td colspan="3"><?php count((array)$data); ?></td>
-                                            <tr>
+                                        
                                             <tfoot>
                                     </table>
                                      </div>
