@@ -74,9 +74,9 @@ class Slider extends MX_Controller
         // Set the color based on the reporting rate
         if ($qtrs > 0) {
             if ($reporting_rate === null) {
-                $color = "style='background-color:red; color:#FFF;'";
+                $color = "style='background-color:#de1a1a; color:#FFF;'";
             } elseif ($reporting_rate < 50) {
-                $color = "style='background-color:red; color:#FFF;'";
+                $color = "style='background-color:#de1a1a; color:#FFF;'";
             } elseif ($reporting_rate >= 50 && $reporting_rate < 90) {
                 $color = "style='background-color:orange; color:#FFF;'";
             } elseif ($reporting_rate >= 90) {
