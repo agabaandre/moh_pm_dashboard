@@ -76,10 +76,24 @@
                                                 <td  <?php
 
                                                         echo Modules::run("kpi/kpiTrendcolors", @$data->current_target, @$data->current_value, @$data->previous_value, @$data->cp, @$data->pp);
-                                                        ?>><?php echo @$data->current_value;
-                                                if (@$data->current_value) {
-                                                  } ?></td>
-                                                <td style="width:13%;"><?php echo @$data->previous_value; ?></td>
+                                                        ?>><?php
+                                                            if ($data->current_value) {
+                                                                echo @$data->current_value;
+                                                            } 
+                                                            else{
+                                                            echo "No Data";
+                                                            }
+                                                            ?>
+                                                </td>
+                                                <td style="width:13%;">
+                                                    <?php
+                                                    if ($data->previous_value) {
+                                                        echo @$data->previous_value;
+                                                    } else {
+                                                        echo "No Data";
+                                                    }
+                                                    ?>
+                                            </td>
                     
                                             </tr>
 
