@@ -293,7 +293,7 @@ class Kpi extends MX_Controller
 				} elseif (($gauge_value < $current_target) && ($gauge_value >= 50)) {
 					return 'style="background-color:orange; color:white;"';
 				} else {
-					return 'style="background-color:red; color:white;"';
+					return 'style="background-color:#de1a1a; color:white;"';
 				}
 			}
 
@@ -310,7 +310,7 @@ class Kpi extends MX_Controller
 			}
 		}
 		else{
-			return 'style="background-color:red; color:white;"';
+			return 'style="background-color:#de1a1a; color:white;"';
 
 		}
 
