@@ -10,7 +10,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                         <!-- Button trigger modal -->
-    <form method="post"  class="form-horizontal" action="" style="width:50%; margin:10px;">
+    <form method="post"  class="form-horizontal" action="" style="width:100%; margin:10px;">
         <label>Subject Areas </label>
                         <?php
                            //print_r($this->input->post());
@@ -23,18 +23,18 @@
                          $years = $this->db->query("SELECT * FROM `subject_areas`")->result(); 
                         }
                         ?>
-                          <label for="cumulative" class="">Department</label>
+                          <label for="cumulative" class="">Search Department</label>
                           <select class="js-example-basic-multiple" name="subject_area[]" class="form-control" multiple="multiple">
                             
                            
                            <?php
                           
-                             $ids=json_decode($_SESSION['subject_area']);
+                             @$ids=json_decode($_SESSION['subject_area']);
                              foreach($years as $value): 
                                 
                                 ?>
-                             <option value="<?php echo $value->id;?>" <?php if (in_array($value->id, $ids)) {echo "selected";} ?>>
-                                <?php echo $value->name; ?>
+                             <option value="<?php echo @$value->id;?>" <?php if (in_array(@$value->id, @$ids)) {echo "selected";} ?>>
+                                <?php echo @$value->name; ?>
                              </option>
                             <?php endforeach; ?>
                             </select> 
