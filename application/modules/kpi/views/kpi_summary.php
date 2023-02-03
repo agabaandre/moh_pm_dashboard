@@ -52,16 +52,16 @@
                         <!-- <div class="col-md-6">    
                         <a href="<?php //echo base_url()?>kpi/printsummary/print_summary/<?php //echo urlencode(json_encode($this->input->post('subject_area'))); ?>" class="btn btn-success"><i class="fa fa-print"  ></i>Print</a>
                         </div> -->
-                        <div class="col-md-6">
-                        <button type="button" class="btn btn-success" style="float:right;" data-toggle="modal" data-target="#definition">
+                        <!-- <div class="col-md-6"> -->
+                        <button type="button" class="btn btn-success" style="float:right;" data-toggle="modal" data-target="#definition" style="margin-bottom:2px;">
                         <?php echo display("definition"); 
                         
                         
                         ?>
                         </button>
                         
-                        </div>
-<?php //print_r($this->session->userdata());?>
+                        <!-- </div> -->
+
                         <div id="kpitable">
 
                                     <table id="subject" class="table table-responsive table-striped table-bordered">
