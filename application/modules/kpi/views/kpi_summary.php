@@ -61,7 +61,7 @@
                         </button>
                         
                         </div>
-<?php print_r($this->session->userdata());?>
+<?php //print_r($this->session->userdata());?>
                         <div id="kpitable">
 
                                     <table id="subject" class="table table-responsive table-striped table-bordered">
