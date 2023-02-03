@@ -28,7 +28,7 @@ Highcharts.chart('line<?php echo $chartkpi; ?>', {
     },
     yAxis: {
         title: {
-            text: 'Score  (°%)'
+            text: 'performance  (°%)'
         }
     },
     plotOptions: {
@@ -43,7 +43,7 @@ Highcharts.chart('line<?php echo $chartkpi; ?>', {
         enabled: false
     },
     series: [{
-        name: 'Period',
+        name: 'performance',
         data: <?php echo json_encode($graph['data'],JSON_NUMERIC_CHECK); ?>
     }, {
         name: 'Target',

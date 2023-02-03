@@ -5,21 +5,25 @@
 function renderGraph(data) {
 
     Highcharts.chart('line<?php echo $chartkpi; ?>', {
-
+    
         title: {
             text: '<?php echo trim($title); ?>'
         },
         chart: {
-            height: 900,
+            height: 550,
+            type: '<?php echo $_SESSION['dimension_chart'] ?>'
 
         },
-        subtitle: {
+        tooltip: {
+         valueSuffix: '<?php echo " " ?>'
+        },
+      title: {
             text: ''
         },
-
+      
         yAxis: {
             title: {
-                text: 'Score (%)'
+                text: 'performance (%)'
             }
         },
 

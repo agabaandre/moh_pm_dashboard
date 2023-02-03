@@ -5,13 +5,23 @@ class Kpi_mdl extends CI_Model {
 
 		
 	public function __Construct(){
+		$this->financial_year = $this->session->userdata('financial_year');
 			parent::__Construct();
+			
 	}
 
 	public function kpiData(){
 
 		$query=$this->db->query("SELECT s.id as sid,k.*,s.* FROM kpi k left join subject_areas s on s.id=k.subject_area ORDER BY kpi_id ASC");
 		return $query->result();
+	}
+
+	public function get_kpi_data(){
+		        $fy =$this->session->userdata('financial_year');
+		        $this->db->where("financial_year", "$fy");
+	$query =	$this->db->get('new_data')->result();
+
+	return $query;	
 	}
 
 	public function navkpi($id){

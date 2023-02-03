@@ -8,11 +8,11 @@
                           ?>
                         <li class="treeview <?php if ($subject->id == $this->uri->segment(3)||$subject->id == $this->uri->segment(4)){ echo "active"; } ?>" >
                          <?php 
-                         $url =  base_url()."data/subject/".$subject->id."/".str_replace("+","_",urlencode($subject->name)); ?>
+                         $url =  base_url()."data/subject/".$subject->id."/".str_replace(',',' ',str_replace("'"," ",str_replace('&','and',str_replace("+","_",urlencode($subject->name))))); ?>
 
                             <a href="" title="<?php echo $subject->name; ?>"  target="_self"  onclick="openUrl('<?php echo $url; ?>');">
                             <i class="fa fa-<?php echo $subject->icon;?>"></i><span>
-                                <?php echo ellipsize($subject->name,28,1); ?>
+                                <?php echo ellipsize($subject->subject_short_name,28,1); ?>
                                     
                                 </span>
                                 <span class="pull-right-container pull-right">

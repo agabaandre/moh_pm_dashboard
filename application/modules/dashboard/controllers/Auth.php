@@ -78,7 +78,8 @@ class Auth extends MX_Controller {
 					'subject_area'  => $user->row()->subject_area,
 					'permission'  => json_encode(@$permission), 
 					'label_permission'  => json_encode(@$permission1),
-					'financial_year' => $this->current_financial_year() 
+					'financial_year' => $this->current_financial_year(),
+					'dimension_chart' => $this->dimension_chart()
 					);	
 
 					//store date to session 
@@ -132,6 +133,10 @@ class Auth extends MX_Controller {
 	redirect('dashboard/home');
 	
 
+	}
+
+	public function dimension_chart(){
+	return $this->db->get('setting')->row()->dimension_chart;
 	}
 
 	public function current_financial_year()

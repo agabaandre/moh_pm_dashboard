@@ -165,6 +165,15 @@
                         
                         </select>
                         </div>
+                    </div>
+
+
+                        <div class="form-group row">
+                        <label for="footer_text" class="col-xs-3 col-form-label">Dimension Chart</label>
+                        <div class="col-xs-9">
+        
+                            <?php echo form_dropdown('dimension_chart', $dimension_chart, $setting->dimension_chart , array('class'=>'form-control')); ?>
+                        </div>
                     </div> 
 
                      <div class="form-group row">

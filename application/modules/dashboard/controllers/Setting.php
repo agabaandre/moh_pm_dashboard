@@ -25,7 +25,8 @@ class Setting extends MX_Controller {
 		$this->check_setting();
 		#-------------------------------#
 		$data['languageList'] = $this->languageList(); 
-		$data['setting'] = $this->setting_model->read(); 
+		$data['setting'] = $this->setting_model->read();
+		$data['dimension_chart'] = array('line' => 'line', 'column' => 'column');
         $data['timezonelist'] = array(
 'Africa/Casablanca' => 'Africa/Casablanca',
 'Africa/Lagos' => 'Africa/Lagos',
@@ -213,6 +214,7 @@ class Setting extends MX_Controller {
 			'dash_rows' => $this->input->post('dash_rows'),
 			'use_category_two'=> $this->input->post('use_category_two'),
 			'financial_year' => $this->input->post('financial_year'),
+			'dimension_chart' => $this->input->post('dimension_chart')
 		]; 
 		#-------------------------------#
 		if ($this->form_validation->run() === true) {

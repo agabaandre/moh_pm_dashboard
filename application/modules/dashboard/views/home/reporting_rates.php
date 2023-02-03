@@ -40,7 +40,7 @@
                                             <tr>
                                                 
                                                 <td><?php echo $i++;?></td>
-                                                <td><?php echo $sub->name;?></td>
+                                                <td><a href="<?php echo base_url().'data/subject/'.$sub->id.'/'. $sub->name?>"><?php echo $sub->name;?></a></td>
                                                 
                                                 <td <?php echo $q1_val->color; ?>><?php echo $q1_val->report_status; ?></td>
                                                 <td <?php echo $q2_val->color; ?>><?php echo $q2_val->report_status; ?></td>

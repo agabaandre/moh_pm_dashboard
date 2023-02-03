@@ -95,7 +95,7 @@
 <?php $this->load->view('add_kpi');?>
 
 <script>
- $(document).ready(function() {
+$(document).ready(function() {
     $('#kpi').DataTable( {
         dom: 'Bfrtip',
         buttons: [
@@ -103,7 +103,11 @@
             'excelHtml5',
             'csvHtml5',
             'pdfHtml5'
-        ]
+        ],
+        lengthMenu: [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+        responsive: true,
+        displayLength: 25,
+        lengthChange: true
     } );
 } );
 </script>

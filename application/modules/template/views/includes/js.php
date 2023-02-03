@@ -91,19 +91,58 @@
             return false
         }
 
-        function toggleFullScreen(el) {
-            if (!el) {
-                el = document.body; // Make the body go full screen.
-            }
-            var isInFullScreen = (document.fullScreenElement && document.fullScreenElement !== null) ||  (document.mozFullScreen || document.webkitIsFullScreen);
 
-            if (isInFullScreen) {
-                cancelFullScreen();
-            } else {
-                requestFullScreen(el);
-            }
-            return false;
-        }
+	$(document).on("click", ".fullscreen-button", function toggleFullScreen() {
+
+		if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+			$('body').addClass("fullscreen");
+			if (document.documentElement.requestFullScreen) {
+				document.documentElement.requestFullScreen();
+			} else if (document.documentElement.mozRequestFullScreen) {
+				document.documentElement.mozRequestFullScreen();
+			} else if (document.documentElement.webkitRequestFullScreen) {
+				document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+			} else if (document.documentElement.msRequestFullscreen) {
+				document.documentElement.msRequestFullscreen();
+			}
+		} else {
+				$('body').removeClass("fullscreen");
+			if (document.cancelFullScreen) {
+				document.cancelFullScreen();
+			} else if (document.mozCancelFullScreen) {
+				document.mozCancelFullScreen();
+			} else if (document.webkitCancelFullScreen) {
+				document.webkitCancelFullScreen();
+			} else if (document.msExitFullscreen) {
+				document.msExitFullscreen();
+			}
+		}
+
+	});
+
+ $(document).ready(function() {
+  $(".sidebar-toggle").click(function() {
+
+    var body = $("body").attr("class");
+    if (body='fixed sidebar-mini  pace-donebody') {
+          $(".logo").hide();
+       
+    } else {
+
+         $(".logo").show();
+    
+    }
+    //console.log(body+"body");
+  });
+
+   Highcharts.setOptions({
+      colors: ['#90ed7d', '#434348',  '#f7a35c', '#8085e9',  '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1',  '#1aadce', '#492970', '#f28f43', '#77a1e5', '#c42525',  '#a6c96a', '#4572A7', '#AA4643', '#89A54E', '#80699B',  '#3D96AE', '#DB843D', '#92A8CD', '#A47D7C', '#B5CA92',  '#058DC7', '#50B432', '#ED561B', '#DDDF00']
+
+    });
+});
+
+
+
 </script>
 
 

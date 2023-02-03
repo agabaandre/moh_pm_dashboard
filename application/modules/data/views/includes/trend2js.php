@@ -11,16 +11,22 @@ function renderGraph(data) {
         },
         chart: {
             height: 580,
+             type: '<?php echo $_SESSION['dimension_chart'] ?>'
 
         },
 
+         tooltip: {
+         valueSuffix: '<?php echo " " ?>'
+        },
+        
         subtitle: {
             text: ''
         },
+      
 
         yAxis: {
             title: {
-                text: 'Score (%)'
+                text: 'Performance (%)'
             }
         },
 

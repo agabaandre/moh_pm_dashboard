@@ -49,16 +49,19 @@
         </form>
                     <div class="card-content">
                       
-                        <div class="col-md-6">    
-                        <a href="<?php echo base_url()?>kpi/printsummary/print_summary/<?php echo urlencode(json_encode($this->input->post('subject_area'))); ?>" class="btn btn-success"><i class="fa fa-print"  ></i>Print</a>
-                        </div>
+                        <!-- <div class="col-md-6">    
+                        <a href="<?php //echo base_url()?>kpi/printsummary/print_summary/<?php //echo urlencode(json_encode($this->input->post('subject_area'))); ?>" class="btn btn-success"><i class="fa fa-print"  ></i>Print</a>
+                        </div> -->
                         <div class="col-md-6">
                         <button type="button" class="btn btn-success" style="float:right;" data-toggle="modal" data-target="#definition">
-                        <?php echo display("definition"); ?>
+                        <?php echo display("definition"); 
+                        
+                        
+                        ?>
                         </button>
                         
                         </div>
-
+<?php print_r($this->session->userdata());?>
                         <div id="kpitable">
 
                                     <table id="subject" class="table table-responsive table-striped table-bordered">
@@ -70,7 +73,6 @@
                                                 <th>Subject Area</th>
                                                 <th>Indicator Statement</th>
                                                 <th>Target</th>
-                                                <th>Comments</th>
                                                 <th>Financial Year</th>
                                                 <th style="width:13%;">Current Performance</th>
                     
@@ -92,8 +94,7 @@
                                                     <a href="<?php echo base_url().'data/kpidata/'.$gauge['gauge']['details'][0]->kpi_id.'/'.$gauge['gauge']['details'][0]->subject_area; ?>" target="_self"><p class=""  style=" color:#072b41; font-size:12px;" ><?php echo $gauge['gauge']['details'][0]->short_name; ?></p></a></td>
                                                     
                                                     <td><?php echo $gauge['gauge']['data']->current_target; ?></td>
-                                                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $element->kpi_id ?>"><i class="fa fa-info"></i>                                                      
-                                                    </button></td>
+                        
                                                     <td><?php echo $gauge['gauge']['data']->financial_year; ?></td>
                                                    
                                                     <td  <?php 
@@ -102,48 +103,7 @@
                                                      ?>>
                                                      <?php echo  $gauge['gauge']['data']->current_value.'%'; ?>
                                                      </td>
-                                                  <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal<?php echo $element->kpi_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel"><?php echo $gauge['gauge']['details'][0]->short_name; ?> Performance Comments</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        
-                                                            <div class="card">
-                                                                <div class="card-body text-center">
-                                                                    <h4 class="card-title">Latest Performance Comment</h4>
-                                                                </div>
-                                                                <?php 
-                                                                $this->db->query("SELECT comment from new_data where kpi_id='$element->kpi_id' LIMIT 10 order by ");
-                                                                foreach ($comments as $comment): ?>
-                                                                
-                                                                    <!-- Comment Row -->
-                                                                    <div class="d-flex flex-row comment-row m-t-0">
-                                                                        <div class="p-2"><?php echo $comment->comment ?></div>
-                                                                        <div class="comment-text w-100">
-                                                                            <h6 class="font-medium"><?php ?></h6> <span class="m-b-15 d-block"><?php  ?></span>
-                                                                        </div>
-                                                                    </div> <!-- Comment Row -->
-                                                              
-                                                                    
-                                                                    
-                                                            </div> <!-- Card -->
-                                                            <?php endforeach; ?>
-                                                          
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    </div>
-                                               <!--end-->     </div>
-                                                </div>
-                                                </div>
+                                        
                                                     
                                                 </tr>
                                                     <?php 
@@ -184,6 +144,33 @@
 			document.body.innerHTML = originalContents;
 
 		}
-	</script>
+ 
+
+
+    $(document).ready(function() {
+    $('#subject').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            {
+                extend: 'pdfHtml5',
+                orientation: 'Potrait',
+                pageSize: 'A4',
+             
+            }
+        ],
+        lengthMenu: [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+        responsive: true,
+        displayLength: 25,
+        lengthChange: true
+    } );
+} );
+
+</script>
+
+
+    
 
 

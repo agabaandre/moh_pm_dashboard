@@ -6,6 +6,7 @@ class Data_mdl extends CI_Model {
 	
 public function __Construct(){
 	$this->db->query('SET SESSION sql_mode = ""');
+		$this->financial_year = $this->session->userdata('financial_year');
 
 	parent::__Construct();
 

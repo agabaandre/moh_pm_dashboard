@@ -8,9 +8,9 @@
                           ?>
                         <li class="treeview <?php if ($subject->id == $this->uri->segment(3)||$subject->id == $this->uri->segment(4)){ echo "active"; } ?>" >
                          <?php 
-                         $url =  base_url()."data/subject/".$subject->id."/".str_replace("+","_",urlencode($subject->name)); ?>
+                         $url =  base_url()."data/subject/".$subject->id."/". str_replace(',', ' ', str_replace("'", " ", str_replace('&', 'and', str_replace("+", "_", urlencode($subject->name))))); ?>
                             <a href=""  target="_self"  onclick="openUrl('<?php echo $url; ?>');">
-                            <i class="fa fa-<?php echo $subject->icon;?>"></i><span><?php echo $subject->name; ?></span>
+                            <i class="fa fa-<?php echo $subject->icon;?>"></i><span><?php echo $subject->subject_short_name; ?></span>
                                 <span class="pull-right-container pull-right">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>

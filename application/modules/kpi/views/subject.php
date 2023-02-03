@@ -71,8 +71,8 @@
 
 <?php $this->load->view('add_subject');?>
 
-<script>
- $(document).ready(function() {
+    <script>
+$(document).ready(function() {
     $('#subject').DataTable( {
         dom: 'Bfrtip',
         buttons: [
@@ -80,8 +80,11 @@
             'excelHtml5',
             'csvHtml5',
             'pdfHtml5'
-        ]
+        ],
+        lengthMenu: [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+        responsive: true,
+        displayLength: 25,
+        lengthChange: true
     } );
 } );
-</script>
-                                   
+</script>                      

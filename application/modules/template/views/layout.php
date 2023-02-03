@@ -26,30 +26,27 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <section class="content-header">
+            <?php if($this->uri->segment(1)=='dashboard'){$margin=" background:#fff !important; ";}else{$margin="background:#fff !important;";} ?>
+            <section class="content-header" style="<?php echo $margin;?> height:60px; border: 1px #979797 solid; border-bottom-left-radius:10px !important; border-bottom-right-radius:10px !important">
                 <!-- <div class="header-icon"><i class="pe-7s-home"></i></div> -->
                 <div class="header-title">
-                    <h4>
-
-
-                        <p><a href=" #"><i class="pe-7s-home"></i> Dashboard</a>
-                            <?php if (!empty($uptitle)) {
-                                echo ' - ' . urldecode($uptitle);
-                            } ?>
-                        </p>
-
-                    </h4>
-
                     <?php if (($this->session->userdata('isAdmin'))||($this->session->userdata('user_type')=='admin')) { ?>
-                    <div class="row" style="display:flex; float:right; margin-right:5px; margin-top:-40px;"> 
+                    <div class="row" style="display:flex; float:right; margin-right:5px;"> 
                         <div class="dropdown">
                             <a href="<?php echo base_url(); ?>files/file"
                                 class="btn btn-success btn-outline dropdown-toggle" data-toggle="dropdown"
                                 aria-expanded="true"
-                                style="margin-right:5px; margin-top:-40px position: relative; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>">
+                                style="margin-right:5px;">
                                 Admin Settings
                             </a>
                             <ul class="dropdown-menu">
+                                   <li>
+                                    <a href="<?php echo base_url(); ?>kpi/view_kpi_data">
+                                        <span>
+                                            <?php echo "KPI Data" ?>
+                                        </span>
+                                    </a>
+                                </li>
 
                                 <li>
                                     <a href="<?php echo base_url(); ?>kpi/subject">
@@ -111,18 +108,19 @@
                             </ul>
                         </div>
                         <a href="<?php echo base_url(); ?>files/file" class="btn btn-success btn-outline"
-                            style="margin-right:5px; margin-top:-40px position: relative; <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>">
+                            style="margin-right:5px; margin-top:0px  <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>">
                             Upload Data
                         </a>
 
                         <?php } ?>
-                        <button type="button" class="btn btn-success btn-outline" style="margin-right:5px; margin-top:-40px position: relative; <?php if ($this->uri->segment(2) == "summary") { ?>
+                        <button type="button" class="btn btn-success btn-outline" style="margin-right:5px; margin-top:0px  <?php if ($this->uri->segment(2) == "summary") { ?>
                         display:none;<?php } ?>" data-toggle="modal" data-target="#definition">
                             <?php echo display("definition"); ?>
                         </button>
-                        <div>
+            
 
 
+                        </div>
                         </div>
             </section>
 
@@ -133,7 +131,14 @@
 
                 <!-- load messages -->
                 <?php include('includes/messages.php'); ?>
-                <div class="se-pre-con"></div>
+                <div class="se-pre-con">
+                    
+                </div>
+                 <p><a href=" #"><i class="pe-7s-home"></i> Dashboard</a>
+                            <?php if (!empty($uptitle)) {
+                                echo ' - ' . urldecode($uptitle) .' - ( Finacial Year: '. $_SESSION['financial_year'].')';
+                            } ?>
+                </p>
                 <!-- load custom page -->
 
 
@@ -148,12 +153,9 @@
         </div> <!-- /.content-wrapper -->
 
 
-        <footer class="main-footer">
-            <span class="pull-right">
-                <img src="<?php echo base_url((!empty($setting->logo) ? $setting->logo : 'assets/img/icons/mini-logo.png')) ?>"
-                    style="width:5%; float:right;" alt="">
-            </span>
-            <div class="pull-right hidden-xs">
+        <footer class="main-footer" style="text-align:center; font-size:11px;">
+          
+            <div class="">
                 <?php echo (!empty($setting->address) ? $setting->address : null) ?>
             </div>
 
@@ -161,7 +163,7 @@
                 <?php echo (!empty($setting->footer_text) ? $setting->footer_text : null) ?>
             </strong>
             <a href="<?php echo current_url() ?>">
-                <?php echo (!empty($setting->title) ? $setting->title : null) ?>
+                <?php echo (!empty($setting->title) ? $setting->title : null) ?> <?php echo "-".date('Y'); ?>
             </a>
         </footer>
 
@@ -225,6 +227,59 @@
             </div>
         </div>
     </div>
+
+
+    <!-- <switch year> -->
+
+     <!-- Modal -->
+    <div class="modal fade" id="switchYear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Change Financial Year</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">   
+
+            <form action="<?php echo base_url(); ?>dashboard/auth/financialYear" enctype="multipart/form-data" method="post" accept-charset="utf-8">
+         
+                    <div class="form-group">
+                               <?php  $years = $this->db->query("SELECT distinct financial_year from new_data")->result(); ?>
+                          <label for="cumulative" class="col-form-label">Choose Year</label>
+                      
+                           <select name="financial_year" class="form-control codeigniterselect">
+                             <option value="" disabled>ALL</option>
+                            <?php foreach($years as $value): ?>
+                             <option value="<?php echo $value->financial_year; ?>">
+                                <?php echo $value->financial_year; ?>
+                             </option>
+                            <?php endforeach; ?>
+                            </select>  
+                        </div>              
+                        </div>
+                        
+                  
+        <div class="modal-footer">
+                           <div class="form-group text-right">
+            <button type="reset" data-dismiss="modal" class="btn btn-primary w-md m-b-5">Cancel</button>
+            <button type="submit" class="btn btn-success w-md m-b-5">Confirm</button>
+        </div>
+
+              </form>
+               
+                </div>
+
+         
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <switch year> -->
 
 
     <!-- Start Core Plugins-->

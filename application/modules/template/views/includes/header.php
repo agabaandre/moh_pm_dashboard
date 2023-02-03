@@ -18,9 +18,9 @@
     <div class="navbar-custom-menu">
         <ul class="nav navbar-nav" style="margin:0 auto;">
     
-              <li><a href="#"  onclick="toggleFullScreen('fullscreendiv')" ><i class="pe-7s-expand1"></i>Full Screen</a>
+              <li><a href="#" class="full-screen fullscreen-button full-screen-link menu-icons fullscreen" ><i class="pe-7s-expand1"></i></a>
                     </li>
-             <li><a href="#swicthYear" data-toggle="modal"><i class="pe-7s-shuffle"></i> Switch Year</a>
+             <li><a href="#switchYear" data-toggle="modal"><i class="pe-7s-shuffle"></i></a>
                     </li>
 
             <li class="dropdown dropdown-user">
@@ -30,18 +30,17 @@
                 <ul class="dropdown-menu">
 
                 <?php if (($this->session->userdata('user_type') == 'admin') || ($this->session->userdata('isAdmin'))) { ?>
-                    <li><a href="<?php echo base_url('dashboard/user/form') ?>">
-                            <?php echo display('add_user') ?>
+                    <li><a href="<?php echo base_url('dashboard/user/form') ?>"><i class="pe-7s-add-user"></i> New User
                         </a>
                     </li>
-                    <li><a href="<?php echo base_url('dashboard/user/index') ?>">
+                    <li><a href="<?php echo base_url('dashboard/user/index') ?>"><i class="pe-7s-filter"></i>
                             <?php echo display('user_list') ?>
                         </a>
                     </li>
                     <hr>
                     <?php }?>
                    
-                    <li><a href="<?php echo base_url('dashboard/home/profile') ?>"><i class="pe-7s-users"></i>
+                    <li><a href="<?php echo base_url('dashboard/home/profile') ?>"><i class="pe-7s-user"></i>
                             <?php echo display('profile') ?>
                         </a></li>
                     <li><a href="<?php echo base_url('dashboard/home/setting') ?>"><i class="pe-7s-settings"></i>
@@ -64,11 +63,6 @@
         </ul>
 
     </div>
-    <span class="dropdown messages-menu"
-        style="font-size:15px; text-align:center; font-weight:bold; float:left; margin-left:19%; margin-top:15px;">
-
-        <span>
-            <?php echo'FY: '. $_SESSION['financial_year'];?>
-        </span>
-    </span>
+  
+    
 </nav>

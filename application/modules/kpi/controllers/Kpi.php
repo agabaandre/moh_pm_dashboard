@@ -112,6 +112,17 @@ class Kpi extends MX_Controller
 
 		echo Modules::run('template/layout', $data);
 	}
+	public function view_kpi_data(){
+		
+
+		//$this->session->set_flashdata('message', 'Added');
+		$data['data'] = $this->kpi_mdl->get_kpi_data();
+		$data['title'] = 'Indicator Data';
+		$data['page'] = 'view_kpi_data';
+		$data['module'] = $this->module;
+
+		echo Modules::run('template/layout', $data);
+	}
 
 	public function addKpi()
 	{

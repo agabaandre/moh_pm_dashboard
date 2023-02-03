@@ -39,10 +39,13 @@ else{
                                         <li class="<?php if ($this->uri->segment(2)=='dimension2') { echo ''; } ?>"> <a href="<?php echo base_url().'data/dimension2/'.$dim->kpi_id.'/'.$dimsub; ?>" class="dropdown-item"><?php echo $dim->dimension2_key; ?></a> </li>
                                         <li class="active <?php if ($this->uri->segment(2)=='dimension3') { echo ''; } ?>"> <a href="<?php echo base_url().'data/dimension3/'.$dim->kpi_id.'/'.$dimsub;?>" class="dropdown-item"><?php echo $dim->dimension3_key; ?></a> </li> 
                                     <?php    }  
+                                    
                         ?>
-</ul>
+                     
+                                        </ul>
+                                        
 </div>
-<form method="post" id="trend3" class="form-horizontal" action="<?php echo base_url('data/dimension3/').$this->uri->segment(3).'/'.$dimsub; ?>" style="width:50%; margin:10px;">
+<form method="post" id="trffend3" class="form-horizontal" action="<?php echo base_url('data/dimension3/').$this->uri->segment(3).'/'.$dimsub; ?>" style="width:50%; margin:10px;">
         <label>Select Limit </label>
         <select class="js-example-basic-multiple" name="dimension2" multiple="multiple">
         <?php 
@@ -56,10 +59,10 @@ else{
          endforeach;
        ?>
        </select>
-       <br><br>
+        <br><br>
        <button type="submit" class="btn btn-success">Apply</button>
        <a href="<?php echo base_url('data/dimension3/').$this->uri->segment(3).'/'.$dimsub; ?>" class="btn btn-success">Rest</a>
-
+       
         </form>
 
 

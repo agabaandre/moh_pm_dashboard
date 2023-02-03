@@ -14,7 +14,7 @@ class Data extends MX_Controller {
 		$this->load->model('kpi/kpi_mdl','kpi_mdl');
 
 		$this->kpi=$this->uri->segment(3);
-		$this->financial_year=Modules::run('limits/yearLimit');
+		$this->financial_year = $this->session->userdata('financial_year');
 
 
 	}
@@ -129,7 +129,7 @@ class Data extends MX_Controller {
 		$data['title']   = $this->data_mdl->kpi_name($kpi);
 
     echo Modules::run('template/layout', $data);
-		return $data;
+		
 	}
 
 
@@ -142,7 +142,7 @@ class Data extends MX_Controller {
 		$data['title']   = $this->data_mdl->kpi_name($kpi);
 
     echo Modules::run('template/layout', $data);
-		return $data;
+	
 	}
 
 
@@ -153,9 +153,9 @@ class Data extends MX_Controller {
 	 	$data['page']    = 'trend3';
 		$data['uptitle'] = $this->data_mdl->subject_name($kpi);
 		$data['title']   = $this->data_mdl->kpi_name($kpi);
+		//$this->change_chart($this->input->post('dimension_chart'));
 		
     echo Modules::run('template/layout', $data); 
-		return $data;
 	}
 
 
@@ -191,10 +191,12 @@ class Data extends MX_Controller {
 
 	public function dim3data($kpi){
 	    $dimension2 = $this->input->post('dimension2');
+		$dimension_chart = $this->input->post('dimension_chart');
         $dim2=str_replace('""','"',str_replace("_"," ",str_replace("]","",str_replace("[","",json_encode($dimension2)))));
 
 		$data = $this->graph_mdl->dim3Graph($kpi,$dim2);
-	  // print_r($data);
+
+		// print_r($data);
 		echo  json_encode($data,JSON_NUMERIC_CHECK);
 	}
 
@@ -244,6 +246,38 @@ class Data extends MX_Controller {
 		return $query->result();
 
 	}
+
+	public function get_period($kpi){
+
+		$result = $this->db->query("SELECT DISTINCT period from new_data where kpi_id='$kpi' and financial_year='$this->financial_year'
+")->result();
+		return $result;
+	}
+	public function get_comments($kpi,$period)
+	{
+
+		$results = $this->db->query("SELECT DISTINCT comment from new_data where kpi_id='$kpi' and financial_year='$this->financial_year' and period = '$period' and comment is NOT NULL")->result();
+
+	return	$results;
+	}
+	public function get_calculation($kpi, $period)
+	{
+
+		$results = $this->db->query("SELECT total_numerator as numerator, total_denominator as denominator from report_kpi_trend where kpi_id='$kpi' and financial_year='$this->financial_year' and period = '$period'")->result();
+
+		return $results;
+	}
+
+	public function get_computation($kpi)
+	{
+
+		$results = $this->db->query("SELECT computation from kpi where kpi_id='$kpi'")->row()->computation;
+
+		return $results;
+	}
+	
+
+	
 
    
 

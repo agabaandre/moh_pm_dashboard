@@ -10,9 +10,14 @@ function renderGraph(data) {
         title: {
             text: '<?php echo trim($title); ?>'
         },
-        chart: {
+          chart: {
             height: 580,
+             type: '<?php echo $_SESSION['dimension_chart'] ?>'
 
+        },
+
+         tooltip: {
+         valueSuffix: '<?php echo " " ?>'
         },
 
         subtitle: {
@@ -21,7 +26,7 @@ function renderGraph(data) {
 
         yAxis: {
             title: {
-                text: 'Score (%)'
+                text: 'Performance (%)'
             }
         },
 

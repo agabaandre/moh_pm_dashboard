@@ -69,7 +69,7 @@
                                             <tr>
                                                 
                                                 <td><?php echo $i++;?></td>
-                                                <td><?php echo $kpi->indicator_statement;?></td>
+                                                <td><a href="<?php echo base_url() . 'data/kpidata/' . $kpi->kpi_id . '/' . $sub->id; ?>" target="_blank"><?php echo $kpi->indicator_statement;?></a></td>
                                                 <td><?php echo @$data->financial_year; ?></td>
                                                 <td><?php echo @$data->cp; ?></td>
                                                 <td ><?php echo @$data->current_target;  ?></td>

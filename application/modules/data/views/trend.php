@@ -75,9 +75,8 @@ else{
 
 
 </div>
-       
-    
-   
+
+<?php require("includes/performance_comments.php") ?>
 
 
 <?php require("includes/trendjs.php") ?>

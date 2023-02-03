@@ -6,6 +6,7 @@ class Slider_model extends CI_Model {
 
 				parent::__Construct();
 				$this->db->query('SET SESSION sql_mode = ""');
+		        $this->financial_year = $this->session->userdata('financial_year');
 
 
 		}
@@ -25,7 +26,7 @@ class Slider_model extends CI_Model {
 	public function slider_data($kpi)
 	{
 
-		$query = $this->db->query("SELECT  CONCAT(period,'/',period_year) as cp,kpi_id,period,financial_year,target_value as current_target,current_value from report_kpi_trend t WHERE trim(kpi_id)='$kpi' and period = (SELECT max(period) from  report_kpi_trend WHERE kpi_id='$kpi') and financial_year = (SELECT MAX(financial_year) from report_kpi_trend WHERE kpi_id='$kpi')");
+		$query = $this->db->query("SELECT  CONCAT(period,'/',period_year) as cp,kpi_id,period,financial_year,target_value as current_target,current_value from report_kpi_trend t WHERE trim(kpi_id)='$kpi' and period = (SELECT max(period) from  report_kpi_trend WHERE kpi_id='$kpi' and financial_year='$this->financial_year') and financial_year = (SELECT distinct financial_year from report_kpi_trend WHERE kpi_id='$kpi' and financial_year='$this->financial_year')");
 		$period = $query->row()->period;
               $fy = $query->row()->financial_year;
     $previous_period = $this->db->query("SELECT MAX(period) as previous_period FROM `report_kpi_trend` WHERE period!='$period'  and financial_year='$fy' and kpi_id= '$kpi' ")->row()->previous_period;

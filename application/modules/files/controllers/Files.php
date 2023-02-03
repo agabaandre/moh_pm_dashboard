@@ -71,11 +71,11 @@ class Files extends MX_Controller {
                         'dimension2_key'  =>  $dim2k, 	
                         'dimension3'  =>  $dim3, 	
                         'dimension3_key'  =>  $dim3k, 
-                        'financial_year'  =>  str_replace(" ", "",$sale->getCellByColumnAndRow(7, $row)->getValue()),
+                        'financial_year'  =>  str_replace("/", "-",$sale->getCellByColumnAndRow(7, $row)->getValue()),
                         'period_year'  =>  str_replace(" ", "",$sale->getCellByColumnAndRow(8, $row)->getValue()),  
-                        'period'  =>  str_replace(" ", "",$sale->getCellByColumnAndRow(9, $row)->getValue()), 
-                        'denominator'  =>  str_replace(",", "",$sale->getCellByColumnAndRow(10, $row)->getValue()), 
-                        'numerator'  =>  str_replace(",", "",$sale->getCellByColumnAndRow(11, $row)->getValue()), 	
+                        'period'  => ucwords(str_replace(" ", "",$sale->getCellByColumnAndRow(9, $row)->getValue())), 
+                        'denominator'  =>  str_replace("%","",str_replace(",", "",$sale->getCellByColumnAndRow(10, $row)->getValue())), 
+                        'numerator'  =>  str_replace("%","",str_replace(",", "",$sale->getCellByColumnAndRow(11, $row)->getValue())), 	
                         'data_target'  =>  str_replace("%", "",$sale->getCellByColumnAndRow(12, $row)->getValue()),
                         'comment'  =>  $sale->getCellByColumnAndRow(13, $row)->getValue()
                         );
