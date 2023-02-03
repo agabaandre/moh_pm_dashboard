@@ -87,7 +87,7 @@
                     <th colspan="2">
                       Computation Method
                     </th>
-                    <td colspan="3">
+                    <td colspan="4">
                     <?php echo Modules::run('data/get_computation', $kpi_id);?>
                     </td>
                        
