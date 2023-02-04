@@ -14,6 +14,9 @@ Highcharts.chart('line<?php echo $chartkpi; ?>', {
 
     },
 
+     tooltip: {
+         valueSuffix: '<?php echo " " ?>'
+        },
     legend: {
         align: 'center',
         verticalAlign: 'bottom',
