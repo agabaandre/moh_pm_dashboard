@@ -3493,6 +3493,7 @@ pre .arg {
 .btn-primary {
     background-color: #428bca;
     border-color: #3b7cb4;
+    border-radius:8px;
 }
 
 .btn-primary:hover,
@@ -3534,6 +3535,7 @@ pre .arg {
 .btn-success {
     background-color: #0d5e8e;
     border-color: #0984b5;
+    border-radius: 8px;
 }
 
 .btn-success:hover,
@@ -3578,6 +3580,7 @@ pre .arg {
 .btn-info {
     background-color: #62d0f1;
     border-color: #51b3d1;
+    border-radius: 8px;
 }
 
 .btn-info:hover,
@@ -3604,6 +3607,7 @@ pre .arg {
 .btn-info.btn-outline {
     color: #62d0f1;
     background-color: transparent;
+    border-radius: 8px;
 }
 
 .btn-info.btn-outline:hover,

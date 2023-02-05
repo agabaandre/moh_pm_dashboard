@@ -1,9 +1,11 @@
 <a href="<?php echo base_url('dashboard/home') ?>" class="logo">
 
     <?php //menu tiltle ?>
-    <p style="margin:10px; font-size:15px; font-weight:bold;"><?php echo "MoH PM DASHBOARD" ?>
+    <p class="logo-text" style="margin:10px; font-size:15px; font-weight:bold;"><?php echo "MoH PM DASHBOARD" ?>
     </p>
-
+    <p class="short-logo" style="margin-left:0px; margin-top:20px; font-size:13px; font-weight:bold;"><?php echo "PMD" ?>
+    </p> 
+    
 </a>
 <div class="se-pre-con"></div>
 <!-- Header Navbar -->

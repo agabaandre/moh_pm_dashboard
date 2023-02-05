@@ -125,11 +125,13 @@
 
     var body = $("body").attr("class");
     if (body='fixed sidebar-mini  pace-donebody') {
-          $(".logo").hide();
+          $(".logo.text").hide();
+          $('.short-logo').show();
        
     } else {
 
-         $(".logo").show();
+         $(".logo.text").show();
+         $('.short-logo').hide();
     
     }
     //console.log(body+"body");
@@ -139,7 +141,12 @@
         if (url == "slider" || url == "summary" || url == "view_kpi_data" || url == "kpis" || url == "addkpi_data") {
             $('body').addClass('sidebar-collapse');
             $('#sidebar').toggleClass('active');
-            $(".logo").hide();
+            $(".logo-text").hide();
+            $('.short-logo').show();
+        }
+        else{
+            $(".logo-text").show();
+            $('.short-logo').hide();
         };
     
 
