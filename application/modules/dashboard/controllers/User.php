@@ -66,10 +66,10 @@ class User extends MX_Controller {
         $config['allowed_types']        = 'gif|jpg|png'; 
          $image = $this->input->post('image');
 		/*-----------------------------------*/
-		if (!empty($this->input->post('subject_area'))) {
+		if (!empty(($this->input->post('subject_area')) && ($this->input->post('user_type') != 'admin'))) {
 			@$subjectarea = json_encode($this->input->post('subject_area'));
 		}
-		else{
+		else {
 			@$subjectarea = '';
 		}
 
@@ -86,6 +86,7 @@ class User extends MX_Controller {
 			'ip_address'  => null,
 			'status'      => $this->input->post('status'),
 			'subject_area'    => $subjectarea,
+			'info_category' => $this->input->post('info_category'),
 			'user_type'      => $this->input->post('user_type'),
 			'is_admin'    => 0
 		);

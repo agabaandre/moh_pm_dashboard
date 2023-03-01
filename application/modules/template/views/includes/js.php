@@ -156,6 +156,20 @@
     });
 });
 
+function getSubs(val){
+   
+        $.ajax({
+            method: "GET",
+            url: "<?php echo base_url(); ?>kpi/get_cat_subjects",
+            data: val,
+            success: function(data) {
+                console.log(data);
+                $(".cat_subject_areas").html(data);
+            }
+            //  console.log('iwioowiiwoow');
+        });
+}
+
 
 
 </script>

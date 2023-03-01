@@ -56,6 +56,14 @@ class Kpi_mdl extends CI_Model {
 		return $query->result();
 	}
 
+	public function info_category_Data()
+	{
+		
+
+		$query = $this->db->query("SELECT * FROM info_category");
+		return $query->result();
+	}
+
 	public function addKpi($data){
 	
 		$query = $this->db->insert('kpi',$data);
@@ -67,6 +75,18 @@ class Kpi_mdl extends CI_Model {
 		return $data;
 		}
 	}
+	public function addinstitution($data){
+	
+		$query = $this->db->insert('info_category',$data);
+		if ($query){
+			$message ="Succesful";
+		} else{
+			$message ="Failed";
+
+		return $data;
+		}
+	}
+	
 
 	public function addSubject($data){
 
@@ -88,15 +108,11 @@ class Kpi_mdl extends CI_Model {
 	}
 
 
-	public function kpiSummaryData($ffilter){
-			$efilter = implode(",",json_decode($ffilter));
-		if($efilter!=""){
-			$limit = "and subject_areas.id in($efilter)";
-		}
-		else{
+	public function kpiSummaryData(){
+		
 	
 		$limit=dashlimits('andsubject');
-		}
+		
 	   // $query = $this->db->query("SELECT Distinct kpi.kpi_id, report_kpi_summary.kpi_id, short_name, subject_areas.name FROM kpi,report_kpi_summary,subject_areas WHERE kpi.kpi_id=report_kpi_summary.kpi_id   AND subject_areas.id=kpi.subject_area $limit order by subject_areas.name ASC, short_name ASC ");
 	
 		$query = $this->db->query("SELECT Distinct kpi.kpi_id, short_name, subject_areas.name FROM kpi  join subject_areas on  subject_areas.id=kpi.subject_area WHERE kpi_id in (SELECT DISTINCT kpi_id from new_data) $limit order by subject_areas.name ASC, short_name ASC ");

@@ -16,7 +16,7 @@
                             <input name="firstname" class="form-control" type="text" placeholder="<?php echo display('firstname') ?>" id="lastname" value="<?php echo $user->firstname ?>">
                         </div>
                     </div>
-<?php echo @$id=implode(",",json_decode($_SESSION['subject_area'])); ?>
+                    <?php echo @$id=implode(",",json_decode($_SESSION['subject_area'])); ?>
                     <div class="form-group row">
                         <label for="lastname" class="col-sm-3 col-form-label"><?php echo display('lastname') ?> *</label>
                         <div class="col-sm-9">
@@ -37,6 +37,26 @@
                             <input name="password" class="form-control" type="text" value="<?php echo $setting->default_password; ?>" placeholder="<?php echo display('password') ?>" id="password" readonly>
                             <input name="oldpassword" class="form-control" type="hidden" value="<?php echo $setting->default_password; ?>">
                         </div>
+                    </div>
+                     <div class="form-group row">
+                        <?php
+                        $cats = $this->db->query("SELECT * FROM `info_category`")->result(); ?>
+                          <label for="cumulative" class="col-sm-3 col-form-label">Default Institution Category</label>
+                          <div class="col-sm-9">
+                          <select class="js-example-basic-multiple" name="info_category" class="form-control" onchange="getSubs()">
+                            
+                           
+                            <?php 
+                             $info_cateorgy = $this->session->userdata('info_category');
+                             foreach($cats as $value): 
+                                
+                                ?>
+                             <option value="<?php echo $value->id;?>" <?php if ($value->id== $info_cateorgy) {echo "selected";} ?>>
+                                <?php echo $value->name; ?>
+                             </option>
+                            <?php endforeach; ?>
+                            </select> 
+                            </div> 
                     </div>
                     <div class="form-group row">
                         <?php

@@ -13,34 +13,30 @@
                         <div class="card">
                         <!-- Add Subject -->
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop" style="margin-bottom:3px;"><i class="fa fa-plus">
-                            </i>Add Subject
+                            </i>Add Institution Category
                             </button>
                         
                             <div class="card-content">
-                                <table id="subject" class="table table-responsive table-striped table-bordered">
+                                <table id="category" class="table table-responsive table-striped table-bordered">
                     
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Subject Area</th>
-                                        <th>Display Index</th>
-                                        <th>Institution Category</th>
-                                        <th>Description</th>
+                                        <th>Institution</th>
+                                        
                                         
                                     </tr>
                                     </thead>
                                     <tbody>
                                         <?php 
                                             $i=1;
-                                        $elements=Modules::run('kpi/subjectData');
+                                        $elements=Modules::run('kpi/info_category_Data');
                                             foreach($elements as $element):?>
 
                                         <tr class="table-row tbrow content strow">
                                             <td><?php echo $i ?></td>
                                             <td><?php echo $element->name; ?></td>
-                                            <td><?php echo  $element->display_index; ?></td>
-                                                <td><?php echo  Modules::run('kpi/info_category_name',$element->info_category); ?></td>
-                                            <td><?php echo $element->sub_description; ?></td>
+                                         
                                             
                                             
                                             
@@ -67,11 +63,11 @@
         </div>
     </div>
 
-<?php $this->load->view('add_subject');?>
+<?php $this->load->view('add_info_category');?>
 
     <script>
 $(document).ready(function() {
-    $('#subject').DataTable( {
+    $('#category').DataTable( {
         dom: 'Bfrtip',
         buttons: [
             'copyHtml5',

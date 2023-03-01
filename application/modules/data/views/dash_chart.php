@@ -13,10 +13,10 @@
 
 if(($this->uri->segment(1)=="dashboard")||($this->uri->segment(1)=="")){
     
-    $col="col-md-".$setting->dash_rows. " offset-2";
+    $col="col-md-".$setting->dash_rows;
     }
     else{
-        $col="col-md-".$setting->kpi_rows. " offset-2";
+        $col="col-md-".$setting->kpi_rows;
     }
                                 
 ?>
@@ -30,7 +30,7 @@ if(($this->uri->segment(1)=="dashboard")||($this->uri->segment(1)=="")){
    <?php 
    
   
-   echo $kstatus=Modules::run("data/kpiTrend",$gauge['data']->current_target,$gauge['data']->current_value,$gauge['data']->previous_value,$gauge['data']->cp,$gauge['data']->pp);
+   echo @$kstatus=Modules::run("data/kpiTrend",$gauge['data']->current_target,$gauge['data']->current_value,$gauge['data']->previous_value,$gauge['data']->cp,$gauge['data']->pp);
    
    ?>
    <br>

@@ -20,9 +20,11 @@
     <div class="navbar-custom-menu">
         <ul class="nav navbar-nav" style="margin:0 auto;">
     
-              <li><a href="#" class="full-screen fullscreen-button full-screen-link menu-icons fullscreen" ><i class="pe-7s-expand1"></i></a>
+            <li><a href="#" class="full-screen fullscreen-button full-screen-link menu-icons fullscreen" ><i class="pe-7s-expand1"></i></a>
                     </li>
-             <li><a href="#switchYear" data-toggle="modal"><i class="pe-7s-shuffle"></i></a>
+            <li><a href="#switchData" data-toggle="modal"><i class="pe-7s-shuffle"></i></a>
+                    </li>
+            <li><a href="#switchYear" data-toggle="modal"><i class="pe-7s-shuffle"></i></a>
                     </li>
 
             <li class="dropdown dropdown-user">

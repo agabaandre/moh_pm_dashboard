@@ -49,8 +49,8 @@ class Graph_mdl extends CI_Model
               //$query= $this->db->query("SELECT MAX(period), CONCAT(period,'/',period_year) as cp, CONCAT(previous_period,'/',previousperiod_year) as pp, t.* from report_kpi_summary t WHERE trim(kpi_id)='$kpi'");
               $query = $this->db->query("SELECT  CONCAT(period,'/',period_year) as cp,kpi_id,period,financial_year,target_value as current_target,current_value from report_kpi_trend t WHERE trim(kpi_id)='$kpi' and period = (SELECT max(period) from  report_kpi_trend WHERE kpi_id='$kpi' and financial_year='$this->financial_year') and financial_year = (SELECT distinct financial_year from report_kpi_trend WHERE kpi_id='$kpi' and financial_year='$this->financial_year')");
 
-              $period = $query->row()->period;
-              $fy = $query->row()->financial_year;
+              @$period = $query->row()->period;
+              @$fy = $query->row()->financial_year;
               $previous_period = $this->db->query("SELECT MAX(period) as previous_period FROM `report_kpi_trend` WHERE period!='$period'  and financial_year='$fy' and kpi_id= '$kpi' ")->row()->previous_period;
               $query1 = $this->db->query("SELECT  CONCAT(period,'/',period_year) as pp, `period` as  pervious_period, `financial_year` as previous_financial_year, `period_year` as previousperiod_year, `current_value` as previous_value, `target_value` as previous_target FROM report_kpi_trend WHERE period='$previous_period' AND kpi_id='$kpi' AND financial_year ='$fy'");
 

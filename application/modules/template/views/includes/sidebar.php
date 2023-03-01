@@ -1,4 +1,4 @@
-<div class="sidebar" style="overflow:auto;">
+<div class="sidebar">
     <!-- Sidebar user panel -->
     <?php if ($this->uri->segment(2) !== 'User') { ?>
     <div class="user-panel text-center">
@@ -14,7 +14,7 @@
 
 
     <!-- sidebar menu -->
-    <ul class="sidebar-menu" style="overflow:auto;">
+    <ul class="sidebar-menu">
 
         <li class="treeview <?php echo (($this->uri->segment(2) == "home") ? "active" : null) ?>">
             <a href="<?php echo base_url('dashboard/home') ?>"> <i class="ti-dashboard"></i>

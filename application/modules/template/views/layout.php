@@ -10,7 +10,7 @@
 <body class="hold-transition fixed sidebar-mini">
 
     <!-- Site wrapper -->
-    <div class="wrapper">
+    <div class="content-wrapper" style="min-height: unset !important;">
 
         <header class="main-header">
             <?php require('includes/header.php'); ?>
@@ -22,25 +22,26 @@
             <!-- sidebar -->
             <?php $this->load->view('includes/sidebar.php') ?>
         </aside>
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <?php if($this->uri->segment(1)=='dashboard'){$margin=" background:#fff !important; ";}else{$margin="background:#fff !important;";} ?>
-            <section class="content-header" style="<?php echo $margin;?> height:60px; border: 1px #979797 solid; border-bottom-left-radius:10px !important; border-bottom-right-radius:10px !important">
-                <!-- <div class="header-icon"><i class="pe-7s-home"></i></div> -->
-                <div class="header-title">
-                    <?php if (($this->session->userdata('isAdmin'))||($this->session->userdata('user_type')=='admin')) { ?>
-                    <div class="row" style="display:flex; float:right; margin-right:5px;"> 
+        <!-- Content Header (Page header) -->
+        <?php if ($this->uri->segment(1) == 'dashboard') {
+            $margin = " background:#fff !important; ";
+        } else {
+            $margin = "background:#fff !important;";
+        } ?>
+        <section class="content-header"
+            style="<?php echo $margin; ?> height:60px; border: 1px #979797 solid; border-bottom-left-radius:10px !important; border-bottom-right-radius:10px !important">
+          <!-- </admin content -->
+           
+            <div class="header-title">
+                    <div class="row" style="display:flex; float:right; margin-right:5px;">
                         <div class="dropdown">
                             <a href="<?php echo base_url(); ?>files/file"
                                 class="btn btn-success btn-outline dropdown-toggle" data-toggle="dropdown"
-                                aria-expanded="true"
-                                style="margin-right:5px;">
+                                aria-expanded="true" style="margin-right:5px;">
                                 Admin Settings
                             </a>
                             <ul class="dropdown-menu">
-                                   <li>
+                                <li>
                                     <a href="<?php echo base_url(); ?>kpi/view_kpi_data">
                                         <span>
                                             <?php echo "KPI Data" ?>
@@ -52,6 +53,13 @@
                                     <a href="<?php echo base_url(); ?>kpi/subject">
                                         <span>
                                             <?php echo "Subject Areas" ?>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url(); ?>kpi/info_category">
+                                        <span>
+                                            <?php echo "Info Category" ?>
                                         </span>
                                     </a>
                                 </li>
@@ -112,60 +120,60 @@
                             Upload Data
                         </a>
 
-                        <?php } ?>
-                        <button type="button" class="btn btn-success btn-outline" style="margin-right:5px; margin-top:0px  <?php if ($this->uri->segment(2) == "summary") { ?>
-                        display:none;<?php } ?>" data-toggle="modal" data-target="#definition">
-                            <?php echo display("definition"); ?>
-                        </button>
-            
+                 <!-- </admin content -->
+                    <button type="button" class="btn btn-success btn-outline" style="margin-right:5px; margin-top:0px  <?php if ($this->uri->segment(2) == "summary") { ?>
+                            display:none;<?php } ?>" data-toggle="modal" data-target="#definition">
+                        <?php echo display("definition"); ?>
+                    </button>
 
 
-                        </div>
-                        </div>
-            </section>
 
-            <?php //print_r($this->session->userdata());?>
-            <!-- Main content -->
-            <div class="content row">
-        
-
-                <!-- load messages -->
-                <?php include('includes/messages.php'); ?>
-                <div class="se-pre-con">
-                    
                 </div>
-                 <p><a href=" #"><i class="pe-7s-home"></i> Dashboard</a>
-                            <?php if (!empty($uptitle)) {
-                                echo ' - ' . urldecode($uptitle) .' - ( Finacial Year: '. $_SESSION['financial_year'].')';
-                            } ?>
-                </p>
-                <!-- load custom page -->
-
-
-                <?php
-
-
-                echo $this->load->view($module . '/' . $page) ?>
-
-            </div> <!-- /.content -->
-
-
-        </div> <!-- /.content-wrapper -->
-
-
-        <footer class="main-footer" style="text-align:center; font-size:11px;">
-          
-            <div class="">
-                <?php echo (!empty($setting->address) ? $setting->address : null) ?>
             </div>
+        </section>
 
-            <strong>
-                <?php echo (!empty($setting->footer_text) ? $setting->footer_text : null) ?>
-            </strong>
-            <a href="<?php echo current_url() ?>">
-                <?php echo (!empty($setting->title) ? $setting->title : null) ?> <?php echo "-".date('Y'); ?>
-            </a>
-        </footer>
+        <?php //print_r($this->session->userdata());?>
+        <!-- Main content -->
+        <div class="content row">
+
+
+            <!-- load messages -->
+            <?php include('includes/messages.php'); ?>
+            <div class="se-pre-con">
+
+            </div>
+            <p><a href=" #"><i class="pe-7s-home"></i> Dashboard</a>
+                <?php if (!empty($uptitle)) {
+                    echo ' - ' . urldecode($uptitle) . ' - ( Finacial Year: ' . $_SESSION['financial_year'] . ')';
+                } ?>
+            </p>
+            <!-- load custom page -->
+
+
+            <?php
+
+
+            echo $this->load->view($module . '/' . $page) ?>
+
+        </div> <!-- /.content -->
+
+
+    </div> <!-- /.content-wrapper -->
+
+
+    <footer class="main-footer" style="text-align:center; font-size:11px;">
+
+        <div class="">
+            <?php echo (!empty($setting->address) ? $setting->address : null) ?>
+        </div>
+
+        <strong>
+            <?php echo (!empty($setting->footer_text) ? $setting->footer_text : null) ?>
+        </strong>
+        <a href="<?php echo current_url() ?>">
+            <?php echo (!empty($setting->title) ? $setting->title : null) ?> <?php echo "-" . date('Y'); ?>
+        </a>
+    </footer>
 
 
     </div> <!-- ./wrapper -->
@@ -207,7 +215,7 @@
                                 <td style=" background-color:red;"></td>
                                 <td>Bad Performance</td>
                             </tr>
-                            
+
 
                         </tbody>
                     </table>
@@ -231,7 +239,7 @@
 
     <!-- <switch year> -->
 
-     <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="switchYear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -241,45 +249,103 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">   
+                <div class="modal-body">
 
-            <form action="<?php echo base_url(); ?>dashboard/auth/financialYear" enctype="multipart/form-data" method="post" accept-charset="utf-8">
-         
-                    <div class="form-group">
-                               <?php  $years = $this->db->query("SELECT distinct financial_year from new_data")->result(); ?>
-                          <label for="cumulative" class="col-form-label">Choose Year</label>
-                      
-                           <select name="financial_year" class="form-control codeigniterselect">
-                             <option value="" disabled>ALL</option>
-                            <?php foreach($years as $value): ?>
-                             <option value="<?php echo $value->financial_year; ?>">
-                                <?php echo $value->financial_year; ?>
-                             </option>
-                            <?php endforeach; ?>
-                            </select>  
-                        </div>              
+                    <form action="<?php echo base_url(); ?>dashboard/auth/financialYear" enctype="multipart/form-data"
+                        method="post" accept-charset="utf-8">
+
+                        <div class="form-group">
+                            <?php $years = $this->db->query("SELECT distinct financial_year from new_data")->result(); ?>
+                            <label for="cumulative" class="col-form-label">Choose Year</label>
+
+                            <select name="financial_year" class="form-control codeigniterselect">
+                                <option value="" disabled>ALL</option>
+                                <?php foreach ($years as $value): ?>
+                                    <option value="<?php echo $value->financial_year; ?>">
+                                        <?php echo $value->financial_year; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
-                        
-                  
-        <div class="modal-footer">
-                           <div class="form-group text-right">
-            <button type="reset" data-dismiss="modal" class="btn btn-primary w-md m-b-5">Cancel</button>
-            <button type="submit" class="btn btn-success w-md m-b-5">Confirm</button>
+                </div>
+
+
+                <div class="modal-footer">
+                    <div class="form-group text-right">
+                        <button type="reset" data-dismiss="modal" class="btn btn-primary w-md m-b-5">Cancel</button>
+                        <button type="submit" class="btn btn-success w-md m-b-5">Confirm</button>
+                    </div>
+
+                    </form>
+
+                </div>
+
+
+
+            </div>
         </div>
+    </div>
+    </div>
 
-              </form>
-               
+
+    <!-- <switch year> -->
+
+
+    <!-- <switch Data> -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="switchData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Change Data Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form action="<?php echo base_url(); ?>dashboard/auth/DataCategory" enctype="multipart/form-data"
+                        method="post" accept-charset="utf-8">
+
+                        <div class="form-group">
+                            <?php $cats = $this->db->query("SELECT * from info_category order by name ASC")->result(); ?>
+                            <label for="cumulative" class="col-form-label">Choose Institution Data Category</label>
+
+                            <select name="financial_year" class="form-control codeigniterselect">
+                                <option value="" disabled>ALL</option>
+                                <?php foreach ($cats as $value): ?>
+                                    <option value="<?php echo $value->id; ?>">
+                                        <?php echo $value->name; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+
+
+                        <div class="modal-footer">
+                            <div class="form-group text-right">
+                                <button type="reset" data-dismiss="modal"
+                                    class="btn btn-primary w-md m-b-5">Cancel</button>
+                                <button type="submit" class="btn btn-success w-md m-b-5">Confirm</button>
+                            </div>
+
+                    </form>
+
                 </div>
 
-         
 
-                </div>
+
             </div>
         </div>
     </div>
 
 
-    <!-- <switch year> -->
+
+
+    <!-- <switch Data> -->
+
 
 
     <!-- Start Core Plugins-->

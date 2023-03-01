@@ -24,6 +24,28 @@
                             </div>
                            
                         </div>
+                           <div class="form-group row">
+                           
+                           <?php
+                        $cats = $this->db->query("SELECT * FROM `info_category`")->result(); ?>
+                          <label for="cumulative" class="col-sm-3 col-form-label">Institution Category</label>
+                          <div class="col-sm-9">
+                          <select class="js-example-basic-multiple" name="info_category" class="form-control">
+                            
+                           
+                            <?php 
+                             $info_cateorgy = $this->session->userdata('info_category');
+                             foreach($cats as $value): 
+                                
+                                ?>
+                             <option value="<?php echo $value->id;?>" <?php if ($value->id= $info_cateorgy) {echo "selected";} ?>>
+                                <?php echo $value->name; ?>
+                             </option>
+                            <?php endforeach; ?>
+                            </select> 
+                            </div>
+                           
+                        </div>
                           
                         <div class="form-group row">
                            
@@ -53,26 +75,10 @@
                         </div>
                         <div class="form-group row">
                            
-                            <label for="aw_description" class="col-sm-3 col-form-label">
-                            Module</label>
-                            <div class="col-sm-9">
-                           <select name="module" class="form-control">
-                           
-                            <?php
-                                $path = 'application/modules/';
-                                $map  = directory_map($path);
-                                if (is_array($map) && sizeof($map) > 0)
-                                foreach ($map as $key => $value) {
-                                   
-                            ?> 
-                            <option value="<?php echo str_replace("/","",$key); ?>" <?php if(str_replace("/","",$key)!="data") { echo "disabled"; }?> ><?php echo str_replace("/","",$key); ?></option>
-                            <?php
-                            } ?>
-                            </select>  
-                            </div>
+                          <input type="hidden" value="data" name="module" >
                            
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row" style="display:none;">
                            
                             <label for="aw_description" class="col-sm-3 col-form-label">
                             Font awesome Icon</label>

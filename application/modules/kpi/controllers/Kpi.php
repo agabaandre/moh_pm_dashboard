@@ -65,11 +65,27 @@ class Kpi extends MX_Controller
 
 		echo Modules::run('template/layout', $data);
 	}
+	public function info_category()
+	{
+
+		$data['title'] = 'Institution Category';
+		$data['page'] = 'info_category';
+		$data['module'] = $this->module;
+
+		echo Modules::run('template/layout', $data);
+	}
 
 	public function subjectData()
 	{
 
 		$menu = $this->kpi_mdl->subjectData();
+		return $menu;
+	}
+
+	public function info_category_Data()
+	{
+
+		$menu = $this->kpi_mdl->info_category_Data();
 		return $menu;
 	}
 
@@ -136,6 +152,15 @@ class Kpi extends MX_Controller
 		$data['module'] = $this->module;
 
 		echo Modules::run('template/layout', $data);
+	}
+	public function addinstitution()
+	{
+
+		$insert = $this->input->post();
+		$data['message'] = $this->kpi_mdl->addinstitution($insert);
+
+		$this->session->set_flashdata('message', 'Added');
+		redirect('kpi/info_category');
 	}
 	public function addKpiData()
 	{
@@ -213,6 +238,9 @@ class Kpi extends MX_Controller
 		$data['module'] = $this->module;
 		echo Modules::run('template/layout', $data);
 
+	}
+	public function info_category_name($id){
+		return $this->db->query("SELECT name from info_category WHERE id = '$id'")->row()->name;
 	}
 
 	public function kpiDisplayData()
@@ -338,7 +366,21 @@ class Kpi extends MX_Controller
 
 		return $data;
 	}
+     function get_cat_subjects($id){
 
+       $rows = $this->db->query("SELECT * from subject_areas where info_category='$id'")->result();
+
+		if (!empty($rows)) {
+
+			foreach ($rows as $row) {
+			$opt .= "<option value='" . $row->id . "'>" . ucwords($row->name) . "</option>";
+			}
+		}
+
+      echo $opt;
+    }
+
+	 
 
 	public function printsummary($view, $json)
 	{
