@@ -15,9 +15,13 @@ class Template extends MX_Controller {
 	public function layout($data)
 	{  
 		$id = $this->session->userdata('id');
-		
-		$data['setting'] = $this->template_model->setting();
-		$this->load->view('layout', $data);
+		if ($id) {
+			$data['setting'] = $this->template_model->setting();
+			$this->load->view('layout', $data);
+		}
+		else{
+			redirect('login');
+		}
 	}
  
 	public function login($data)

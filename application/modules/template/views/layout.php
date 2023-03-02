@@ -69,6 +69,7 @@
 
             <?php
 
+            
 
             echo $this->load->view($module . '/' . $page) ?>
 
