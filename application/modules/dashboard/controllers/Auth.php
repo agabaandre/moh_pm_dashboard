@@ -55,7 +55,8 @@ class Auth extends MX_Controller {
 					'label_permission'  => json_encode(@$permission1),
 					'financial_year' => $this->current_financial_year(),
 					'dimension_chart' => $this->dimension_chart(),
-					'info_category' => $user->row()->info_category
+					'info_category' => $user->row()->info_category,
+					'allow_all_categories'=> $user->row()->allow_all_categories
 					);	
 
 					//store date to session 
@@ -117,6 +118,10 @@ class Auth extends MX_Controller {
  */
  public function deviceData(){
     return $this->db->select('*')->from('deviceinfo')->get()->row();
+ }
+ function DataCategory(){
+		$_SESSION['info_category'] = $_GET['info_category'];
+		redirect();
  }
 }
 

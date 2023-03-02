@@ -1,11 +1,13 @@
 <a href="<?php echo base_url('dashboard/home') ?>" class="logo">
 
     <?php //menu tiltle ?>
-    <p class="logo-text" style="margin:10px; font-size:15px; font-weight:bold;"><?php echo "MoH PM DASHBOARD" ?>
+    <p class="logo-text" style="margin:10px; font-size:15px; font-weight:bold;">
+        <?php echo "MoH PM DASHBOARD" ?>
     </p>
-    <p class="short-logo" style="margin-left:0px; margin-top:20px; font-size:13px; font-weight:bold;"><?php echo "PMD" ?>
-    </p> 
-    
+    <p class="short-logo" style="margin-left:0px; margin-top:20px; font-size:13px; font-weight:bold;">
+        <?php echo "PMD" ?>
+    </p>
+
 </a>
 <div class="se-pre-con"></div>
 <!-- Header Navbar -->
@@ -19,13 +21,16 @@
 
     <div class="navbar-custom-menu">
         <ul class="nav navbar-nav" style="margin:0 auto;">
-    
-            <li><a href="#" class="full-screen fullscreen-button full-screen-link menu-icons fullscreen" ><i class="pe-7s-expand1"></i></a>
-                    </li>
-            <li><a href="#switchData" data-toggle="modal"><i class="pe-7s-shuffle"></i></a>
-                    </li>
-            <li><a href="#switchYear" data-toggle="modal"><i class="pe-7s-shuffle"></i></a>
-                    </li>
+
+            <li><a href="#" class="full-screen fullscreen-button full-screen-link menu-icons fullscreen"><i
+                        class="pe-7s-expand1"></i></a>
+            </li>
+            <?php if ($this->session->userdata('allow_all_categories') == 1) { ?>
+            <li><a href="#switchData" data-toggle="modal"><i class="pe-7s-look"></i></a>
+            </li>
+            <?php } ?>
+            <li><a href="#switchYear" data-toggle="modal"><i class="pe-7s-date"></i></a>
+            </li>
 
             <li class="dropdown dropdown-user">
                 <a href="#" class="dropdown-toggle btn btn-sm btn-default" data-toggle="dropdown" style="border:0px;">
@@ -33,17 +38,17 @@
                 </a>
                 <ul class="dropdown-menu">
 
-                <?php if (($this->session->userdata('user_type') == 'admin') || ($this->session->userdata('isAdmin'))) { ?>
-                    <li><a href="<?php echo base_url('dashboard/user/form') ?>"><i class="pe-7s-add-user"></i> New User
-                        </a>
-                    </li>
-                    <li><a href="<?php echo base_url('dashboard/user/index') ?>"><i class="pe-7s-filter"></i>
-                            <?php echo display('user_list') ?>
-                        </a>
-                    </li>
-                    <hr>
-                    <?php }?>
-                   
+                    <?php if (($this->session->userdata('user_type') == 'admin') || ($this->session->userdata('isAdmin'))) { ?>
+                        <li><a href="<?php echo base_url('dashboard/user/form') ?>"><i class="pe-7s-add-user"></i> New User
+                            </a>
+                        </li>
+                        <li><a href="<?php echo base_url('dashboard/user/index') ?>"><i class="pe-7s-filter"></i>
+                                <?php echo display('user_list') ?>
+                            </a>
+                        </li>
+                        <hr>
+                    <?php } ?>
+
                     <li><a href="<?php echo base_url('dashboard/home/profile') ?>"><i class="pe-7s-user"></i>
                             <?php echo display('profile') ?>
                         </a></li>
@@ -60,13 +65,13 @@
                     </li>
                 </ul>
             </li>
-         
+
 
             <!-- Messages -->
 
         </ul>
 
     </div>
-  
-    
+
+
 </nav>

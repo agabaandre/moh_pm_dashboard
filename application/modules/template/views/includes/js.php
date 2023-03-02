@@ -25,7 +25,7 @@
 <script src="<?php echo base_url() ?>assets/js/tableHeadFixer.js" type="text/javascript"></script>
 <!-- Admin Script -->
 <script src="<?php echo base_url('assets/js/frame.js') ?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/js/bootstrap-toggle.min.js') ?>" type="text/javascript"></script>
+<!-- <script src="<?php // echo base_url('assets/js/bootstrap-toggle.min.js') ?>" type="text/javascript"></script> -->
 <script src="<?php echo base_url() ?>assets/js/sweetalert/sweetalert.min.js" type="text/javascript"></script>
 <!-- Custom Theme JavaScript -->
 <script src="<?php echo base_url() ?>assets/js/custom.js" type="text/javascript"></script>
@@ -173,6 +173,14 @@ function getSubs(val){
 
 
 </script>
+
+<script type="text/javascript">
+        setTimeout(function () {
+
+            // Closing the alert
+            $('alert').alert('close');
+        }, 5000);
+    </script>
 
 
 

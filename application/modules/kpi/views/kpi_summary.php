@@ -14,8 +14,9 @@
         <label>Subject Areas </label>
                         <?php
                            //print_r($this->input->post());
+                        if (!isset($_SESSION['subject_area'])) {
                         @$id=implode(",",json_decode($_SESSION['subject_area'])); 
-                        if(!empty($id)){
+                       
                         $years = $this->db->query("SELECT * FROM `subject_areas` where id in ($id)")->result(); 
                         }
                         else

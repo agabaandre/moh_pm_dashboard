@@ -106,8 +106,17 @@
                              <input type="hidden" name="old_image" value="<?php echo $user->image ?>">
                         </div>
                     </div> 
-
-         
+                    <div class="form-group row">
+                        <label for="status" class="col-sm-3 col-form-label">Allow Browse Categories *</label>
+                        <div class="col-sm-9">
+                            <label class="radio-inline">
+                                <?php echo form_radio('allow_all_categories', '1', (($user->allow_all_categories==1 || $user->allow_all_categories==null)?true:false), 'id="allow_all_categories"'); ?>Allow
+                            </label>
+                            <label class="radio-inline">
+                                <?php echo form_radio('allow_all_categories', '0', (($user->allow_all_categories=="0")?true:false) , 'id="allow_all_categories"'); ?>Deny
+                            </label> 
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="status" class="col-sm-3 col-form-label">Status *</label>
                         <div class="col-sm-9">
@@ -119,6 +128,8 @@
                             </label> 
                         </div>
                     </div>
+
+
          
                     <div class="form-group text-right">
                         <button type="reset" class="btn btn-primary w-md m-b-5"><?php echo display('reset') ?></button>

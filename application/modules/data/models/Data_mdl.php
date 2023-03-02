@@ -16,8 +16,8 @@ public function __Construct(){
 	$this->fyperiods=$this->generatePeriods(); //not used anywhere though
 
 	//need to cater for different period types like annual, bi-annual, depending on the KPI. Best done in the cron job
-	$this->period=str_replace(" ","", "Q".$this->period());
-	$this->preperiod=@str_replace(" ","", "Q".($this->period()-1));
+	// $this->period=str_replace(" ","", "Q".$this->period());
+	// @$this->preperiod=str_replace(" ","", "Q".($this->period()-1));
 
 }
 

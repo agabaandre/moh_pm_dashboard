@@ -1,0 +1,2 @@
+kpi_id,dimension1,dimension1_key,dimension2,dimension2_key,dimension3,dimension3_key,financial_year,period_year,period,denominator,numerator,data_target,upload_date,comment
+1,Product,"Product A",Region,North,Channel,Online,FY2022,2022,Q1,1000,800,1000,2022-03-01,"Example comment"

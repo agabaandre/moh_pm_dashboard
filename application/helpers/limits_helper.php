@@ -66,4 +66,57 @@ function whereyearlimit(){
         }
     
     }
+    function andinfocategory(){
+    $info_cat = $_SESSION['info_category'];
+    if(isset($info_cat)){
+        return "and subject_areas.info_category = $info_cat";
+    }
+    else{
+        return "";
+    }
+    }
+function whereinfocategory()
+{
+    $info_cat = $_SESSION['info_category'];
+    if (isset($info_cat)) {
+        return "where subject_areas.info_category = $info_cat";
+    } else {
+        return "";
+    }
+}
+if (!function_exists('render_csv_data')) {
+    function render_csv_data($datas, $filename, $use_columns = true)
+    {
+        //datas should be assoc array
+       // ob_start();
+        // write data to CSV file here
+    
+        $csv_file = $filename . ".csv";
+        header("Content-Type: text/csv");
+        header("Content-Disposition: attachment; filename=\"$csv_file\"");
+        $fh = fopen('php://output', 'w+b');
+
+        $is_coloumn = $use_columns;
+        if (!empty($datas)) {
+             if ($is_coloumn) {
+                    fputcsv($fh, array_keys(($datas[0])));
+            foreach ($datas as $data) {
+
+                   // $is_coloumn = false;
+                    fputcsv($fh, array_values($data));
+                }
+               
+                
+            }
+            else{
+                    
+                    fputcsv($fh, $datas);
+
+            
+            }
+            fclose($fh);
+        }
+        exit;
+    }
+}
     

@@ -30,96 +30,11 @@
         } ?>
         <section class="content-header"
             style="<?php echo $margin; ?> height:60px; border: 1px #979797 solid; border-bottom-left-radius:10px !important; border-bottom-right-radius:10px !important">
-          <!-- </admin content -->
+          
            
             <div class="header-title">
                     <div class="row" style="display:flex; float:right; margin-right:5px;">
-                        <div class="dropdown">
-                            <a href="<?php echo base_url(); ?>files/file"
-                                class="btn btn-success btn-outline dropdown-toggle" data-toggle="dropdown"
-                                aria-expanded="true" style="margin-right:5px;">
-                                Admin Settings
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="<?php echo base_url(); ?>kpi/view_kpi_data">
-                                        <span>
-                                            <?php echo "KPI Data" ?>
-                                        </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="<?php echo base_url(); ?>kpi/subject">
-                                        <span>
-                                            <?php echo "Subject Areas" ?>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url(); ?>kpi/info_category">
-                                        <span>
-                                            <?php echo "Info Category" ?>
-                                        </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="<?php echo base_url(); ?>kpi/categoryTwo">
-                                        <span>
-                                            <?php echo "Objectives /  Category Two" ?>
-                                        </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="<?php echo base_url(); ?>kpi/kpis">
-                                        <span>
-                                            <?php echo "Performance Indicators" ?>
-                                        </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="<?php echo base_url(); ?>kpi/kpiDisplay">
-                                        <span>
-                                            <?php echo "Kpi Display Control" ?>
-                                        </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="<?php echo base_url('dashboard/setting') ?>">
-                                        <span>
-                                            <?php echo display('application_setting') ?>
-                                        </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="<?php echo base_url('dashboard/language') ?>">
-                                        <span>
-                                            <?php echo display('language') ?>
-                                        </span>
-                                    </a>
-                                </li>
-
-                                <li
-                                    class="treeview <?php echo (($this->uri->segment(2) == "backup_restore") ? "active" : null) ?>">
-                                    <a href="<?php echo base_url('dashboard/backup_restore/index') ?>">
-                                        <span>
-                                            <?php echo display('backup_and_restore') ?>
-                                        </span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <a href="<?php echo base_url(); ?>files/file" class="btn btn-success btn-outline"
-                            style="margin-right:5px; margin-top:0px  <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>">
-                            Upload Data
-                        </a>
-
+               <?php include('includes/menus/admin_bar.php'); ?>
                  <!-- </admin content -->
                     <button type="button" class="btn btn-success btn-outline" style="margin-right:5px; margin-top:0px  <?php if ($this->uri->segment(2) == "summary") { ?>
                             display:none;<?php } ?>" data-toggle="modal" data-target="#definition">
@@ -306,13 +221,13 @@
                 <div class="modal-body">
 
                     <form action="<?php echo base_url(); ?>dashboard/auth/DataCategory" enctype="multipart/form-data"
-                        method="post" accept-charset="utf-8">
+                        method="get" accept-charset="utf-8">
 
                         <div class="form-group">
                             <?php $cats = $this->db->query("SELECT * from info_category order by name ASC")->result(); ?>
                             <label for="cumulative" class="col-form-label">Choose Institution Data Category</label>
 
-                            <select name="financial_year" class="form-control codeigniterselect">
+                            <select name="info_category" class="form-control codeigniterselect">
                                 <option value="" disabled>ALL</option>
                                 <?php foreach ($cats as $value): ?>
                                     <option value="<?php echo $value->id; ?>">

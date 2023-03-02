@@ -51,8 +51,15 @@ class Kpi_mdl extends CI_Model {
 
 	public function subjectData(){
 		@$limit=dashlimits('wheresubject');
+		if (!empty($limit)) {
+			@$catlimit = andinfocategory();
+		}
+		else{
+			@$catlimit = whereinfocategory();
 
-		$query = $this->db->query("SELECT * FROM subject_areas $limit");
+		}
+
+		$query = $this->db->query("SELECT * FROM subject_areas $limit $catlimit");
 		return $query->result();
 	}
 
