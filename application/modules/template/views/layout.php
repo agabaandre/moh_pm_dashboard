@@ -47,7 +47,9 @@
             </div>
         </section>
 
-        <?php //print_r($this->session->userdata());?>
+        <?php //print_r($this->session->userdata());
+        
+        ?>
         <!-- Main content -->
         <div class="content row">
 

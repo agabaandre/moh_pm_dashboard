@@ -1,4 +1,8 @@
-<?php if (($this->session->userdata('isAdmin')) || ($this->session->userdata('user_type') == 'admin')) { ?>
+  <a href="<?php echo base_url(); ?>files/file" class="btn btn-success btn-outline"
+        style="margin-right:5px; margin-top:0px  <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>">
+        Upload Data
+    </a>
+<?php if ($this->session->userdata('user_type') == 'admin') { ?>
 
     <div class="dropdown">
 
@@ -81,8 +85,5 @@
 
         </ul>
     </div>
-    <a href="<?php echo base_url(); ?>files/file" class="btn btn-success btn-outline"
-        style="margin-right:5px; margin-top:0px  <?php if ($this->uri->segment(2) == "summary") { ?> display:none;<?php } ?>">
-        Upload Data
-    </a>
+  
 <?php } ?>

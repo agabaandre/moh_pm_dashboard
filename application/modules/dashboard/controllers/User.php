@@ -57,7 +57,7 @@ class User extends MX_Controller {
 		}
 		#------------------------#
 		if(empty($id)){
-		$this->form_validation->set_rules('password', display('password'),'required|max_length[32]|md5');
+		$this->form_validation->set_rules('password', display('password'),'required|max_length[100]');
 		}
 		$this->form_validation->set_rules('about', display('about'),'max_length[1000]');
 		$this->form_validation->set_rules('status', display('status'),'required|max_length[1]');
@@ -78,7 +78,7 @@ class User extends MX_Controller {
 			'firstname'   => $this->input->post('firstname'),
 			'lastname' 	  => $this->input->post('lastname'),
 			'email' 	  => $this->input->post('email'),
-			'password' 	  => (!empty($this->input->post('password'))?md5($this->input->post('password')):$this->input->post('oldpassword')),
+			'password' 	  => (!empty($this->input->post('password'))?$this->argonhash->make($this->input->post('password')):$this->argonhash->make($this->input->post('oldpassword'))),
 			'about' 	  => $this->input->post('about',true),
 			'image'   	  => (!empty($image)?$image:$this->input->post('old_image')),
 			'last_login'  => null,
@@ -87,6 +87,7 @@ class User extends MX_Controller {
 			'status'      => $this->input->post('status'),
 			'subject_area'    => $subjectarea,
 			'info_category' => $this->input->post('info_category'),
+			'allow_all_categories' => $this->input->post('allow_all_categories'),
 			'user_type'      => $this->input->post('user_type'),
 			'is_admin'    => 0
 		);

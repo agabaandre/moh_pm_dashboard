@@ -26,11 +26,15 @@
                                  <?php   
                                             
                                 $subs=Modules::run('dashboard/slider/getsubjects');
+                                //print_r($subs);
+                                // die();
+                                  $info_cat = $_SESSION['info_category'];
+                                 $min_id = $this->db->query("SELECT min(id) as id from subject_areas where info_category= '$info_cat'")->row()->id;
                                  $i = 1;
                                  foreach($subs as $sub):
                                 ?>
-                              
-                                 <div class="item<?php if ($sub->id == 1) {
+                                 
+                                 <div class="item<?php if ($sub->id == $min_id) {
                                      echo " active";
                                  } else {
                                      echo "";
@@ -77,7 +81,7 @@
 
                                                         echo Modules::run("kpi/kpiTrendcolors", @$data->current_target, @$data->current_value, @$data->previous_value, @$data->cp, @$data->pp);
                                                         ?>><?php
-                                                            if ($data->current_value) {
+                                                            if (@$data->current_value) {
                                                                 echo @$data->current_value;
                                                             } 
                                                             else{

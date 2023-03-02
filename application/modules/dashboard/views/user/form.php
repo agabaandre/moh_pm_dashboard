@@ -16,7 +16,9 @@
                             <input name="firstname" class="form-control" type="text" placeholder="<?php echo display('firstname') ?>" id="lastname" value="<?php echo $user->firstname ?>">
                         </div>
                     </div>
-                    <?php echo @$id=implode(",",json_decode($_SESSION['subject_area'])); ?>
+                    <?php if (!empty($_SESSION['subject_area'])) {
+                        echo @$id = implode(",", json_decode($_SESSION['subject_area']));
+                    } ?>
                     <div class="form-group row">
                         <label for="lastname" class="col-sm-3 col-form-label"><?php echo display('lastname') ?> *</label>
                         <div class="col-sm-9">
@@ -34,8 +36,8 @@
                     <div class="form-group row">
                         <label for="password" class="col-sm-3 col-form-label"><?php echo display('password') ?> : Resets to default</label>
                         <div class="col-sm-9">
-                            <input name="password" class="form-control" type="text" value="<?php echo $setting->default_password; ?>" placeholder="<?php echo display('password') ?>" id="password" readonly>
-                            <input name="oldpassword" class="form-control" type="hidden" value="<?php echo $setting->default_password; ?>">
+                            <input name="password" class="form-control" type="text" value="<?php echo $setting->dp; ?>" placeholder="<?php echo display('password') ?>" id="password" readonly>
+                            <input name="oldpassword" class="form-control" type="hidden" value="<?php echo $setting->dp; ?>">
                         </div>
                     </div>
                      <div class="form-group row">
@@ -47,7 +49,7 @@
                             
                            
                             <?php 
-                             $info_cateorgy = $this->session->userdata('info_category');
+                            @$info_cateorgy = $user->info_category;
                              foreach($cats as $value): 
                                 
                                 ?>
@@ -68,6 +70,9 @@
                            
                             <?php 
                              $ids=json_decode($user->subject_area);
+                             if(empty($ids)){
+                                $ids = [];
+                             }
                              foreach($years as $value): 
                                 
                                 ?>

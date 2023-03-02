@@ -14,14 +14,15 @@
         <label>Subject Areas </label>
                         <?php
                            //print_r($this->input->post());
-                        if (!isset($_SESSION['subject_area'])) {
+                        $info_cat = $_SESSION['info_category'];
+                        if (!empty($_SESSION['subject_area'])) {
                         @$id=implode(",",json_decode($_SESSION['subject_area'])); 
                        
-                        $years = $this->db->query("SELECT * FROM `subject_areas` where id in ($id)")->result(); 
+                        $years = $this->db->query("SELECT * FROM `subject_areas` where id in ($id) and info_category=$info_cat")->result(); 
                         }
                         else
                         {
-                         $years = $this->db->query("SELECT * FROM `subject_areas`")->result(); 
+                         $years = $this->db->query("SELECT * FROM `subject_areas` WHERE info_category=$info_cat")->result(); 
                         }
                         ?>
                           <label for="cumulative" class="">Search Department</label>
@@ -31,6 +32,9 @@
                            <?php
                           
                              @$ids=json_decode($_SESSION['subject_area']);
+                             if(empty($ids)){
+                               $ids = array();
+                             }
                              foreach($years as $value): 
                                 
                                 ?>

@@ -1,6 +1,6 @@
-<?php if ($this->session->userdata('isAdmin')) { ?>
 
 
+<?php if (($this->session->userdata('user_type') == 'admin')) { ?>
 
     <li class="treeview <?php echo (($this->uri->segment(2) == "user") ? "active" : null) ?>">
         <a href="<?php echo base_url(); ?>files/file">

@@ -22,7 +22,7 @@ class Auth extends MX_Controller {
 		redirect('dashboard/home');
 		$data['title']    = display('login'); 
 		$this->form_validation->set_rules('email', display('email'), 'required|valid_email|max_length[100]|trim');
-		$this->form_validation->set_rules('password', display('password'), 'required|max_length[32]|md5|trim');
+		$this->form_validation->set_rules('password', display('password'), 'required|max_length[100]|trim');
 
 		$data['user'] = (object)$userData = array(
 			'email' 	 => $this->input->post('email'),
@@ -34,7 +34,14 @@ class Auth extends MX_Controller {
 
 		$user = $this->auth_model->checkUser($userData);
 
-		if($user->num_rows() > 0) {
+		$user->row()->password;
+		
+	     $auth = ($this->argonhash->check($this->input->post('password'), $user->row()->password));
+
+		// 	print_r($this->argonhash->make($this->input->post('password')));
+		//  die();
+		
+		if($auth) {
 
              	$sData = array(
 					'isLogIn' 	  => true,

@@ -39,12 +39,17 @@
                                 <td><?php echo $value->ip_address; ?></td>
                                 <td><?php echo (($value->status==1)?display('active'):display('inactive')); ?></td>
                                 <td>
-                                    <?php if ($value->is_admin == 0) { ?>
+                                  
                                     <a href="<?php echo base_url("dashboard/user/form/$value->id") ?>" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="left" title="Update"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                    <a href="<?php echo base_url("dashboard/user/delete/$value->id") ?>" onclick="return confirm('<?php echo display("are_you_sure") ?>')" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Delete "><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                    <?php } else { ?> 
+                                    <?php if ($value->is_admin == 1) { ?>
                                     <button class="btn btn-info btn-sm" title="<?php echo display('admin') ?>"><?php echo display('admin') ?></button>
-                                    <?php } ?>
+                                    <?php }else{ ?>
+                                    <a href="<?php echo base_url("dashboard/user/delete/$value->id") ?>" onclick="return confirm('<?php echo display("are_you_sure") ?>')" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Delete "><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                 
+                                   <?php  }
+                                    
+                                    ?>
+                                
                                 </td>
                             </tr>
                             <?php } ?> 

@@ -76,7 +76,8 @@ class Files extends MX_Controller
                         'numerator' => str_replace("%", "", str_replace(",", "", $sale->getCellByColumnAndRow(10, $row)->getValue())),
                         'denominator' => str_replace("%", "", str_replace(",", "", $sale->getCellByColumnAndRow(11, $row)->getValue())),
                         'data_target' => str_replace("%", "", $sale->getCellByColumnAndRow(12, $row)->getValue()),
-                        'comment' => $sale->getCellByColumnAndRow(13, $row)->getValue()
+                        'comment' => $sale->getCellByColumnAndRow(13, $row)->getValue(),
+                        'uploaded_by' => $_SESSION['id']
                     );
 
                     // print_r($data);
@@ -185,7 +186,8 @@ class Files extends MX_Controller
                     'numerator' => trim(str_replace("%", "", str_replace(",", "", $row[10]))),
                     'denominator' => trim(str_replace("%", "", str_replace(",", "", $row[11]))),
                     'data_target' => trim(str_replace("%", "", $row[12])),
-                    'comment' => $row[13]
+                    'comment' => $row[13],
+                    'uploaded_by' => $_SESSION['id']
                 );
 
 

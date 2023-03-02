@@ -43,7 +43,7 @@ Class Home extends 	MX_Controller {
        	$this->form_validation->set_rules('email', 'Email Address', "required|valid_email|max_length[100]");
        	/*---#callback fn not supported#---*/ 
 		#------------------------#
-		$this->form_validation->set_rules('password', 'Password','max_length[32]|md5');
+		$this->form_validation->set_rules('password', 'Password','max_length[100]');
 		$this->form_validation->set_rules('about', 'About','max_length[1000]');
 		/*-----------------------------------*/
         $config['upload_path']          = './assets/img/user/';
@@ -71,7 +71,7 @@ Class Home extends 	MX_Controller {
 			'firstname'   => $this->input->post('firstname'),
 			'lastname' 	  => $this->input->post('lastname'),
 			'email' 	  => $this->input->post('email'),
-			'password' 	  => (!empty($this->input->post('password'))?md5($this->input->post('password')):$this->input->post('oldpassword')),
+			'password' 	  => (!empty($this->input->post('password')) ? $this->argonhash->make($this->input->post('password')) : $this->input->post('oldpassword')),
 			'about' 	  => $this->input->post('about',true),
 			'image'   	  => (!empty($image)?$image:$this->input->post('old_image')) 
 		);

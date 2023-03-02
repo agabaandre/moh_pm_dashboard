@@ -29,11 +29,16 @@ class Slider extends MX_Controller
     }
     public function getsubjects()
     {
-        return $this->slider_model->get_subjects();
+        $data = $this->slider_model->get_subjects();
+    //print_r($data);
+        return $data;
     }
     public function getkpi($subject)
     {
-        return $this->slider_model->getkpis($subject);
+        $data = $this->slider_model->getkpis($subject);
+        //print_r($data);
+        return $data;
+        
     }
 
     public function reporting_rate($subject)

@@ -70,7 +70,7 @@
                             <div class="alert alert-danger alert-dismissable">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                 <?php echo $this->session->flashdata('exception');
-                                    $this->session->unset_userdata('exeception');
+                                    $this->session->unset_userdata('exception');
                                 ?>
                             </div>
                         <?php } ?>

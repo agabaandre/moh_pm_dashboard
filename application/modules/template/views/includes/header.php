@@ -25,6 +25,7 @@
             <li><a href="#" class="full-screen fullscreen-button full-screen-link menu-icons fullscreen"><i
                         class="pe-7s-expand1"></i></a>
             </li>
+            
             <?php if ($this->session->userdata('allow_all_categories') == 1) { ?>
             <li><a href="#switchData" data-toggle="modal"><i class="pe-7s-look"></i></a>
             </li>

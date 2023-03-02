@@ -50,12 +50,13 @@
                                         <select class="form-control" name="kpi_id">
 
                                             <?php
-                                            if (!isset($_SESSION['subject_area'])) {
+                                            $info_cat = $_SESSION['info_category'];
+                                            if (!empty($_SESSION['subject_area'])) {
                                             @$id = implode(",", json_decode($_SESSION['subject_area']));
-                                           
-                                                $kpis = $this->db->query("SELECT * FROM `kpi` where subject_area in ($id)")->result();
+                                                
+                                                $kpis = $this->db->query("SELECT * FROM `kpi` where subject_area in ($id) and info_category=$info_cat")->result();
                                             } else {
-                                                $kpis = $this->db->query("SELECT * FROM `kpi`")->result();
+                                                $kpis = $this->db->query("SELECT * FROM `kpi` where subject_area in (select id from subject_areas where info_category=$info_cat)  ")->result();
                                             }
 
                                             foreach ($kpis as $row): ?>
