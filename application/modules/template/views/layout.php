@@ -179,7 +179,9 @@
                             <select name="financial_year" class="form-control codeigniterselect">
                                 <option value="" disabled>ALL</option>
                                 <?php foreach ($years as $value): ?>
-                                    <option value="<?php echo $value->financial_year; ?>">
+                                    <option value="<?php echo $value->financial_year; ?>" <?php if ($value->financial_year == $_SESSION['financial_year']) {
+                                               echo "selected";
+                                           } ?>>
                                         <?php echo $value->financial_year; ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -233,7 +235,7 @@
                             <select name="info_category" class="form-control codeigniterselect">
                                 <option value="" disabled>ALL</option>
                                 <?php foreach ($cats as $value): ?>
-                                    <option value="<?php echo $value->id; ?>">
+                                    <option value="<?php echo $value->id; ?>" <?php if($value->id==$_SESSION['info_category']){ echo "selected"; } ?>>
                                         <?php echo $value->name; ?>
                                     </option>
                                 <?php endforeach; ?>
