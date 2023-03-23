@@ -11,7 +11,7 @@
                         <div class="card">
                         <!-- Button trigger modal -->
     <form method="post"  class="form-horizontal" action="" style="width:100%; margin:10px;">
-        <label>Subject Areas </label>
+       
                         <?php
                            //print_r($this->input->post());
                         $info_cat = $_SESSION['info_category'];
@@ -25,7 +25,7 @@
                          $years = $this->db->query("SELECT * FROM `subject_areas` WHERE info_category=$info_cat")->result(); 
                         }
                         ?>
-                          <label for="cumulative" class="">Search Department</label>
+                           <label>Subject Areas </label>
                           <select class="js-example-basic-multiple" name="subject_area[]" class="form-control" multiple="multiple">
                             
                            

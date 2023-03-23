@@ -5,7 +5,7 @@
                 <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
                         <div class="panel-title">
-                            <h2>KPI Reporting Rates by Department</h2>
+                            <h2>KPI Reporting Rates</h2>
                         </div>
                     </div>
                     <div class="col-md-12 text-align-center"><h4>Financial Year: <?php echo $this->session->userdata('financial_year'); ?></h4>   </div>

@@ -13,7 +13,7 @@
                 <div class="panel panel-bd lobidrag">
                     <div class="panel-heading">
                         <div class="panel-title">
-                            <h2>Performance by Department</h2>
+                            <h2>Performance</h2>
                         </div>
                     </div>
                     <div class="panel-body">
