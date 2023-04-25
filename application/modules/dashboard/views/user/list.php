@@ -7,7 +7,6 @@
                 </div>
             </div>
             <div class="panel-body">
- 
                 <div class="">
                     <table class="datatable table table-bordered table-hover">
                         <thead>
@@ -16,8 +15,6 @@
                                 <th><?php echo display('image') ?></th>
                                 <th><?php echo display('username') ?></th>
                                 <th><?php echo display('email') ?></th>
-                               
-                               
                                 <th><?php echo display('last_login') ?></th>
                                 <th>User type</th>
                                 <th><?php echo display('ip_address') ?></th>

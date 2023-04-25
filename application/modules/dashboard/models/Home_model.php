@@ -76,8 +76,15 @@ class Home_model extends CI_Model {
 		  $query=$this->db->query("SELECT subject_areas.id,kpi.subject_area,kpi_displays.kpi_id,kpi.kpi_id,dashboard_index,subject_index,subject_areas.module FROM kpi join subject_areas on subject_areas.id=kpi.subject_area $info_category $subject_area_equals join kpi_displays on kpi_displays.kpi_id =kpi.kpi_id where kpi.kpi_id in (SELECT DISTINCT trim(kpi_id) from new_data) and dashboard_index!='0'  order by dashboard_index ");
 
 		//  $query=$this->db->query("SELECT subject_areas.id,kpi.kpi_id FROM kpi right join subject_areas on subject_areas.id=kpi.subject_area ");
+          if($query->num_rows()>0){
+			return $query->result();
+		  }
+		  else{
+		  $query2 = $this->db->query("SELECT subject_areas.id,kpi.subject_area,kpi.kpi_id,subject_areas.module FROM kpi join subject_areas on subject_areas.id=kpi.subject_area $info_category $subject_area_equals LIMIT 12");
+			return $query2->result();
 
-		return $query->result();
+		}
+		
 	}
 
 

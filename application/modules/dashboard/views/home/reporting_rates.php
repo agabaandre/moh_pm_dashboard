@@ -16,7 +16,7 @@
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Department</th>
+                                                <th>Subject Area</th>
                                                 <th>Quater 1</th>
                                                 <th>Quater 2</th>
                                                 <th>Quater 3</th>

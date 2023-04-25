@@ -46,12 +46,9 @@
                           <label for="cumulative" class="col-sm-3 col-form-label">Default Institution Category</label>
                           <div class="col-sm-9">
                           <select class="js-example-basic-multiple" name="info_category" class="form-control" onchange="getSubs()">
-                            
-                           
                             <?php 
                             @$info_cateorgy = $user->info_category;
                              foreach($cats as $value): 
-                                
                                 ?>
                              <option value="<?php echo $value->id;?>" <?php if ($value->id== $info_cateorgy) {echo "selected";} ?>>
                                 <?php echo $value->name; ?>

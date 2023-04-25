@@ -69,8 +69,8 @@ $(document).ready(function() {
         url: '<?php echo base_url() . "data/dim2data/" . $this->uri->segment(3); ?>',
         success: function(response) {
 
-            console.log(response);
-            renderGraph(JSON.parse(response));
+            //console.log(response);
+           renderGraph(JSON.parse(response));
         }
     });
 

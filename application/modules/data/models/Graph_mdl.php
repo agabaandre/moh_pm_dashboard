@@ -74,7 +74,7 @@ class Graph_mdl extends CI_Model
        {
               $this->db->where("kpi", "$kpi");
               $query = $this->db->get("gauge_config");
-              return $query->row()->config_json;
+              return @$query->row()->config_json;
        }
 
        //END GAUGE
@@ -165,12 +165,18 @@ class Graph_mdl extends CI_Model
               return array("quaters" => $periods, "data" => $datas);
        }
 
-       public function dim2Graph($kpi)
+       public function dim2Graph($kpi,$dim1)
        {
+              if ($dim1){
+                     $dmfilter = "and dimension1='$dim1'";
+              } else {
+                     $dmfilter = "";
+              }
+
               $datas = array();
               $dimesnions = array();
               $periods = array();
-              $query = $this->db->query("SELECT  target_value,CONCAT( period,'-',period_year) as period,cal_value,dimension1,dimension2,dimension2_key FROM `report_trend_dimension2` WHERE kpi_id='$kpi' and financial_year='$this->financial_year' order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
+              $query = $this->db->query("SELECT  target_value,CONCAT( period,'-',period_year) as period,cal_value,dimension1,dimension2,dimension2_key FROM `report_trend_dimension2` WHERE kpi_id='$kpi' and financial_year='$this->financial_year' $dmfilter order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
               $row_data = [];
 
               foreach ($query as $row):
@@ -196,14 +202,19 @@ class Graph_mdl extends CI_Model
               return array("quaters" => $periods, "data" => $datas);
        }
 
-
-       public function dim3Graph($kpi)
+       public function dim3Graph($kpi,$dim2)
        {
               $datas = array();
               $dimesnions = array();
               $periods = array();
-              $query = $this->db->query("SELECT  target_value,CONCAT( period,'-',period_year) as period,cal_value,dimension3,dimension3_key FROM `report_trend_dimension3` WHERE  kpi_id='$kpi' and financial_year='$this->financial_year' order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
+              if ($dim2){
+                     $dmfilter = "and dimension2='$dim2'";
+              } else {
+                     $dmfilter = "";
+              }
+              $query = $this->db->query("SELECT  target_value,CONCAT( period,'-',period_year) as period,cal_value,dimension3,dimension3_key FROM `report_trend_dimension3` WHERE  kpi_id='$kpi' and financial_year='$this->financial_year' $dmfilter order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
               $row_data = [];
+         
 
               foreach ($query as $row):
                      if (!in_array($row->dimension3, $dimesnions)) {

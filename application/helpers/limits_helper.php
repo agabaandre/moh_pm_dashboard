@@ -118,5 +118,21 @@ if (!function_exists('render_csv_data')) {
         }
         exit;
     }
-}
     
+}
+
+
+if (!function_exists('session_headings')) {
+    function session_headings($data)
+    {
+        if($data==''){
+            return 'Subject Areas';
+        
+        }
+        else{
+            return '';
+        }
+    
+    }
+
+}
