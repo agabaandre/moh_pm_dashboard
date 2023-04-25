@@ -45,9 +45,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?php echo base_url('dashboard/user/form') ?>"><?php echo display('add_user') ?></a>
+                    <li><a href="<?php echo base_url('user/form') ?>"><?php echo display('add_user') ?></a>
                     </li>
-                    <li><a href="<?php echo base_url('dashboard/user/index') ?>"><?php echo display('user_list') ?></a>
+                    <li><a href="<?php echo base_url('user') ?>"><?php echo display('user_list') ?></a>
                     </li>
                 </ul>
             </li>

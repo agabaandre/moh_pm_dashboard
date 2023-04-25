@@ -134,5 +134,14 @@ if (!function_exists('session_headings')) {
         }
     
     }
+    if (!function_exists('get_info_category_name')) {
+        function get_info_category_name($data)
+        {
 
+            $ci = &get_instance();
+            return $ci->db->query("SELECT name from info_category where id= $data")->row()->name;
+        }
+    }
+
+    
 }
