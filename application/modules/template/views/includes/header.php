@@ -40,10 +40,10 @@
                 <ul class="dropdown-menu">
 
                     <?php if (($this->session->userdata('user_type') == 'admin') || ($this->session->userdata('isAdmin'))) { ?>
-                        <li><a href="<?php echo base_url('dashboard/user/form') ?>"><i class="pe-7s-add-user"></i> New User
+                        <li><a href="<?php echo base_url('users/form') ?>"><i class="pe-7s-add-user"></i> New User
                             </a>
                         </li>
-                        <li><a href="<?php echo base_url('dashboard/user/index') ?>"><i class="pe-7s-filter"></i>
+                        <li><a href="<?php echo base_url('users') ?>"><i class="pe-7s-filter"></i>
                                 <?php echo display('user_list') ?>
                             </a>
                         </li>

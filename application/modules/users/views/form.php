@@ -7,9 +7,9 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                <?php echo form_open_multipart("dashboard/user/form/$user->id") ?>
-                    
-                    <?php echo form_hidden('id',$user->id) ?>
+                <form action="<?php echo base_url(); ?>users/form" enctype="multipart/form-data" method="post"
+                                        accept-charset="utf-8">
+                <?php echo form_hidden('id',$user->id) ?>
                     <div class="form-group row">
                         <label for="lastname" class="col-sm-3 col-form-label"><?php echo display('firstname') ?> *</label>
                         <div class="col-sm-9">
@@ -137,7 +137,7 @@
                         <button type="reset" class="btn btn-primary w-md m-b-5"><?php echo display('reset') ?></button>
                         <button type="submit" class="btn btn-success w-md m-b-5"><?php echo display('save') ?></button>
                     </div>
-                <?php echo form_close() ?>
+                </form>
 
             </div>
         </div>

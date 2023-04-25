@@ -1,8 +1,9 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class User_model extends CI_Model {
- 
+class User_mdl extends CI_Model
+{
+
 	public function create($data = array())
 	{
 		return $this->db->insert('user', $data);
@@ -38,7 +39,7 @@ class User_model extends CI_Model {
 	public function delete($id = null)
 	{
 		return $this->db->where('id', $id)
-			->where_not_in('is_admin',1)
+			->where_not_in('is_admin', 1)
 			->delete("user");
 	}
 
@@ -52,14 +53,14 @@ class User_model extends CI_Model {
 			->result();
 		$list[''] = display('select_option');
 		if (!empty($data)) {
-			foreach($data as $value)
+			foreach ($data as $value)
 				$list[$value->id] = $value->fullname;
 			return $list;
 		} else {
-			return false; 
+			return false;
 		}
 	}
- 
+
 
 
 
