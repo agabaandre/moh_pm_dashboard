@@ -229,6 +229,8 @@ class Kpi extends MX_Controller
 	{
 
 		$del = $this->db->query("DELETE from kpi where kpi_id='$id'");
+
+		       $this->db->query("DELETE from new_data where kpi_id='$id'");
 		if ($del) {
 			$this->session->set_flashdata('message', 'Deleted');
 		}
