@@ -11,8 +11,8 @@
                 <tr>
                     <th width=10>#</th>
                     <th width=10>Period</th>
-                    <th width=10><?php echo explode("/", Modules::run('data/get_computation', $kpi_id))[0]; ?></th>
-                    <th width=10><?php echo explode("/", Modules::run('data/get_computation', $kpi_id))[1]; ?></th>
+                    <th width=30><?php echo explode("/", Modules::run('data/get_computation', $kpi_id))[0]; ?></th>
+                    <th width=30><?php echo explode("/", Modules::run('data/get_computation', $kpi_id))[1]; ?></th>
                     <th width=10>% Score</th>
                     <th>Comments</th>
                 </tr>
