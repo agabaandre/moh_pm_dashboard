@@ -77,8 +77,8 @@ input {
                                                         value="<?php echo $element->subject_index; ?> "
                                                         name="subject_index[]"></td>
                                                 <td>
-                                                <button href="<?php echo base_url() ?>kpi/deletekpi/<?php echo $element->kpi_id; ?>" class=" btn btn-sm
-                                                    btn-danger">DELETE</button>
+                                                <a href="<?php echo base_url() ?>kpi/deletekpi/<?php echo $element->kpi_id; ?>" class=" btn btn-sm
+                                                    btn-danger">DELETE</a>
                                             </td>
                                             </tr>
                                             <?php
