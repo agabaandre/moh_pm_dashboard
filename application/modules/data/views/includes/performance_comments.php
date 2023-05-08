@@ -3,14 +3,16 @@
         <h4>Performance Comments</h4>
     </div>
     <div class="panel-body">
+        <?php $kpi_id = trim($this->uri->segment(3));?>
         <table id="performance_comments" class="table table-responsive table-striped table-bordered">
             <thead>
+            
              
                 <tr>
                     <th width=10>#</th>
                     <th width=10>Period</th>
-                    <th width=10>Numerator</th>
-                    <th width=10>Denominator</th>
+                    <th width=10><?php echo explode("/", Modules::run('data/get_computation', $kpi_id))[0]; ?></th>
+                    <th width=10><?php echo explode("/", Modules::run('data/get_computation', $kpi_id))[1]; ?></th>
                     <th width=10>% Score</th>
                     <th>Comments</th>
                 </tr>
@@ -19,7 +21,7 @@
             
 
 
-                <?php $kpi_id = trim($this->uri->segment(3));
+            <?php
                 $periods = Modules::run('data/get_period', $kpi_id);
                 $i = 1;
 
@@ -83,15 +85,7 @@
                 
 
             </tbody>
-               <tr>
-                    <th colspan="2">
-                      Computation Method
-                    </th>
-                    <td colspan="4">
-                    <?php echo Modules::run('data/get_computation', $kpi_id);?>
-                    </td>
-                       
-                </tr>
+          
             
                 
             
