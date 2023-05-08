@@ -76,8 +76,10 @@ input {
                                                         class="form-control"
                                                         value="<?php echo $element->subject_index; ?> "
                                                         name="subject_index[]"></td>
-                                                <button href="<?php echo base_url() ?>" class=" btn btn-sm
-                                                    btn-danger"></button>
+                                                <td>
+                                                <button href="<?php echo base_url() ?>kpi/deletekpi/<?php echo $element->kpi_id; ?>" class=" btn btn-sm
+                                                    btn-danger">DELETE</button>
+                                            </td>
                                             </tr>
                                             <?php
                                                 $i++;
