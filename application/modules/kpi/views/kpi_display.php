@@ -32,7 +32,7 @@ input {
                                     </button>
 
 
-                                    <table id="kpi" class="table table-responsive table-striped table-bordered">
+                                    <table id="kpi_display" class="table table-responsive table-striped table-bordered">
 
 
                                         <thead>
@@ -104,3 +104,20 @@ input {
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function() {
+    $('#kpi_display').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ],
+        lengthMenu: [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+        responsive: true,
+        displayLength: 25,
+        lengthChange: true
+    } );
+} );
+</script>
