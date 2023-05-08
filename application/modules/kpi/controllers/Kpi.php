@@ -238,7 +238,7 @@ class Kpi extends MX_Controller
 			$this->session->set_flashdata('message', 'Delete Failed');
 		}
 		$data['title'] = 'Key Performance Indicators';
-		$data['page'] = 'kpi';
+		$data['page'] = 'kpi_display';
 		$data['module'] = $this->module;
 
 		echo Modules::run('template/layout', $data);
