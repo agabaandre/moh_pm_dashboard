@@ -227,7 +227,7 @@ class Kpi extends MX_Controller
 
 	public function deletekpi()
 	{
-		$id = $this->input->post('kpi');
+		$id = $this->input->post('kpi_id');
 		if ($this->input->post('deletekpi') == 1) {
 			$del = $this->db->query("DELETE from kpi where kpi_id='$id'");
 			$this->db->query("DELETE from new_data where kpi_id='$id'");

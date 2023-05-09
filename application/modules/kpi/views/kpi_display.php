@@ -104,6 +104,7 @@ input {
                                                         
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-9">
+                                                                                        <input type="hidden" name="kpi_id" value="<?php echo $element->kpi_id; ?>">
                                                                                         <label class="radio-inline">
                                                                                             <?php echo form_radio('deletekpi', '1', false, 'id="allow_all_categories"'); ?>KPI report
                                                                                             Data and KPI Meta Data
