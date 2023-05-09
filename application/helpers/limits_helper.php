@@ -90,7 +90,7 @@ if (!function_exists('render_csv_data')) {
         //datas should be assoc array
        // ob_start();
         // write data to CSV file here
-    
+        ob_clean();
         $csv_file = $filename . ".csv";
         header("Content-Type: text/csv");
         header("Content-Disposition: attachment; filename=\"$csv_file\"");
@@ -103,7 +103,9 @@ if (!function_exists('render_csv_data')) {
             foreach ($datas as $data) {
 
                    // $is_coloumn = false;
-                    fputcsv($fh, array_values($data));
+                    if (!empty($data)) {
+                        fputcsv($fh, array_values($data));
+                    }
                 }
                
                 

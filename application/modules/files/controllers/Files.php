@@ -33,7 +33,7 @@ class Files extends MX_Controller
             foreach ($object->getWorksheetIterator() as $sale) {
                 $highestRow = $sale->getHighestRow();
                 $highestColumn = $sale->getHighestColumn();
-                for ($row = 2; $row <= $highestRow; $row++) {
+                for ($row = 1; $row <= $highestRow; $row++) {
 
                     if (!empty($sale->getCellByColumnAndRow(1, $row)->getValue())) {
                         $dim1 = trim($sale->getCellByColumnAndRow(1, $row)->getValue());
@@ -111,7 +111,7 @@ class Files extends MX_Controller
             foreach ($error as $index => $entry) {
                 $resultString .= $index . ". " . $entry . ", ";
             }
-            $resultString = substr($resultString, 0, -2);
+           // $resultString = substr($resultString, 0, -);
             $this->session->set_flashdata('exception', $resultString);
             redirect('files/file');
         } else {
@@ -138,7 +138,6 @@ class Files extends MX_Controller
                 'numerator',
                 'denominator',
                 'data_target',
-                'upload_date',
                 'comment'
             );
             if ($headers !== $valid_headers) {
@@ -169,7 +168,7 @@ class Files extends MX_Controller
             // loop through rows and insert data into database
             $validation_errors = array();
 
-            for ($i = 1; $i < count($rows); $i++) {
+            for ($i = 0; $i < count($rows); $i++) {
                 $row = $rows[$i];
 
                 $data = array(
@@ -182,19 +181,32 @@ class Files extends MX_Controller
                     'dimension3_key' => trim($row[6]),
                     'financial_year' => trim(str_replace("/", "-", $row[7])),
                     'period_year' => trim(str_replace(" ", "", $row[8])),
-                    'period' => ucwords(str_replace(" ", "", $row[9])),
+                    'period' => trim(str_replace(" ", "", $row[9])),
                     'numerator' => trim(str_replace("%", "", str_replace(",", "", $row[10]))),
                     'denominator' => trim(str_replace("%", "", str_replace(",", "", $row[11]))),
                     'data_target' => trim(str_replace("%", "", $row[12])),
                     'comment' => $row[13],
+                    'upload_date' =>date('Y-m-d'),
                     'uploaded_by' => $_SESSION['id']
                 );
-
-
+               $kpi_id=$row[0];
+               $period = trim(str_replace(" ", "", $row[9]));
+               $financial_year = trim(str_replace("/", "-", $row[7]));
+           
 
                 // valid data, insert into database
-                $this->db->insert('new_data', $data);
+                //check if data exits then update
+              if(($this->update_check($kpi_id,$period,$financial_year))==1){
+                    $this->db->where('financial_year', "$financial_year");
+                    $this->db->where('period', "$period");
+                    $this->db->where('kpi_id', "$kpi_id");
+                    $this->db->update('new_data', $data);
+               } else {
+
+                    $this->db->insert('new_data', $data);
+                }
                 // delete uploaded file from server
+
 
 
             }
@@ -204,6 +216,11 @@ class Files extends MX_Controller
 
 
         }
+
+    }
+
+    public function update_check($kpi_id,$period,$financial_year){
+    return $this->db->query("SELECT kpi_id from new_data where kpi_id='$kpi_id' and period='$period' and financial_year='$financial_year'")->num_rows();
 
     }
     function generate_csv_file()
@@ -247,7 +264,6 @@ class Files extends MX_Controller
                 'numerator',
                 'denominator',
                 'data_target',
-                'upload_date',
                 'comment'
             );
             render_csv_data($data_rows, $filename, false);

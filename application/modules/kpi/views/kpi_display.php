@@ -77,10 +77,16 @@ input {
                                                         value="<?php echo $element->subject_index; ?> "
                                                         name="subject_index[]"></td>
                                                 <td>
-                                                <a href="<?php echo base_url() ?>kpi/deletekpi/<?php echo $element->kpi_id; ?>" class=" btn btn-sm
-                                                    btn-danger">DELETE</a>
+                                            
+                                </form>
+                                               
+                                                    <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#delete<?php echo $element->id; ?>" style="margin-bottom:3px; width:80px;"><i class="fa fa-minus" >
+                                                    </i>DELETE
+                                                    </button>
+                                                
                                             </td>
-                                            </tr>
+                                        
+                                                </tr>
                                             <?php
                                                 $i++;
                                             endforeach;
@@ -92,7 +98,6 @@ input {
                                             ?>
                                             </tr>
 
-                                </form>
 
                                 </tbody>
                                 </table>
@@ -104,6 +109,60 @@ input {
         </div>
     </div>
 </div>
+
+    <!-- delete Modal -->
+                                                <div class="modal fade" id="#delete<?php echo $element->id; ?>" data-backdrop="static" data-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" style="margin-right:50px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="staticBackdropLabel">DELETE KPI/ KPI DATA for
+                        <?php echo $element->kpi_id; ?>?
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+    
+                    <form action="<?php echo base_url(); ?>kpi/deletekpi" enctype="multipart/form-data" method="post"
+                        accept-charset="utf-8">
+    
+                        <div class="form-group row">
+                            <label for="status" class="col-sm-3 col-form-label">Allow Browse Categories *</label>
+                            <div class="col-sm-9">
+                                <label class="radio-inline">
+                                    <?php echo form_radio('deletkpi', '1', false, 'id="allow_all_categories"'); ?>KPI report
+                                    Data and KPI Meta Data
+                                </label>
+                                <label class="radio-inline">
+                                    <?php echo form_radio('deletekpi', '2', false, 'id="allow_all_categories"'); ?>KPI
+                                    Report Data Only
+                                </label>
+                                <label class="radio-inline">
+                                    <?php echo form_radio('deletekpi', '0', false, 'id="allow_all_categories"'); ?>KPI Meta
+                                    Data Only
+                                </label>
+                            </div>
+                        </div>
+    
+    
+    
+                        <div class="form-group text-right">
+                            <button type="reset" class="btn btn-primary w-md m-b-5">Reset</button>
+                            <button type="submit" class="btn btn-success w-md m-b-5">Save</button>
+                        </div>
+                    </form>
+                </div>
+    
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- delete Modal -->
 <script>
 $(document).ready(function() {
     $('#kpi_display').DataTable( {
