@@ -225,12 +225,19 @@ class Kpi extends MX_Controller
 	}
 
 
-	public function deletekpi($id)
+	public function deletekpi()
 	{
-
-		$del = $this->db->query("DELETE from kpi where kpi_id='$id'");
-
-		       $this->db->query("DELETE from new_data where kpi_id='$id'");
+		$id = $this->input->post('kpi');
+		if ($this->input->post('deletekpi') == 1) {
+			$del = $this->db->query("DELETE from kpi where kpi_id='$id'");
+			$this->db->query("DELETE from new_data where kpi_id='$id'");
+		}
+		else if ($this->input->post('deletekpi') == 2) {
+			$del = $this->db->query("DELETE from new_data where kpi_id='$id'");
+		}
+		else if ($this->input->post('deletekpi') == 3){
+			$del = $this->db->query("DELETE from kpi where kpi_id='$id'");
+		}
 		if ($del) {
 			$this->session->set_flashdata('message', 'Deleted');
 		}
