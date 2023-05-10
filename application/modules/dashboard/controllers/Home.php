@@ -43,7 +43,7 @@ Class Home extends 	MX_Controller {
        	$this->form_validation->set_rules('email', 'Email Address', "required|valid_email|max_length[100]");
        	/*---#callback fn not supported#---*/ 
 		#------------------------#
-		$this->form_validation->set_rules('password', 'Password','max_length[100]');
+		$this->form_validation->set_rules('password', 'Password','max_length[200]');
 		$this->form_validation->set_rules('about', 'About','max_length[1000]');
 		/*-----------------------------------*/
         $config['upload_path']          = './assets/img/user/';
