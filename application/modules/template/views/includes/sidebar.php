@@ -7,7 +7,7 @@
             <img src="<?php echo base_url((!empty($image) ? $image : 'assets/img/icons/default.jpg')) ?>"
                 class="img-circle" alt="User Image">
         </div>
-        <p class="small text-muted" style="font-weight:bold;"><?php echo get_info_category_name($_SESSION['info_category']); ?></p>
+        <p class="small text-muted" style="font-weight:bold;"><?php echo $this->session->userdata('fullname'); ?></p>
        
     </div>
     <?php } ?>

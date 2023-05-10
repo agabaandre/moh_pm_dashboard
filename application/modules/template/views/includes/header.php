@@ -50,11 +50,9 @@
                         <hr>
                     <?php } ?>
 
-                    <li><a href="<?php echo base_url('dashboard/home/profile') ?>"><i class="pe-7s-user"></i>
-                            <?php echo display('profile') ?>
-                        </a></li>
+        
                     <li><a href="<?php echo base_url('dashboard/home/setting') ?>"><i class="pe-7s-settings"></i>
-                            <?php echo display('setting') ?>
+                            <?php echo display('profile') ?>
                         </a></li>
                     <li><a href="<?php echo base_url('logout') ?>"><i class="pe-7s-key"></i>
                             <?php if ($this->session->userdata('fullname')) {
