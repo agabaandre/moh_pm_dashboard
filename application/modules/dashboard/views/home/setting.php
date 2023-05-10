@@ -200,7 +200,7 @@
                         </div>
                     </div> 
                        <div class="form-group row">
-                        <label for="footer_text" class="col-xs-3 col-form-label">Slider Interval</label>
+                        <label for="footer_text" class="col-xs-3 col-form-label">Slider Interval (Millseconds)</label>
                         <div class="col-xs-9">
                             <input type="text" name="slider_timer" class="form-control"  placeholder="slider timer" value="<?php echo $setting->slider_timer ?>">
                         </div>

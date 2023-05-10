@@ -58,7 +58,7 @@
 <script type='text/javascript'>
     $(document).ready(function() {
          $('.carousel').carousel({
-             interval: 12000
+             interval: <?php echo $setting->slider_timer; ?>
          })
     });   
     
