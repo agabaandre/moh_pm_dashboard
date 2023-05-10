@@ -198,6 +198,12 @@
                         <div class="col-xs-9">
                             <textarea name="font_awesome" class="form-control"  placeholder="font awesome" maxlength="140" rows="15"><?php echo $setting->font_awesome ?></textarea>
                         </div>
+                    </div> 
+                       <div class="form-group row">
+                        <label for="footer_text" class="col-xs-3 col-form-label">Slider Interval</label>
+                        <div class="col-xs-9">
+                            <input type="text" name="slider_timer" class="form-control"  placeholder="slider timer" value="<?php echo $setting->slider_timer ?>">
+                        </div>
                     </div>   
 
                     <div class="form-group row">

@@ -11,9 +11,6 @@
        
     </div>
     <?php } ?>
-
-    
-
     <!-- sidebar menu -->
     <ul class="sidebar-menu">
 
