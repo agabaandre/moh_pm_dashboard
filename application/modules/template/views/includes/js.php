@@ -58,7 +58,7 @@
 <script type='text/javascript'>
     $(document).ready(function() {
          $('.carousel').carousel({
-             interval: 9000
+             interval: 12000
          })
     });   
     
