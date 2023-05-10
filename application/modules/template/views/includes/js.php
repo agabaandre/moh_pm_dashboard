@@ -62,7 +62,7 @@
          })
     });   
     
-    //full screen
+    ///full screen
             function cancelFullScreen() {
             var el = document;
             var requestMethod = el.cancelFullScreen||el.webkitCancelFullScreen||el.mozCancelFullScreen||el.exitFullscreen||el.webkitExitFullscreen;
