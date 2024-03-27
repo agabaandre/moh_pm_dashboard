@@ -19,6 +19,11 @@
                 <span><?php echo display('dashboard') ?></span>
             </a>
         </li>
+        <li class="treeview <?php echo (($this->uri->segment(2) == "home") ? "active" : null) ?>">
+            <a href="<?php echo base_url('dashboard/home/tabular') ?>"> <i class="fa fa-th"></i>
+                <span>Tabular</span>
+            </a>
+        </li>
          <li class="treeview <?php echo (($this->uri->segment(2) == "slider") ? "active" : null) ?>">
             <a href="<?php echo base_url('dashboard/slider') ?>"> <i class="ti-dashboard"></i>
                 <span>Performance Slider</span>
