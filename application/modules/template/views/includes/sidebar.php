@@ -20,7 +20,7 @@
             </a>
         </li>
         <li class="treeview <?php echo (($this->uri->segment(2) == "home") ? "active" : null) ?>">
-            <a href="<?php echo base_url('dashboard/home/tabular') ?>"> <i class="fa fa-th"></i>
+            <a href="<?php echo base_url('dashboard/home/department_reporting') ?>"> <i class="fa fa-th"></i>
                 <span>Tabular</span>
             </a>
         </li>
