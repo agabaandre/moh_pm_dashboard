@@ -138,6 +138,7 @@
                                         echo @getkpi_info($kpi_id)->computation;
                                      ?>
                                 </td>
+                                <td></td>
                                 
                                 <td rowspan="2" <?php if (!empty($q1_vals->current_value)) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q1_vals->current_value, $q1_vals->target_value) . "'";
