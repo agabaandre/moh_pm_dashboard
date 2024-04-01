@@ -133,7 +133,7 @@
                                     ?>
 
                                 </th>
-                                <td rowspan=1>
+                                <td rowspan=2>
                                    <?php
                                         echo @getkpi_info($kpi_id)->computation;
                                      ?>

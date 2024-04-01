@@ -19,9 +19,9 @@
                 <span><?php echo display('dashboard') ?></span>
             </a>
         </li>
-        <li class="treeview <?php echo (($this->uri->segment(2) == "home") ? "active" : null) ?>">
+        <li class="treeview <?php echo (($this->uri->segment(3) == "department_reporting") ? "active" : null) ?>">
             <a href="<?php echo base_url('dashboard/home/department_reporting') ?>"> <i class="fa fa-th"></i>
-                <span>Tabular</span>
+                <span>Tabular Dashboard</span>
             </a>
         </li>
          <li class="treeview <?php echo (($this->uri->segment(2) == "slider") ? "active" : null) ?>">
@@ -37,7 +37,7 @@
         </li>
     
 
-          <li class="treeview <?php echo (($this->uri->segment(3) == "department_reporting") ? "active" : null) ?>">
+          <li class="treeview <?php echo ((($this->uri->segment(3) == "department_reporting")&& ($this->uri->segment(2) == "slider")) ? "active" : null) ?>">
                     <a href="<?php echo base_url(); ?>dashboard/slider/department_reporting">
                     <i class="fa fa-list"></i>
                         <span>Reporting Rates</span>
