@@ -101,29 +101,45 @@ Class Home extends 	MX_Controller {
 	
 	}
 
-	public function kpi_performance($subject_area, $period,$kpi_id=FALSE, $financial_year=FALSE)
-	{
-		 $current_date = date('Y-m-d');
-                $current_year = date('Y', strtotime($current_date));
-                $next_year = $current_year + 1;
-                if (date('m-d', strtotime($current_date)) < '06-30') {
-        
-                    $current_year -= 1;
-                    $next_year -= 1;
-                }
-                $current_financial_year = $current_year . '-' . $next_year;
-	if(empty($financial_year)){
-		$financial_year = $current_financial_year;
-	}
-		if (!empty($kpi_id)) {
-			$kpi_id = "and r.kpi_id='$kpi_id'";
-		} else {
-			$kpi_id = "";
-		}
-     return $this->db->query("SELECT r.*,k.computation,k.short_name,k.subject_area FROM report_kpi_trend r join kpi k ON r.kpi_id=k.kpi_id where k.subject_area=$subject_area and r.financial_year='$financial_year' and r.period='$period' $kpi_id")->row();
+	public function kpi_performance($subject_area, $period, $kpi_id = FALSE, $financial_year = FALSE)
+{
+    $current_date = date('Y-m-d');
+    $current_year = date('Y', strtotime($current_date));
+    $next_year = $current_year + 1;
+    if (date('m-d', strtotime($current_date)) < '06-30') {
+        $current_year -= 1;
+        $next_year -= 1;
+    }
+    $current_financial_year = $current_year . '-' . $next_year;
+
+    if (empty($financial_year)) {
+        $financial_year = $current_financial_year;
+    }
+
+  
+
+    return $this->db->query("
+        SELECT 
+            r.*,
+            k.computation,
+            k.short_name,
+            k.subject_area 
+        FROM 
+            kpi k 
+        LEFT JOIN 
+            report_kpi_trend r 
+        ON 
+            r.kpi_id = '$kpi_id'
+            AND r.financial_year = '$financial_year' 
+            AND r.period = '$period' 
+           
+        WHERE 
+            k.subject_area = $subject_area
+    ")->row();
+}
 
 	
-	}
+	
 
 
 
