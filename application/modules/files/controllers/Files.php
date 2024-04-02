@@ -270,4 +270,18 @@ class Files extends MX_Controller
 
         }
     }
+    function fetch_dimensions(){
+    if(isset($_POST['kpi_id'])) {
+    $kpi_id = $_POST['kpi_id'];
+    $sql = "SELECT DISTINCT dimension1_key, dimension2_key, dimension3_key FROM new_data WHERE kpi_id = '$kpi_id'";
+    $result = $$this->db->query($sql);
+
+    $dimensions = array();
+    if ($result->num_rows() > 0) {
+        foreach($result->result() as $row) {
+            $dimensions[] = $row;
+        }
+    }
+    echo json_encode($dimensions);
+}}
 }

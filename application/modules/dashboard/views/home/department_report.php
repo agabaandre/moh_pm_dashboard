@@ -148,7 +148,7 @@
                                         echo explode('/',getkpi_info($kpi_id)->computation)[0];
                                      ?>
                                 </td>
-                                <td><?= $q1_vals->total_numerator ?></td>
+                                <td><?= number_format($q1_vals->total_numerator) ?></td>
                                 <td rowspan="2" <?php if (!empty($q1_vals->current_value)) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q1_vals->current_value, $q1_vals->target_value) . "'";
                                 } ?>>
@@ -158,7 +158,7 @@
                                  <td rowspan=2><?= $q1_vals->target_value ?></td>
 
                                  <!--end quater1-->
-                                <td><?= $q2_vals->total_numerator ?></td>
+                                <td><?= number_format($q2_vals->total_numerator) ?></td>
                                 <td rowspan="2" <?php if (!empty($q2_vals->current_value)) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q2_vals->current_value, $q2_vals->target_value) . "'";
                                 } ?>>
@@ -168,7 +168,7 @@
                                  <td rowspan=2><?= $q2_vals->target_value ?></td>
 
                                  <!---end q2-->
-                             <td><?= $q3_vals->total_numerator ?></td>
+                             <td><?= number_format($q3_vals->total_numerator) ?></td>
                                 <td rowspan="2" <?php if (!empty($q3_vals->current_value)) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q3_vals->current_value, $q3_vals->target_value) . "'";
                                 } ?>>
@@ -178,7 +178,7 @@
                                  <td rowspan=2><?= $q3_vals->target_value ?></td>
 
                                  <!---end q3-->
-                              <td><?= $q4_vals->total_numerator ?></td>
+                              <td><?= number_format($q4_vals->total_numerator) ?></td>
                                 <td rowspan="2" <?php if (!empty($q4_vals->current_value)) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q4_vals->current_value, $q4_vals->target_value) . "'";
                                 } ?>>
@@ -198,19 +198,19 @@
                                      ?>
                                 </td>
                                 <td>
-                                    <?= $q1_vals->total_denominator ?>
+                                    <?= number_format($q1_vals->total_denominator) ?>
                                 </td>
 
                                 <td>
-                                    <?= $q2_vals->total_denominator ?>
+                                    <?= number_format($q2_vals->total_denominator) ?>
                                 </td>
 
                                 <td>
-                                    <?= $q3_vals->total_denominator ?>
+                                    <?= number_format($q3_vals->total_denominator) ?>
                                 </td>
 
                                 <td>
-                                    <?= $q4_vals->total_denominator ?>
+                                    <?= number_format($q4_vals->total_denominator) ?>
                                 </td>
 
 
