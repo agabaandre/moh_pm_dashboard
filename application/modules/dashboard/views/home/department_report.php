@@ -65,7 +65,7 @@
  
             <div class="row mt-4">
                 <div class="col">
-                    <h3>
+                    <h3 style="margin-top:5px; color:#0d5e8e; font-size:16px;">
                         <?php echo $department->name; ?> 
                     </h3>
                  
