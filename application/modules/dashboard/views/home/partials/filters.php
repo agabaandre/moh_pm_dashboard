@@ -4,11 +4,12 @@
     <div class="form-group col-md-3 col-sm-12">
 
     <label for="focus_areas">Subject Areas:</label>
-        <select class="form-control select2" name="s" onchange="getkpis(this.value)">
-            <option value="">KPI Job Group / Cadre</option>
+        <select class="form-control select2" name="subject_area" onchange="getkpis(this.value)">
+            <option value="" Selected>View All</option>
             <?php
+            $departments = Modules::run('dashboard/home/get_departments');
           
-            foreach ($subject_areas as $list) {
+            foreach ($departments as $list) {
 
               
                 
@@ -59,7 +60,7 @@
                 foreach ($years as $year) {
                     $financial_year = $year . '-' . ($year + 1);
                     ?>
-                    <option value="<?php echo $financial_year; ?>" <?php if ($current_financial_year === $financial_year) {
+                    <option value="<?php echo $financial_year; ?>" <?php if (($current_financial_year === $financial_year)|| ($financial_year===$this->input->get('financial_year)'))) {
                            echo "selected";
                        } ?>>
                         <?php echo $financial_year; ?>
@@ -75,6 +76,7 @@
 </div>
 
   <button type="submit" class="btn btn-info waves-effect waves-themed"><i class=""></i>Submit</button>
+   <a href="<?php echo base_url()?>dashboard/home/department_reporting" class="btn btn-success waves-effect waves-themed"><i class=""></i>View All</a>
 
 <?php 
 

@@ -56,10 +56,11 @@
     $this->load->view('dashboard/home/partials/filters') ?>
 
   
-        <?php $departments = Modules::run('dashboard/home/get_departments');
+        <?php 
+        //$departments = Modules::run('dashboard/home/get_departments');
         // print_r($departments);
   
-        foreach ($departments as $department):
+        foreach ($subject_areas as $department):
             ?>
  
             <div class="row mt-4">
@@ -91,7 +92,7 @@
                             <td colspan="3">Q4</td>
                         </tr>
                         <tr>
-                            <th>Staff </th>
+                            <th>KPI </th>
                             <th>Numerator/Denominator</th>
                             <td>Data</td>
                             <td>Score</td>
@@ -119,10 +120,16 @@
                                 <th rowspan="2">
 
                                     <?php echo $i++ . '. ' . $kpi->short_name;
+                                    if(!empty($this->input->get('kpi_id'))){
+                                    $kpi_id = $this->input->get('kpi_id');
+                                    }
+                                    else{
                                      $kpi_id = $kpi->kpi_id;
+                                    }
                                     if(!empty($this->input->get('financial_year'))){
                                         $financial_year = $this->input->get('financial_year');
                                     };
+                                    
                             
                                     $subject_area_id = $department->id;
                                       @$q1_vals = Modules::run('dashboard/home/kpi_performance', $subject_area_id, 'Q1',  $kpi_id,$financial_year);
@@ -145,7 +152,8 @@
                                 <td rowspan="2" <?php if (!empty($q1_vals->current_value)) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q1_vals->current_value, $q1_vals->target_value) . "'";
                                 } ?>>
-                                    <?= round($q1_vals->current_value, 0) ?>
+                                    <?php if(!empty($q1_vals->total_numerator)){?>
+                                    <?= round($q1_vals->current_value, 0);} ?>
                                 </td>
                                  <td rowspan=2><?= $q1_vals->target_value ?></td>
 
@@ -154,7 +162,8 @@
                                 <td rowspan="2" <?php if (!empty($q2_vals->current_value)) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q2_vals->current_value, $q2_vals->target_value) . "'";
                                 } ?>>
-                                    <?= round($q2_vals->current_value, 0) ?>
+                                <?php if (!empty($q2_vals->total_numerator)){ ?>
+                                    <?= round($q2_vals->current_value, 0); }?>
                                 </td>
                                  <td rowspan=2><?= $q2_vals->target_value ?></td>
 
@@ -163,7 +172,8 @@
                                 <td rowspan="2" <?php if (!empty($q3_vals->current_value)) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q3_vals->current_value, $q3_vals->target_value) . "'";
                                 } ?>>
-                                    <?= round($q3_vals->current_value, 0) ?>
+                                <?php if (!empty($q3_vals->total_numerator)){ ?>
+                                    <?= round($q3_vals->current_value, 0);} ?>
                                 </td>
                                  <td rowspan=2><?= $q3_vals->target_value ?></td>
 
@@ -172,7 +182,8 @@
                                 <td rowspan="2" <?php if (!empty($q4_vals->current_value)) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q4_vals->current_value, $q4_vals->target_value) . "'";
                                 } ?>>
-                                    <?= round($q4_vals->current_value, 0) ?>
+                                <?php if (!empty($q4_vals->total_numerator)) {?>
+                                    <?= round($q4_vals->current_value, 0); }?>
                                 </td>
                                  <td rowspan=2><?= $q4_vals->target_value ?></td>
 
@@ -215,3 +226,19 @@
         <?php endforeach; ?>
 
     </div>
+<script>
+
+        function getkpis(val) {
+
+        $.ajax({
+            method: "GET",
+            url: "<?php echo base_url(); ?>dashboard/home/getkpis",
+            data: 'subject_area=' + val,
+            success: function (data) {
+                //console.log(data);
+                $(".performance_kpis").html(data);
+            }
+            //  console.log('iwioowiiwoow');
+        });
+    }
+</script>

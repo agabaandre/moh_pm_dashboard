@@ -27,15 +27,22 @@ Class Home extends 	MX_Controller {
 		$data['page'] = "home/department_report";
 		$data['uptitle'] = "Department Reports";
 		$data['title'] = "Reporting by Job";
-		if(!empty(json_decode($this->session->userdata('subject_area'),true))){
+		if(!empty(json_decode($this->session->userdata('subject_area'),true))||(!empty($this->input->get('subject_area')))){
 
-			@$subject_area = json_decode($this->session->userdata('subject_area'),true)[0];
+			@$si= json_decode($this->session->userdata('subject_area'),true)[0];
+			if(!empty($si)){
+				$subject_area =$si;
+			}
+			else{
+				$subject_area = $this->input->get('subject_area');
+			}
 			$this->db->where('subject_areas.id',$subject_area);
 			$query = $this->db->get('subject_areas');
 			$data['subject_areas']  = $query->result();
 			// print_r($subject_area);
 			// exit;
 		}
+		
 		else{
 			$data['subject_areas'] = $this->db->get('subject_areas')->result();
 
@@ -96,6 +103,10 @@ Class Home extends 	MX_Controller {
 	}
 	public function kpis($subject_area)
 	{
+		if(!empty($this->input->get('kpi_id'))){
+		$kpid_id = $this->input->get('kpi_id');
+		$this->db->where('kpi_id', $kpid_id);
+		}
 		$this->db->where('subject_area',$subject_area);
 		return $this->db->get('kpi')->result();
 	
