@@ -29,14 +29,14 @@ Class Home extends 	MX_Controller {
 		$data['title'] = "Reporting by Job";
 		if(!empty(json_decode($this->session->userdata('subject_area'),true))||(!empty($this->input->get('subject_area')))){
 
-			@$si= json_decode($this->session->userdata('subject_area'),true)[0];
+			@$si= json_decode($this->session->userdata('subject_area'),true);
 			if(!empty($si)){
 				$subject_area =$si;
 			}
 			else{
 				$subject_area = $this->input->get('subject_area');
 			}
-			$this->db->where('subject_areas.id',$subject_area);
+			$this->db->where_in('subject_areas.id',$subject_area);
 			$query = $this->db->get('subject_areas');
 			$data['subject_areas']  = $query->result();
 			// print_r($subject_area);
