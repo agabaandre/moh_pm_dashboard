@@ -78,8 +78,6 @@
         <?php endforeach; ?>
     </select>
 </div>
-
-
     </div>
                         <div class="form-group row">
                         <?php  $years = array('department'=>"Department","data"=>"Data Clerk","admin"=>"Admistrator"); ?>
