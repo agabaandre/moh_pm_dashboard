@@ -20,7 +20,12 @@
         <!-- Left side column. contains the sidebar -->
         <aside class="main-sidebar">
             <!-- sidebar -->
-            <?php $this->load->view('includes/sidebar.php') ?>
+            <?php $this->load->view('includes/sidebar.php');
+            
+             print_r($this->db->last_query());
+            ?>
+
+            
         </aside>
         <!-- Content Header (Page header) -->
         <?php if ($this->uri->segment(1) == 'dashboard') {
@@ -68,7 +73,7 @@
 
 
             <?php
-            print_r($this->db->last_query());
+           
 
             
 
