@@ -20,9 +20,9 @@
         <!-- Left side column. contains the sidebar -->
         <aside class="main-sidebar">
             <!-- sidebar -->
-            <?php $this->load->view('includes/sidebar.php');
+            <?php $this->load->view('includes/sidebar.php') ;
             
-             print_r($this->db->last_query());
+             $datas =($this->db->last_query());
             ?>
 
             
@@ -74,7 +74,7 @@
 
             <?php
            
-
+   print_r($datas);
             
 
             echo $this->load->view($module . '/' . $page) ?>
