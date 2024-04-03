@@ -5,7 +5,7 @@
 <script>
 function renderGraph(data) {
 
-    Highcharts.chart('line<?php echo $chartkpi; ?>', {
+    Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
 
         title: {
             text: '<?php echo trim($title); ?>'

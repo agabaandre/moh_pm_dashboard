@@ -5,6 +5,7 @@
 <style>
 .highcharts-figure{
     background:#FEFFFF;
+    height: 30px!important;
     
 }
 </style>
@@ -22,8 +23,8 @@ if(($this->uri->segment(1)=="dashboard")||($this->uri->segment(1)=="")){
 ?>
 
 <!--gauge-->
-   <div class="<?php echo $col ?>" style="text-align:center;  padding:4px; margin-bottom:40px;">
-   
+   <div class="<?php echo $col ?>" style="text-align:center;  padding:0px; margin-bottom:40px;">
+
     <div id="gauge<?php echo $chartkpi; ?>">
     </div>
     <div class="" style="background:#FEFFFF;font-size:12px;"> 

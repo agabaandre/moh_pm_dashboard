@@ -52,11 +52,11 @@ function getColorBasedOnPerformance($value, $target)
  // $performance = (($value / $target) * 100);
   if (!empty($value)) {
     if (($value-$target)>=0) {
-      return 'green';
+      return '#008000';
     } elseif ($value-$target>=-10) {
-      return 'orange';
+      return '#FFA500';
     } else {
-      return 'red';
+      return '#FF0000';
     }
  
 
