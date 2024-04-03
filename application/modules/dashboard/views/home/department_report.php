@@ -103,7 +103,7 @@
                         </tr>
                         <tr>
                             <th>KPI </th>
-                            <th>Numerator/Denominator</th>
+                            <th>Numerator(N)/Denominator(N)</th>
                             <td>Data</td>
                             <td>Score</td>
                             <td>Target</td>
@@ -153,7 +153,7 @@
                                     ?>
 
                                 </th>
-                                <td><b>NUM: </b>
+                                <td><b>N: </b>
                                     <?php
                                         echo explode('/',getkpi_info($kpi_id)->computation)[0];
                                      ?>
@@ -203,7 +203,7 @@
                             <tr style="border-bottom:2px solid #FDE693; !important">
 
                                 <td>
-                                    <b>DEN: </b>
+                                    <b>D: </b>
                                     <?php
                                     echo explode('/', getkpi_info($kpi_id)->computation)[1];
                                      ?>
