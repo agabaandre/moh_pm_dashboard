@@ -153,7 +153,7 @@
                                     ?>
 
                                 </th>
-                                <td>
+                                <td><b>NUM: </b>
                                     <?php
                                         echo explode('/',getkpi_info($kpi_id)->computation)[0];
                                      ?>
@@ -203,6 +203,7 @@
                             <tr style="border-bottom:2px solid #FDE693; !important">
 
                                 <td>
+                                    <b>DEN: </b>
                                     <?php
                                     echo explode('/', getkpi_info($kpi_id)->computation)[1];
                                      ?>
