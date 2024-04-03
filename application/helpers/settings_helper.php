@@ -60,7 +60,7 @@ function getColorBasedOnPerformance($value, $target)
     }
  
 
-}
+}}
 function generateQuartersOptions($startYear, $endYear, $selectedYear)
 {
   $quarters = '';
