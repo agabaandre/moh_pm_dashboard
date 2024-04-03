@@ -59,6 +59,8 @@ class Auth extends MX_Controller {
 					'financial_year' => $this->current_financial_year(),
 					'dimension_chart' => $this->dimension_chart(),
 					'info_category' => $user->row()->info_category,
+					'allow_upload' => $user->row()->allow_upload,
+					'allow_form' => $user->row()->allow_form,
 					'allow_all_categories'=> $user->row()->allow_all_categories
 					);	
 
