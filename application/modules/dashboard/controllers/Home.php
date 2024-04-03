@@ -79,9 +79,10 @@ Class Home extends 	MX_Controller {
 
 	   if(!empty(json_decode($this->session->userdata('subject_area')))){
 
-			$subject_area = json_decode($this->session->userdata('subject_area'))[0];
-			$this->db->where('subject_areas.id',$subject_area);
-			// $this->db->limit();
+			$subject_area = json_decode($this->session->userdata('subject_area'));
+			$this->db->distinct();
+			$this->db->select('id, name'); // Replace 'other_column' with the actual column name you want to select
+			$this->db->where_in('id', $subject_area);
 			$query = $this->db->get('subject_areas');
 			return $data['departments']  = $query->result();
 		
