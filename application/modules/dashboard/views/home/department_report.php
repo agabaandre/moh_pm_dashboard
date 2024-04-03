@@ -1,3 +1,4 @@
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 <style>
     .vertical {
         border-left: 6px solid blue;
@@ -48,8 +49,13 @@
         padding: 0.5rem !important;
     }
 </style>
+<div id="employee_data">
 <div class=" mt-4">
-    <h2>Performance Report</h2>
+    <table>
+        <tr>
+    <td><b><h2>Performance Report</h2></b></td>
+        </tr>
+    </table>
 
     <?php
     // dd($this->session->userdata());
@@ -65,9 +71,13 @@
  
             <div class="row mt-4">
                 <div class="col">
+                    <table>
+                        <td>
                     <h2 style="margin-top:5px; color:#0d5e8e; font-size:19px;">
-                        <?php echo $department->name; ?> 
+                        <b><?php echo $department->name; ?> </b>
                     </h2>
+                        </td>
+                    </table>
                  
                     <table class="table table-bordered">
 
@@ -226,6 +236,7 @@
         <?php endforeach; ?>
 
     </div>
+</div>
 <script>
 
         function getkpis(val) {
@@ -241,4 +252,22 @@
             //  console.log('iwioowiiwoow');
         });
     }
+
+    function html_table_to_excel(type)
+    {
+        var data = document.getElementById('employee_data');
+
+        var file = XLSX.utils.table_to_book(data, {sheet: "sheet1"});
+
+        XLSX.write(file, { bookType: type, bookSST: true, type: 'base64' });
+
+        XLSX.writeFile(file, '<?=$uptitle?>.' + type);
+    }
+
+    const export_button = document.getElementById('export_button');
+
+    export_button.addEventListener('click', () =>  {
+        html_table_to_excel('xlsx');
+    });
+
 </script>

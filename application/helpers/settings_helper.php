@@ -49,13 +49,13 @@ function getkpi_info($kpi_id)
 function getColorBasedOnPerformance($value, $target)
 {
   //ratios -
-  $performance = (($value / $target) * 100);
-  if (!empty($performance)) {
-    if ($performance < 50) {
-      return 'red';
-    } elseif ($performance >= 50 && $performance < 75) {
+ // $performance = (($value / $target) * 100);
+  if (!empty($value)) {
+    if ($value>=$target) {
+      return 'green';
+    } elseif ($value-$target <=10) {
       return 'orange';
-    } elseif ($performance >= 75) {
+    } elseif ($value-$target>10) {
       return 'green';
     } else {
       //if there is no target
@@ -65,5 +65,20 @@ function getColorBasedOnPerformance($value, $target)
     return "";
   }
 
+}
+function generateQuartersOptions($startYear, $endYear, $selectedYear)
+{
+  $quarters = '';
+
+  for ($year = $startYear; $year <= $endYear; $year++) {
+    $quarters .= "<optgroup label=\"$year\">";
+    $quarters .= "<option value=\"Q1 $year\"" . ($selectedYear == $year && date('n') >= 7 ? ' selected' : '') . ">Q1 $year</option>";
+    $quarters .= "<option value=\"Q2 $year\"" . ($selectedYear == $year && date('n') >= 10 ? ' selected' : '') . ">Q2 $year</option>";
+    $quarters .= "<option value=\"Q3 $year\"" . ($selectedYear == $year && date('n') >= 1 && date('n') <= 3 ? ' selected' : '') . ">Q3 $year</option>";
+    $quarters .= "<option value=\"Q4 $year\"" . ($selectedYear == $year && date('n') >= 4 && date('n') <= 6 ? ' selected' : '') . ">Q4 $year</option>";
+    $quarters .= "</optgroup>";
+  }
+
+  return $quarters;
 }
 

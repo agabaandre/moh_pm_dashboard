@@ -70,6 +70,50 @@
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
+               
+        <label for="financial_year">Financial Year:(*)</label>
+
+            <select class="form-control selectize" name="financial_year" required>
+    <option value="">Select Financial Year</option>
+    <?php
+
+                        $current_date = date('Y-m-d');
+                        $current_year = date('Y', strtotime($current_date));
+                        $next_year = $current_year + 1;
+                        if (date('m-d', strtotime($current_date)) < '06-30') {
+
+                            $current_year -= 1;
+                            $next_year -= 1;
+                        }
+                        $current_financial_year = $current_year . '-' . $next_year;
+                        $startdate = "2022"; // Start of available financial years
+                        $enddate = intval(date('Y') + 1); // End of available financial years
+                        $years = range($startdate, $enddate);
+
+                        foreach ($years as $year) {
+                            $financial_year = $year . '-' . ($year + 1);
+                            ?>
+                            <option value="<?php echo $financial_year; ?>" <?php if (($current_financial_year === $financial_year) || ($financial_year === $this->input->get('financial_year)'))) {
+                                   echo "selected";
+                               } ?>>
+                                <?php echo $financial_year; ?>
+                            </option>
+                        <?php }
+
+                        ?>
+                    </select>
+            <?php
+                    $startYear = date('Y') - 1; // Get the previous year
+                    $endYear = date('Y'); // Get the current year
+                    $selectedYear = date('Y'); // Get the current year
+
+                    $quartersOptions = generateQuartersOptions($startYear, $endYear, $selectedYear);
+
+            ?>
+
+            <select name="financial_quarter">
+                <?php echo $quartersOptions; ?>
+            </select>
 
         <table id="dimensions_table">
             <thead>

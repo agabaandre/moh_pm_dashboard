@@ -40,7 +40,7 @@
     <div class="form-group col-md-3 col-sm-12">
         <label for="financial_year">Financial Year:(*)</label>
 
-            <select class="form-control selectize" name="financial_year" required>
+    <select class="form-control selectize" name="financial_year" required>
     <option value="">Select Financial Year</option>
     <?php
             
@@ -68,17 +68,20 @@
                 <?php } 
                 
                 ?>
-            </select>
+     </select>
 
+ 
   
     </div>
 
 </div>
 
   <button type="submit" class="btn btn-info waves-effect waves-themed"><i class=""></i>Submit</button>
-   <a href="<?php echo base_url()?>dashboard/home/department_reporting" class="btn btn-success waves-effect waves-themed"><i class=""></i>View All</a>
-
-<?php 
+  <a href="<?php echo base_url()?>dashboard/home/department_reporting" class="btn btn-success waves-effect waves-themed"><i class=""></i>View All</a>
+  
+  <button type="button" id="export_button" class="btn btn-info waves-effect waves-themed">Export</button>
+    				
+<?php
 
 
 echo form_close();?>
