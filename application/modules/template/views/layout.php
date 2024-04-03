@@ -68,6 +68,7 @@
 
 
             <?php
+            print_r($this->db->last_query());
 
             
 
