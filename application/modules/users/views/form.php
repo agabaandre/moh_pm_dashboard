@@ -57,31 +57,30 @@
                             </select> 
                             </div> 
                     </div>
-                    <div class="form-group row">
-                       
-                            <?php
-                            $years = $this->db->query("SELECT * FROM `subject_areas`")->result();
-                            ?>
-                            <label for="cumulative" class="col-sm-3 col-form-label">Department</label>
-                            <div class="col-sm-9">
-                                <input type="checkbox" id="select-all"> Select All<br>
-                                <select class="js-example-basic-multiple" name="subject_area[]" class="form-control" multiple="multiple">
-                                    <?php
-                                    $ids = json_decode($user->subject_area);
-                                    if (empty($ids)) {
-                                        $ids = [];
-                                    }
-                                    foreach ($years as $value):
-                                        ?>
-                                        <option value="<?php echo $value->id; ?>" <?php if (in_array($value->id, $ids)) {
-                                              echo "selected";
-                                          } ?>>
-                                            <?php echo $value->name; ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
+    <div class="form-group row">
+        <?php
+        $years = $this->db->query("SELECT * FROM `subject_areas`")->result();
+        ?>
+        <label for="cumulative" class="col-sm-3 col-form-label">Department</label>
+        <div class="col-sm-9">
+    <input type="checkbox" id="select-all" onchange="selectAll(this)"> Select All<br>
+    <select class="departments" name="subject_area[]" class="form-control" multiple="multiple" onchange="updateSelectedValues(this)">
+        <?php 
+            $ids = json_decode($user->subject_area);
+            if(empty($ids)){
+                $ids = [];
+            }
+            foreach($years as $value): 
+        ?>
+            <option value="<?php echo $value->id;?>" <?php if (in_array($value->id, $ids)) {echo "selected";} ?>>
+                <?php echo $value->name; ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>
+
+
+    </div>
                         <div class="form-group row">
                         <?php  $years = array('department'=>"Department","data"=>"Data Clerk","admin"=>"Admistrator"); ?>
                           <label for="cumulative" class="col-sm-3 col-form-label">User Type</label>
@@ -169,12 +168,28 @@
 </div>
 
 <script>
-    document.getElementById('select-all').addEventListener('change', function() {
-        var selectAllCheckbox = this;
-        var options = document.querySelectorAll('.js-example-basic-multiple option');
-        options.forEach(function(option) {
-            option.selected = selectAllCheckbox.checked;
+    function selectAll(checkbox) {
+        var options = document.querySelectorAll('.departments option');
+        if (checkbox.checked) {
+            options.forEach(function(option) {
+                option.selected = true;
+            });
+        } else {
+            options.forEach(function(option) {
+                option.selected = false;
+            });
+        }
+        updateSelectedValues();
+    }
+
+    function updateSelectedValues() {
+        var selectedValues = [];
+        var selectedOptions = document.querySelectorAll('.departments option:checked');
+        selectedOptions.forEach(function(option) {
+            selectedValues.push(option.value);
         });
-    });
+        // Here you can append selectedValues to wherever you need, like a hidden input field or an AJAX call.
+       // console.log(selectedValues);
+    }
 </script>
  
