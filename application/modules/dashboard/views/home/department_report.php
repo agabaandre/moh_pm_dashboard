@@ -103,7 +103,7 @@
                         </tr>
                         <tr>
                             <th>KPI </th>
-                            <th>Numerator(N)/Denominator(N)</th>
+                            <th>Numerator(N)/Denominator(D)</th>
                             <td>Data</td>
                             <td>Score</td>
                             <td>Target</td>
