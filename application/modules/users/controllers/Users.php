@@ -82,6 +82,8 @@ class Users extends MX_Controller
 			'status' => $this->input->post('status'),
 			'subject_area' => $subjectarea,
 			'info_category' => $this->input->post('info_category'),
+			'allow_form' => $this->input->post('allow_form'),
+			'allow_upload' => $this->input->post('allow_upload'),
 			'allow_all_categories' => $this->input->post('allow_all_categories'),
 			'user_type' => $this->input->post('user_type'),
 			'is_admin' => 0

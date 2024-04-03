@@ -58,27 +58,29 @@
                             </div> 
                     </div>
                     <div class="form-group row">
-                        <?php
-                        $years = $this->db->query("SELECT * FROM `subject_areas`")->result(); ?>
-                          <label for="cumulative" class="col-sm-3 col-form-label">Department</label>
-                          <div class="col-sm-9">
-                          <select class="js-example-basic-multiple" name="subject_area[]" class="form-control" multiple="multiple">
-                            
-                           
-                            <?php 
-                             $ids=json_decode($user->subject_area);
-                             if(empty($ids)){
-                                $ids = [];
-                             }
-                             foreach($years as $value): 
-                                
-                                ?>
-                             <option value="<?php echo $value->id;?>" <?php if (in_array($value->id, $ids)) {echo "selected";} ?>>
-                                <?php echo $value->name; ?>
-                             </option>
-                            <?php endforeach; ?>
-                            </select> 
-                            </div> 
+                       
+                            <?php
+                            $years = $this->db->query("SELECT * FROM `subject_areas`")->result();
+                            ?>
+                            <label for="cumulative" class="col-sm-3 col-form-label">Department</label>
+                            <div class="col-sm-9">
+                                <input type="checkbox" id="select-all"> Select All<br>
+                                <select class="js-example-basic-multiple" name="subject_area[]" class="form-control" multiple="multiple">
+                                    <?php
+                                    $ids = json_decode($user->subject_area);
+                                    if (empty($ids)) {
+                                        $ids = [];
+                                    }
+                                    foreach ($years as $value):
+                                        ?>
+                                        <option value="<?php echo $value->id; ?>" <?php if (in_array($value->id, $ids)) {
+                                              echo "selected";
+                                          } ?>>
+                                            <?php echo $value->name; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group row">
                         <?php  $years = array('department'=>"Department","data"=>"Data Clerk","admin"=>"Admistrator"); ?>
@@ -130,6 +132,28 @@
                             </label> 
                         </div>
                     </div>
+                      <div class="form-group row">
+                        <label for="status" class="col-sm-3 col-form-label">Allow Data *</label>
+                        <div class="col-sm-9">
+                            <label class="radio-inline">
+                                <?php echo form_radio('allow_upload', '1', (($user->allow_upload == 1 || $user->allow_upload == null) ? true : false), 'id="allow_upload"'); ?>Active
+                            </label>
+                            <label class="radio-inline">
+                                <?php echo form_radio('allow_upload', '0', (($user->allow_upload == "0") ? true : false), 'id="allow_upload"'); ?>Inactive
+                            </label>
+                        </div>
+                    </div>
+                       <div class="form-group row">
+                        <label for="status" class="col-sm-3 col-form-label">Allow Form Capture *</label>
+                        <div class="col-sm-9">
+                            <label class="radio-inline">
+                                <?php echo form_radio('allow_form', '1', (($user->allow_form == 1 || $user->allow_form == null) ? true : false), 'id="allow_form"'); ?>Active
+                            </label>
+                            <label class="radio-inline">
+                                <?php echo form_radio('allow_form', '0', (($user->allow_form == "0") ? true : false), 'id="allow_form"'); ?>Inactive
+                            </label>
+                        </div>
+                    </div>
 
 
          
@@ -144,5 +168,13 @@
     </div>
 </div>
 
-
+<script>
+    document.getElementById('select-all').addEventListener('change', function() {
+        var selectAllCheckbox = this;
+        var options = document.querySelectorAll('.js-example-basic-multiple option');
+        options.forEach(function(option) {
+            option.selected = selectAllCheckbox.checked;
+        });
+    });
+</script>
  
