@@ -56,7 +56,7 @@ function getColorBasedOnPerformance($value, $target)
     } elseif ($value-$target <=10) {
       return 'orange';
     } elseif ($value-$target>10) {
-      return 'green';
+      return 'red';
     } else {
       //if there is no target
       return '#088F8F';
