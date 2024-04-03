@@ -51,19 +51,14 @@ function getColorBasedOnPerformance($value, $target)
   //ratios -
  // $performance = (($value / $target) * 100);
   if (!empty($value)) {
-    if ($value>=$target) {
+    if (($value-$target)>=0) {
       return 'green';
-    } elseif ($value-$target <=10) {
+    } elseif ($value-$target>=-10) {
       return 'orange';
-    } elseif ($value-$target>10) {
-      return 'red';
     } else {
-      //if there is no target
-      return '#088F8F';
+      return 'red';
     }
-  } else {
-    return "";
-  }
+ 
 
 }
 function generateQuartersOptions($startYear, $endYear, $selectedYear)
