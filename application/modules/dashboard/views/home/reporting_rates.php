@@ -20,7 +20,7 @@
                                                 <th>Quater 1</th>
                                                 <th>Quater 2</th>
                                                 <th>Quater 3</th>
-                                                <th>Qauter 4</th>
+                                                <th>Quater 4</th>
                     
                                             </tr>
                                             </thead>
