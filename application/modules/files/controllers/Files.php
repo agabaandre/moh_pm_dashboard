@@ -26,7 +26,7 @@ class Files extends MX_Controller
 
     }
 
-    public function add_file()
+    public function add_data()
     {
 
         $data['title'] = 'Add KPI Data';
@@ -280,7 +280,7 @@ class Files extends MX_Controller
 
         }
     }
-    function fetch_dimensions(){
+    function fetch_dimensions($kpid){
     if(isset($_POST['kpi_id'])) {
     $kpi_id = $_POST['kpi_id'];
     $sql = "SELECT DISTINCT dimension1_key, dimension2_key, dimension3_key FROM new_data WHERE kpi_id = '$kpi_id'";
