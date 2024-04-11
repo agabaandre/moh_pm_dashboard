@@ -25,6 +25,16 @@ class Files extends MX_Controller
         echo Modules::run('template/layout', $data);
 
     }
+
+    public function add_file()
+    {
+
+        $data['title'] = 'Add KPI Data';
+        $data['page'] = 'add_files';
+        $data['module'] = "files";
+        echo Modules::run('template/layout', $data);
+
+    }
     function importcsv()
     {
         if (isset($_FILES["upload_csv_file"]["name"])) {
