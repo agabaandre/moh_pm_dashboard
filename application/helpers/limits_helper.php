@@ -144,6 +144,14 @@ if (!function_exists('session_headings')) {
             return $ci->db->query("SELECT name from info_category where id= $data")->row()->name;
         }
     }
+    if (!function_exists('get_kpi_details')) {
+        function get_kpi_details($kpi_id)
+        {
+
+            $ci = &get_instance();
+            return $ci->db->query("SELECT * from kpi where kpi_id= '$kpi_id'")->row();
+        }
+    }
 
     
 }

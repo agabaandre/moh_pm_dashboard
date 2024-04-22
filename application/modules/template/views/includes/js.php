@@ -138,7 +138,7 @@
   });
 
       var url = "<?php echo $this->uri->segment(2); ?>";
-        if (url == "slider" || url == "summary" || url == "view_kpi_data" || url == "kpis" || url == "addkpi_data") {
+        if (url == "slider" || url == "summary" || url == "view_kpi_data" || url == "kpis" || url == "addkpi_data"|| url == "add_data") {
             $('body').addClass('sidebar-collapse');
             $('#sidebar').toggleClass('active');
             $(".logo-text").hide();

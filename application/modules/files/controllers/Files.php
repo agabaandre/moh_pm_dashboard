@@ -32,6 +32,14 @@ class Files extends MX_Controller
         $data['title'] = 'Add KPI Data';
         $data['page'] = 'add_files';
         $data['module'] = "files";
+        $kpi_id = $this->input->get('kpi_id');
+        $period = $this->input->get('period');
+        $financial_year = $this->input->get('financial_year');
+        if(!empty($kpi_id)&& !empty($period) && !empty($financial_year)){
+        $data ['kpi_datas'] = $this->files_mdl->get_kpi_data($kpi_id, $period, $financial_year);
+        }
+
+        $data['last_query'] = $this->db->last_query();
         echo Modules::run('template/layout', $data);
 
     }
@@ -280,18 +288,160 @@ class Files extends MX_Controller
 
         }
     }
-    function fetch_dimensions($kpid){
-    if(isset($_POST['kpi_id'])) {
-    $kpi_id = $_POST['kpi_id'];
-    $sql = "SELECT DISTINCT dimension1_key, dimension2_key, dimension3_key FROM new_data WHERE kpi_id = '$kpi_id'";
-    $result = $$this->db->query($sql);
+    function fetch_dimension1($kpid){
+    if($kpid){
+ 
+    $sql = "SELECT DISTINCT dimension1 FROM new_data WHERE kpi_id = '$kpid'";
+   return $result = $this->db->query($sql)->result();
+     }
+   else{
+    return array();
+   }
 
-    $dimensions = array();
-    if ($result->num_rows() > 0) {
-        foreach($result->result() as $row) {
-            $dimensions[] = $row;
+   }
+
+    function fetch_dimension2($kpid)
+    {
+        if ($kpid) {
+
+            $sql = "SELECT DISTINCT  dimension2 FROM new_data WHERE kpi_id = '$kpid'";
+            return $result = $this->db->query($sql)->result();
+        } else {
+            return array();
         }
+
     }
-    echo json_encode($dimensions);
-}}
+
+    function fetch_dimension3($kpid)
+    {
+        if ($kpid) {
+
+            $sql = "SELECT DISTINCT  dimension3 FROM new_data WHERE kpi_id = '$kpid'";
+            return $result = $this->db->query($sql)->result();
+        } else {
+            return array();
+        }
+
+    }
+    function fetch_dimensions1_keys($kpid)
+    {
+        if ($kpid) {
+
+            $sql = "SELECT DISTINCT dimension1_key FROM new_data WHERE kpi_id = '$kpid'";
+            return $result = $this->db->query($sql)->row();
+        } else {
+            return array();
+        }
+
+    }
+    function fetch_dimensions2_keys($kpid)
+    {
+        if ($kpid) {
+
+            $sql = "SELECT DISTINCT dimension2_key FROM new_data WHERE kpi_id = '$kpid'";
+            return $result = $this->db->query($sql)->row();
+        } else {
+            return array();
+        }
+
+    }
+    function fetch_dimensions3_keys($kpid)
+    {
+        if ($kpid) {
+
+            $sql = "SELECT DISTINCT dimension2_key FROM new_data WHERE kpi_id = '$kpid'";
+            return $result = $this->db->query($sql)->row();
+        } else {
+            return array();
+        }
+
+    }
+    public function save_data()
+    {
+        // Check if the request method is POST
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            // Retrieve the posted data
+            $kpi_ids = $this->input->post('kpi_id');
+            $numerators = $this->input->post('numerator');
+            $denominators = $this->input->post('denominator');
+            $sfys = $this->input->post('financial_year');
+            $period_years = $this->input->post('period_year');
+            $periods = $this->input->post('period');
+            $dimension1_keys = $this->input->post('dimension1_key');
+            $dimension1_values = $this->input->post('dimension1');
+            $dimension2_keys = $this->input->post('dimension2_key');
+            $dimension2_values = $this->input->post('dimension2');
+            $dimension3_keys = $this->input->post('dimension3_key');
+            $dimension3_values = $this->input->post('dimension3');
+            $data_targets = $this->input->post('data_target');
+            $comments = $this->input->post('comment');
+
+            // Iterate through each row of data
+            for ($i = 0; $i < count($kpi_ids); $i++) {
+                // Check if both numerator and denominator are present
+                if (!empty($numerators[$i]) && !empty($denominators[$i])) {
+                    // Create an array with data for insertion
+                    $insert_data = array(
+                        'kpi_id' => $kpi_ids[$i],
+                        'numerator' => $numerators[$i],
+                        'denominator' => $denominators[$i],
+                        'period' => $periods[$i],
+                        'period_year' => $period_years[$i],
+                        'financial_year' => $sfys[$i],
+                        'comment'=> $comments[$i],
+                        'data_target' => $data_targets[$i],
+                        'dimension3' => $dimension3_values[$i],
+                        'dimension3_key' => $dimension3_keys[$i],
+                        'dimension2' => $dimension2_values[$i],
+                        'dimension2_key' => $dimension2_keys[$i],
+                        'dimension1' => $dimension1_values[$i],
+                        'dimension1_key' => $dimension1_keys[$i],
+                        'upload_date' => date('Y-m-d H:i:s'),
+                        'uploaded_by' => $this->session->userdata('id')
+
+                        // Add other fields here if needed
+                    );
+                                    if(!empty($dimension1_values[$i])){
+                                    $this->db->where("dimension1", "$dimension1_values[$i]");
+                                    }
+                                    if(!empty($dimension2_values[$i])){
+                                    $this->db->where("dimension2", "$dimension2_values[$i]");
+                                    }
+                                    if(!empty($dimension3_values[$i])){
+                                    $this->db->where("dimension3", "$dimension3_values[$i]");
+                                    }
+                                    $this->db->where("financial_year", "$sfys[$i]");
+                                    $this->db->where("period", "$periods[$i]");
+                                    $this->db->where('kpi_id', $kpi_ids[$i]);
+                                    $this->db->from('new_data');
+                                    $exists = $this->db->count_all_results() > 0;
+                                    
+                                    // If the record exists, update it; otherwise, insert it
+                                    if ($exists) {
+                                        $this->db->where('kpi_id', $kpi_ids[$i]);
+                                        $this->db->update('new_data', $insert_data);
+                                    } else {
+                    // Insert the data into the database
+                  
+                 
+                    $this->db->insert('new_data', $insert_data);
+                }
+                }
+            }
+
+            // Return success response
+            $msg = "Data saved successfully!";
+            $this->session->set_flashdata('message', $msg);
+            
+        } else {
+            // If the request method is not POST, return an error response
+            $msg  ="Error";
+            $this->session->set_flashdata('exception', $msg);
+
+        }
+        redirect("files/add_data?kpi_id=$kpi_ids[0]&financial_year=$sfys[0]&period=$periods[0]");
+    }
+
+
+
 }

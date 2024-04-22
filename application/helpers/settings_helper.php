@@ -76,4 +76,22 @@ function generateQuartersOptions($startYear, $endYear, $selectedYear)
 
   return $quarters;
 }
+function getPeriodYear($financialYear, $quarter)
+{
+  // Split financial year into start and end years
+  $years = explode('-', $financialYear);
+  $startYear = intval($years[0]);
+  $endYear = intval($years[1]);
+
+  // Determine the period year based on the quarter
+  if ($quarter == 'Q1' || $quarter == 'Q2') {
+    return $startYear;
+  } elseif ($quarter == 'Q3' || $quarter == 'Q4') {
+    return $endYear;
+  } else {
+    // Invalid quarter input
+    return null;
+  }
+}
+
 
