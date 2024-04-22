@@ -115,7 +115,7 @@ if (!empty($_SESSION['subject_area'])) {
                 </div>
             </div>
             <div class="col-md-12 text-align-center">
-                <h2>Financial Year: <?= $sfy ?> - <?= $period ?> - <?= get_kpi_details($kpid)->short_name ?></h2>
+                <h2>Financial Year: <?= $sfy ?> - <?= $period ?> - <?=get_kpi_details($kpi_id)->short_name ?></h2>
             </div>
             <div class="panel-body">
                 <div class="card-content body">
