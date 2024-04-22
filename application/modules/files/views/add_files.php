@@ -249,8 +249,12 @@ if (!empty($_SESSION['subject_area'])) {
     </div>
  </form>
 <?php else: ?>
-    <div class="text-align-center" style="color:red;">
+    <div class="text-align-center col-md-12" style="color:red;">
+    <table>
+<tr>
         <h2>Please select KPI, Period, and Financial year</h2>
+</tr>
+    </table>
     </div>
 <?php endif; ?>
 
