@@ -136,11 +136,11 @@ if (!empty($_SESSION['subject_area'])) {
                                 <th>Dim3 Label</th>
                                 <th>Dim3 Value</th>
                                 <?php } ?>
-                                <th><?php
+                                <th>N: <?php
                                     echo explode('/', getkpi_info($kpi_id)->computation)[0];
                                     ?>
                                 </th>
-                                <th><?php
+                                <th>D: <?php
                                     echo explode('/', getkpi_info($kpi_id)->computation)[1];
                                     ?>
                                 </th>
