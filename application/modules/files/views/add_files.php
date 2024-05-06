@@ -247,7 +247,7 @@ if (!empty($_SESSION['subject_area'])) {
                                     <td><input type="text" class="form-control" name="comment[]" value="<?= @$data->comment; ?>" <?= $readonly ?>></td>
 
                                 </tr>
-                            <?php endfor; ?>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                     <button type="submit" class="btn btn-primary">Submit</button>
