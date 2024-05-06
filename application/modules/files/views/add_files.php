@@ -154,9 +154,9 @@ if (!empty($_SESSION['subject_area'])) {
 
                           
                             $count = count($kpi_datas);
-                            $rows = max($count, 20); // Ensure at least 10 rows are displayed
-                            for ($i = 0; $i < $rows; $i++):
-                                $data = isset($kpi_datas[$i]) ? $kpi_datas[$i] : null;
+                           // Ensure at least 10 rows are displayed
+                            foreach ($kpi_datas as $data):
+                           
                                 if ((!empty($data->numerator)) && ($this->session->userdata('user_type') != 'admin')) {
                                     $disabled = "disabled";
                                     $readonly = "readonly";
