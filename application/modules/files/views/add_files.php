@@ -136,8 +136,15 @@ if (!empty($_SESSION['subject_area'])) {
                                 <th>Dim3 Label</th>
                                 <th>Dim3 Value</th>
                                 <?php } ?>
-                                <th>Denominator</th>
-                                <th>Numerator</th>
+                                <th><?php
+                                    echo explode('/', getkpi_info($kpi_id)->computation)[0];
+                                    ?>
+                                </th>
+                                <th><?php
+                                    echo explode('/', getkpi_info($kpi_id)->computation)[1];
+                                    ?>
+                                </th>
+                              
                                 <th>Data Target</th>
                                 <th>Comment</th>
                             </tr>
@@ -233,8 +240,9 @@ if (!empty($_SESSION['subject_area'])) {
                                         </select>
                                     </td>
                                     <?php } ?>
+                                 <td><input type="text" class="form-control" name="numerator[]" value="<?= @$data->numerator; ?>" <?= $readonly ?>></td>
                                     <td><input type="text" class="form-control" name="denominator[]" value="<?=@$data->denominator;?>" <?= $readonly ?>></td>
-                                    <td><input type="text" class="form-control" name="numerator[]" value="<?= @$data->numerator; ?>" <?= $readonly ?>></td>
+
                                     <td><input type="text" class="form-control" name="data_target[]" value="<?php if(!empty($data->data_target)){ echo @$data->data_target;} else{ echo @get_kpi_details($kpi_id)->current_target;}?>" <?= $readonly ?> readonly></td>
                                     <td><input type="text" class="form-control" name="comment[]" value="<?= @$data->comment; ?>" <?= $readonly ?>></td>
 

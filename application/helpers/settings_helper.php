@@ -48,8 +48,7 @@ function getkpi_info($kpi_id)
 
 function getColorBasedOnPerformance($value, $target)
 {
-  //ratios -
- // $performance = (($value / $target) * 100);
+  
   if (!empty($value)) {
     if (($value-$target)>=0) {
       return '#008000';
