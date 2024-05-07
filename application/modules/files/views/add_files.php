@@ -102,7 +102,9 @@ if (!empty($_SESSION['subject_area'])) {
         <button type="submit" class="btn btn-primary">Preview</button>
     </div>
 </form>
-
+ <div class="col-lg-12 " style="float:right;">
+        <button id="addRowBtn" class="btn btn-success">Add Row</button>
+</div>
 
 <form method="post" enctype="multipart/form-data"  action="<?php echo base_url(); ?>files/save_data">
 <?php if (!empty($kpi_id) && !empty($period) && !empty($sfy)): ?>
@@ -245,7 +247,9 @@ if (!empty($_SESSION['subject_area'])) {
 
                                     <td><input type="text" class="form-control" name="data_target[]" value="<?php if(!empty($data->data_target)){ echo @$data->data_target;} else{ echo @get_kpi_details($kpi_id)->current_target;}?>" <?= $readonly ?> readonly></td>
                                     <td><input type="text" class="form-control" name="comment[]" value="<?= @$data->comment; ?>" <?= $readonly ?>></td>
-
+                                    <div  style="float:right;">
+                                    <button type="button" class="btn btn-danger removeRowBtn" >Remove</button>
+                                    </div>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -256,6 +260,7 @@ if (!empty($_SESSION['subject_area'])) {
         </div>
     </div>
  </form>
+ 
 <?php else: ?>
     <div class="text-align-center col-md-12" style="color:red;">
     <table>
@@ -269,6 +274,24 @@ if (!empty($_SESSION['subject_area'])) {
 
 <script>
 $(document).ready(function() {
+
+ // Function to add a new row to the table body
+    $("#addRowBtn").click(function() {
+        // Clone the template row
+        var newRow = $("#templateRow").clone();
+
+        // Clear input values in the new row
+        newRow.find('input[type="text"]').val('');
+          newRow.find('select').val('');
+
+        // Append the new row to the table body
+        $("table tbody").append(newRow);
+    });
+
+    // Function to remove a row from the table body
+    $(document).on('click', '.removeRowBtn', function() {
+        $(this).closest('tr').remove();
+    });
     // Handle form submission
     $("#dataform").submit(function(event) {
         // Prevent default form submission
