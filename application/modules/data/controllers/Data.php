@@ -99,7 +99,7 @@ class Data extends MX_Controller {
 		$data['uptitle']   = ucwords($kpi).' Details';
 		$data['kpi_table'] = $this->data_mdl->gaugeDetails($kpi);
 	
-    echo Modules::run('template/layout', $data); 
+    echo json_encode($data);
 
 	}
 

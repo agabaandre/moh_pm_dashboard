@@ -35,9 +35,15 @@ class Files extends MX_Controller
         $kpi_id = $this->input->get('kpi_id');
         $period = $this->input->get('period');
         $financial_year = $this->input->get('financial_year');
+        
         if(!empty($kpi_id)&& !empty($period) && !empty($financial_year)){
+            $prev = getPeriodYear($financial_year, $period)-1;
+        $rows = $this->db->query("SELECT * from new_data where kpi_id='$kpi_id' AND period='$period' AND period_year='$prev'")->num_rows();
+        $data['rows'] = ($rows < 1) ? 1 : $rows;
+
         $data ['kpi_datas'] = $this->files_mdl->get_kpi_data($kpi_id, $period, $financial_year);
         }
+     
 
         $data['last_query'] = $this->db->last_query();
         echo Modules::run('template/layout', $data);

@@ -123,21 +123,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td style=" background-color:gray;"></td>
-                                <td>Above Performance</td>
-                            </tr>
+                         
                             <tr>
                                 <td style=" background-color:green;"></td>
-                                <td>Good Performance</td>
+                                <td>Meets or Exceeds Target</td>
                             </tr>
                             <tr>
                                 <td style=" background-color:orange;"></td>
-                                <td>Average Performance</td>
+                                <td>Close to Target Within 10 Points</td>
                             </tr>
                             <tr>
                                 <td style=" background-color:red;"></td>
-                                <td>Bad Performance</td>
+                                <td>More than 10 Points below Target</td>
                             </tr>
 
 
@@ -220,18 +217,44 @@
     <!-- <switch Data> -->
 
     <!-- Modal -->
-    <div class="modal fade" id="switchData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    
+    <div class="modal fade" id="kpiData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Change Data Category</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">KPI Info</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
 
-                    <form action="<?php echo base_url(); ?>dashboard/auth/DataCategory" enctype="multipart/form-data"
+             
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modal -->
+
+    <div class="modal fade" id="switchData" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">KPI Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                 <form action="<?php echo base_url(); ?>dashboard/auth/DataCategory" enctype="multipart/form-data"
                         method="get" accept-charset="utf-8">
 
                         <div class="form-group">
@@ -258,11 +281,11 @@
                             </div>
 
                     </form>
-
+    
                 </div>
-
-
-
+    
+    
+    
             </div>
         </div>
     </div>
@@ -270,12 +293,11 @@
 
 
 
-    <!-- <switch Data> -->
-
-
 
     <!-- Start Core Plugins-->
     <?php require('includes/js.php'); ?>
+
+    
 
 
 </body>

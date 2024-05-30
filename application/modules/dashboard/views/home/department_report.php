@@ -129,7 +129,7 @@
 
                                 <th rowspan="2">
 
-                                    <?php echo $i++ . '. ' . $kpi->short_name;
+                                    <?php 
                                     if(!empty($this->input->get('kpi_id'))){
                                     $kpi_id = $this->input->get('kpi_id');
                                     }
@@ -149,9 +149,10 @@
 
 
 
-
-                                    ?>
-
+                                    $gauge = Modules::run('Kpi/gaugeData', $kpi_id);
+                                     ?>
+                                    <a href="<?php echo base_url() . 'data/kpidata/' . $gauge['gauge']['details'][0]->kpi_id . '/' . $gauge['gauge']['details'][0]->subject_area; ?>" target="_blank"><p class=""  style=" font-size:13px;" ><?php echo $i++ . '. ' . $gauge['gauge']['details'][0]->short_name; ?></p></a></td>
+                                                
                                 </th>
                                 <td><b>N: </b>
                                     <?php
@@ -161,7 +162,7 @@
                                 <td><?= number_format($q1_vals->total_numerator) ?></td>
                                 <td rowspan="2" <?php if (!empty($q1_vals->current_value)) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q1_vals->current_value, $q1_vals->target_value) . "'";
-                                } ?>>
+                                } ?> title="<?= $q1_vals->comment ?>">
                                     <?php if(!empty($q1_vals->total_numerator)){?>
                                     <?= round($q1_vals->current_value, 0);} ?>
                                 </td>
@@ -171,7 +172,7 @@
                                 <td><?= number_format($q2_vals->total_numerator) ?></td>
                                 <td rowspan="2" <?php if (!empty($q2_vals->current_value)) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q2_vals->current_value, $q2_vals->target_value) . "'";
-                                } ?>>
+                                } ?> title="<?= $q2_vals->comment ?>">
                                 <?php if (!empty($q2_vals->total_numerator)){ ?>
                                     <?= round($q2_vals->current_value, 0); }?>
                                 </td>
@@ -181,7 +182,7 @@
                              <td><?= number_format($q3_vals->total_numerator) ?></td>
                                 <td rowspan="2" <?php if (!empty($q3_vals->current_value)) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q3_vals->current_value, $q3_vals->target_value) . "'";
-                                } ?>>
+                                } ?> title="<?= $q3_vals->comment ?>">
                                 <?php if (!empty($q3_vals->total_numerator)){ ?>
                                     <?= round($q3_vals->current_value, 0);} ?>
                                 </td>
@@ -191,7 +192,7 @@
                               <td><?= number_format($q4_vals->total_numerator) ?></td>
                                 <td rowspan="2" <?php if (!empty($q4_vals->current_value)) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q4_vals->current_value, $q4_vals->target_value) . "'";
-                                } ?>>
+                                } ?> title="<?=$q4_vals->comment?>">
                                 <?php if (!empty($q4_vals->total_numerator)) {?>
                                     <?= round($q4_vals->current_value, 0); }?>
                                 </td>

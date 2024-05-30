@@ -196,3 +196,54 @@ if (is_array($map) && sizeof($map) > 0)
         }
     }
 ?>
+
+
+<script>
+
+$(document).ready(function() {
+    // Click event handler for KPI info button
+    $(document).on('click', '.kpi-info-btn', function() {
+        var kpiId = $(this).data('kpi-id');
+        $.ajax({
+            url: '<?php echo base_url(); ?>data/KpiDetails/' + kpiId,
+method: 'GET',
+success: function(response) {
+try {
+var kpiDetails = JSON.parse(response).kpi_table;
+var tableContent = '<table class="table table-striped table-responsive">' +
+    '<thead>' +
+        '<tr>' +
+            '<th>KPI ID</th>' +
+            '<th>Indicator Statement</th>' +
+            '<th>Description</th>' +
+            '<th>Computation</th>' +
+            '<th>Data Sources</th>' +
+            '<th>Frequency</th>' +
+            '<th>Target</th>' +
+            '</tr>' +
+        '</thead>' +
+    '<tbody>' +
+        '<tr>' +
+            '<td>' + kpiDetails.kpi_id + '</td>' +
+            '<td>' + kpiDetails.indicator_statement + '</td>' +
+            '<td>' + kpiDetails.description + '</td>' +
+            '<td>' + kpiDetails.computation + '</td>' +
+            '<td>' + kpiDetails.data_sources + '</td>' +
+            '<td>' + kpiDetails.frequency + '</td>' +
+            '<td>' + kpiDetails.current_target + '</td>' +
+            '</tr>' +
+        '</tbody>' +
+    '</table>';
+$('#kpiData .modal-body').html(tableContent);
+$('#kpiData').modal('show'); // Trigger modal display
+} catch (error) {
+console.error('Error parsing response:', error);
+}
+},
+error: function(xhr, status, error) {
+console.error('Error fetching KPI details:', error);
+}
+});
+});
+});
+</script>

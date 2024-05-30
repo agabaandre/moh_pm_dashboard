@@ -102,7 +102,9 @@ if (!empty($_SESSION['subject_area'])) {
         <button type="submit" class="btn btn-primary">Preview</button>
     </div>
 </form>
-
+ <div class="col-lg-12 " style="float:right;">
+        <button id="addRowBtn" class="btn btn-success">Add Row</button>
+</div>
 
 <form method="post" enctype="multipart/form-data"  action="<?php echo base_url(); ?>files/save_data">
 <?php if (!empty($kpi_id) && !empty($period) && !empty($sfy)): ?>
@@ -119,6 +121,7 @@ if (!empty($_SESSION['subject_area'])) {
             </div>
             <div class="panel-body">
                 <div class="card-content body">
+                      <button type="submit" class="btn btn-primary">Submit</button>
                     <table class="table table-bordered" style="margin-top:10px">
                         <thead>
                             <tr>
@@ -135,8 +138,15 @@ if (!empty($_SESSION['subject_area'])) {
                                 <th>Dim3 Label</th>
                                 <th>Dim3 Value</th>
                                 <?php } ?>
-                                <th>Denominator</th>
-                                <th>Numerator</th>
+                                <th>N: <?php
+                                    echo explode('/', getkpi_info($kpi_id)->computation)[0];
+                                    ?>
+                                </th>
+                                <th>D: <?php
+                                    echo explode('/', getkpi_info($kpi_id)->computation)[1];
+                                    ?>
+                                </th>
+                              
                                 <th>Data Target</th>
                                 <th>Comment</th>
                             </tr>
@@ -146,10 +156,13 @@ if (!empty($_SESSION['subject_area'])) {
 
                           
                             $count = count($kpi_datas);
-
-                          //print_r($rows);
-                            for ($i = 0; $i < $rows; $i++):
-                                $data = isset($kpi_datas[$i]) ? $kpi_datas[$i] : null;
+                           // Ensure at least 10 rows are displayed
+                           if ($count>1){
+                            $adata = array("numerator"=>'','denominator'=>'0');
+                            $kpi_datas = (object)$adata;
+                           }
+                            foreach ($kpi_datas as $data):
+                           
                                 if ((!empty($data->numerator)) && ($this->session->userdata('user_type') != 'admin')) {
                                     $disabled = "disabled";
                                     $readonly = "readonly";
@@ -233,21 +246,25 @@ if (!empty($_SESSION['subject_area'])) {
                                         </select>
                                     </td>
                                     <?php } ?>
+                                 <td><input type="text" class="form-control" name="numerator[]" value="<?= @$data->numerator; ?>" <?= $readonly ?>></td>
                                     <td><input type="text" class="form-control" name="denominator[]" value="<?=@$data->denominator;?>" <?= $readonly ?>></td>
-                                    <td><input type="text" class="form-control" name="numerator[]" value="<?= @$data->numerator; ?>" <?= $readonly ?>></td>
+
                                     <td><input type="text" class="form-control" name="data_target[]" value="<?php if(!empty($data->data_target)){ echo @$data->data_target;} else{ echo @get_kpi_details($kpi_id)->current_target;}?>" <?= $readonly ?> readonly></td>
                                     <td><input type="text" class="form-control" name="comment[]" value="<?= @$data->comment; ?>" <?= $readonly ?>></td>
-
+                                    <div  style="float:right;">
+                                    <button type="button" class="btn btn-danger removeRowBtn" >Remove</button>
+                                    </div>
                                 </tr>
-                            <?php endfor; ?>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <button type="submit" class="btn btn-primary">Save Data</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </div>
     </div>
  </form>
+ 
 <?php else: ?>
     <div class="text-align-center col-md-12" style="color:red;">
     <table>
@@ -261,6 +278,24 @@ if (!empty($_SESSION['subject_area'])) {
 
 <script>
 $(document).ready(function() {
+
+ // Function to add a new row to the table body
+    $("#addRowBtn").click(function() {
+        // Clone the template row
+        var newRow = $("#templateRow").clone();
+
+        // Clear input values in the new row
+        newRow.find('input[type="text"]').val('');
+          newRow.find('select').val('');
+
+        // Append the new row to the table body
+        $("table tbody").append(newRow);
+    });
+
+    // Function to remove a row from the table body
+    $(document).on('click', '.removeRowBtn', function() {
+        $(this).closest('tr').remove();
+    });
     // Handle form submission
     $("#dataform").submit(function(event) {
         // Prevent default form submission

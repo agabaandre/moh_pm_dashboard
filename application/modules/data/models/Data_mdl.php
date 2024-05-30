@@ -45,7 +45,7 @@ public function gaugeDetails($kpi){
 		"SELECT DISTINCT k.* from 
 		 kpi k WHERE kpi_id='$kpi'
 		");
-	return $query->result();
+	return $query->row();
 }
 //neeed fixing
 
