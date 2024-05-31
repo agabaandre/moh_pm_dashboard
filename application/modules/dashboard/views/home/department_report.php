@@ -184,7 +184,7 @@
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q3_vals->current_value, $q3_vals->target_value) . "'";
                                 } ?> title="<?= $q3_vals->comment ?>">
                                 <?php if (!empty($q3_vals->total_numerator)){ ?>
-                                    <?= round($q3_vals->current_value, 0);} ?> <?php if (!empty($q3_vals->comment)){?><i class="fa fa-info-circle" aria-hidden="true"><?php }?></i>
+                                    <?= round($q3_vals->current_value, 0);} ?> <?php if (!empty($q3_vals->comment)){?><i class="fa fa-info-circle" aria-hidden="true"></i><?php } ?>
 }
                                 </td>
                                  <td rowspan=2><?= $q3_vals->target_value ?></td>
