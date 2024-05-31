@@ -164,7 +164,7 @@
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q1_vals->current_value, $q1_vals->target_value) . "'";
                                 } ?> title="<?= $q1_vals->comment ?>">
                                     <?php if(!empty($q1_vals->total_numerator)){?>
-                                    <?= round($q1_vals->current_value, 0);} ?>
+                                    <?= round($q1_vals->current_value, 0);} ?><?php if (!empty($q1_vals->comment)) { ?> <i class="fa fa-info-circle" aria-hidden="true"></i> <?php } ?>
                                 </td>
                                  <td rowspan=2><?= $q1_vals->target_value ?></td>
 
@@ -174,7 +174,7 @@
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q2_vals->current_value, $q2_vals->target_value) . "'";
                                 } ?> title="<?= $q2_vals->comment ?>">
                                 <?php if (!empty($q2_vals->total_numerator)){ ?>
-                                    <?= round($q2_vals->current_value, 0); }?>
+                                    <?= round($q2_vals->current_value, 0); }?><?php if (!empty($q2_vals->comment)) { ?> <i class="fa fa-info-circle" aria-hidden="true"></i> <?php } ?>
                                 </td>
                                  <td rowspan=2><?= $q2_vals->target_value ?></td>
 
@@ -184,7 +184,7 @@
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q3_vals->current_value, $q3_vals->target_value) . "'";
                                 } ?> title="<?= $q3_vals->comment ?>">
                                 <?php if (!empty($q3_vals->total_numerator)){ ?>
-                                    <?= round($q3_vals->current_value, 0);} ?> <?php if (!empty($q3_vals->comment)){?><i class="fa fa-info-circle" aria-hidden="true"></i><?php } ?>
+                                    <?= round($q3_vals->current_value, 0);} ?> <?php if (!empty($q3_vals->comment)){?> <i class="fa fa-info-circle" aria-hidden="true"></i> <?php } ?>
 }
                                 </td>
                                  <td rowspan=2><?= $q3_vals->target_value ?></td>
@@ -195,7 +195,7 @@
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q4_vals->current_value, $q4_vals->target_value) . "'";
                                 } ?> title="<?=$q4_vals->comment?>">
                                 <?php if (!empty($q4_vals->total_numerator)) {?>
-                                    <?= round($q4_vals->current_value, 0); }?>
+                                    <?= round($q4_vals->current_value, 0); }?>  <?php if (!empty($q4_vals->comment)) { ?> <i class="fa fa-info-circle" aria-hidden="true"></i> <?php } ?>
                                 </td>
                                  <td rowspan=2><?= $q4_vals->target_value ?></td>
 
