@@ -360,8 +360,13 @@ class Files extends MX_Controller
         } else {
             return array();
         }
+        
 
     }
+ function financial_year(){
+   $fy = $this->session->userdata('financial_year');
+   print_r($fy);
+ }
     public function save_data()
     {
         // Check if the request method is POST
