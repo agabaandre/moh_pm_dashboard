@@ -75,6 +75,8 @@
                         <td>
                     <h2 style="margin-top:5px; color:#0d5e8e; font-size:19px;">
                         <b><?php echo $department->name; ?> </b>
+                        <br>
+                        
                     </h2>
                         </td>
                     </table>
@@ -151,7 +153,14 @@
 
                                     $gauge = Modules::run('Kpi/gaugeData', $kpi_id);
                                      ?>
-                                    <a href="<?php echo base_url() . 'data/kpidata/' . $gauge['gauge']['details'][0]->kpi_id . '/' . $gauge['gauge']['details'][0]->subject_area; ?>" target="_blank"><p class=""  style=" font-size:13px;" ><?php echo $i++ . '. ' . $gauge['gauge']['details'][0]->short_name; ?></p></a></td>
+                                    <a href="<?php echo base_url() . 'data/kpidata/' . $gauge['gauge']['details'][0]->kpi_id . '/' . $gauge['gauge']['details'][0]->subject_area; ?>" target="_blank"><p class=""  style=" font-size:13px;" ><?php echo $i++ . '. ' . $gauge['gauge']['details'][0]->short_name; ?></p></a>
+                                       <div class="<?php echo $col ?>" style="text-align:center;  margin-bottom:10px;">
+                                        <button id="kpiInfoBtn<?php echo $kpi_id; ?>" class="btn kpi-info-btn"
+                                            style="word-wrap:normal; color:#2286c3; font-size:12px;" data-toggle="modal"
+                                            data-target="#kpiModal<?php echo $kpi_id; ?>" data-kpi-id="<?php echo $kpi_id; ?>">KPI
+                                        Info</button>
+                                
+                                </td>
                                                 
                                 </th>
                                 <td><b>N: </b>
@@ -179,14 +188,24 @@
                                  <td rowspan=2><?= $q2_vals->target_value ?></td>
 
                                  <!---end q2-->
-                             <td><?= number_format($q3_vals->total_numerator) ?></td>
-                                <td rowspan="2" <?php if (!empty($q3_vals->current_value)) {
-                                    echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q3_vals->current_value, $q3_vals->target_value) . "'";
-                                } ?> title="<?= $q3_vals->comment ?>">
-                                <?php if (!empty($q3_vals->total_numerator)){ ?>
-                                    <?= round($q3_vals->current_value, 0); } ?> <?php if (!empty($q3_vals->comment)) { ?> <i class="fa fa-info-circle" aria-hidden="true" ></i> <?php } ?>
-}
-                                </td>
+           <td><?= number_format($q3_vals->total_numerator) ?></td>
+            <td rowspan="2" 
+                <?php 
+                if (!empty($q3_vals->current_value)) {
+                    echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q3_vals->current_value, $q3_vals->target_value) . "'";
+                } ?> 
+                title="<?= $q3_vals->comment ?>">
+                <?php 
+                if (!empty($q3_vals->total_numerator)) {
+                    echo round($q3_vals->current_value, 0); 
+                } 
+                if (!empty($q3_vals->comment)) { 
+                    ?> <i class="fa fa-info-circle" aria-hidden="true" ></i> 
+                <?php 
+                } 
+                ?>
+            </td>
+
                                  <td rowspan=2><?= $q3_vals->target_value ?></td>
 
                                  <!---end q3-->
