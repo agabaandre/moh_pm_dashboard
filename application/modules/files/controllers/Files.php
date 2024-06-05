@@ -333,7 +333,10 @@ class Files extends MX_Controller
     {
         if ($kpid) {
             $fy = $this->financial_year();
-            $sql = "SELECT DISTINCT dimension1_key FROM new_data WHERE kpi_id = '$kpid' and financial_year='$fy'";
+            if (!empty($fy)) {
+                $fi = "and financial_year='$fy'";
+            }
+            $sql = "SELECT DISTINCT dimension1_key FROM new_data WHERE kpi_id = '$kpid' $fi";
             return $result = $this->db->query($sql)->row();
         } else {
             return array();
@@ -344,8 +347,11 @@ class Files extends MX_Controller
     {
         if ($kpid) {
             $fy = $this->financial_year();
+            if (!empty($fy)) {
+                $fi = "and financial_year='$fy'";
+            }
 
-            $sql = "SELECT DISTINCT dimension2_key FROM new_data WHERE kpi_id = '$kpid' and financial_year='$fy'";
+            $sql = "SELECT DISTINCT dimension2_key FROM new_data WHERE kpi_id = '$kpid' $fi";
             return $result = $this->db->query($sql)->row();
         } else {
             return array();
@@ -356,8 +362,11 @@ class Files extends MX_Controller
     {
         if ($kpid) {
             $fy = $this->financial_year();
+            if(!empty($fy)){
+               $fi = "and financial_year='$fy'";
+            }
 
-            $sql = "SELECT DISTINCT dimension2_key FROM new_data WHERE kpi_id = '$kpid' and financial_year='$fy'";
+            $sql = "SELECT DISTINCT dimension2_key FROM new_data WHERE kpi_id = '$kpid' $fi";
             return $result = $this->db->query($sql)->row();
         } else {
             return array();
@@ -367,7 +376,13 @@ class Files extends MX_Controller
     }
  function financial_year(){
    $fy = $this->session->userdata('financial_year');
+  $rows = $this->db->query("SELECT * from new_data WHERE financial_year='$fy'")->num_rows();
+   if ($rows>0){
    return $fy;
+   }
+   else{
+    return  NULL;
+   }
  }
     public function save_data()
     {
