@@ -378,10 +378,10 @@ class Files extends MX_Controller
    $fy = $this->session->userdata('financial_year');
   $rows = $this->db->query("SELECT * from new_data WHERE financial_year='$fy'")->num_rows();
    if ($rows>0){
-   return $fy;
+   echo  $fy;
    }
    else{
-    return  NULL;
+   echo  previous_financial_year($fy);
    }
  }
     public function save_data()

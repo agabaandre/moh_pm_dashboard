@@ -92,5 +92,12 @@ function getPeriodYear($financialYear, $quarter)
     return null;
   }
 }
+ function previous_financial_year($financialYear){
 
+  // Split financial year into start and end years
+  $years = explode('-', $financialYear);
+  $startYear = intval($years[0])-1;
+  $endYear = intval($years[1])-1;
+  return $startYear.'-'.$endYear;
+ }
 
