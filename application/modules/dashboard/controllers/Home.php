@@ -18,7 +18,19 @@ Class Home extends 	MX_Controller {
 		$data['page']        = "home/index";
 		$data['uptitle']        = "Main Dashboard";
 		$data['title']        = "Dashboard";
-		echo Modules::run('template/layout', $data); 
+		//echo Modules::run('template/layout', $data); 
+    redirect('dashboard/home/department_reporting');
+	}
+
+
+	function graphical()
+	{
+		$data['dashkpis'] = $this->home_model->dashData();
+		$data['module'] = "dashboard";
+		$data['page'] = "home/index";
+		$data['uptitle'] = "Main Dashboard";
+		$data['title'] = "Dashboard";
+	echo Modules::run('template/layout', $data); 
 	}
 
 	function department_reporting()

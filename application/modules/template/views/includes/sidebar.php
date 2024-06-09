@@ -13,25 +13,26 @@
     <?php } ?>
     <!-- sidebar menu -->
     <ul class="sidebar-menu">
-
-        <li class="treeview <?php echo (($this->uri->segment(2) == "home") ? "active" : null) ?>">
-            <a href="<?php echo base_url('dashboard/home') ?>"> <i class="ti-dashboard"></i>
-                <span><?php echo display('dashboard') ?></span>
-            </a>
-        </li>
-        <li class="treeview <?php echo (($this->uri->segment(3) == "department_reporting") ? "active" : null) ?>">
+         <li class="treeview <?php echo (($this->uri->segment(3) == "department_reporting") ? "active" : null) ?>">
             <a href="<?php echo base_url('dashboard/home/department_reporting') ?>"> <i class="fa fa-th"></i>
-                <span>Tabular Dashboard</span>
+                <span>Dashboard 1</span>
             </a>
         </li>
+
+        <li class="treeview <?php echo (($this->uri->segment(3) == "graphical") ? "active" : null) ?>">
+            <a href="<?php echo base_url('dashboard/home/graphical') ?>"> <i class="fa fa-tachometer"></i>
+                <span>Dashboard 2</span>
+            </a>
+        </li>
+       
          <li class="treeview <?php echo (($this->uri->segment(2) == "slider") ? "active" : null) ?>">
-            <a href="<?php echo base_url('dashboard/slider') ?>"> <i class="ti-dashboard"></i>
+            <a href="<?php echo base_url('dashboard/slider') ?>"> <i class="fa fa-line-chart"></i>
                 <span>Performance Slider</span>
             </a>
         </li>
         <li class="treeview <?php echo (($this->uri->segment(2) == "summary") ? "active" : null) ?>">
                     <a href="<?php echo base_url(); ?>kpi/summary">
-                    <i class="fa fa-list"></i>
+                    <i class="fa fa-list-alt"></i>
                         <span>Performance Summary</span>
                     </a>
         </li>
@@ -39,7 +40,7 @@
 
           <li class="treeview <?php echo ((($this->uri->segment(3) == "department_reporting")&& ($this->uri->segment(2) == "slider")) ? "active" : null) ?>">
                     <a href="<?php echo base_url(); ?>dashboard/slider/department_reporting">
-                    <i class="fa fa-list"></i>
+                    <i class="fa fa-line-chart"></i>
                         <span>Reporting Rates</span>
                     </a>
         </li>

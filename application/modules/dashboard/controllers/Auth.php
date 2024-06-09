@@ -70,7 +70,7 @@ class Auth extends MX_Controller {
 					$this->auth_model->last_login();
 					
 					$this->session->set_flashdata('message', display('welcome_back').' '.$user->row()->fullname);
-					redirect('dashboard/home');
+					redirect('dashboard/home/department_reporting');
 
 			   } else {
 				$this->session->set_flashdata('exception', display('incorrect_email_or_password'));
