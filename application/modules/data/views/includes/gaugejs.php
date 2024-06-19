@@ -49,7 +49,7 @@
       }]
     },
     series: [{
-      name: '<?php echo trim(addslashes($gauge['details'][0]->indicator_statement)); ?>',
+      name: '<?php echo trim(addslashes($gauge['details'][0]->short_name)); ?>',
       data: [<?php echo trim($current_value = round($gauge['data']->current_value ?? 0)); ?>],
       tooltip: {
         valueSuffix: ' %'
