@@ -12,7 +12,7 @@
       text: ''
     },
     title: {
-      text: '<a href="<?php echo base_url() . 'data/kpidata/' . $gauge['details'][0]->kpi_id . '/' . $gauge['details'][0]->subject_area; ?>"><button class="btn" style="word-wrap:normal; color:#3f424a; font-size:12.5px;"><?php echo trim($gauge['details'][0]->short_name); ?></button></a>'
+      text: '<a href="<?php echo base_url() . 'data/kpidata/' . $gauge['details'][0]->kpi_id . '/' . $gauge['details'][0]->subject_area; ?>"><button class="btn" style="word-wrap:normal; color:#3f424a; font-size:12.5px;"><?php echo trim(addslashes($gauge['details'][0]->short_name)); ?></button></a>'
     },
     pane: {
       startAngle: -90,
@@ -49,7 +49,7 @@
       }]
     },
     series: [{
-      name: '<?php echo trim($gauge['details'][0]->indicator_statement); ?>',
+      name: '<?php echo trim(addslashes($gauge['details'][0]->indicator_statement)); ?>',
       data: [<?php echo trim($current_value = round($gauge['data']->current_value ?? 0)); ?>],
       tooltip: {
         valueSuffix: ' %'
