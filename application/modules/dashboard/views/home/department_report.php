@@ -176,7 +176,7 @@
                             <?php if ($q1_vals->total_numerator !== null) { ?>
                                 <?= round($q1_vals->current_value, 0); ?>
                             <?php } ?>
-                            <?php if (!empty($q1_vals->comment)) { ?>
+                            <?php if ($q1_vals->comment !== null) { ?>
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                             <?php } ?>
                         </td>
@@ -188,8 +188,8 @@
                                 <td rowspan="2" <?php if (!empty($q2_vals->current_value)) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q2_vals->current_value, $q2_vals->target_value) . "'";
                                 } ?> title="<?= $q2_vals->comment ?>">
-                                <?php if (!empty($q2_vals->total_numerator)){ ?>
-                                    <?= round($q2_vals->current_value, 0); }?><?php if (!empty($q2_vals->comment)) { ?> <i class="fa fa-info-circle" aria-hidden="true"></i> <?php } ?>
+                                <?php if ($q2_vals->total_numerator !== null){ ?>
+                                    <?= round($q2_vals->current_value, 0); }?><?php if ($q2_vals->comment !== null) { ?> <i class="fa fa-info-circle" aria-hidden="true"></i> <?php } ?>
                                 </td>
                                  <td rowspan=2><?= $q2_vals->target_value ?></td>
 
@@ -197,15 +197,15 @@
            <td><?= number_format($q3_vals->total_numerator) ?></td>
             <td rowspan="2" 
                 <?php 
-                if (!empty($q3_vals->current_value)) {
+                if ($q3_vals->current_value !== null) {
                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q3_vals->current_value, $q3_vals->target_value) . "'";
                 } ?> 
                 title="<?= $q3_vals->comment ?>">
                 <?php 
-                if (!empty($q3_vals->total_numerator)) {
+                if ($q3_vals->total_numerator !== null) {
                     echo round($q3_vals->current_value, 0); 
                 } 
-                if (!empty($q3_vals->comment)) { 
+                if ($q3_vals->comment !== null) { 
                     ?> <i class="fa fa-info-circle" aria-hidden="true" ></i> 
                 <?php 
                 } 
@@ -216,11 +216,11 @@
 
                                  <!---end q3-->
                               <td><?= number_format($q4_vals->total_numerator) ?></td>
-                                <td rowspan="2" <?php if (!empty($q4_vals->current_value)) {
+                                <td rowspan="2" <?php if ($q4_vals->current_value !== null) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q4_vals->current_value, $q4_vals->target_value) . "'";
                                 } ?> title="<?=$q4_vals->comment?>">
-                                <?php if (!empty($q4_vals->total_numerator)) {?>
-                                    <?= round($q4_vals->current_value, 0); }?>  <?php if (!empty($q4_vals->comment)) { ?> <i class="fa fa-info-circle" aria-hidden="true"></i> <?php } ?>
+                                <?php if ($q4_vals->total_numerator !== null) {?>
+                                    <?= round($q4_vals->current_value, 0); }?>  <?php if ($q4_vals->comment !== null) { ?> <i class="fa fa-info-circle" aria-hidden="true"></i> <?php } ?>
                                 </td>
                                  <td rowspan=2><?= $q4_vals->target_value ?></td>
 
