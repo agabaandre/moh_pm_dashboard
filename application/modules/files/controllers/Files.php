@@ -132,10 +132,11 @@ class Files extends MX_Controller
         // check if file upload failed
         if (!$this->upload->do_upload('upload_csv_file')) {
             $error = array('error' => $this->upload->display_errors());
+            $resultString = '';
             foreach ($error as $index => $entry) {
                 $resultString .= $index . ". " . $entry . ", ";
             }
-           // $resultString = substr($resultString, 0, -);
+            $resultString = substr($resultString, 0, -2);
             $this->session->set_flashdata('exception', $resultString);
             redirect('files/file');
         } else {
@@ -165,38 +166,18 @@ class Files extends MX_Controller
                 'comment'
             );
             if ($headers !== $valid_headers) {
-
-                $message = 'Invalid file format. Please upload a CSV file with the correct column headers' . '<br>
-                Valid Column headers are:
-                kpi_id,
-                dimension1,
-                dimension1_key,
-                dimension2,
-                dimension2_key,
-                dimension3,
-                dimension3_key,
-                financial_year,
-                period_year,
-                period,
-                numerator,
-                denominator,
-                data_target,
-                comment
-                ';
+                $message = 'Invalid file format. Please upload a CSV file with the correct column headers.<br>
+            Valid Column headers are: ' . implode(", ", $valid_headers);
                 $this->session->set_flashdata('exception', $message);
                 redirect('files/file');
-
             }
-
 
             // loop through rows and insert data into database
             $validation_errors = array();
 
-            for ($i = 0; $i < count($rows); $i++) {
-                $row = $rows[$i];
-
+            foreach ($rows as $row) {
                 $data = array(
-                    'kpi_id' => $row[0],
+                    'kpi_id' => trim($row[0]),
                     'dimension1' => trim($row[1]),
                     'dimension1_key' => trim($row[2]),
                     'dimension2' => trim($row[3]),
@@ -209,44 +190,55 @@ class Files extends MX_Controller
                     'numerator' => trim(str_replace("%", "", str_replace(",", "", $row[10]))),
                     'denominator' => trim(str_replace("%", "", str_replace(",", "", $row[11]))),
                     'data_target' => trim(str_replace("%", "", $row[12])),
-                    'comment' => $row[13],
-                    'upload_date' =>date('Y-m-d'),
+                    'comment' => trim($row[13]),
+                    'upload_date' => date('Y-m-d'),
                     'uploaded_by' => $_SESSION['id']
                 );
-               $kpi_id=$row[0];
-               $period = trim(str_replace(" ", "", $row[9]));
-               $financial_year = trim(str_replace("/", "-", $row[7]));
-           
+
+                $kpi_id = $data['kpi_id'];
+                $dimension1 = $data['dimension1'];
+                $dimension2 = $data['dimension2'];
+                $dimension3 = $data['dimension3'];
+                $period = $data['period'];
+                $financial_year = $data['financial_year'];
 
                 // valid data, insert into database
-                //check if data exits then update
-              if(($this->update_check($kpi_id,$period,$financial_year))==1){
-                    $this->db->where('financial_year', "$financial_year");
-                    $this->db->where('period', "$period");
-                    $this->db->where('kpi_id', "$kpi_id");
+                // check if data exists then update
+                if ($this->update_check($kpi_id, $dimension1, $dimension2, $dimension3, $period, $financial_year) == 1) {
+                    $this->db->where('kpi_id', $kpi_id);
+                    $this->db->where('dimension1', $dimension1);
+                    $this->db->where('dimension2', $dimension2);
+                    $this->db->where('dimension3', $dimension3);
+                    $this->db->where('period', $period);
+                    $this->db->where('financial_year', $financial_year);
                     $this->db->update('new_data', $data);
-               } else {
-
+                } else {
                     $this->db->insert('new_data', $data);
                 }
-                // delete uploaded file from server
-
-
-
             }
+
+            // delete uploaded file from server
             unlink($file_path);
             $this->session->set_flashdata('message', 'Data uploaded successfully.');
             redirect('files/file');
-
-
         }
-
     }
 
-    public function update_check($kpi_id,$period,$financial_year){
-    return $this->db->query("SELECT kpi_id from new_data where kpi_id='$kpi_id' and period='$period' and financial_year='$financial_year'")->num_rows();
+    private function update_check($kpi_id, $dimension1, $dimension2, $dimension3, $period, $financial_year)
+    {
+        $this->db->where('kpi_id', $kpi_id);
+        $this->db->where('dimension1', $dimension1);
+        $this->db->where('dimension2', $dimension2);
+        $this->db->where('dimension3', $dimension3);
+        $this->db->where('period', $period);
+        $this->db->where('financial_year', $financial_year);
+        $query = $this->db->get('new_data');
 
+        return $query->num_rows() > 0 ? 1 : 0;
     }
+
+
+
     function generate_csv_file()
     {
         // define header row
