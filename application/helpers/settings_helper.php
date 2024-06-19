@@ -49,7 +49,7 @@ function getkpi_info($kpi_id)
 function getColorBasedOnPerformance($value, $target)
 {
   
-  if (!empty($value)) {
+  if ($value!=null) {
     if (($value-$target)>=0) {
       return '#008000';
     } elseif ($value-$target>=-10) {
