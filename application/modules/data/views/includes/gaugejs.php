@@ -1,7 +1,5 @@
-
 <script>
-
-    Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
+  Highcharts.chart('gauge<?php echo $chartkpi; ?>', {
     chart: {
       type: 'gauge',
       plotBackgroundColor: null,
@@ -12,7 +10,7 @@
     },
     subtitle: {
       text: ''
-          },
+    },
     title: {
       text: '<a href="<?php echo base_url() . 'data/kpidata/' . $gauge['details'][0]->kpi_id . '/' . $gauge['details'][0]->subject_area; ?>"><button class="btn" style="word-wrap:normal; color:#3f424a; font-size:12.5px;"><?php echo trim($gauge['details'][0]->short_name); ?></button></a>'
     },
