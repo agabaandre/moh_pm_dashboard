@@ -42,11 +42,12 @@ Class Home extends 	MX_Controller {
 		if(!empty(json_decode($this->session->userdata('subject_area'),true))||(!empty($this->input->get('subject_area')))){
 
 			@$si= json_decode($this->session->userdata('subject_area'),true);
-			if(!empty($si)){
-				$subject_area =$si;
+			$ss = $this->input->get('subject_area');
+			if(!empty($ss)){
+				$subject_area =$ss;
 			}
 			else{
-				$subject_area = $this->input->get('subject_area');
+				$subject_area = $si;
 			}
 			$this->db->where_in('subject_areas.id',$subject_area);
 			$query = $this->db->get('subject_areas');
