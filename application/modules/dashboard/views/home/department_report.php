@@ -185,7 +185,7 @@
 
                                  <!--end quater1-->
                                 <td><?= number_format($q2_vals->total_numerator) ?></td>
-                                <td rowspan="2" <?php if (!empty($q2_vals->current_value)) {
+                                <td rowspan="2" <?php if ($q2_vals->current_value!=null) {
                                     echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q2_vals->current_value, $q2_vals->target_value) . "'";
                                 } ?> title="<?= $q2_vals->comment ?>">
                                 <?php if ($q2_vals->total_numerator !== null){ ?>
