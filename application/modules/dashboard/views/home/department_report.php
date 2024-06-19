@@ -169,7 +169,7 @@
                                      ?>
                                 </td>
                                 <td><?= number_format($q1_vals->total_numerator) ?></td>
-                           <td rowspan="2" <?php if (!empty($q1_vals->current_value)) {
+                           <td rowspan="2" <?php if ($q1_vals->current_value!=null) {
                             echo "style='font-weight:bold; color:#FFF; background:" . getColorBasedOnPerformance($q1_vals->current_value, $q1_vals->target_value) . "'";
                         } ?>
                             title="<?= $q1_vals->comment ?>">
