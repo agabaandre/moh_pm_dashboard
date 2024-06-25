@@ -134,8 +134,14 @@ class Graph_mdl extends CI_Model
        //KPI TREND DIM1 GRAPH DATA
 
 
-       public function dim1Graph($kpi)
+       public function dim1Graph($kpi,$dimension=FALSE)
        {
+              If(!empty($dimension)){
+                     $dfil= "AND  dimension1 in ('$dimension')";
+              }
+              else{
+                     $fil="";
+              }
               $datas = array();
               $dimesnions = array();
               $periods = array();
@@ -168,7 +174,7 @@ class Graph_mdl extends CI_Model
        public function dim2Graph($kpi,$dim1)
        {
               if ($dim1){
-                     $dmfilter = "and dimension1='$dim1'";
+                     $dmfilter = "and dimension1 in('$dim1')";
               } else {
                      $dmfilter = "";
               }
@@ -208,7 +214,7 @@ class Graph_mdl extends CI_Model
               $dimesnions = array();
               $periods = array();
               if ($dim2){
-                     $dmfilter = "and dimension2='$dim2'";
+                     $dmfilter = "and dimension2 in ('$dim2')";
               } else {
                      $dmfilter = "";
               }

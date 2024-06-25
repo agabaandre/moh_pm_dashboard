@@ -180,8 +180,7 @@ class Data extends MX_Controller {
 
 	public function dim2data($kpi){
 		$dimension1 = $this->input->post('dimension1');
-       // $dim2=str_replace('""','"',str_replace("_"," ",str_replace("]","",str_replace("[","",json_encode($dimension2)))));
-	   //	echo json_encode($dimension1);
+		$dim1 = str_replace('""', '"', str_replace("_", " ", str_replace("]", "", str_replace("[", "", json_encode($dimension1)))));
 		$data = $this->graph_mdl->dim2Graph($kpi,$dimension1);
 	
 	 echo json_encode($data,JSON_NUMERIC_CHECK);
