@@ -245,7 +245,6 @@ class Graph_mdl extends CI_Model
        public function dim3Graph($kpi,$dim2)
        {
 
-
               if (!empty($dim2)) {
                      // Escape the dimension values to prevent SQL injection
                      $dimensions = explode(',', $dim2);
