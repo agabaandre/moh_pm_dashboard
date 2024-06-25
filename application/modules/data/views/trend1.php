@@ -52,7 +52,7 @@ if (count($dim1vals)>8):
 ?>
 <div class="row" >
 
-        <form method="post" id="trend1" class="form-horizontal" action="<?php echo base_url('data/dimension1/').$this->uri->segment(3).'/'.$dimsub; ?>" style="width:50%; margin:10px;">
+        <form method="get" id="trend1" class="form-horizontal" action="<?php echo base_url('data/dimension1/').$this->uri->segment(3).'/'.$dimsub; ?>" style="width:50%; margin:10px;">
         <label>Select Limit </label>
         <select class="js-example-basic-multiple" name="dimension1[]" multiple="multiple">
         <?php 
