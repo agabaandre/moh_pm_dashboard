@@ -48,7 +48,7 @@ $dimsub=Modules::run("data/getdimSubject",$this->uri->segment(3));
 
 </div>
 <?php   $dim1vals=Modules::run('data/dim1s',$this->uri->segment(3));
-if (count($dim1vals)>8):
+if (count($dim1vals)>2):
 ?>
 <div class="row" >
 

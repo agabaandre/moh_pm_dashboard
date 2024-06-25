@@ -167,21 +167,30 @@ class Data extends MX_Controller {
   }
 
 
-  //Dimensions Graphs
-	//Gauge 1 Data
-	public function dim1data($kpi){
+
+
+	public function dim1data($kpi)
+	{
 		$dimension1 = $this->input->post('dimension1');
-        $dim1=str_replace('""','"',str_replace("_"," ",str_replace("]","",str_replace("[","",json_encode($dimension1)))));
-		$data = $this->graph_mdl->dim1Graph($kpi,$dim1);
-	  //print_r($data);
-	
-	  echo json_encode($data,JSON_NUMERIC_CHECK);
+		if ($dimension1) {
+			$dim1 = implode(',', array_map('trim', $dimension1));
+		} else {
+			$dim1 = FALSE;
+		}
+		$data = $this->graph_mdl->dim1Graph($kpi, $dim1);
+
+		echo json_encode($data, JSON_NUMERIC_CHECK);
 	}
+
 
 	public function dim2data($kpi){
 		$dimension1 = $this->input->post('dimension1');
-		$dim1 = str_replace('""', '"', str_replace("_", " ", str_replace("]", "", str_replace("[", "", json_encode($dimension1)))));
-		$data = $this->graph_mdl->dim2Graph($kpi,$dimension1);
+		if ($dimension1) {
+			$dim1 = implode(',', array_map('trim', $dimension1));
+		} else {
+			$dim1 = FALSE;
+		}
+		$data = $this->graph_mdl->dim2Graph($kpi,$dim1);
 	
 	 echo json_encode($data,JSON_NUMERIC_CHECK);
 	
@@ -191,9 +200,12 @@ class Data extends MX_Controller {
 	public function dim3data($kpi){
 	    $dimension2 = $this->input->post('dimension2');
 		$dimension_chart = $this->input->post('dimension_chart');
-        $dim2=str_replace('""','"',str_replace("_"," ",str_replace("]","",str_replace("[","",json_encode($dimension2)))));
-
-		$data = $this->graph_mdl->dim3Graph($kpi,$dim2);
+		if ($dimension2) {
+			$dim3 = implode(',', array_map('trim', $dimension2));
+		} else {
+			$dim2 = FALSE;
+		}
+		$data = $this->graph_mdl->dim2Graph($kpi, $dim2);
 
 		// print_r($data);
 		echo  json_encode($data,JSON_NUMERIC_CHECK);

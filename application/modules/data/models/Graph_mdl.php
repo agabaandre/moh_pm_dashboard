@@ -131,58 +131,92 @@ class Graph_mdl extends CI_Model
               return array("quaters" => $periods, "data" => $datas, "target" => $target);
        }
 
-       //KPI TREND DIM1 GRAPH DATA
-
-
-       public function dim1Graph($kpi,$dimension=FALSE)
+       public function dim1Graph($kpi, $dimension = FALSE)
        {
-              If(!empty($dimension)){
-                     $dfil= "AND  dimension1 in ('$dimension')";
+              // Prepare the filter condition
+              $dimFilter = "";
+              if (!empty($dimension)) {
+                     // Escape the dimension values to prevent SQL injection
+                     $dimensions = explode(',', $dimension);
+                     $escapedDimensions = array_map(function ($dim) {
+                            return $this->db->escape_str(trim($dim));
+                     }, $dimensions);
+                     $dimFilter = "AND dimension1 IN ('" . implode("','", $escapedDimensions) . "')";
               }
-              else{
-                     $fil="";
-              }
-              $datas = array();
-              $dimesnions = array();
-              $periods = array();
-              $query = $this->db->query("SELECT  target_value, CONCAT( period,'-',period_year) as period,cal_value,dimension1,dimension1_key FROM `report_trend_dimension1` WHERE  kpi_id='$kpi' and financial_year='$this->financial_year' order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
-              $row_data = [];
 
-              foreach ($query as $row):
-                     if (!in_array($row->dimension1, $dimesnions)) {
-                            array_push($dimesnions, $row->dimension1);
+              // Initialize arrays to hold unique dimensions and periods
+              $datas = array();
+              $dimensions = array();
+              $periods = array();
+
+              // Fetch data from the database
+              $query = $this->db->query("
+        SELECT 
+            target_value, 
+            CONCAT(period, '-', period_year) AS period, 
+            cal_value, 
+            dimension1, 
+            dimension1_key 
+        FROM 
+            report_trend_dimension1 
+        WHERE 
+            kpi_id = '$kpi' 
+            AND financial_year = '$this->financial_year' 
+            $dimFilter 
+        ORDER BY 
+            period_year ASC, 
+            CHAR_LENGTH(period) ASC, 
+            period ASC
+    ")->result();
+
+              // Populate unique dimensions and periods
+              foreach ($query as $row) {
+                     if (!in_array($row->dimension1, $dimensions)) {
+                            array_push($dimensions, $row->dimension1);
                      }
                      if (!in_array($row->period, $periods)) {
                             array_push($periods, $row->period);
                      }
-              endforeach;
+              }
 
-              foreach ($dimesnions as $dim):
-                     $row_data["data"] = [];
-                     $row_data["name"] = $dim; foreach ($query as $row):
-                            if ($row->dimension1 == $dim):
+              // Build the data array
+              foreach ($dimensions as $dim) {
+                     $row_data = array(
+                            "name" => $dim,
+                            "data" => array()
+                     );
+
+                     foreach ($query as $row) {
+                            if ($row->dimension1 == $dim) {
                                    $calVal = number_format($row->cal_value, 1);
                                    array_push($row_data["data"], $calVal);
-                            endif;
-                     endforeach;
-                     array_push($datas, $row_data);
-              endforeach;
+                            }
+                     }
 
+                     array_push($datas, $row_data);
+              }
+
+              // Return the result as an associative array
               return array("quaters" => $periods, "data" => $datas);
        }
 
+
        public function dim2Graph($kpi,$dim1)
        {
-              if ($dim1){
-                     $dmfilter = "and dimension1 in('$dim1')";
-              } else {
-                     $dmfilter = "";
+              $dimFilter = "";
+              if (!empty($dim1)) {
+                     // Escape the dimension values to prevent SQL injection
+                     $dimensions = explode(',', $dim1);
+                     $escapedDimensions = array_map(function ($dim1) {
+                            return $this->db->escape_str(trim($dim1));
+                     }, $dimensions);
+                     $dimFilter = "AND dimension1 IN ('" . implode("','", $escapedDimensions) . "')";
               }
 
               $datas = array();
               $dimesnions = array();
               $periods = array();
-              $query = $this->db->query("SELECT  target_value,CONCAT( period,'-',period_year) as period,cal_value,dimension1,dimension2,dimension2_key FROM `report_trend_dimension2` WHERE kpi_id='$kpi' and financial_year='$this->financial_year' $dmfilter order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
+              $query = $this->db->query("SELECT  target_value,CONCAT( period,'-',period_year) as period,cal_value,dimension1,dimension2,dimension2_key FROM `report_trend_dimension2` WHERE kpi_id='$kpi' and financial_year='$this->financial_year' $dimFilter order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
               $row_data = [];
 
               foreach ($query as $row):
@@ -210,15 +244,21 @@ class Graph_mdl extends CI_Model
 
        public function dim3Graph($kpi,$dim2)
        {
+
+
+              if (!empty($dim2)) {
+                     // Escape the dimension values to prevent SQL injection
+                     $dimensions = explode(',', $dim2);
+                     $escapedDimensions = array_map(function ($dim2) {
+                            return $this->db->escape_str(trim($dim2));
+                     }, $dimensions);
+                     $dimFilter = "AND dimension2 IN ('" . implode("','", $escapedDimensions) . "')";
+              }
               $datas = array();
               $dimesnions = array();
               $periods = array();
-              if ($dim2){
-                     $dmfilter = "and dimension2 in ('$dim2')";
-              } else {
-                     $dmfilter = "";
-              }
-              $query = $this->db->query("SELECT  target_value,CONCAT( period,'-',period_year) as period,cal_value,dimension3,dimension3_key FROM `report_trend_dimension3` WHERE  kpi_id='$kpi' and financial_year='$this->financial_year' $dmfilter order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
+           
+              $query = $this->db->query("SELECT  target_value,CONCAT( period,'-',period_year) as period,cal_value,dimension3,dimension3_key FROM `report_trend_dimension3` WHERE  kpi_id='$kpi' and financial_year='$this->financial_year' $dimFilter order by period_year ASC, CHAR_LENGTH(period) ASC, period ASC")->result();
               $row_data = [];
          
 
