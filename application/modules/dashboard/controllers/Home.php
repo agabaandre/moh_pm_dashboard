@@ -128,17 +128,17 @@ Class Home extends 	MX_Controller {
 
 	public function kpi_performance($subject_area, $period, $kpi_id = FALSE, $financial_year = FALSE)
 {
-    $current_date = date('Y-m-d');
-    $current_year = date('Y', strtotime($current_date));
-    $next_year = $current_year + 1;
-    if (date('m-d', strtotime($current_date)) < '06-30') {
-        $current_year -= 1;
-        $next_year -= 1;
-    }
-    $current_financial_year = $current_year . '-' . $next_year;
+    // $current_date = date('Y-m-d');
+    // $current_year = date('Y', strtotime($current_date));
+    // $next_year = $current_year + 1;
+    // if (date('m-d', strtotime($current_date)) < '06-30') {
+    //     $current_year -= 1;
+    //     $next_year -= 1;
+    // }
+    // $current_financial_year = $current_year . '-' . $next_year;
 
     if (empty($financial_year)) {
-        $financial_year = $current_financial_year;
+        $financial_year = $this->session->userdata('financial_year');
     }
 
   
