@@ -99,13 +99,16 @@ class Auth extends MX_Controller {
 
 	public function current_financial_year()
 	{
-		$current_year = date("Y");
-		$current_month = date("m");
-		if ($current_month > 6) {
-			return ($current_year . "-" . ($current_year + 1));
-		} else {
-			return (($current_year - 1) . "-" . $current_year);
-		}
+		//returns current financial_year
+		// $current_year = date("Y");
+		// $current_month = date("m");
+		// if ($current_month > 6) {
+		// 	return ($current_year . "-" . ($current_year + 1));
+		// } else {
+		// 	return (($current_year - 1) . "-" . $current_year);
+		// }
+
+		return $this->db->query("SELECT MAX(financial_year) as financial_year from new_data")->row()->financial_year;
 	}
   
 	public function logout()
